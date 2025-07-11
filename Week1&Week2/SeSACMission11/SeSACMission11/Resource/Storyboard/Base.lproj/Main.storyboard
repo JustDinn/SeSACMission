@@ -65,10 +65,9 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zdF-w3-hAS">
-                                            <rect key="frame" x="46" y="445" width="160" height="20"/>
+                                            <rect key="frame" x="46" y="445" width="301" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="20" id="0Au-BS-nex"/>
-                                                <constraint firstAttribute="width" constant="160" id="YYG-IX-rYw"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -89,6 +88,7 @@
                                         <constraint firstItem="zdF-w3-hAS" firstAttribute="leading" secondItem="2OC-AI-bya" secondAttribute="leadingMargin" constant="26" id="5Lx-bi-qPP"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="2Ik-5y-5vJ" secondAttribute="bottom" constant="20" id="BTH-BK-gD2"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="bCP-sn-LRu" secondAttribute="trailing" constant="26" id="II2-lh-Twk"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="zdF-w3-hAS" secondAttribute="trailing" constant="26" id="Pfr-MK-mb4"/>
                                         <constraint firstItem="M6i-44-e1i" firstAttribute="leading" secondItem="2OC-AI-bya" secondAttribute="leading" constant="46" id="QDO-aU-k74"/>
                                         <constraint firstItem="bCP-sn-LRu" firstAttribute="leading" secondItem="2OC-AI-bya" secondAttribute="leadingMargin" constant="26" id="TZh-ZY-juT"/>
                                         <constraint firstItem="bCP-sn-LRu" firstAttribute="top" secondItem="2OC-AI-bya" secondAttribute="topMargin" constant="20" id="Zay-hM-KLO"/>
@@ -114,7 +114,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jfh-lw-dpO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="161" y="-747"/>
+            <point key="canvasLocation" x="376" y="-773"/>
         </scene>
     </scenes>
     <resources>

@@ -98,7 +98,10 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="magazineCreatedDateLabel" destination="2Ik-5y-5vJ" id="Vci-kN-4u1"/>
                                     <outlet property="magazineImageView" destination="bCP-sn-LRu" id="k9X-Jj-3Ry"/>
+                                    <outlet property="magazineSubTitleLabel" destination="zdF-w3-hAS" id="dYn-KW-gVV"/>
+                                    <outlet property="magazineTitleLabel" destination="M6i-44-e1i" id="mQW-cM-NCZ"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

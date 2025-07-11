@@ -12,7 +12,9 @@ class MagazineTableViewCell: UITableViewCell {
     // MARK: - Components
     
     @IBOutlet var magazineImageView: UIImageView!
-    
+    @IBOutlet var magazineTitleLabel: UILabel!
+    @IBOutlet var magazineSubTitleLabel: UILabel!
+    @IBOutlet var magazineCreatedDateLabel: UILabel!
     
     // MARK: - Life Cycle
     
@@ -20,6 +22,7 @@ class MagazineTableViewCell: UITableViewCell {
         super.awakeFromNib()
         
         setImageView()
+        setLabel()
     }
     
     // MARK: - Set ImageView
@@ -27,5 +30,17 @@ class MagazineTableViewCell: UITableViewCell {
     func setImageView() {
         magazineImageView.image = UIImage(systemName: "star")
         magazineImageView.layer.cornerRadius = 10
+    }
+    
+    // MARK: - Set Label
+    
+    func setLabel() {
+        [
+            magazineTitleLabel,
+            magazineSubTitleLabel,
+            magazineCreatedDateLabel
+        ].forEach {
+            $0?.numberOfLines = 0
+        }
     }
 }

@@ -27,6 +27,6 @@ extension TravelMagazineTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 400
+        return 550
     }
 }

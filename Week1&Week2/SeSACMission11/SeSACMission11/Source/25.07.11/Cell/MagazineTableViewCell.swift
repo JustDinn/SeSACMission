@@ -43,4 +43,12 @@ class MagazineTableViewCell: UITableViewCell {
             $0?.numberOfLines = 0
         }
     }
+    
+    // MARK: - Configure Cell
+    
+    func configureCell(title: String, subTitle: String, createdData: String) {
+        magazineTitleLabel.text = title
+        magazineSubTitleLabel.text = subTitle
+        magazineCreatedDateLabel.text = createdData
+    }
 }

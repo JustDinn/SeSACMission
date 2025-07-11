@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+struct MagazineModel {
+    let title: String
+    let subTitle: String
+    let imageURL: String
+    let createdDate: String
+    let hyperLink: String
+}

@@ -9,15 +9,23 @@ import UIKit
 
 class MagazineTableViewCell: UITableViewCell {
 
+    // MARK: - Components
+    
+    @IBOutlet var magazineImageView: UIImageView!
+    
+    
+    // MARK: - Life Cycle
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        setImageView()
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    // MARK: - Set ImageView
+    
+    func setImageView() {
+        magazineImageView.image = UIImage(systemName: "star")
+        magazineImageView.layer.cornerRadius = 10
     }
-
 }

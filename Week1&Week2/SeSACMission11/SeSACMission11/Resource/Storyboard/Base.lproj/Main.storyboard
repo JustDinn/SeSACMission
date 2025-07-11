@@ -97,6 +97,9 @@
                                         <constraint firstItem="zdF-w3-hAS" firstAttribute="top" secondItem="M6i-44-e1i" secondAttribute="bottom" constant="24" id="vIe-ka-jNo"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="magazineImageView" destination="bCP-sn-LRu" id="k9X-Jj-3Ry"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

@@ -33,6 +33,7 @@ extension TravelMagazineTableViewController {
         let magazineData = magazineList[indexPath.row]
         
         cell.configureCell(
+            imageURL: magazineData.imageURL,
             title: magazineData.title,
             subTitle: magazineData.subTitle,
             createdData: magazineData.createdDate

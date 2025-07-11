@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class MagazineTableViewCell: UITableViewCell {
 
@@ -28,7 +29,7 @@ class MagazineTableViewCell: UITableViewCell {
     // MARK: - Set ImageView
     
     func setImageView() {
-        magazineImageView.image = UIImage(systemName: "star")
+        magazineImageView.contentMode = .scaleAspectFill
         magazineImageView.layer.cornerRadius = 10
     }
     
@@ -46,7 +47,10 @@ class MagazineTableViewCell: UITableViewCell {
     
     // MARK: - Configure Cell
     
-    func configureCell(title: String, subTitle: String, createdData: String) {
+    func configureCell(imageURL: String, title: String, subTitle: String, createdData: String) {
+        let imageURL = URL(string: imageURL)
+        
+        magazineImageView.kf.setImage(with: imageURL)
         magazineTitleLabel.text = title
         magazineSubTitleLabel.text = subTitle
         magazineCreatedDateLabel.text = createdData

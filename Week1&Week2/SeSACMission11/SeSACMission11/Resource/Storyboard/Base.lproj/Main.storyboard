@@ -21,6 +21,7 @@
                     <connections>
                         <segue destination="2M6-2G-mre" kind="relationship" relationship="viewControllers" id="yHG-fy-FtS"/>
                         <segue destination="QU8-F5-0d2" kind="relationship" relationship="viewControllers" id="CI0-Tc-tHY"/>
+                        <segue destination="CGV-P2-Q3h" kind="relationship" relationship="viewControllers" id="Z9l-af-HhE"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rjk-nf-Zb8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -176,6 +177,35 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bpc-3R-DIU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="374.80916030534348" y="-79.577464788732399"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="E5w-Ic-Zdj">
+            <objects>
+                <tableViewController id="CGV-P2-Q3h" customClass="TravelInfoTableViewController" customModule="SeSACMission11" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="mZI-5g-8wX">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Ati-Rs-Oe2">
+                                <rect key="frame" x="0.0" y="50" width="393" height="44.666667938232422"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ati-Rs-Oe2" id="slk-4d-jUA">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="44.666667938232422"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="CGV-P2-Q3h" id="J5E-Vn-cuu"/>
+                            <outlet property="delegate" destination="CGV-P2-Q3h" id="rqO-pl-W2B"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Item" id="Jzr-uY-mO6"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2JL-sD-ynW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="410" y="711"/>
         </scene>
     </scenes>
     <resources>

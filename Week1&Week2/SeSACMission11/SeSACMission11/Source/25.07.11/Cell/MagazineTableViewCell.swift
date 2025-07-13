@@ -56,10 +56,19 @@ class MagazineTableViewCell: UITableViewCell {
     
     func configureCell(imageURL: String, title: String, subTitle: String, createdData: String) {
         let imageURL = URL(string: imageURL)
+        let dateFormatter = DateFormatter()
         
         magazineImageView.kf.setImage(with: imageURL)
         magazineTitleLabel.text = title
         magazineSubTitleLabel.text = subTitle
-        magazineCreatedDateLabel.text = createdData
+        
+        dateFormatter.dateFormat = "yyMMdd"
+        dateFormatter.timeZone = TimeZone(identifier: "Asia/Seoul")
+
+        if let date = dateFormatter.date(from: createdData) {
+            dateFormatter.dateFormat = "yy년 MM월 dd일"
+            
+            magazineCreatedDateLabel.text = dateFormatter.string(from: date)
+        }
     }
 }

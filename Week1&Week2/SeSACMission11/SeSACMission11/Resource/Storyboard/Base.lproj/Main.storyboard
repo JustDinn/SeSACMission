@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,6 +20,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="2M6-2G-mre" kind="relationship" relationship="viewControllers" id="yHG-fy-FtS"/>
+                        <segue destination="QU8-F5-0d2" kind="relationship" relationship="viewControllers" id="CI0-Tc-tHY"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rjk-nf-Zb8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -115,6 +117,40 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jfh-lw-dpO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="376" y="-773"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="0OD-ax-BQ1">
+            <objects>
+                <viewController id="QU8-F5-0d2" customClass="ThreeSixNineViewController" customModule="SeSACMission11" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9oS-3w-t99">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nYa-kg-az7">
+                                <rect key="frame" x="96.666666666666686" y="84" width="200" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="57A-WI-5K7"/>
+                                    <constraint firstAttribute="height" constant="50" id="W28-nL-YfG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="rkN-xm-EZh"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="nYa-kg-az7" firstAttribute="top" secondItem="rkN-xm-EZh" secondAttribute="top" constant="25" id="FxT-8U-gOr"/>
+                            <constraint firstItem="nYa-kg-az7" firstAttribute="centerX" secondItem="9oS-3w-t99" secondAttribute="centerX" id="Gmv-BH-Kco"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="nHU-j4-L9s"/>
+                    <connections>
+                        <outlet property="numberInputTextField" destination="nYa-kg-az7" id="qW0-lX-V90"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bpc-3R-DIU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="375" y="-79"/>
         </scene>
     </scenes>
     <resources>

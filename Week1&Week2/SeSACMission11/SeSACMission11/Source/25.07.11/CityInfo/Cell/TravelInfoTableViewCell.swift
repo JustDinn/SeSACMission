@@ -20,6 +20,7 @@ class TravelInfoTableViewCell: UITableViewCell {
     @IBOutlet var extraInfoStackView: UIStackView!
     @IBOutlet var travelImageView: UIImageView!
     @IBOutlet var adLabel: UILabel!
+    @IBOutlet var likeButton: UIButton!
     
     // MARK: - Life Cyle
     
@@ -31,6 +32,9 @@ class TravelInfoTableViewCell: UITableViewCell {
         setStackView()
         setRatingView()
         setImageView()
+        setLikeButton()
+        
+        contentView.bringSubviewToFront(likeButton)
     }
     
     override func prepareForReuse() {
@@ -44,10 +48,12 @@ class TravelInfoTableViewCell: UITableViewCell {
         
         ratingView.rating = 0.0
         travelImageView.image = nil
+        likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
         
         extraInfoStackView.isHidden = false
         travelImageView.isHidden = false
         adLabel.isHidden = false
+        likeButton.isHidden = false
     }
     
     // MARK: Set Label
@@ -91,6 +97,14 @@ class TravelInfoTableViewCell: UITableViewCell {
         travelImageView.contentMode = .scaleAspectFill
     }
     
+    // MARK: - Set Like Button
+    
+    func setLikeButton() {
+        likeButton.setTitle("", for: .normal)
+        likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+        likeButton.tintColor = .systemRed
+    }
+    
     // MARK: - Configure Cell
     
     func configureCell(with travelInfo: Travel) {
@@ -99,13 +113,19 @@ class TravelInfoTableViewCell: UITableViewCell {
         
         if let rating = travelInfo.grade,
            let savedCount = travelInfo.save,
-           let travelImage = travelInfo.travel_image {
+           let travelImage = travelInfo.travel_image,
+           let isLiked = travelInfo.like {
             ratingView.rating = rating
             savedCountLabel.text = "저장 \(savedCount)"
             travelImageView.kf.setImage(with: URL(string: travelImage))
+            
+            isLiked
+                ? likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+                : likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
         } else {
             extraInfoStackView.isHidden = true
             travelImageView.isHidden = true
+            likeButton.isHidden = true
         }
         
         adLabel.isHidden = !travelInfo.ad

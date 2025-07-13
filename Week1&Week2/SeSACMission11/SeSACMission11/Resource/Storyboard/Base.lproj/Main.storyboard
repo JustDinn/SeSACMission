@@ -235,6 +235,15 @@
                                                 <constraint firstAttribute="width" constant="150" id="H8t-Sa-p21"/>
                                             </constraints>
                                         </stackView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uDj-dm-Luk">
+                                            <rect key="frame" x="331" y="23" width="30" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="30" id="FB8-46-F94"/>
+                                                <constraint firstAttribute="width" constant="30" id="Zx8-Wa-CqY"/>
+                                            </constraints>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain"/>
+                                        </button>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="n5q-Gf-kPn">
                                             <rect key="frame" x="239" y="11" width="134" height="143"/>
                                             <constraints>
@@ -252,8 +261,10 @@
                                         </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="uDj-dm-Luk" firstAttribute="top" secondItem="slk-4d-jUA" secondAttribute="topMargin" constant="12" id="9oX-AC-9ho"/>
                                         <constraint firstItem="dmF-Lp-J6v" firstAttribute="bottom" secondItem="slk-4d-jUA" secondAttribute="bottomMargin" id="Ac8-hS-qmc"/>
                                         <constraint firstItem="n5q-Gf-kPn" firstAttribute="top" secondItem="slk-4d-jUA" secondAttribute="topMargin" id="BQN-Rg-w7D"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="uDj-dm-Luk" secondAttribute="trailing" constant="12" id="CRb-Gp-b6D"/>
                                         <constraint firstItem="qLZ-Nd-rvq" firstAttribute="top" secondItem="EcQ-wd-7Br" secondAttribute="bottom" constant="4" id="Ey4-Qv-NO2"/>
                                         <constraint firstItem="n5q-Gf-kPn" firstAttribute="leading" secondItem="qLZ-Nd-rvq" secondAttribute="trailing" constant="30" id="FYZ-Ag-VIp"/>
                                         <constraint firstItem="qLZ-Nd-rvq" firstAttribute="top" secondItem="slk-4d-jUA" secondAttribute="top" constant="35" id="OG9-gc-XCK"/>
@@ -269,6 +280,7 @@
                                 <connections>
                                     <outlet property="adLabel" destination="dmF-Lp-J6v" id="jia-xR-THR"/>
                                     <outlet property="extraInfoStackView" destination="jn1-Ig-N35" id="fpY-Ls-bix"/>
+                                    <outlet property="likeButton" destination="uDj-dm-Luk" id="k9E-uY-5oN"/>
                                     <outlet property="ratingView" destination="Vpc-lR-r4m" id="WYn-2r-EoL"/>
                                     <outlet property="savedCountLabel" destination="MWi-mk-XuI" id="6DF-SJ-xzV"/>
                                     <outlet property="subTitleLabel" destination="qLZ-Nd-rvq" id="IHr-ft-ruf"/>

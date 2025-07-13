@@ -202,37 +202,50 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EcQ-wd-7Br">
-                                            <rect key="frame" x="20" y="10" width="42" height="21"/>
+                                            <rect key="frame" x="20.000000000000004" y="10.666666666666666" width="41.333333333333343" height="20.333333333333336"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qLZ-Nd-rvq">
-                                            <rect key="frame" x="20" y="35" width="42" height="21"/>
+                                            <rect key="frame" x="20.000000000000004" y="35" width="41.333333333333343" height="20.333333333333329"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vpc-lR-r4m" customClass="CosmosView" customModule="Cosmos">
-                                            <rect key="frame" x="20" y="66" width="90" height="18"/>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="jn1-Ig-N35">
+                                            <rect key="frame" x="20" y="65.333333333333329" width="140" height="18"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vpc-lR-r4m" customClass="CosmosView" customModule="Cosmos">
+                                                    <rect key="frame" x="0.0" y="0.0" width="94.666666666666671" height="18"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MWi-mk-XuI">
+                                                    <rect key="frame" x="98.666666666666671" y="0.0" width="41.333333333333329" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="90" id="D3C-aI-H9G"/>
-                                                <constraint firstAttribute="height" constant="18" id="VBa-Xz-aQf"/>
+                                                <constraint firstAttribute="height" constant="18" id="5IR-ie-EvM"/>
+                                                <constraint firstAttribute="width" constant="140" id="H8t-Sa-p21"/>
                                             </constraints>
-                                        </view>
+                                        </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="EcQ-wd-7Br" firstAttribute="leading" secondItem="slk-4d-jUA" secondAttribute="leading" constant="20" id="1ew-SJ-b8H"/>
-                                        <constraint firstItem="Vpc-lR-r4m" firstAttribute="top" secondItem="qLZ-Nd-rvq" secondAttribute="bottom" constant="10" id="5Sm-0A-v7Q"/>
-                                        <constraint firstItem="EcQ-wd-7Br" firstAttribute="top" secondItem="slk-4d-jUA" secondAttribute="top" constant="10" id="BwT-41-yUc"/>
-                                        <constraint firstItem="Vpc-lR-r4m" firstAttribute="leading" secondItem="slk-4d-jUA" secondAttribute="leadingMargin" id="Jih-mo-341"/>
-                                        <constraint firstItem="qLZ-Nd-rvq" firstAttribute="leading" secondItem="slk-4d-jUA" secondAttribute="leadingMargin" id="Qwt-4K-SXP"/>
-                                        <constraint firstItem="qLZ-Nd-rvq" firstAttribute="top" secondItem="EcQ-wd-7Br" secondAttribute="bottom" constant="4" id="k03-nV-IoR"/>
+                                        <constraint firstItem="qLZ-Nd-rvq" firstAttribute="top" secondItem="EcQ-wd-7Br" secondAttribute="bottom" constant="4" id="Ey4-Qv-NO2"/>
+                                        <constraint firstItem="qLZ-Nd-rvq" firstAttribute="top" secondItem="slk-4d-jUA" secondAttribute="top" constant="35" id="OG9-gc-XCK"/>
+                                        <constraint firstItem="qLZ-Nd-rvq" firstAttribute="leading" secondItem="EcQ-wd-7Br" secondAttribute="leading" id="Yp3-lC-wFY"/>
+                                        <constraint firstItem="jn1-Ig-N35" firstAttribute="top" secondItem="qLZ-Nd-rvq" secondAttribute="bottom" constant="10" id="i3x-SZ-UjT"/>
+                                        <constraint firstItem="jn1-Ig-N35" firstAttribute="leading" secondItem="slk-4d-jUA" secondAttribute="leadingMargin" id="iDi-Jk-Fqz"/>
+                                        <constraint firstItem="qLZ-Nd-rvq" firstAttribute="leading" secondItem="jn1-Ig-N35" secondAttribute="leading" id="j5d-kj-i9h"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="extraInfoStackView" destination="jn1-Ig-N35" id="fpY-Ls-bix"/>
                                     <outlet property="ratingView" destination="Vpc-lR-r4m" id="WYn-2r-EoL"/>
+                                    <outlet property="savedCountLabel" destination="MWi-mk-XuI" id="6DF-SJ-xzV"/>
                                     <outlet property="subTitleLabel" destination="qLZ-Nd-rvq" id="IHr-ft-ruf"/>
                                     <outlet property="titleLabel" destination="EcQ-wd-7Br" id="Qv6-ns-GAZ"/>
                                 </connections>

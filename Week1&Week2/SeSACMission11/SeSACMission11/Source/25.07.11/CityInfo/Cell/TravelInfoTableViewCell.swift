@@ -15,6 +15,8 @@ class TravelInfoTableViewCell: UITableViewCell {
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var subTitleLabel: UILabel!
     @IBOutlet var ratingView: CosmosView!
+    @IBOutlet var savedCountLabel: UILabel!
+    @IBOutlet var extraInfoStackView: UIStackView!
     
     // MARK: - Life Cyle
     
@@ -22,6 +24,7 @@ class TravelInfoTableViewCell: UITableViewCell {
         super.awakeFromNib()
         
         setLabel()
+        setStackView()
         setRatingView()
     }
     
@@ -31,6 +34,14 @@ class TravelInfoTableViewCell: UITableViewCell {
         titleLabel.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         subTitleLabel.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
         subTitleLabel.textColor = .gray
+        savedCountLabel.font = UIFont.systemFont(ofSize: 10, weight: .medium)
+        savedCountLabel.textColor = .gray
+    }
+    
+    // MARK: - Set StackView
+    
+    func setStackView() {
+        extraInfoStackView.alignment = .center
     }
     
     // MARK: - Set RatingView
@@ -51,10 +62,12 @@ class TravelInfoTableViewCell: UITableViewCell {
         titleLabel.text = travelInfo.title
         subTitleLabel.text = travelInfo.description
         
-        if let rating = travelInfo.grade {
+        if let rating = travelInfo.grade,
+           let savedCount = travelInfo.save {
             ratingView.rating = rating
+            savedCountLabel.text = "(\(savedCount))"
         } else {
-            ratingView.isHidden = true
+            extraInfoStackView.isHidden = true
         }
     }
 }

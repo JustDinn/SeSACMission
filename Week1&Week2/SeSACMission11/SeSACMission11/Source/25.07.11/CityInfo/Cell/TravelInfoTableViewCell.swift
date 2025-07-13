@@ -65,7 +65,7 @@ class TravelInfoTableViewCell: UITableViewCell {
         if let rating = travelInfo.grade,
            let savedCount = travelInfo.save {
             ratingView.rating = rating
-            savedCountLabel.text = "(\(savedCount))"
+            savedCountLabel.text = "저장 \(savedCount)"
         } else {
             extraInfoStackView.isHidden = true
         }

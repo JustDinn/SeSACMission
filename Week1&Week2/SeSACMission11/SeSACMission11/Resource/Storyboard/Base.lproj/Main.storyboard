@@ -214,14 +214,14 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="jn1-Ig-N35">
-                                            <rect key="frame" x="20" y="65.333333333333329" width="140" height="18"/>
+                                            <rect key="frame" x="20" y="65.333333333333329" width="150" height="18"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vpc-lR-r4m" customClass="CosmosView" customModule="Cosmos">
-                                                    <rect key="frame" x="0.0" y="0.0" width="94.666666666666671" height="18"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="104.66666666666667" height="18"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MWi-mk-XuI">
-                                                    <rect key="frame" x="98.666666666666671" y="0.0" width="41.333333333333329" height="18"/>
+                                                    <rect key="frame" x="108.66666666666664" y="0.0" width="41.333333333333329" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -229,7 +229,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="18" id="5IR-ie-EvM"/>
-                                                <constraint firstAttribute="width" constant="140" id="H8t-Sa-p21"/>
+                                                <constraint firstAttribute="width" constant="150" id="H8t-Sa-p21"/>
                                             </constraints>
                                         </stackView>
                                     </subviews>

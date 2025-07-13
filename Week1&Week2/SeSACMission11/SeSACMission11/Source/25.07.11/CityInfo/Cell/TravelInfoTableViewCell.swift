@@ -7,6 +7,7 @@
 
 import UIKit
 import Cosmos
+import Kingfisher
 
 class TravelInfoTableViewCell: UITableViewCell {
 
@@ -17,6 +18,7 @@ class TravelInfoTableViewCell: UITableViewCell {
     @IBOutlet var ratingView: CosmosView!
     @IBOutlet var savedCountLabel: UILabel!
     @IBOutlet var extraInfoStackView: UIStackView!
+    @IBOutlet var travelImageView: UIImageView!
     
     // MARK: - Life Cyle
     
@@ -34,6 +36,7 @@ class TravelInfoTableViewCell: UITableViewCell {
         titleLabel.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         subTitleLabel.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
         subTitleLabel.textColor = .gray
+        subTitleLabel.numberOfLines = 0
         savedCountLabel.font = UIFont.systemFont(ofSize: 10, weight: .medium)
         savedCountLabel.textColor = .gray
     }

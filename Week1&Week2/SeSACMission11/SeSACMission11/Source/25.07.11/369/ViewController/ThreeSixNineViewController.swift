@@ -36,16 +36,32 @@ class ThreeSixNineViewController: UIViewController {
     
     func setTextView() {
         resultTextView.isEditable = false
+        resultTextView.isScrollEnabled = true
     }
     
-    func setTextView(with number: Int) {
+    func setTextView(with text: String) {
         var wholeText = ""
+        guard let endNumber = Int(text) else {
+            print("<< 정수 변환 실패")
+            return
+        }
         
-        for i in 1...number {
-            if i != number {
-                wholeText += "\(i), "
+        for i in 1...endNumber {
+            let convertedToString = String(i)
+            var result = ""
+            
+            convertedToString.forEach {
+                if $0 == "3" || $0 == "6" || $0 == "9" {
+                    result += "👏"
+                } else {
+                    result += "\($0)"
+                }
+            }
+            
+            if i != endNumber {
+                wholeText += "\(result), "
             } else {
-                wholeText += "\(i)"
+                wholeText += "\(result)"
             }
         }
         resultTextView.text = wholeText
@@ -55,11 +71,7 @@ class ThreeSixNineViewController: UIViewController {
     
     @IBAction func didEndEditing(_ sender: UITextField) {
         if let textNumber = numberInputTextField.text {
-            if let intNumber = Int(textNumber) {
-                setTextView(with: intNumber)
-            } else {
-                print("<< 정수 변환 실패")
-            }
+            setTextView(with: textNumber)
         } else {
             print("<< 텍스트필드 옵셔널 바인딩 실패")
         }

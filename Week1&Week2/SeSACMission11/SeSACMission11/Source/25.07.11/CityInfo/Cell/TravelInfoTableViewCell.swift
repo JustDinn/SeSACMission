@@ -21,6 +21,7 @@ class TravelInfoTableViewCell: UITableViewCell {
     @IBOutlet var travelImageView: UIImageView!
     @IBOutlet var adLabel: UILabel!
     @IBOutlet var likeButton: UIButton!
+    let numberFormatter = NumberFormatter()
     
     // MARK: - Life Cyle
     
@@ -33,6 +34,7 @@ class TravelInfoTableViewCell: UITableViewCell {
         setRatingView()
         setImageView()
         setLikeButton()
+        numberFormatter.numberStyle = .decimal
         
         contentView.bringSubviewToFront(likeButton)
     }
@@ -116,7 +118,13 @@ class TravelInfoTableViewCell: UITableViewCell {
            let travelImage = travelInfo.travel_image,
            let isLiked = travelInfo.like {
             ratingView.rating = rating
-            savedCountLabel.text = "저장 \(savedCount)"
+            
+            if let formattedNumber = numberFormatter.string(from: NSNumber(value: savedCount)) {
+                savedCountLabel.text = "저장 \(formattedNumber)"
+            } else {
+                savedCountLabel.text = "저장 \(savedCount)"
+            }
+            
             travelImageView.kf.setImage(with: URL(string: travelImage))
             
             isLiked

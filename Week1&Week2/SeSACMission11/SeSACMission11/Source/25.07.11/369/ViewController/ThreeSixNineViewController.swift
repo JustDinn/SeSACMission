@@ -12,6 +12,7 @@ class ThreeSixNineViewController: UIViewController {
     // MARK: - Components
     
     @IBOutlet var numberInputTextField: UITextField!
+    @IBOutlet var resultTextView: UITextView!
     
     // MARK: - Life Cycle
     
@@ -19,6 +20,7 @@ class ThreeSixNineViewController: UIViewController {
         super.viewDidLoad()
         
         setTextField()
+        setTextView()
     }
     
     // MARK: - Set TextField
@@ -28,5 +30,11 @@ class ThreeSixNineViewController: UIViewController {
         numberInputTextField.layer.borderColor = UIColor.gray.cgColor
         numberInputTextField.layer.borderWidth = 1
         numberInputTextField.textAlignment = .center
+    }
+    
+    // MARK: - Set TextView
+    
+    func setTextView() {
+        resultTextView.isEditable = false
     }
 }

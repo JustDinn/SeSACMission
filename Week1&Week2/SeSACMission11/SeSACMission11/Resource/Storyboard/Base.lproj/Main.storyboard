@@ -135,17 +135,29 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="e9N-cK-yPe">
+                                <rect key="frame" x="50" y="154" width="293" height="565"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="rkN-xm-EZh"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="nYa-kg-az7" firstAttribute="top" secondItem="rkN-xm-EZh" secondAttribute="top" constant="25" id="FxT-8U-gOr"/>
                             <constraint firstItem="nYa-kg-az7" firstAttribute="centerX" secondItem="9oS-3w-t99" secondAttribute="centerX" id="Gmv-BH-Kco"/>
+                            <constraint firstItem="e9N-cK-yPe" firstAttribute="top" secondItem="nYa-kg-az7" secondAttribute="bottom" constant="20" id="KMF-Je-FjN"/>
+                            <constraint firstItem="e9N-cK-yPe" firstAttribute="leading" secondItem="rkN-xm-EZh" secondAttribute="leading" constant="50" id="ic6-B9-jQa"/>
+                            <constraint firstItem="rkN-xm-EZh" firstAttribute="bottom" secondItem="e9N-cK-yPe" secondAttribute="bottom" constant="50" id="lKc-F9-leL"/>
+                            <constraint firstItem="rkN-xm-EZh" firstAttribute="trailing" secondItem="e9N-cK-yPe" secondAttribute="trailing" constant="50" id="q1o-p4-8dp"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="nHU-j4-L9s"/>
                     <connections>
                         <outlet property="numberInputTextField" destination="nYa-kg-az7" id="qW0-lX-V90"/>
+                        <outlet property="resultTextView" destination="e9N-cK-yPe" id="CxY-y0-fS1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bpc-3R-DIU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -154,6 +166,9 @@
         </scene>
     </scenes>
     <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -12,6 +12,7 @@ class TravelInfoTableViewCell: UITableViewCell {
     // MARK: - Components
     
     @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var subTitleLabel: UILabel!
     
     // MARK: - Life Cyle
     
@@ -24,12 +25,15 @@ class TravelInfoTableViewCell: UITableViewCell {
     // MARK: Set Label
     
     func setLabel() {
-        titleLabel.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
+        titleLabel.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        subTitleLabel.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
+        subTitleLabel.textColor = .gray
     }
     
     // MARK: - Configure Cell
     
     func configureCell(with travelInfo: Travel) {
         titleLabel.text = travelInfo.title
+        subTitleLabel.text = travelInfo.description
     }
 }

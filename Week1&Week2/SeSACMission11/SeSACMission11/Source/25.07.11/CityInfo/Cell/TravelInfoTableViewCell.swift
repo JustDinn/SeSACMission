@@ -19,6 +19,7 @@ class TravelInfoTableViewCell: UITableViewCell {
     @IBOutlet var savedCountLabel: UILabel!
     @IBOutlet var extraInfoStackView: UIStackView!
     @IBOutlet var travelImageView: UIImageView!
+    @IBOutlet var adLabel: UILabel!
     
     // MARK: - Life Cyle
     
@@ -26,6 +27,7 @@ class TravelInfoTableViewCell: UITableViewCell {
         super.awakeFromNib()
         
         setLabel()
+        setAdLabel()
         setStackView()
         setRatingView()
         setImageView()
@@ -33,6 +35,8 @@ class TravelInfoTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        
+        self.backgroundColor = .white
         
         titleLabel.text = ""
         subTitleLabel.text = ""
@@ -43,6 +47,7 @@ class TravelInfoTableViewCell: UITableViewCell {
         
         extraInfoStackView.isHidden = false
         travelImageView.isHidden = false
+        adLabel.isHidden = false
     }
     
     // MARK: Set Label
@@ -54,6 +59,11 @@ class TravelInfoTableViewCell: UITableViewCell {
         subTitleLabel.numberOfLines = 0
         savedCountLabel.font = UIFont.systemFont(ofSize: 10, weight: .medium)
         savedCountLabel.textColor = .gray
+    }
+    
+    func setAdLabel() {
+        adLabel.text = "AD"
+        adLabel.isHidden = true
     }
     
     // MARK: - Set StackView
@@ -97,5 +107,7 @@ class TravelInfoTableViewCell: UITableViewCell {
             extraInfoStackView.isHidden = true
             travelImageView.isHidden = true
         }
+        
+        adLabel.isHidden = !travelInfo.ad
     }
 }

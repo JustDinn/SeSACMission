@@ -13,6 +13,7 @@ class ThreeSixNineViewController: UIViewController {
     
     @IBOutlet var numberInputTextField: UITextField!
     @IBOutlet var resultTextView: UITextView!
+    @IBOutlet var resultLabel: UILabel!
     
     // MARK: - Life Cycle
     
@@ -21,6 +22,7 @@ class ThreeSixNineViewController: UIViewController {
         
         setTextField()
         setTextView()
+        setLabel()
     }
     
     // MARK: - Set TextField
@@ -41,6 +43,7 @@ class ThreeSixNineViewController: UIViewController {
     }
     
     func setTextView(with text: String) {
+        var clapCounting = 0
         var wholeText = ""
         guard let endNumber = Int(text) else {
             print("<< 정수 변환 실패")
@@ -54,6 +57,7 @@ class ThreeSixNineViewController: UIViewController {
             convertedToString.forEach {
                 if $0 == "3" || $0 == "6" || $0 == "9" {
                     result += "👏"
+                    clapCounting += 1
                 } else {
                     result += "\($0)"
                 }
@@ -66,6 +70,15 @@ class ThreeSixNineViewController: UIViewController {
             }
         }
         resultTextView.text = wholeText
+        resultLabel.text = "숫자 \(endNumber)까지 총 박수는 \(clapCounting)번 입니다."
+    }
+    
+    // MARK: - Set Result Label
+    
+    func setLabel() {
+        resultLabel.text = ""
+        resultLabel.font = UIFont.systemFont(ofSize: 20, weight: .black)
+        resultLabel.textAlignment = .center
     }
     
     // MARK: - Action

@@ -139,33 +139,43 @@
                                 </connections>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="e9N-cK-yPe">
-                                <rect key="frame" x="50" y="154" width="293" height="565"/>
+                                <rect key="frame" x="50" y="154" width="293" height="524"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nTg-oq-f2f">
+                                <rect key="frame" x="20" y="708" width="353" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="rkN-xm-EZh"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="rkN-xm-EZh" firstAttribute="bottom" secondItem="nTg-oq-f2f" secondAttribute="bottom" constant="40" id="0xu-R6-q3t"/>
                             <constraint firstItem="nYa-kg-az7" firstAttribute="top" secondItem="rkN-xm-EZh" secondAttribute="top" constant="25" id="FxT-8U-gOr"/>
                             <constraint firstItem="nYa-kg-az7" firstAttribute="centerX" secondItem="9oS-3w-t99" secondAttribute="centerX" id="Gmv-BH-Kco"/>
                             <constraint firstItem="e9N-cK-yPe" firstAttribute="top" secondItem="nYa-kg-az7" secondAttribute="bottom" constant="20" id="KMF-Je-FjN"/>
+                            <constraint firstItem="rkN-xm-EZh" firstAttribute="trailing" secondItem="nTg-oq-f2f" secondAttribute="trailing" constant="20" id="WSZ-Ld-hDJ"/>
+                            <constraint firstItem="nTg-oq-f2f" firstAttribute="top" secondItem="e9N-cK-yPe" secondAttribute="bottom" constant="30" id="fEF-vd-xwj"/>
                             <constraint firstItem="e9N-cK-yPe" firstAttribute="leading" secondItem="rkN-xm-EZh" secondAttribute="leading" constant="50" id="ic6-B9-jQa"/>
-                            <constraint firstItem="rkN-xm-EZh" firstAttribute="bottom" secondItem="e9N-cK-yPe" secondAttribute="bottom" constant="50" id="lKc-F9-leL"/>
                             <constraint firstItem="rkN-xm-EZh" firstAttribute="trailing" secondItem="e9N-cK-yPe" secondAttribute="trailing" constant="50" id="q1o-p4-8dp"/>
+                            <constraint firstItem="nTg-oq-f2f" firstAttribute="leading" secondItem="rkN-xm-EZh" secondAttribute="leading" constant="20" id="uiB-LW-m6J"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="nHU-j4-L9s"/>
                     <connections>
                         <outlet property="numberInputTextField" destination="nYa-kg-az7" id="qW0-lX-V90"/>
+                        <outlet property="resultLabel" destination="nTg-oq-f2f" id="LX1-uv-A7V"/>
                         <outlet property="resultTextView" destination="e9N-cK-yPe" id="CxY-y0-fS1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bpc-3R-DIU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="375" y="-79"/>
+            <point key="canvasLocation" x="374.80916030534348" y="-79.577464788732399"/>
         </scene>
     </scenes>
     <resources>

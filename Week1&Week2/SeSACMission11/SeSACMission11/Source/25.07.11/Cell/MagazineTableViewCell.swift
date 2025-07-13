@@ -43,6 +43,13 @@ class MagazineTableViewCell: UITableViewCell {
         ].forEach {
             $0?.numberOfLines = 0
         }
+        
+        magazineTitleLabel.font = UIFont.systemFont(ofSize: 18, weight: .black)
+        magazineSubTitleLabel.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
+        magazineSubTitleLabel.textColor = .gray
+        magazineCreatedDateLabel.font = UIFont.systemFont(ofSize: 13, weight: .medium)
+        magazineCreatedDateLabel.textColor = .gray
+        magazineCreatedDateLabel.textAlignment = .right
     }
     
     // MARK: - Configure Cell

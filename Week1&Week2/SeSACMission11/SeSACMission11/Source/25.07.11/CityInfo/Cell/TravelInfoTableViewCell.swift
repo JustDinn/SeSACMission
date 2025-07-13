@@ -28,6 +28,21 @@ class TravelInfoTableViewCell: UITableViewCell {
         setLabel()
         setStackView()
         setRatingView()
+        setImageView()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        titleLabel.text = ""
+        subTitleLabel.text = ""
+        savedCountLabel.text = ""
+        
+        ratingView.rating = 0.0
+        travelImageView.image = nil
+        
+        extraInfoStackView.isHidden = false
+        travelImageView.isHidden = false
     }
     
     // MARK: Set Label
@@ -59,6 +74,13 @@ class TravelInfoTableViewCell: UITableViewCell {
         ratingView.settings.filledBorderColor = .clear
     }
     
+    // MARK: - Set Travel ImageView
+    
+    func setImageView() {
+        travelImageView.layer.cornerRadius = 10
+        travelImageView.contentMode = .scaleAspectFill
+    }
+    
     // MARK: - Configure Cell
     
     func configureCell(with travelInfo: Travel) {
@@ -66,11 +88,14 @@ class TravelInfoTableViewCell: UITableViewCell {
         subTitleLabel.text = travelInfo.description
         
         if let rating = travelInfo.grade,
-           let savedCount = travelInfo.save {
+           let savedCount = travelInfo.save,
+           let travelImage = travelInfo.travel_image {
             ratingView.rating = rating
             savedCountLabel.text = "저장 \(savedCount)"
+            travelImageView.kf.setImage(with: URL(string: travelImage))
         } else {
             extraInfoStackView.isHidden = true
+            travelImageView.isHidden = true
         }
     }
 }

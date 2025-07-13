@@ -37,6 +37,7 @@ class ThreeSixNineViewController: UIViewController {
     func setTextView() {
         resultTextView.isEditable = false
         resultTextView.isScrollEnabled = true
+        resultTextView.textColor = .gray
     }
     
     func setTextView(with text: String) {

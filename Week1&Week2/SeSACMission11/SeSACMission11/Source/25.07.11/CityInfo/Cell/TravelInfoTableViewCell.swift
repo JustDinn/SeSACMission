@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Cosmos
 
 class TravelInfoTableViewCell: UITableViewCell {
 
@@ -13,6 +14,7 @@ class TravelInfoTableViewCell: UITableViewCell {
     
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var subTitleLabel: UILabel!
+    @IBOutlet var ratingView: CosmosView!
     
     // MARK: - Life Cyle
     
@@ -20,6 +22,7 @@ class TravelInfoTableViewCell: UITableViewCell {
         super.awakeFromNib()
         
         setLabel()
+        setRatingView()
     }
     
     // MARK: Set Label
@@ -30,10 +33,28 @@ class TravelInfoTableViewCell: UITableViewCell {
         subTitleLabel.textColor = .gray
     }
     
+    // MARK: - Set RatingView
+    
+    func setRatingView() {
+        ratingView.settings.updateOnTouch = false
+        ratingView.settings.fillMode = .precise
+        ratingView.settings.starSize = 18
+        ratingView.settings.starMargin = 0
+        ratingView.settings.filledColor = .systemYellow
+        ratingView.settings.emptyBorderColor = .clear
+        ratingView.settings.filledBorderColor = .clear
+    }
+    
     // MARK: - Configure Cell
     
     func configureCell(with travelInfo: Travel) {
         titleLabel.text = travelInfo.title
         subTitleLabel.text = travelInfo.description
+        
+        if let rating = travelInfo.grade {
+            ratingView.rating = rating
+        } else {
+            ratingView.isHidden = true
+        }
     }
 }

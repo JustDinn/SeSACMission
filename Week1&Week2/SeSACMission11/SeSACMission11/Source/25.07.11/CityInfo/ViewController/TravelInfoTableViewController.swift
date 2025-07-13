@@ -11,13 +11,24 @@ class TravelInfoTableViewController: UITableViewController {
     
     // MARK: - Properties
     
-    let travelInfo = TravelInfo().travel
+    var travelInfo = TravelInfo().travel
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
     }
+    
+    // MARK: - Action
 
+    @IBAction func didTapLikeButton(_ sender: UIButton) {
+        if let currentLike = travelInfo[sender.tag].like {
+            let indexPath = IndexPath(row: sender.tag, section: 0)
+            
+            travelInfo[sender.tag].like = !currentLike
+            tableView.reloadRows(at: [indexPath], with: .none)
+        }
+    }
+    
     // MARK: - UITableview DataSource
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -30,6 +41,8 @@ class TravelInfoTableViewController: UITableViewController {
             cell.backgroundColor = .systemGreen
         }
         cell.configureCell(with: travelInfo[indexPath.row])
+        cell.likeButton.tag = indexPath.row
+        cell.likeButton.addTarget(self, action: #selector(didTapLikeButton), for: .touchUpInside)
         
         return cell
     }

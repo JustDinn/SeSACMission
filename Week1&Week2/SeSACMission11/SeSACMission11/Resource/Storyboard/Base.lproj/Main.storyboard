@@ -243,6 +243,9 @@
                                             </constraints>
                                             <state key="normal" title="Button"/>
                                             <buttonConfiguration key="configuration" style="plain"/>
+                                            <connections>
+                                                <action selector="didTapLikeButton:" destination="CGV-P2-Q3h" eventType="touchUpInside" id="DpD-gy-Xdx"/>
+                                            </connections>
                                         </button>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="n5q-Gf-kPn">
                                             <rect key="frame" x="239" y="11" width="134" height="143"/>

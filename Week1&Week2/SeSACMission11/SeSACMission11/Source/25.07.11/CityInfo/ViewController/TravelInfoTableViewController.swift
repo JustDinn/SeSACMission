@@ -38,7 +38,7 @@ class TravelInfoTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "travelInfoCell", for: indexPath) as! TravelInfoTableViewCell
         if travelInfo[indexPath.row].ad {
-            cell.backgroundColor = .systemGreen
+            cell.setCellBackgroundColor(backgroundColor: .systemGreen)
         }
         cell.configureCell(with: travelInfo[indexPath.row])
         cell.likeButton.tag = indexPath.row

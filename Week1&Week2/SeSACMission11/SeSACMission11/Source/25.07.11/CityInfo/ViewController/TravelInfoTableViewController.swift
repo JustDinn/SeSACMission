@@ -49,6 +49,7 @@ class TravelInfoTableViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "AdTableViewCell", for: indexPath) as! AdTableViewCell
             let randomColor = backgroundColors.randomElement()!
             
+            cell.configureCell(with: travelInfo[cellIndex])
             cell.setCellBackgroundColor(backgroundColor: randomColor)
             
             return cell

@@ -22,6 +22,13 @@ class AdTableViewCell: UITableViewCell {
         setLabel()
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        self.backgroundColor = .white
+        adTitleLabel.text = ""
+    }
+    
     // MARK: - Set Label
     
     func setLabel() {
@@ -31,5 +38,13 @@ class AdTableViewCell: UITableViewCell {
         adLabel.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
         adLabel.backgroundColor = .white
         adLabel.layer.cornerRadius = 10
+        adLabel.layer.masksToBounds = true
+        adLabel.text = "AD"
+    }
+    
+    // MARK: - Configure Cell
+    
+    func configureCell(with travelInfo: Travel) {
+        adTitleLabel.text = travelInfo.title
     }
 }

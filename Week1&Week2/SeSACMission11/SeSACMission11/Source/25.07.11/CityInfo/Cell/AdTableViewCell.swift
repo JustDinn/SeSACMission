@@ -32,14 +32,16 @@ class AdTableViewCell: UITableViewCell {
     // MARK: - Set Label
     
     func setLabel() {
-        adTitleLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        adTitleLabel.numberOfLines = 2
+        adTitleLabel.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        adTitleLabel.numberOfLines = 0
+        adTitleLabel.textAlignment = .center
         
         adLabel.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
         adLabel.backgroundColor = .white
-        adLabel.layer.cornerRadius = 10
+        adLabel.layer.cornerRadius = 5
         adLabel.layer.masksToBounds = true
         adLabel.text = "AD"
+        adLabel.textAlignment = .center
     }
     
     // MARK: - Configure Cell

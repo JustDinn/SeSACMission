@@ -125,7 +125,14 @@ class TravelInfoTableViewCell: UITableViewCell {
                 savedCountLabel.text = "저장 \(savedCount)"
             }
             
-            travelImageView.kf.setImage(with: URL(string: travelImage))
+            travelImageView.kf.setImage(
+                with: URL(string: travelImage),
+                options: [
+                    .processor(DownsamplingImageProcessor(size: travelImageView.bounds.size)),
+                    .scaleFactor(UIScreen.main.scale),
+                    .cacheOriginalImage
+                ]
+            )
             
             isLiked
                 ? likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)

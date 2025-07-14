@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Toast
 
 class TravelInfoTableViewController: UITableViewController {
     
@@ -45,6 +46,16 @@ class TravelInfoTableViewController: UITableViewController {
         cell.likeButton.addTarget(self, action: #selector(didTapLikeButton), for: .touchUpInside)
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cellIndex = indexPath.row
+        let currentY = tableView.contentOffset.y + tableView.frame.height * 0.75
+        let centerX = tableView.frame.width / 2
+        
+        if travelInfo[cellIndex].ad {
+            self.view.makeToast("광고 셀입니다", duration: 1.0, point: CGPoint(x: centerX, y: currentY), title: nil, image: nil) { _ in }
+        }
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

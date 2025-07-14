@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3FB401A62E2406DE0087E2AC /* Cosmos in Frameworks */ = {isa = PBXBuildFile; productRef = 3FB401A52E2406DE0087E2AC /* Cosmos */; };
 		3FBF1FEC2E21538F00FB96CB /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 3FBF1FEB2E21538F00FB96CB /* Kingfisher */; };
+		3FF68FB42E2556FE00AE2678 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 3FF68FB32E2556FE00AE2678 /* Toast */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FF68FB42E2556FE00AE2678 /* Toast in Frameworks */,
 				3FB401A62E2406DE0087E2AC /* Cosmos in Frameworks */,
 				3FBF1FEC2E21538F00FB96CB /* Kingfisher in Frameworks */,
 			);
@@ -87,6 +89,7 @@
 			packageProductDependencies = (
 				3FBF1FEB2E21538F00FB96CB /* Kingfisher */,
 				3FB401A52E2406DE0087E2AC /* Cosmos */,
+				3FF68FB32E2556FE00AE2678 /* Toast */,
 			);
 			productName = SeSACMission11;
 			productReference = 3F46B9692E21311600236097 /* SeSACMission11.app */;
@@ -119,6 +122,7 @@
 			packageReferences = (
 				3FBF1FEA2E21538F00FB96CB /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				3FB401A42E2406DE0087E2AC /* XCRemoteSwiftPackageReference "Cosmos" */,
+				3FF68FB22E2556FE00AE2678 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 3F46B96A2E21311600236097 /* Products */;
@@ -376,6 +380,14 @@
 				minimumVersion = 8.4.0;
 			};
 		};
+		3FF68FB22E2556FE00AE2678 /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scalessec/Toast-Swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -388,6 +400,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3FBF1FEA2E21538F00FB96CB /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		3FF68FB32E2556FE00AE2678 /* Toast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3FF68FB22E2556FE00AE2678 /* XCRemoteSwiftPackageReference "Toast-Swift" */;
+			productName = Toast;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

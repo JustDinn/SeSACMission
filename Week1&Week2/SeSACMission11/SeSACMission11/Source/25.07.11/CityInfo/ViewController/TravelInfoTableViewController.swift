@@ -13,10 +13,16 @@ class TravelInfoTableViewController: UITableViewController {
     // MARK: - Properties
     
     var travelInfo = TravelInfo().travel
+    var backgroundColors: [UIColor] = [.systemYellow, .systemGreen, .systemOrange]
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let travelInfoXib = UINib(nibName: "TravelInfoTableViewCell", bundle: nil)
+        let adXib = UINib(nibName: "AdTableViewCell", bundle: nil)
+        
+        tableView.register(travelInfoXib, forCellReuseIdentifier: "TravelInfoTableViewCell")
+        tableView.register(adXib, forCellReuseIdentifier: "AdTableViewCell")
     }
     
     // MARK: - Action
@@ -37,15 +43,23 @@ class TravelInfoTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "travelInfoCell", for: indexPath) as! TravelInfoTableViewCell
-        if travelInfo[indexPath.row].ad {
-            cell.setCellBackgroundColor(backgroundColor: .systemGreen)
-        }
-        cell.configureCell(with: travelInfo[indexPath.row])
-        cell.likeButton.tag = indexPath.row
-        cell.likeButton.addTarget(self, action: #selector(didTapLikeButton), for: .touchUpInside)
+        let cellIndex = indexPath.row
         
-        return cell
+        if travelInfo[cellIndex].ad {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "AdTableViewCell", for: indexPath) as! AdTableViewCell
+            let randomColor = backgroundColors.randomElement()!
+            
+            cell.setCellBackgroundColor(backgroundColor: randomColor)
+            
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "travelInfoCell", for: indexPath) as! TravelInfoTableViewCell
+            cell.configureCell(with: travelInfo[indexPath.row])
+            cell.likeButton.tag = indexPath.row
+            cell.likeButton.addTarget(self, action: #selector(didTapLikeButton), for: .touchUpInside)
+            
+            return cell
+        }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

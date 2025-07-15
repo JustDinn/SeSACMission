@@ -335,6 +335,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gRv-6y-V1r">
+                                <rect key="frame" x="72" y="544" width="249" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="kAa-4m-ipg"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="geM-MA-4VH"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -345,13 +353,17 @@
                             <constraint firstItem="geM-MA-4VH" firstAttribute="trailing" secondItem="woH-fh-I1B" secondAttribute="trailing" constant="40" id="Jjb-xJ-f8d"/>
                             <constraint firstItem="JD7-n1-wBX" firstAttribute="top" secondItem="woH-fh-I1B" secondAttribute="bottom" constant="16" id="N6o-4g-E0g"/>
                             <constraint firstItem="woH-fh-I1B" firstAttribute="top" secondItem="MOR-Pc-fgD" secondAttribute="bottom" constant="30" id="R28-jk-RxF"/>
+                            <constraint firstItem="gRv-6y-V1r" firstAttribute="top" secondItem="JD7-n1-wBX" secondAttribute="bottom" constant="12" id="SQV-hB-kSI"/>
                             <constraint firstItem="MOR-Pc-fgD" firstAttribute="top" secondItem="geM-MA-4VH" secondAttribute="top" constant="64" id="X8B-xF-i9N"/>
                             <constraint firstItem="geM-MA-4VH" firstAttribute="trailing" secondItem="MOR-Pc-fgD" secondAttribute="trailing" constant="76" id="ZYF-49-RM8"/>
+                            <constraint firstItem="gRv-6y-V1r" firstAttribute="leading" secondItem="geM-MA-4VH" secondAttribute="leading" constant="72" id="bP8-rQ-Sws"/>
                             <constraint firstItem="geM-MA-4VH" firstAttribute="trailing" secondItem="JD7-n1-wBX" secondAttribute="trailing" constant="50" id="kas-NG-2fj"/>
+                            <constraint firstItem="geM-MA-4VH" firstAttribute="trailing" secondItem="gRv-6y-V1r" secondAttribute="trailing" constant="72" id="vwD-jd-fg8"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="imageView" destination="MOR-Pc-fgD" id="97J-YA-GYG"/>
+                        <outlet property="popVCButton" destination="gRv-6y-V1r" id="Jct-dK-A5I"/>
                         <outlet property="subTitleLabel" destination="JD7-n1-wBX" id="1Aa-MT-Nib"/>
                         <outlet property="titleLabel" destination="woH-fh-I1B" id="y3w-rD-dSp"/>
                     </connections>

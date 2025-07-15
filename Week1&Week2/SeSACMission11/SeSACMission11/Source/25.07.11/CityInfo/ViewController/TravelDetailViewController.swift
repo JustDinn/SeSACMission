@@ -19,6 +19,7 @@ class TravelDetailViewController: UIViewController {
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var subTitleLabel: UILabel!
+    @IBOutlet var popVCButton: UIButton!
     
     // MARK: - Life Cycle
     
@@ -27,6 +28,7 @@ class TravelDetailViewController: UIViewController {
         
         setImageView()
         setLabel()
+        setButton()
         setUI()
     }
     
@@ -60,5 +62,15 @@ class TravelDetailViewController: UIViewController {
         subTitleLabel.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         subTitleLabel.textAlignment = .center
         subTitleLabel.numberOfLines = 0
+    }
+    
+    // MARK: - Set PopButton
+    
+    func setButton() {
+        popVCButton.backgroundColor = .systemBlue
+        popVCButton.layer.cornerRadius = 15
+        popVCButton.layer.masksToBounds = true
+        popVCButton.setTitle("다른 관광지 보러 가기", for: .normal)
+        popVCButton.setTitleColor(.white, for: .normal)
     }
 }

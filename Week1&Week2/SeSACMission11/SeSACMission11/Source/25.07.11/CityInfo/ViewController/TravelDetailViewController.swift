@@ -73,4 +73,10 @@ class TravelDetailViewController: UIViewController {
         popVCButton.setTitle("다른 관광지 보러 가기", for: .normal)
         popVCButton.setTitleColor(.white, for: .normal)
     }
+    
+    // MARK: - Action
+    
+    @IBAction func didTapPopButton(_ sender: UIButton) {
+        navigationController?.popViewController(animated: true)
+    }
 }

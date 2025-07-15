@@ -5,6 +5,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -17,17 +18,28 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VaV-Lj-5rY">
-                        <rect key="frame" x="61" y="12" width="42" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MCv-p0-hol">
+                        <rect key="frame" x="20" y="0.0" width="280" height="135"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="MCv-p0-hol" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="9Kg-9w-dzu"/>
+                    <constraint firstItem="MCv-p0-hol" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="C7d-LT-5aR"/>
+                    <constraint firstAttribute="bottom" secondItem="MCv-p0-hol" secondAttribute="bottom" constant="15" id="hyl-dY-1Np"/>
+                    <constraint firstAttribute="trailing" secondItem="MCv-p0-hol" secondAttribute="trailing" constant="20" id="sAY-fq-tI6"/>
+                </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="containerView" destination="MCv-p0-hol" id="Igc-3I-V1C"/>
+            </connections>
             <point key="canvasLocation" x="68.702290076335871" y="50"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

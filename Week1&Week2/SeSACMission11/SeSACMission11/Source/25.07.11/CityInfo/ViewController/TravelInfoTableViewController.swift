@@ -74,8 +74,10 @@ class TravelInfoTableViewController: UITableViewController {
         
         if travelInfo[cellIndex].ad {
             travelAdVC.adInfo = travelInfo[cellIndex]
+            travelAdVC.modalPresentationStyle = .fullScreen
+            
             self.view.makeToast("광고 셀입니다", duration: 0.5, point: CGPoint(x: centerX, y: currentY), title: nil, image: nil) { _ in
-                self.navigationController?.pushViewController(travelAdVC, animated: true)
+                self.present(travelAdVC, animated: true)
             }
         } else {
             travelDetailVC.travelDetailInfo = travelInfo[cellIndex]

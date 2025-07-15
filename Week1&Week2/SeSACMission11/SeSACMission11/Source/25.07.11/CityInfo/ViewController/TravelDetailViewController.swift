@@ -18,6 +18,7 @@ class TravelDetailViewController: UIViewController {
     
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var subTitleLabel: UILabel!
     
     // MARK: - Life Cycle
     
@@ -37,6 +38,7 @@ class TravelDetailViewController: UIViewController {
                 imageView.kf.setImage(with: URL(string: imageURL))
             }
             titleLabel.text = travelInfo.title
+            subTitleLabel.text = travelInfo.description
         }
     }
     
@@ -53,5 +55,10 @@ class TravelDetailViewController: UIViewController {
     func setLabel() {
         titleLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         titleLabel.textAlignment = .center
+        titleLabel.numberOfLines = 0
+        
+        subTitleLabel.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+        subTitleLabel.textAlignment = .center
+        subTitleLabel.numberOfLines = 0
     }
 }

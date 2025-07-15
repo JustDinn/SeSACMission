@@ -481,6 +481,7 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
                                     <connections>
+                                        <action selector="didChangedTextField:" destination="7n9-uP-JIl" eventType="editingChanged" id="ox9-ji-Jcd"/>
                                         <action selector="didEndEditingTextField:" destination="7n9-uP-JIl" eventType="editingDidEndOnExit" id="0bB-zk-KFs"/>
                                     </connections>
                                 </textField>

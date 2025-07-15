@@ -24,13 +24,8 @@ class CityTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        registerNib()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
         filteredCities = cityInfos
+        registerNib()
     }
     
     // MARK: - Register Nib
@@ -40,6 +35,27 @@ class CityTableViewController: UITableViewController {
         
         tableView.register(cityXib, forCellReuseIdentifier: CityTableViewCell.identifier)
         tableView.separatorStyle = .none
+    }
+    
+    // MARK: - 필터
+    
+    func filter() {
+        if searchTextField.text!.isEmpty {
+            didSelectSegment(filterSegment)
+        } else {
+            didSelectSegment(filterSegment)
+            filterCities()
+        }
+    }
+    
+    // MARK: - 여행지 필터링
+    
+    func filterCities() {
+        filteredCities = filteredCities.filter {
+            $0.city_name.contains(searchTextField.text!) ||
+            $0.city_english_name.contains(searchTextField.text!) ||
+            $0.city_explain.contains(searchTextField.text!)
+        }
     }
     
     // MARK: - Action
@@ -65,19 +81,12 @@ class CityTableViewController: UITableViewController {
     }
     
     @IBAction func didEndEditingTextField(_ sender: UITextField) {
-        if searchTextField.text!.isEmpty {
-            didSelectSegment(filterSegment)
-            tableView.reloadData()
-            
-            return
-        }
-        
-        filteredCities = filteredCities.filter {
-            $0.city_name.contains(searchTextField.text!) ||
-            $0.city_english_name.contains(searchTextField.text!) ||
-            $0.city_explain.contains(searchTextField.text!)
-        }
-        
+        filter()
+        tableView.reloadData()
+    }
+    
+    @IBAction func didChangedTextField(_ sender: UITextField) {
+        filter()
         tableView.reloadData()
     }
 

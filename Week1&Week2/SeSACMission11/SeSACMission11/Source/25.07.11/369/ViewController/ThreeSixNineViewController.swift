@@ -55,6 +55,7 @@ class ThreeSixNineViewController: UIViewController {
             var result = ""
             
             convertedToString.forEach {
+                // TODO: Set으로 바꾸기?
                 if $0 == "3" || $0 == "6" || $0 == "9" {
                     result += "👏"
                     clapCounting += 1

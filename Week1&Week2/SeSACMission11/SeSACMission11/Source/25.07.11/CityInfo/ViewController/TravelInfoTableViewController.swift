@@ -70,9 +70,13 @@ class TravelInfoTableViewController: UITableViewController {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let travelDetailVC = storyboard.instantiateViewController(withIdentifier: "TravelDetailVC") as! TravelDetailViewController
+        let travelAdVC = storyboard.instantiateViewController(withIdentifier: "TravelAdVC") as! TravelAdViewController
         
         if travelInfo[cellIndex].ad {
-            self.view.makeToast("광고 셀입니다", duration: 1.0, point: CGPoint(x: centerX, y: currentY), title: nil, image: nil) { _ in }
+            travelAdVC.adInfo = travelInfo[cellIndex]
+            self.view.makeToast("광고 셀입니다", duration: 0.5, point: CGPoint(x: centerX, y: currentY), title: nil, image: nil) { _ in
+                self.navigationController?.pushViewController(travelAdVC, animated: true)
+            }
         } else {
             travelDetailVC.travelDetailInfo = travelInfo[cellIndex]
             navigationController?.pushViewController(travelDetailVC, animated: true)

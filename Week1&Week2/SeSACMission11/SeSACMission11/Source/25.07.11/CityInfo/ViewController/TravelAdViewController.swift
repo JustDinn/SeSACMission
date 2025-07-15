@@ -50,4 +50,10 @@ class TravelAdViewController: UIViewController {
         adTitleLabel.textAlignment = .center
         adTitleLabel.numberOfLines = 0
     }
+    
+    // MARK: - Action
+    
+    @IBAction func didTapBackButton(_ sender: UIBarButtonItem) {
+        dismiss(animated: true)
+    }
 }

@@ -325,7 +325,11 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="광고 화면" id="Pug-Qg-xYF">
-                                        <barButtonItem key="leftBarButtonItem" title="Item" id="932-9L-obK"/>
+                                        <barButtonItem key="leftBarButtonItem" title="Item" id="932-9L-obK">
+                                            <connections>
+                                                <action selector="didTapBackButton:" destination="fLw-fp-tNj" id="8Lw-Ek-hKV"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>

@@ -18,6 +18,7 @@ class CityTableViewCell: UITableViewCell {
     
     @IBOutlet var containerView: UIView!
     @IBOutlet var backgroundImageView: UIImageView!
+    @IBOutlet var titleLabel: UILabel!
     
     // MARK: - Life Cycle
     
@@ -26,6 +27,7 @@ class CityTableViewCell: UITableViewCell {
         
         setContainerViewUI()
         setImageView()
+        setTitleLabel()
     }
     
     // MARK: - Set ContainerView UI
@@ -42,9 +44,18 @@ class CityTableViewCell: UITableViewCell {
         backgroundImageView.contentMode = .scaleAspectFill
     }
     
+    // MARK: - Set TitleLabel
+    
+    func setTitleLabel() {
+        titleLabel.font = UIFont.systemFont(ofSize: 16, weight: .black)
+        titleLabel.textColor = .white
+        titleLabel.textAlignment = .right
+    }
+    
     // MARK: - Configure Cell
     
     func configureCell(with cityInfo: City) {
         backgroundImageView.kf.setImage(with: URL(string: cityInfo.city_image))
+        titleLabel.text = "\(cityInfo.city_name) | \(cityInfo.city_english_name)"
     }
 }

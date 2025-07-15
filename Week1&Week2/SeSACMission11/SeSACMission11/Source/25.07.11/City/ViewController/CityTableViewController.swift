@@ -25,6 +25,7 @@ class CityTableViewController: UITableViewController {
         let cityXib = UINib(nibName: CityTableViewCell.identifier, bundle: nil)
         
         tableView.register(cityXib, forCellReuseIdentifier: CityTableViewCell.identifier)
+        tableView.separatorStyle = .none
     }
 
     // MARK: - Table view data source

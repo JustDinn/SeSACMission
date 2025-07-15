@@ -24,11 +24,22 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="13y-ec-aAG">
                                 <rect key="frame" x="0.0" y="0.0" width="280" height="135"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g0s-Xk-nOe">
+                                <rect key="frame" x="152" y="16" width="120" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="JXO-yL-M46"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="13y-ec-aAG" firstAttribute="top" secondItem="MCv-p0-hol" secondAttribute="top" id="7qU-tT-Vrd"/>
+                            <constraint firstItem="g0s-Xk-nOe" firstAttribute="top" secondItem="MCv-p0-hol" secondAttribute="top" constant="16" id="QrV-6n-Smd"/>
                             <constraint firstAttribute="bottom" secondItem="13y-ec-aAG" secondAttribute="bottom" id="RaA-5E-E0h"/>
+                            <constraint firstAttribute="trailing" secondItem="g0s-Xk-nOe" secondAttribute="trailing" constant="8" id="gw5-8D-uhj"/>
                             <constraint firstAttribute="trailing" secondItem="13y-ec-aAG" secondAttribute="trailing" id="sII-Kz-NXG"/>
                             <constraint firstItem="13y-ec-aAG" firstAttribute="leading" secondItem="MCv-p0-hol" secondAttribute="leading" id="vfO-md-U2h"/>
                         </constraints>
@@ -45,6 +56,7 @@
             <connections>
                 <outlet property="backgroundImageView" destination="13y-ec-aAG" id="p0b-uX-SU0"/>
                 <outlet property="containerView" destination="MCv-p0-hol" id="Igc-3I-V1C"/>
+                <outlet property="titleLabel" destination="g0s-Xk-nOe" id="NSM-Us-xHf"/>
             </connections>
             <point key="canvasLocation" x="68.702290076335871" y="50"/>
         </tableViewCell>

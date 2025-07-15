@@ -9,6 +9,10 @@ import UIKit
 
 class CityTableViewController: UITableViewController {
 
+    // MARK: - Properties
+    
+    let cityInfos = CityInfo().city
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,7 +30,7 @@ class CityTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return cityInfos.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

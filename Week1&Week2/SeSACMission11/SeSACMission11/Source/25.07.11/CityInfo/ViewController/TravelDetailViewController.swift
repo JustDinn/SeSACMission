@@ -23,6 +23,7 @@ class TravelDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setImageView()
         setUI()
     }
     
@@ -33,5 +34,13 @@ class TravelDetailViewController: UIViewController {
            let imageURL = travelInfo.travel_image {
             imageView.kf.setImage(with: URL(string: imageURL))
         }
+    }
+    
+    // MARK: - Set ImageView
+    
+    func setImageView() {
+        imageView.contentMode = .scaleAspectFill
+        imageView.layer.cornerRadius = 10
+        imageView.layer.masksToBounds = true
     }
 }

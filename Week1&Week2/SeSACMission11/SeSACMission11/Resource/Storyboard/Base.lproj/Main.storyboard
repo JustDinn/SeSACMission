@@ -310,13 +310,29 @@
                     <view key="view" contentMode="scaleToFill" id="9Eh-9Y-yM6">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MOR-Pc-fgD">
+                                <rect key="frame" x="76" y="123" width="241" height="247"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="247" id="gaN-XS-zbc"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="geM-MA-4VH"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="MOR-Pc-fgD" firstAttribute="leading" secondItem="geM-MA-4VH" secondAttribute="leading" constant="76" id="4S9-gI-uAA"/>
+                            <constraint firstItem="MOR-Pc-fgD" firstAttribute="top" secondItem="geM-MA-4VH" secondAttribute="top" constant="64" id="X8B-xF-i9N"/>
+                            <constraint firstItem="geM-MA-4VH" firstAttribute="trailing" secondItem="MOR-Pc-fgD" secondAttribute="trailing" constant="76" id="ZYF-49-RM8"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="imageView" destination="MOR-Pc-fgD" id="97J-YA-GYG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vtR-wL-iMp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2402.290076335878" y="563.38028169014092"/>
+            <point key="canvasLocation" x="2163" y="556"/>
         </scene>
         <!--Item-->
         <scene sceneID="um3-ZY-gVQ">

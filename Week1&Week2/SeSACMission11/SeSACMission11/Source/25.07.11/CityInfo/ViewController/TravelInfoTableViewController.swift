@@ -69,12 +69,12 @@ class TravelInfoTableViewController: UITableViewController {
         let centerX = tableView.frame.width / 2
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let travelDetailVC = storyboard.instantiateViewController(withIdentifier: "TravelDetailVC")
-        
+        let travelDetailVC = storyboard.instantiateViewController(withIdentifier: "TravelDetailVC") as! TravelDetailViewController
         
         if travelInfo[cellIndex].ad {
             self.view.makeToast("광고 셀입니다", duration: 1.0, point: CGPoint(x: centerX, y: currentY), title: nil, image: nil) { _ in }
         } else {
+            travelDetailVC.travelDetailInfo = travelInfo[cellIndex]
             navigationController?.pushViewController(travelDetailVC, animated: true)
         }
     }

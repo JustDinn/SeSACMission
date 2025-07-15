@@ -460,21 +460,42 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <segmentedControl key="tableHeaderView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="8cb-sy-ad6">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="32"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="z1s-hl-ehb">
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="111"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <segments>
-                                <segment title="모두"/>
-                                <segment title="국내"/>
-                                <segment title="해외"/>
-                            </segments>
-                            <connections>
-                                <action selector="didSelectSegment:" destination="7n9-uP-JIl" eventType="valueChanged" id="6FJ-Hp-cN5"/>
-                            </connections>
-                        </segmentedControl>
+                            <subviews>
+                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="8cb-sy-ad6">
+                                    <rect key="frame" x="0.0" y="61" width="393" height="31"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <segments>
+                                        <segment title="모두"/>
+                                        <segment title="국내"/>
+                                        <segment title="해외"/>
+                                    </segments>
+                                    <connections>
+                                        <action selector="didSelectSegment:" destination="7n9-uP-JIl" eventType="valueChanged" id="6FJ-Hp-cN5"/>
+                                    </connections>
+                                </segmentedControl>
+                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eXx-3K-fxk">
+                                    <rect key="frame" x="50" y="4" width="293" height="45"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <action selector="didEndEditingTextField:" destination="7n9-uP-JIl" eventType="editingDidEndOnExit" id="0bB-zk-KFs"/>
+                                    </connections>
+                                </textField>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstItem="eXx-3K-fxk" firstAttribute="leading" secondItem="z1s-hl-ehb" secondAttribute="leading" constant="50" id="SZB-ag-QrI"/>
+                                <constraint firstItem="eXx-3K-fxk" firstAttribute="top" secondItem="z1s-hl-ehb" secondAttribute="top" constant="4" id="Yv3-sI-SQ8"/>
+                                <constraint firstItem="8cb-sy-ad6" firstAttribute="top" secondItem="eXx-3K-fxk" secondAttribute="bottom" constant="12" id="dDT-rh-Egp"/>
+                                <constraint firstAttribute="trailing" secondItem="eXx-3K-fxk" secondAttribute="trailing" constant="50" id="ipS-jb-Tvs"/>
+                            </constraints>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="161" id="ufo-Ul-Ez4">
-                                <rect key="frame" x="0.0" y="82" width="393" height="161"/>
+                                <rect key="frame" x="0.0" y="161" width="393" height="161"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ufo-Ul-Ez4" id="zeK-Q7-8IO">
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="161"/>
@@ -490,6 +511,7 @@
                     <tabBarItem key="tabBarItem" title="Item" id="2rR-XN-B7Y"/>
                     <connections>
                         <outlet property="filterSegment" destination="8cb-sy-ad6" id="XGE-55-G3O"/>
+                        <outlet property="searchTextField" destination="eXx-3K-fxk" id="ni4-YW-BYe"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3dV-bp-jEi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

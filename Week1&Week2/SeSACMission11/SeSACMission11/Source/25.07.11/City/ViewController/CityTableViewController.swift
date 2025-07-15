@@ -17,6 +17,7 @@ class CityTableViewController: UITableViewController {
     // MARK: - Components
     
     @IBOutlet var filterSegment: UISegmentedControl!
+    @IBOutlet var searchTextField: UITextField!
     
     // MARK: - Life Cycle
     
@@ -41,12 +42,6 @@ class CityTableViewController: UITableViewController {
         tableView.separatorStyle = .none
     }
     
-    // MARK: - Set Segment
-    
-    func setSegment() {
-        
-    }
-    
     // MARK: - Action
     
     @IBAction func didSelectSegment(_ sender: UISegmentedControl) {
@@ -64,6 +59,23 @@ class CityTableViewController: UITableViewController {
             
         default:
             fatalError("잘못된 세그먼트 인덱스")
+        }
+        
+        tableView.reloadData()
+    }
+    
+    @IBAction func didEndEditingTextField(_ sender: UITextField) {
+        if searchTextField.text!.isEmpty {
+            didSelectSegment(filterSegment)
+            tableView.reloadData()
+            
+            return
+        }
+        
+        filteredCities = filteredCities.filter {
+            $0.city_name.contains(searchTextField.text!) ||
+            $0.city_english_name.contains(searchTextField.text!) ||
+            $0.city_explain.contains(searchTextField.text!)
         }
         
         tableView.reloadData()

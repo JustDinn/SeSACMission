@@ -18,6 +18,12 @@ class TravelInfoTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        registerNib()
+    }
+    
+    // MARK: - Register Nib
+    
+    func registerNib() {
         let travelInfoXib = UINib(nibName: "TravelInfoTableViewCell", bundle: nil)
         let adXib = UINib(nibName: "AdTableViewCell", bundle: nil)
         

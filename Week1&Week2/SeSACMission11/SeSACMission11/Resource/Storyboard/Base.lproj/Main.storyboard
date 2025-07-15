@@ -320,6 +320,15 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yWi-CP-jmY">
+                                <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="광고 화면" id="Pug-Qg-xYF">
+                                        <barButtonItem key="leftBarButtonItem" title="Item" id="932-9L-obK"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="NaL-I7-5KH"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -331,6 +340,7 @@
                     </view>
                     <connections>
                         <outlet property="adTitleLabel" destination="boK-O8-epN" id="8Ct-ph-YmK"/>
+                        <outlet property="backButton" destination="932-9L-obK" id="lmc-ge-jAR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q7b-bS-2b4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

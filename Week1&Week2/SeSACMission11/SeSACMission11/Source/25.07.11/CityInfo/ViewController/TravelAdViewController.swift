@@ -16,16 +16,15 @@ class TravelAdViewController: UIViewController {
     // MARK: - Components
     
     @IBOutlet var adTitleLabel: UILabel!
+    @IBOutlet var backButton: UIBarButtonItem!
     
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        adTitleLabel.font = UIFont.systemFont(ofSize: 24, weight: .black)
-        adTitleLabel.textAlignment = .center
-        adTitleLabel.numberOfLines = 0
-        
+        setBackButton()
+        setLabel()
         setAdUI()
     }
     
@@ -35,5 +34,20 @@ class TravelAdViewController: UIViewController {
         if let ad = adInfo {
             adTitleLabel.text = ad.title
         }
+    }
+    
+    // MARK: - Set Back Button
+    
+    func setBackButton() {
+        backButton.image = UIImage(systemName: "xmark")
+        backButton.tintColor = .black
+    }
+    
+    // MARK: - Set Label
+    
+    func setLabel() {
+        adTitleLabel.font = UIFont.systemFont(ofSize: 24, weight: .black)
+        adTitleLabel.textAlignment = .center
+        adTitleLabel.numberOfLines = 0
     }
 }

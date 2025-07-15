@@ -460,9 +460,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <segmentedControl key="tableHeaderView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="8cb-sy-ad6">
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="모두"/>
+                                <segment title="국내"/>
+                                <segment title="해외"/>
+                            </segments>
+                            <connections>
+                                <action selector="didSelectSegment:" destination="7n9-uP-JIl" eventType="valueChanged" id="6FJ-Hp-cN5"/>
+                            </connections>
+                        </segmentedControl>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="161" id="ufo-Ul-Ez4">
-                                <rect key="frame" x="0.0" y="50" width="393" height="161"/>
+                                <rect key="frame" x="0.0" y="82" width="393" height="161"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ufo-Ul-Ez4" id="zeK-Q7-8IO">
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="161"/>
@@ -476,6 +488,9 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Item" id="2rR-XN-B7Y"/>
+                    <connections>
+                        <outlet property="filterSegment" destination="8cb-sy-ad6" id="XGE-55-G3O"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3dV-bp-jEi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

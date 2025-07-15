@@ -303,6 +303,40 @@
             </objects>
             <point key="canvasLocation" x="1336.6412213740457" y="710.56338028169023"/>
         </scene>
+        <!--Travel Ad View Controller-->
+        <scene sceneID="eo4-So-kF9">
+            <objects>
+                <viewController storyboardIdentifier="TravelAdVC" id="fLw-fp-tNj" customClass="TravelAdViewController" customModule="SeSACMission11" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OCR-BV-d89">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="boK-O8-epN">
+                                <rect key="frame" x="44" y="259" width="305" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="3EH-64-Ysn"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="NaL-I7-5KH"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="boK-O8-epN" firstAttribute="leading" secondItem="NaL-I7-5KH" secondAttribute="leading" constant="44" id="BHi-3r-Kxw"/>
+                            <constraint firstItem="boK-O8-epN" firstAttribute="top" secondItem="NaL-I7-5KH" secondAttribute="top" constant="200" id="DES-zw-BP1"/>
+                            <constraint firstItem="NaL-I7-5KH" firstAttribute="trailing" secondItem="boK-O8-epN" secondAttribute="trailing" constant="44" id="xUs-vd-2V9"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="adTitleLabel" destination="boK-O8-epN" id="8Ct-ph-YmK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Q7b-bS-2b4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2163" y="1147"/>
+        </scene>
         <!--Travel Detail View Controller-->
         <scene sceneID="w45-an-Ger">
             <objects>
@@ -373,7 +407,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vtR-wL-iMp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2163" y="556"/>
+            <point key="canvasLocation" x="2163" y="455"/>
         </scene>
         <!--Item-->
         <scene sceneID="um3-ZY-gVQ">

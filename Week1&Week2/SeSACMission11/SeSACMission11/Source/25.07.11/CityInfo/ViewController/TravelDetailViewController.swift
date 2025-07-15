@@ -17,6 +17,7 @@ class TravelDetailViewController: UIViewController {
     // MARK: - Components
     
     @IBOutlet var imageView: UIImageView!
+    @IBOutlet var titleLabel: UILabel!
     
     // MARK: - Life Cycle
     
@@ -24,15 +25,18 @@ class TravelDetailViewController: UIViewController {
         super.viewDidLoad()
         
         setImageView()
+        setLabel()
         setUI()
     }
     
     // MARK: - Set UI
     
     func setUI() {
-        if let travelInfo = travelDetailInfo,
-           let imageURL = travelInfo.travel_image {
-            imageView.kf.setImage(with: URL(string: imageURL))
+        if let travelInfo = travelDetailInfo {
+            if let imageURL = travelInfo.travel_image {
+                imageView.kf.setImage(with: URL(string: imageURL))
+            }
+            titleLabel.text = travelInfo.title
         }
     }
     
@@ -42,5 +46,12 @@ class TravelDetailViewController: UIViewController {
         imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = 10
         imageView.layer.masksToBounds = true
+    }
+    
+    // MARK: - Set Label
+    
+    func setLabel() {
+        titleLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        titleLabel.textAlignment = .center
     }
 }

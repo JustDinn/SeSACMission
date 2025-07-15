@@ -317,17 +317,30 @@
                                     <constraint firstAttribute="height" constant="247" id="gaN-XS-zbc"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="woH-fh-I1B">
+                                <rect key="frame" x="40" y="400" width="313" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="4P9-AT-saq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="geM-MA-4VH"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="MOR-Pc-fgD" firstAttribute="leading" secondItem="geM-MA-4VH" secondAttribute="leading" constant="76" id="4S9-gI-uAA"/>
+                            <constraint firstItem="woH-fh-I1B" firstAttribute="leading" secondItem="geM-MA-4VH" secondAttribute="leading" constant="40" id="9ud-30-bVQ"/>
+                            <constraint firstItem="geM-MA-4VH" firstAttribute="trailing" secondItem="woH-fh-I1B" secondAttribute="trailing" constant="40" id="Jjb-xJ-f8d"/>
+                            <constraint firstItem="woH-fh-I1B" firstAttribute="top" secondItem="MOR-Pc-fgD" secondAttribute="bottom" constant="30" id="R28-jk-RxF"/>
                             <constraint firstItem="MOR-Pc-fgD" firstAttribute="top" secondItem="geM-MA-4VH" secondAttribute="top" constant="64" id="X8B-xF-i9N"/>
                             <constraint firstItem="geM-MA-4VH" firstAttribute="trailing" secondItem="MOR-Pc-fgD" secondAttribute="trailing" constant="76" id="ZYF-49-RM8"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="imageView" destination="MOR-Pc-fgD" id="97J-YA-GYG"/>
+                        <outlet property="titleLabel" destination="woH-fh-I1B" id="y3w-rD-dSp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vtR-wL-iMp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

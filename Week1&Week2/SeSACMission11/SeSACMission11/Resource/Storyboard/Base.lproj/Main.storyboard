@@ -394,6 +394,15 @@
                                     <action selector="didTapPopButton:" destination="by1-4t-uk9" eventType="touchUpInside" id="XCc-3V-UB2"/>
                                 </connections>
                             </button>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" backIndicatorImage="chevron.left" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="MKm-Zz-Cna">
+                                <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="관광지 화면" id="sHg-Ib-0Br">
+                                        <barButtonItem key="backBarButtonItem" title=" " id="a5H-Zr-BYd"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="geM-MA-4VH"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -444,6 +453,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="chevron.left" catalog="system" width="97" height="128"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

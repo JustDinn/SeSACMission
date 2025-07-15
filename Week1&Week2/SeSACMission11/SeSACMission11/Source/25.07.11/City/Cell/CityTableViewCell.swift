@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class CityTableViewCell: UITableViewCell {
 
@@ -16,6 +17,7 @@ class CityTableViewCell: UITableViewCell {
     // MARK: - Components
     
     @IBOutlet var containerView: UIView!
+    @IBOutlet var backgroundImageView: UIImageView!
     
     // MARK: - Life Cycle
     
@@ -23,6 +25,7 @@ class CityTableViewCell: UITableViewCell {
         super.awakeFromNib()
         
         setContainerViewUI()
+        setImageView()
     }
     
     // MARK: - Set ContainerView UI
@@ -31,5 +34,17 @@ class CityTableViewCell: UITableViewCell {
         containerView.layer.cornerRadius = 20
         containerView.layer.masksToBounds = true
         containerView.layer.maskedCorners = CACornerMask(arrayLiteral: .layerMinXMinYCorner, .layerMaxXMaxYCorner)
+    }
+    
+    // MARK: - Set ImageView
+    
+    func setImageView() {
+        backgroundImageView.contentMode = .scaleAspectFill
+    }
+    
+    // MARK: - Configure Cell
+    
+    func configureCell(with cityInfo: City) {
+        backgroundImageView.kf.setImage(with: URL(string: cityInfo.city_image))
     }
 }

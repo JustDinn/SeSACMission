@@ -20,7 +20,18 @@
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MCv-p0-hol">
                         <rect key="frame" x="20" y="0.0" width="280" height="135"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="13y-ec-aAG">
+                                <rect key="frame" x="0.0" y="0.0" width="280" height="135"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="13y-ec-aAG" firstAttribute="top" secondItem="MCv-p0-hol" secondAttribute="top" id="7qU-tT-Vrd"/>
+                            <constraint firstAttribute="bottom" secondItem="13y-ec-aAG" secondAttribute="bottom" id="RaA-5E-E0h"/>
+                            <constraint firstAttribute="trailing" secondItem="13y-ec-aAG" secondAttribute="trailing" id="sII-Kz-NXG"/>
+                            <constraint firstItem="13y-ec-aAG" firstAttribute="leading" secondItem="MCv-p0-hol" secondAttribute="leading" id="vfO-md-U2h"/>
+                        </constraints>
                     </view>
                 </subviews>
                 <constraints>
@@ -32,6 +43,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="backgroundImageView" destination="13y-ec-aAG" id="p0b-uX-SU0"/>
                 <outlet property="containerView" destination="MCv-p0-hol" id="Igc-3I-V1C"/>
             </connections>
             <point key="canvasLocation" x="68.702290076335871" y="50"/>

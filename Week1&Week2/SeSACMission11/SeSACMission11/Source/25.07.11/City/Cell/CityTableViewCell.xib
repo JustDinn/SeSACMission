@@ -33,14 +33,23 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="utd-16-7Ng">
+                                <rect key="frame" x="0.0" y="114" width="280" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="13y-ec-aAG" firstAttribute="top" secondItem="MCv-p0-hol" secondAttribute="top" id="7qU-tT-Vrd"/>
+                            <constraint firstAttribute="trailing" secondItem="utd-16-7Ng" secondAttribute="trailing" id="BS2-1g-5up"/>
                             <constraint firstItem="g0s-Xk-nOe" firstAttribute="top" secondItem="MCv-p0-hol" secondAttribute="top" constant="16" id="QrV-6n-Smd"/>
                             <constraint firstAttribute="bottom" secondItem="13y-ec-aAG" secondAttribute="bottom" id="RaA-5E-E0h"/>
                             <constraint firstAttribute="trailing" secondItem="g0s-Xk-nOe" secondAttribute="trailing" constant="8" id="gw5-8D-uhj"/>
+                            <constraint firstItem="utd-16-7Ng" firstAttribute="leading" secondItem="MCv-p0-hol" secondAttribute="leading" id="rDT-lT-wc7"/>
                             <constraint firstAttribute="trailing" secondItem="13y-ec-aAG" secondAttribute="trailing" id="sII-Kz-NXG"/>
+                            <constraint firstAttribute="bottom" secondItem="utd-16-7Ng" secondAttribute="bottom" id="ukQ-Ss-YJp"/>
                             <constraint firstItem="13y-ec-aAG" firstAttribute="leading" secondItem="MCv-p0-hol" secondAttribute="leading" id="vfO-md-U2h"/>
                         </constraints>
                     </view>
@@ -56,6 +65,7 @@
             <connections>
                 <outlet property="backgroundImageView" destination="13y-ec-aAG" id="p0b-uX-SU0"/>
                 <outlet property="containerView" destination="MCv-p0-hol" id="Igc-3I-V1C"/>
+                <outlet property="descriptionLabel" destination="utd-16-7Ng" id="Q3u-O9-Xse"/>
                 <outlet property="titleLabel" destination="g0s-Xk-nOe" id="NSM-Us-xHf"/>
             </connections>
             <point key="canvasLocation" x="68.702290076335871" y="50"/>

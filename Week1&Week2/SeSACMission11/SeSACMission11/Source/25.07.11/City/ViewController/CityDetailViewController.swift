@@ -18,6 +18,8 @@ class CityDetailViewController: UIViewController {
     // MARK: - Components
     
     @IBOutlet var cityImageView: UIImageView!
+    @IBOutlet var cityNameLabel: UILabel!
+    @IBOutlet var cityDescriptionLabel: UILabel!
     
     // MARK: - Life Cycle
     
@@ -30,6 +32,10 @@ class CityDetailViewController: UIViewController {
     // MARK: - Configure
     
     func configure() {
-        cityImageView.kf.setImage(with: URL(string: cityInfo?.city_image ?? ""))
+        if let cityInfo = cityInfo {
+            cityImageView.kf.setImage(with: URL(string: cityInfo.city_image))
+            cityNameLabel.text = "\(cityInfo.city_name) | \(cityInfo.city_english_name)"
+            cityDescriptionLabel.text = cityInfo.city_explain
+        }
     }
 }

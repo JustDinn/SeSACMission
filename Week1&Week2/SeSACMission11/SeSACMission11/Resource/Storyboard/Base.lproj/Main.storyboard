@@ -660,17 +660,37 @@
                                     <constraint firstAttribute="height" constant="128" id="lXy-bi-Ktb"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FVN-mg-9vZ">
+                                <rect key="frame" x="44" y="295" width="305" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3gb-wS-UDP">
+                                <rect key="frame" x="44" y="336" width="305" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="uo6-xm-4ce"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="ytc-FU-4vF" firstAttribute="leading" secondItem="uo6-xm-4ce" secondAttribute="leading" constant="76" id="0PX-7e-5J0"/>
                             <constraint firstItem="uo6-xm-4ce" firstAttribute="trailing" secondItem="ytc-FU-4vF" secondAttribute="trailing" constant="77" id="MJO-e6-d1D"/>
+                            <constraint firstItem="3gb-wS-UDP" firstAttribute="leading" secondItem="uo6-xm-4ce" secondAttribute="leading" constant="44" id="McH-H2-5gy"/>
+                            <constraint firstItem="FVN-mg-9vZ" firstAttribute="leading" secondItem="uo6-xm-4ce" secondAttribute="leading" constant="44" id="Ucy-77-aTq"/>
+                            <constraint firstItem="uo6-xm-4ce" firstAttribute="trailing" secondItem="FVN-mg-9vZ" secondAttribute="trailing" constant="44" id="WPc-fl-8Kv"/>
                             <constraint firstItem="ytc-FU-4vF" firstAttribute="top" secondItem="uo6-xm-4ce" secondAttribute="top" constant="88" id="aSm-mD-gts"/>
+                            <constraint firstItem="FVN-mg-9vZ" firstAttribute="top" secondItem="ytc-FU-4vF" secondAttribute="bottom" constant="20" id="lAj-rb-zvX"/>
+                            <constraint firstItem="3gb-wS-UDP" firstAttribute="top" secondItem="FVN-mg-9vZ" secondAttribute="bottom" constant="20" id="mXy-Yg-nlj"/>
+                            <constraint firstItem="uo6-xm-4ce" firstAttribute="trailing" secondItem="3gb-wS-UDP" secondAttribute="trailing" constant="44" id="vNt-Dp-weq"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="cityDescriptionLabel" destination="3gb-wS-UDP" id="9Zb-rP-dha"/>
                         <outlet property="cityImageView" destination="ytc-FU-4vF" id="pRz-6u-0bN"/>
+                        <outlet property="cityNameLabel" destination="FVN-mg-9vZ" id="tDD-Ln-x4e"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KhK-TM-JrG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

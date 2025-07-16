@@ -55,10 +55,12 @@ class CityViewController: UIViewController {
     // MARK: - 여행지 필터링
     
     func filterCities() {
+        let searchingKeyword = searchTextField.text!.trimmingCharacters(in: .whitespaces).uppercased()
+        
         filteredCities = filteredCities.filter {
-            $0.city_name.contains(searchTextField.text!.trimmingCharacters(in: .whitespaces)) ||
-            $0.city_english_name.contains(searchTextField.text!.trimmingCharacters(in: .whitespaces)) ||
-            $0.city_explain.contains(searchTextField.text!.trimmingCharacters(in: .whitespaces))
+            $0.city_name.contains(searchingKeyword) ||
+            $0.city_english_name.contains(searchingKeyword) ||
+            $0.city_explain.contains(searchingKeyword)
         }
     }
     

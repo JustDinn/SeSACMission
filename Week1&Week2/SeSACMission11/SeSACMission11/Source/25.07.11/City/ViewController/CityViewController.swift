@@ -56,9 +56,9 @@ class CityViewController: UIViewController {
     
     func filterCities() {
         filteredCities = filteredCities.filter {
-            $0.city_name.contains(searchTextField.text!) ||
-            $0.city_english_name.contains(searchTextField.text!) ||
-            $0.city_explain.contains(searchTextField.text!)
+            $0.city_name.contains(searchTextField.text!.trimmingCharacters(in: .whitespaces)) ||
+            $0.city_english_name.contains(searchTextField.text!.trimmingCharacters(in: .whitespaces)) ||
+            $0.city_explain.contains(searchTextField.text!.trimmingCharacters(in: .whitespaces))
         }
     }
     

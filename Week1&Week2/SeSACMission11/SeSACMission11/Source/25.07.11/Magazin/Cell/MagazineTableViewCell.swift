@@ -10,6 +10,10 @@ import Kingfisher
 
 class MagazineTableViewCell: UITableViewCell {
 
+    // MARK: - Properties
+    
+    static let identifier = "MagazineTableViewCell"
+    
     // MARK: - Components
     
     @IBOutlet var magazineImageView: UIImageView!

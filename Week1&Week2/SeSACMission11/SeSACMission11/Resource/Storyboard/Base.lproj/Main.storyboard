@@ -19,10 +19,10 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="2M6-2G-mre" kind="relationship" relationship="viewControllers" id="yHG-fy-FtS"/>
                         <segue destination="QU8-F5-0d2" kind="relationship" relationship="viewControllers" id="CI0-Tc-tHY"/>
                         <segue destination="vuk-Ml-foz" kind="relationship" relationship="viewControllers" id="Z9l-af-HhE"/>
                         <segue destination="7n9-uP-JIl" kind="relationship" relationship="viewControllers" id="wzK-Xe-JWv"/>
+                        <segue destination="Rbu-dw-m0C" kind="relationship" relationship="viewControllers" id="MFq-as-nwo"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rjk-nf-Zb8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -119,6 +119,46 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jfh-lw-dpO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="376" y="-773"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="jIi-MO-VfT">
+            <objects>
+                <viewController id="Rbu-dw-m0C" customClass="MagazineViewController" customModule="SeSACMission11" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="d7z-IX-yh1">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ION-d4-tH8">
+                                <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                                <items>
+                                    <navigationItem title="SeSAC TRAVEL" id="yob-yy-0yt"/>
+                                </items>
+                            </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Xk3-e9-6RW">
+                                <rect key="frame" x="0.0" y="123" width="393" height="646"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="DC1-4a-bld"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="DC1-4a-bld" firstAttribute="bottom" secondItem="Xk3-e9-6RW" secondAttribute="bottom" id="1XD-pz-jUw"/>
+                            <constraint firstItem="ION-d4-tH8" firstAttribute="top" secondItem="DC1-4a-bld" secondAttribute="top" id="7vZ-vY-iKe"/>
+                            <constraint firstItem="ION-d4-tH8" firstAttribute="trailing" secondItem="DC1-4a-bld" secondAttribute="trailing" id="9fQ-Fx-Wma"/>
+                            <constraint firstItem="Xk3-e9-6RW" firstAttribute="trailing" secondItem="DC1-4a-bld" secondAttribute="trailing" id="Upb-SF-Lxy"/>
+                            <constraint firstItem="Xk3-e9-6RW" firstAttribute="leading" secondItem="DC1-4a-bld" secondAttribute="leading" id="cT3-tk-Rsx"/>
+                            <constraint firstItem="Xk3-e9-6RW" firstAttribute="top" secondItem="ION-d4-tH8" secondAttribute="bottom" constant="20" id="mhZ-0h-1Nc"/>
+                            <constraint firstItem="ION-d4-tH8" firstAttribute="leading" secondItem="DC1-4a-bld" secondAttribute="leading" id="nZJ-YN-M2i"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="bgc-uZ-Liw"/>
+                    <connections>
+                        <outlet property="magazineTableView" destination="Xk3-e9-6RW" id="RbH-BC-pFh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pj1-kK-xeZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1582" y="-773"/>
         </scene>
         <!--Item-->
         <scene sceneID="0OD-ax-BQ1">

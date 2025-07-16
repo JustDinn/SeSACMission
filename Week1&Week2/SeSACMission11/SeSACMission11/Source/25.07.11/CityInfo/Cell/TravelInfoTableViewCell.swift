@@ -11,6 +11,10 @@ import Kingfisher
 
 class TravelInfoTableViewCell: UITableViewCell {
 
+    // MARK: - Properties
+    
+    static let identifier = "TravelInfoTableViewCell"
+    
     // MARK: - Components
     
     @IBOutlet var titleLabel: UILabel!

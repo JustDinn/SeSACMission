@@ -9,6 +9,10 @@ import UIKit
 
 class AdTableViewCell: UITableViewCell {
 
+    // MARK: - Properties
+    
+    static let identifier = "AdTableViewCell"
+    
     // MARK: - Components
     
     @IBOutlet var adTitleLabel: UILabel!

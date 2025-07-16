@@ -347,7 +347,7 @@
         <!--도시 상세 정보-->
         <scene sceneID="iBo-3j-P37">
             <objects>
-                <viewController id="WsS-Va-AdP" sceneMemberID="viewController">
+                <viewController id="WsS-Va-AdP" customClass="TravelInfoViewController" customModule="SeSACMission11" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iVF-0d-eF7">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -367,6 +367,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="도시 상세 정보" id="G3K-8T-031"/>
+                    <connections>
+                        <outlet property="tableView" destination="Qhf-e4-8IQ" id="AgE-64-k90"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bwP-9d-upQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -90,7 +90,7 @@ extension TravelInfoViewController: UITableViewDataSource, UITableViewDelegate {
             travelAdVC.adInfo = travelInfo[cellIndex]
             travelAdVC.modalPresentationStyle = .fullScreen
             
-            self.view.makeToast("광고 셀입니다", duration: 0.5, point: CGPoint(x: centerX, y: currentY), title: nil, image: nil) { _ in
+            tableView.makeToast("광고 셀입니다", duration: 0.5, point: CGPoint(x: centerX, y: currentY), title: nil, image: nil) { _ in
                 self.present(travelAdVC, animated: true)
             }
         } else {

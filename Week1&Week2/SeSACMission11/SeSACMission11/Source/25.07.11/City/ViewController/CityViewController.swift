@@ -118,6 +118,7 @@ extension CityViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cityDetailVC = self.storyboard?.instantiateViewController(withIdentifier: CityDetailViewController.identifier) as! CityDetailViewController
+        cityDetailVC.cityInfo = cityInfos[indexPath.row]
         
         present(cityDetailVC, animated: true)
     }

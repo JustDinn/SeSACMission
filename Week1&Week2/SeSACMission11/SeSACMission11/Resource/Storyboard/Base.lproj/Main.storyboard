@@ -597,6 +597,42 @@
                     <view key="view" contentMode="scaleToFill" id="uIE-eN-ETm">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="gSe-ev-Ydf">
+                                <rect key="frame" x="0.0" y="59" width="393" height="111"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="1aV-3t-RSY">
+                                        <rect key="frame" x="0.0" y="61" width="393" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <segments>
+                                            <segment title="모두"/>
+                                            <segment title="국내"/>
+                                            <segment title="해외"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="didSelectSegment:" destination="7n9-uP-JIl" eventType="valueChanged" id="0Tv-GG-QP8"/>
+                                        </connections>
+                                    </segmentedControl>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GIG-qy-dYN">
+                                        <rect key="frame" x="50" y="4" width="293" height="45"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="didChangedTextField:" destination="7n9-uP-JIl" eventType="editingChanged" id="VH2-zX-2sy"/>
+                                            <action selector="didEndEditingTextField:" destination="7n9-uP-JIl" eventType="editingDidEndOnExit" id="8eA-ar-LeH"/>
+                                        </connections>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="GIG-qy-dYN" secondAttribute="trailing" constant="50" id="Q1O-Wa-dkK"/>
+                                    <constraint firstItem="GIG-qy-dYN" firstAttribute="top" secondItem="gSe-ev-Ydf" secondAttribute="top" constant="4" id="bMB-hC-pb5"/>
+                                    <constraint firstItem="1aV-3t-RSY" firstAttribute="top" secondItem="GIG-qy-dYN" secondAttribute="bottom" constant="12" id="kkK-5e-Ekd"/>
+                                    <constraint firstItem="GIG-qy-dYN" firstAttribute="leading" secondItem="gSe-ev-Ydf" secondAttribute="leading" constant="50" id="wTp-Uq-5Fp"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="PKn-8q-CfF"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>

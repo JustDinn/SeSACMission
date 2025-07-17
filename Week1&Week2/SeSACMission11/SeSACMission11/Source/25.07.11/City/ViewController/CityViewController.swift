@@ -44,10 +44,9 @@ class CityViewController: UIViewController {
     // MARK: - 필터
     
     func filter() {
-        if searchTextField.text!.isEmpty {
-            didSelectSegment(filterSegment)
-        } else {
-            didSelectSegment(filterSegment)
+        didSelectSegment(filterSegment)
+        
+        if !searchTextField.text!.isEmpty {
             filterCities()
         }
     }
@@ -96,6 +95,8 @@ class CityViewController: UIViewController {
         tableView.reloadData()
     }
 }
+
+// MARK: - UITableView DataSource, Delegate
 
 extension CityViewController: UITableViewDataSource, UITableViewDelegate {
     

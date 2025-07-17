@@ -124,6 +124,7 @@ extension CityCollectionViewController: UICollectionViewDataSource, UICollection
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cityDetailVC = self.storyboard?.instantiateViewController(withIdentifier: CityDetailViewController.identifier) as! CityDetailViewController
+        cityDetailVC.cityInfo = cityInfos[indexPath.item]
         
         present(cityDetailVC, animated: true)
     }

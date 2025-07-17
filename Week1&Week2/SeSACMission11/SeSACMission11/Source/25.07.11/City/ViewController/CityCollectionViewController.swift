@@ -33,26 +33,22 @@ class CityCollectionViewController: UIViewController {
     // MARK: - Register Nib
     
     func registerNib() {
-//        let cityXib = UINib(nibName: CityCollectionViewCell.identifier, bundle: nil)
-//
-//        let nib = UINib(nibName: "FriendCollectionViewCell", bundle: nil)
-//        let layout = UICollectionViewFlowLayout()
-//        let width = (UIScreen.main.bounds.width - (16 * 2) - (16 * 3)) / 4
-//        
-//        layout.itemSize = CGSize(width: width, height: width)
-//        layout.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
-//        layout.minimumInteritemSpacing = 16
-//        layout.minimumLineSpacing = 16
-//        layout.scrollDirection = .vertical
-//        
-//        collectionView.register(nib, forCellWithReuseIdentifier: FriendCollectionViewCell.identifier)
-//        collectionView.dataSource = self
-//        collectionView.delegate = self
+        let cityXib = UINib(nibName: CityCollectionViewCell.identifier, bundle: nil)
         
-//        collectionView.register(cityXib, forCellReuseIdentifier: CityTableViewCell.identifier)
-//        tableView.dataSource = self
-//        tableView.delegate = self
-//        tableView.separatorStyle = .none
+        let layout = UICollectionViewFlowLayout()
+        let width = (UIScreen.main.bounds.width - 64) / 2
+        let height = width + 72
+        
+        layout.itemSize = CGSize(width: width, height: height)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        layout.minimumLineSpacing = 16
+        layout.minimumInteritemSpacing = 16
+        layout.scrollDirection = .vertical
+        
+        collectionView.register(cityXib, forCellWithReuseIdentifier: CityCollectionViewCell.identifier)
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.collectionViewLayout = layout
     }
     
     // MARK: - 필터
@@ -96,48 +92,41 @@ class CityCollectionViewController: UIViewController {
             fatalError("잘못된 세그먼트 인덱스")
         }
         
-        tableView.reloadData()
+        collectionView.reloadData()
     }
     
     @IBAction func didEndEditingTextField(_ sender: UITextField) {
         filter()
-        tableView.reloadData()
+        collectionView.reloadData()
     }
     
     @IBAction func didChangedTextField(_ sender: UITextField) {
         filter()
-        tableView.reloadData()
+        collectionView.reloadData()
     }
 }
 
-//// MARK: - UICollectionView DataSource, Delegate
-//
-//extension CityCollectionViewController: UICollectionViewDataSource, UICollectionViewDelegate {
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return filteredCities.count
-//    }
-//    
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: <#T##String#>, for: <#T##IndexPath#>)
-//    }
-//    
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: CityTableViewCell.identifier, for: indexPath) as! CityTableViewCell
-//        let cellIndex = indexPath.row
-//        
-//        cell.configureCell(with: filteredCities[cellIndex])
-//        
-//        return cell
-//    }
-//    
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 160
-//    }
-//    
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let cityDetailVC = self.storyboard?.instantiateViewController(withIdentifier: CityDetailViewController.identifier) as! CityDetailViewController
-//        cityDetailVC.cityInfo = cityInfos[indexPath.row]
-//        
-//        present(cityDetailVC, animated: true)
-//    }
-//}
+// MARK: - UICollectionView DataSource, Delegate
+
+extension CityCollectionViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return filteredCities.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CityCollectionViewCell.identifier, for: indexPath) as! CityCollectionViewCell
+        let cellIndex = indexPath.item
+        
+        cell.backgroundColor = .systemYellow
+        cell.configureCell(with: filteredCities[cellIndex])
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cityDetailVC = self.storyboard?.instantiateViewController(withIdentifier: CityDetailViewController.identifier) as! CityDetailViewController
+        
+        present(cityDetailVC, animated: true)
+    }
+}

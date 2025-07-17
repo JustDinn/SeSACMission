@@ -11,11 +11,10 @@ class CityCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
     
-    static let identifier = "CityTableViewCell"
+    static let identifier = "CityCollectionViewCell"
     
     // MARK: - Components
     
-    @IBOutlet var containerView: UIView!
     @IBOutlet var backgroundImageView: UIImageView!
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var descriptionLabel: UILabel!
@@ -25,18 +24,9 @@ class CityCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        setContainerViewUI()
         setImageView()
         setTitleLabel()
         setDescriptionLabel()
-    }
-    
-    // MARK: - Set ContainerView UI
-    
-    func setContainerViewUI() {
-        containerView.layer.cornerRadius = 20
-        containerView.layer.masksToBounds = true
-        containerView.layer.maskedCorners = CACornerMask(arrayLiteral: .layerMinXMinYCorner, .layerMaxXMaxYCorner)
     }
     
     // MARK: - Set ImageView

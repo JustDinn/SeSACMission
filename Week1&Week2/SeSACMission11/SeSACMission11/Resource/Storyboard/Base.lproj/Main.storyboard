@@ -6,6 +6,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,7 +23,7 @@
                         <segue destination="QU8-F5-0d2" kind="relationship" relationship="viewControllers" id="CI0-Tc-tHY"/>
                         <segue destination="vuk-Ml-foz" kind="relationship" relationship="viewControllers" id="Z9l-af-HhE"/>
                         <segue destination="Rbu-dw-m0C" kind="relationship" relationship="viewControllers" id="MFq-as-nwo"/>
-                        <segue destination="MI7-8z-NKR" kind="relationship" relationship="viewControllers" id="Ug8-5U-e5R"/>
+                        <segue destination="D2w-66-a9w" kind="relationship" relationship="viewControllers" id="iX4-Uh-of8"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rjk-nf-Zb8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -607,10 +608,6 @@
                                         <rect key="frame" x="50" y="4" width="293" height="45"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
-                                        <connections>
-                                            <action selector="didChangedTextField:" destination="MI7-8z-NKR" eventType="editingChanged" id="kOc-FZ-kvH"/>
-                                            <action selector="didEndEditingTextField:" destination="MI7-8z-NKR" eventType="editingDidEndOnExit" id="HjW-vL-xkJ"/>
-                                        </connections>
                                     </textField>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -622,7 +619,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ICV-w3-TUD">
-                                <rect key="frame" x="0.0" y="190" width="393" height="579"/>
+                                <rect key="frame" x="0.0" y="190" width="393" height="628"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
@@ -638,13 +635,93 @@
                     <tabBarItem key="tabBarItem" title="Item" id="5jZ-Jh-Orc"/>
                     <connections>
                         <outlet property="filterSegment" destination="1aV-3t-RSY" id="Scb-JC-pjK"/>
-                        <outlet property="searchTextField" destination="GIG-qy-dYN" id="uY4-wi-R8V"/>
                         <outlet property="tableView" destination="ICV-w3-TUD" id="gRZ-cf-ffV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6lZ-Rb-dNz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1213" y="1792"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="hmS-Lm-P4x">
+            <objects>
+                <viewController id="D2w-66-a9w" customClass="CityCollectionViewController" customModule="SeSACMission11" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jJV-mL-OTX">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="sVW-9E-BaO">
+                                <rect key="frame" x="0.0" y="59" width="393" height="111"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="DgD-aQ-iey">
+                                        <rect key="frame" x="0.0" y="61" width="393" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <segments>
+                                            <segment title="모두"/>
+                                            <segment title="국내"/>
+                                            <segment title="해외"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="didSelectSegment:" destination="MI7-8z-NKR" eventType="valueChanged" id="7bY-gO-T5G"/>
+                                        </connections>
+                                    </segmentedControl>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="88Y-LX-39X">
+                                        <rect key="frame" x="50" y="4" width="293" height="45"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="didChangedTextField:" destination="MI7-8z-NKR" eventType="editingChanged" id="SzG-O5-xRZ"/>
+                                            <action selector="didEndEditingTextField:" destination="MI7-8z-NKR" eventType="editingDidEndOnExit" id="Ujg-K7-iFY"/>
+                                        </connections>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="88Y-LX-39X" firstAttribute="top" secondItem="sVW-9E-BaO" secondAttribute="top" constant="4" id="5I9-aX-IYC"/>
+                                    <constraint firstItem="88Y-LX-39X" firstAttribute="leading" secondItem="sVW-9E-BaO" secondAttribute="leading" constant="50" id="8oi-E5-KyQ"/>
+                                    <constraint firstItem="DgD-aQ-iey" firstAttribute="top" secondItem="88Y-LX-39X" secondAttribute="bottom" constant="12" id="CRd-MI-1UO"/>
+                                    <constraint firstAttribute="trailing" secondItem="88Y-LX-39X" secondAttribute="trailing" constant="50" id="cNm-gD-cJZ"/>
+                                </constraints>
+                            </view>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="UZH-iJ-OI6">
+                                <rect key="frame" x="0.0" y="190" width="393" height="579"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="6LC-Vi-CWf">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="98g-II-JWe">
+                                        <rect key="frame" x="0.0" y="0.0" width="127.99999999999997" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="HFy-Y9-YB4">
+                                            <rect key="frame" x="0.0" y="0.0" width="127.99999999999997" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Fog-CH-cwP"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Fog-CH-cwP" firstAttribute="trailing" secondItem="UZH-iJ-OI6" secondAttribute="trailing" id="7xl-Sy-L7z"/>
+                            <constraint firstItem="Fog-CH-cwP" firstAttribute="bottom" secondItem="UZH-iJ-OI6" secondAttribute="bottom" id="JFm-rf-vna"/>
+                            <constraint firstItem="UZH-iJ-OI6" firstAttribute="leading" secondItem="Fog-CH-cwP" secondAttribute="leading" id="fSs-D6-3O9"/>
+                            <constraint firstItem="UZH-iJ-OI6" firstAttribute="top" secondItem="sVW-9E-BaO" secondAttribute="bottom" constant="20" id="veX-40-qPe"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="55i-RI-nfI"/>
+                    <connections>
+                        <outlet property="collectionView" destination="UZH-iJ-OI6" id="g8x-kS-HFv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cr2-2g-toi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2002" y="1792"/>
         </scene>
         <!--City Detail View Controller-->
         <scene sceneID="dMa-L0-UlK">
@@ -695,7 +772,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KhK-TM-JrG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2005" y="1792"/>
+            <point key="canvasLocation" x="2753" y="1792"/>
         </scene>
     </scenes>
     <resources>

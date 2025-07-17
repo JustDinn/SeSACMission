@@ -17,20 +17,24 @@
                 <rect key="frame" x="0.0" y="0.0" width="256" height="253"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="APK-wu-EpB">
-                        <rect key="frame" x="51" y="20" width="152" height="148"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="APK-wu-EpB">
+                        <rect key="frame" x="52" y="0.0" width="152" height="152"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="152" id="B3V-Xq-Jzw"/>
+                            <constraint firstAttribute="width" constant="152" id="xEG-bs-zk5"/>
+                        </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fiN-Ta-0CX">
-                        <rect key="frame" x="106" y="177" width="42" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fiN-Ta-0CX">
+                        <rect key="frame" x="16" y="168" width="224" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KtG-D9-NiL">
-                        <rect key="frame" x="106" y="212" width="42" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KtG-D9-NiL">
+                        <rect key="frame" x="16" y="205" width="224" height="36"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="36" id="bRh-gR-IVQ"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -38,6 +42,16 @@
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="KtG-D9-NiL" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="7SM-0H-Pxh"/>
+                <constraint firstItem="KtG-D9-NiL" firstAttribute="top" secondItem="fiN-Ta-0CX" secondAttribute="bottom" constant="16" id="G3o-EP-B46"/>
+                <constraint firstItem="fiN-Ta-0CX" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="NPe-Ti-t29"/>
+                <constraint firstItem="fiN-Ta-0CX" firstAttribute="top" secondItem="APK-wu-EpB" secondAttribute="bottom" constant="16" id="bhg-vN-m3w"/>
+                <constraint firstItem="APK-wu-EpB" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="g3S-gC-pP4"/>
+                <constraint firstItem="APK-wu-EpB" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="iaa-mv-Qmo"/>
+                <constraint firstAttribute="trailing" secondItem="KtG-D9-NiL" secondAttribute="trailing" constant="16" id="mkt-jn-fjg"/>
+                <constraint firstAttribute="trailing" secondItem="fiN-Ta-0CX" secondAttribute="trailing" constant="16" id="xMR-6V-huZ"/>
+            </constraints>
             <size key="customSize" width="256" height="253"/>
             <connections>
                 <outlet property="backgroundImageView" destination="APK-wu-EpB" id="hfZ-Fc-t4y"/>

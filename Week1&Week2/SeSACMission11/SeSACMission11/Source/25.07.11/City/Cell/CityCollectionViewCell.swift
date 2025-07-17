@@ -33,6 +33,8 @@ class CityCollectionViewCell: UICollectionViewCell {
     
     func setImageView() {
         backgroundImageView.contentMode = .scaleAspectFill
+        backgroundImageView.layer.cornerRadius = backgroundImageView.frame.width / 2
+        backgroundImageView.clipsToBounds = true
     }
     
     // MARK: - Set TitleLabel

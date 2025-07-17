@@ -663,7 +663,7 @@
                                             <segment title="해외"/>
                                         </segments>
                                         <connections>
-                                            <action selector="didSelectSegment:" destination="MI7-8z-NKR" eventType="valueChanged" id="7bY-gO-T5G"/>
+                                            <action selector="didSelectSegment:" destination="D2w-66-a9w" eventType="valueChanged" id="EEa-28-olt"/>
                                         </connections>
                                     </segmentedControl>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="88Y-LX-39X">
@@ -671,8 +671,8 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
-                                            <action selector="didChangedTextField:" destination="MI7-8z-NKR" eventType="editingChanged" id="SzG-O5-xRZ"/>
-                                            <action selector="didEndEditingTextField:" destination="MI7-8z-NKR" eventType="editingDidEndOnExit" id="Ujg-K7-iFY"/>
+                                            <action selector="didChangedTextField:" destination="D2w-66-a9w" eventType="editingChanged" id="gQn-ES-5AF"/>
+                                            <action selector="didEndEditingTextField:" destination="D2w-66-a9w" eventType="editingDidEndOnExit" id="Hf3-ol-9ek"/>
                                         </connections>
                                     </textField>
                                 </subviews>
@@ -717,6 +717,8 @@
                     <tabBarItem key="tabBarItem" title="Item" id="55i-RI-nfI"/>
                     <connections>
                         <outlet property="collectionView" destination="UZH-iJ-OI6" id="g8x-kS-HFv"/>
+                        <outlet property="filterSegment" destination="DgD-aQ-iey" id="lil-uf-iIZ"/>
+                        <outlet property="searchTextField" destination="88Y-LX-39X" id="DWm-an-wHX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cr2-2g-toi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -16,7 +16,6 @@ class CityCollectionViewController: UIViewController {
     
     // MARK: - Components
     
-//    @IBOutlet var tableView: UITableView!
     @IBOutlet var filterSegment: UISegmentedControl!
     @IBOutlet var searchTextField: UITextField!
     @IBOutlet var collectionView: UICollectionView!
@@ -118,7 +117,6 @@ extension CityCollectionViewController: UICollectionViewDataSource, UICollection
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CityCollectionViewCell.identifier, for: indexPath) as! CityCollectionViewCell
         let cellIndex = indexPath.item
         
-        cell.backgroundColor = .systemYellow
         cell.configureCell(with: filteredCities[cellIndex])
         
         return cell

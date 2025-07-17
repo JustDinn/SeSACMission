@@ -31,7 +31,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KtG-D9-NiL">
-                        <rect key="frame" x="16" y="205" width="224" height="36"/>
+                        <rect key="frame" x="16" y="197" width="224" height="36"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="36" id="bRh-gR-IVQ"/>
                         </constraints>
@@ -44,7 +44,7 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
                 <constraint firstItem="KtG-D9-NiL" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="7SM-0H-Pxh"/>
-                <constraint firstItem="KtG-D9-NiL" firstAttribute="top" secondItem="fiN-Ta-0CX" secondAttribute="bottom" constant="16" id="G3o-EP-B46"/>
+                <constraint firstItem="KtG-D9-NiL" firstAttribute="top" secondItem="fiN-Ta-0CX" secondAttribute="bottom" constant="8" id="G3o-EP-B46"/>
                 <constraint firstItem="fiN-Ta-0CX" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="NPe-Ti-t29"/>
                 <constraint firstItem="fiN-Ta-0CX" firstAttribute="top" secondItem="APK-wu-EpB" secondAttribute="bottom" constant="16" id="bhg-vN-m3w"/>
                 <constraint firstItem="APK-wu-EpB" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="g3S-gC-pP4"/>

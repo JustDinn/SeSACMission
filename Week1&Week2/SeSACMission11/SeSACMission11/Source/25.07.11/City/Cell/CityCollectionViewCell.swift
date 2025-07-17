@@ -48,9 +48,10 @@ class CityCollectionViewCell: UICollectionViewCell {
     // MARK: - Set DescriptionLabel
     
     func setDescriptionLabel() {
-        descriptionLabel.font = UIFont.systemFont(ofSize: 12, weight: .light)
-        descriptionLabel.textColor = .white
-        descriptionLabel.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        descriptionLabel.font = UIFont.systemFont(ofSize: 12, weight: .medium)
+        descriptionLabel.textColor = .gray
+        descriptionLabel.textAlignment = .center
+        descriptionLabel.numberOfLines = 0
     }
     
     // MARK: - Configure Cell

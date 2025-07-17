@@ -40,9 +40,9 @@ class CityCollectionViewCell: UICollectionViewCell {
     // MARK: - Set TitleLabel
     
     func setTitleLabel() {
-        titleLabel.font = UIFont.systemFont(ofSize: 16, weight: .black)
-        titleLabel.textColor = .white
-        titleLabel.textAlignment = .right
+        titleLabel.font = UIFont.systemFont(ofSize: 14, weight: .bold)
+        titleLabel.textColor = .black
+        titleLabel.textAlignment = .center
     }
     
     // MARK: - Set DescriptionLabel

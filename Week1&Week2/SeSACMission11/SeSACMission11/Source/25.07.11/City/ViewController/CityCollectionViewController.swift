@@ -117,7 +117,7 @@ extension CityCollectionViewController: UICollectionViewDataSource, UICollection
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CityCollectionViewCell.identifier, for: indexPath) as! CityCollectionViewCell
         let cellIndex = indexPath.item
         
-        cell.configureCell(with: filteredCities[cellIndex])
+        cell.configureCell(with: filteredCities[cellIndex], searchingKeyword: searchTextField.text!.trimmingCharacters(in: .whitespaces).uppercased())
         
         return cell
     }

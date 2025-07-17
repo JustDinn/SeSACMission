@@ -56,9 +56,21 @@ class CityCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Configure Cell
     
-    func configureCell(with cityInfo: City) {
+    func configureCell(with cityInfo: City, searchingKeyword: String) {
+        let titleText = "\(cityInfo.city_name) | \(cityInfo.city_english_name)"
+        let titleAttributedString = NSMutableAttributedString(string: titleText)
+        
+        let descriptionText = cityInfo.city_explain
+        let descriptionAttributedString = NSMutableAttributedString(string: descriptionText)
+        
+        let titleRange = (titleText as NSString).range(of: searchingKeyword)
+        let descriptionRange = (descriptionText as NSString).range(of: searchingKeyword)
+        
+        titleAttributedString.addAttribute(.backgroundColor, value: UIColor.systemYellow, range: titleRange)
+        descriptionAttributedString.addAttribute(.backgroundColor, value: UIColor.systemYellow, range: descriptionRange)
+        
         backgroundImageView.kf.setImage(with: URL(string: cityInfo.city_image))
-        titleLabel.text = "\(cityInfo.city_name) | \(cityInfo.city_english_name)"
-        descriptionLabel.text = cityInfo.city_explain
+        titleLabel.attributedText = titleAttributedString
+        descriptionLabel.attributedText = descriptionAttributedString
     }
 }

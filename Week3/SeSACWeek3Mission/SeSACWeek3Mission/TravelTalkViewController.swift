@@ -7,11 +7,14 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class TravelTalkViewController: UIViewController {
 
+    
+    // MARK: - Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
     }
     
 }

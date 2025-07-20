@@ -16,6 +16,7 @@ final class TravelTalkCollectionViewCell: UICollectionViewCell {
     // MARK: - Components
     
     @IBOutlet private var profileImageView: UIImageView!
+    @IBOutlet private var nameLabel: UILabel!
     
     // MARK: - Life Cycle
     
@@ -23,6 +24,7 @@ final class TravelTalkCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         
         setProfileImageView()
+        setNameLabel()
     }
 
     // MARK: - 프로필 이미지뷰 설정
@@ -32,5 +34,11 @@ final class TravelTalkCollectionViewCell: UICollectionViewCell {
         
         profileImageView.contentMode = .scaleAspectFill
         profileImageView.layer.cornerRadius = profileImageViewHeight / 2
+    }
+    
+    // MARK: - 이름 레이블 설정
+    
+    private func setNameLabel() {
+        nameLabel.font = UIFont.systemFont(ofSize: 17, weight: .bold)
     }
 }

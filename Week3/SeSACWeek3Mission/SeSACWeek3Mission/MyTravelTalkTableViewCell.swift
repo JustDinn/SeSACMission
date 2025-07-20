@@ -32,6 +32,11 @@ final class MyTravelTalkTableViewCell: UITableViewCell {
     private func setMyMessageLabel() {
         myMessageLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         myMessageLabel.numberOfLines = 0
+        myMessageLabel.layer.borderColor = UIColor.gray.cgColor
+        myMessageLabel.layer.borderWidth = 1
+        myMessageLabel.layer.cornerRadius = 10
+        myMessageLabel.layer.masksToBounds = true
+        myMessageLabel.backgroundColor = .systemGray5
     }
     
     // MARK: - 나의 메시지 시간 레이블 설정

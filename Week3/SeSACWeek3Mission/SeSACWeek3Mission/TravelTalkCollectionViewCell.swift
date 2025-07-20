@@ -60,4 +60,15 @@ final class TravelTalkCollectionViewCell: UICollectionViewCell {
         dateLabel.textColor = .gray
         dateLabel.textAlignment = .right
     }
+    
+    // MARK: - Configure Cell
+    
+    func configureCell(with chatingRoomInfo: ChatRoom) {
+        let chatingLastIndex = chatingRoomInfo.chatList.count - 1
+        
+        profileImageView.image = UIImage(named: chatingRoomInfo.chatroomImage)
+        nameLabel.text = chatingRoomInfo.chatroomName
+        lastChatLabel.text = chatingRoomInfo.chatList[chatingLastIndex].message
+        dateLabel.text = chatingRoomInfo.chatList[chatingLastIndex].date
+    }
 }

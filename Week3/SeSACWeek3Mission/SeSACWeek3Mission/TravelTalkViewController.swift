@@ -9,6 +9,12 @@ import UIKit
 
 final class TravelTalkViewController: UIViewController {
 
+    // MARK: - Properties
+    
+    private var chatingList = ChatList.list
+    
+    // MARK: - Components
+    
     @IBOutlet private var searchBar: UISearchBar!
     @IBOutlet private var talkCollectionView: UICollectionView!
     
@@ -37,6 +43,7 @@ final class TravelTalkViewController: UIViewController {
         talkCollectionView.register(nib, forCellWithReuseIdentifier: TravelTalkCollectionViewCell.identifier)
         talkCollectionView.collectionViewLayout = layout
         talkCollectionView.dataSource = self
+        talkCollectionView.showsVerticalScrollIndicator = false
     }
     
     // MARK: - 검색바 설정
@@ -52,11 +59,14 @@ final class TravelTalkViewController: UIViewController {
 extension TravelTalkViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return chatingList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TravelTalkCollectionViewCell.identifier, for: indexPath) as! TravelTalkCollectionViewCell
+        let cellIndex = indexPath.item
+        
+        cell.configureCell(with: chatingList[cellIndex])
         
         return cell
     }

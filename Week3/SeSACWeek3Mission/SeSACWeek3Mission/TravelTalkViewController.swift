@@ -43,6 +43,7 @@ final class TravelTalkViewController: UIViewController {
         talkCollectionView.register(nib, forCellWithReuseIdentifier: TravelTalkCollectionViewCell.identifier)
         talkCollectionView.collectionViewLayout = layout
         talkCollectionView.dataSource = self
+        talkCollectionView.delegate = self
         talkCollectionView.showsVerticalScrollIndicator = false
     }
     
@@ -69,5 +70,17 @@ extension TravelTalkViewController: UICollectionViewDataSource {
         cell.configureCell(with: chatingList[cellIndex])
         
         return cell
+    }
+}
+
+// MARK: - UICollectionView Delegate
+
+extension TravelTalkViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let talkTableVC = self.storyboard?.instantiateViewController(withIdentifier: "TravelTalkTableViewController") as! TravelTalkTableViewController
+        talkTableVC.hidesBottomBarWhenPushed = true
+        
+        navigationController?.pushViewController(talkTableVC, animated: true)
     }
 }

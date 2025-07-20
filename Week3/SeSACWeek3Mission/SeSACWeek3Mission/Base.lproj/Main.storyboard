@@ -67,6 +67,21 @@
             </objects>
             <point key="canvasLocation" x="1063.3587786259541" y="4.9295774647887329"/>
         </scene>
+        <!--Travel Talk Table View Controller-->
+        <scene sceneID="TNM-zh-gbz">
+            <objects>
+                <viewController storyboardIdentifier="TravelTalkTableViewController" id="J9X-LZ-9Ue" customClass="TravelTalkTableViewController" customModule="SeSACWeek3Mission" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Dun-Ig-QDO">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="hoF-l0-3lc"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jCg-Hh-OOX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1911" y="5"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="mBn-Gu-p4i">
             <objects>

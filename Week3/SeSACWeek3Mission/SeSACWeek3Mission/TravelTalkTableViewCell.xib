@@ -23,8 +23,19 @@
                             <constraint firstAttribute="width" secondItem="OaX-HF-fW9" secondAttribute="height" multiplier="1:1" id="n2A-OX-hFp"/>
                         </constraints>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gND-IC-gKG">
+                        <rect key="frame" x="72" y="16" width="42" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="Jhy-71-boH"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="gND-IC-gKG" firstAttribute="leading" secondItem="OaX-HF-fW9" secondAttribute="trailing" constant="8" id="AA6-KY-Q2N"/>
+                    <constraint firstItem="gND-IC-gKG" firstAttribute="top" secondItem="OaX-HF-fW9" secondAttribute="top" id="YYr-wo-Dvw"/>
                     <constraint firstItem="OaX-HF-fW9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="bHx-fV-OIs"/>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="OaX-HF-fW9" secondAttribute="bottom" constant="28" id="cEx-dv-miU"/>
                     <constraint firstItem="OaX-HF-fW9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="zMn-Cn-tPh"/>
@@ -33,6 +44,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="chatRoomProfileImageView" destination="OaX-HF-fW9" id="gG3-py-sbF"/>
+                <outlet property="partnerNameLabel" destination="gND-IC-gKG" id="2k3-uf-GMi"/>
             </connections>
             <point key="canvasLocation" x="94.656488549618317" y="54.577464788732399"/>
         </tableViewCell>

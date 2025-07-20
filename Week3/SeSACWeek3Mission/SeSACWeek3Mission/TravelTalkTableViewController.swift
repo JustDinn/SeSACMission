@@ -16,6 +16,7 @@ final class TravelTalkTableViewController: UIViewController {
     // MARK: - Components
     
     @IBOutlet private var chatRoomTableView: UITableView!
+    @IBOutlet private var chattingTextField: UITextField!
     
     // MARK: - Life Cycle
     
@@ -23,6 +24,7 @@ final class TravelTalkTableViewController: UIViewController {
         super.viewDidLoad()
         
         setTableView()
+        setChattingTextField()
     }
     
     // MARK: - Set TableView
@@ -36,6 +38,14 @@ final class TravelTalkTableViewController: UIViewController {
         chatRoomTableView.dataSource = self
         chatRoomTableView.delegate = self
         chatRoomTableView.separatorStyle = .none
+    }
+    
+    // MARK: - Set Chatting TextField
+    
+    private func setChattingTextField() {
+        chattingTextField.backgroundColor = .systemGroupedBackground
+        chattingTextField.layer.cornerRadius = 8
+        chattingTextField.placeholder = "메시지를 입력하세요"
     }
 }
 

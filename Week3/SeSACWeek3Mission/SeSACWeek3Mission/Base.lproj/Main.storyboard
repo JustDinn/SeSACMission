@@ -76,21 +76,33 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="13J-cP-hQB">
-                                <rect key="frame" x="16" y="75" width="361" height="727"/>
+                                <rect key="frame" x="16" y="75" width="361" height="671"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JUG-hd-tQm">
+                                <rect key="frame" x="24" y="754" width="345" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="uxL-dJ-s3G"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="hoF-l0-3lc"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="hoF-l0-3lc" firstAttribute="trailing" secondItem="13J-cP-hQB" secondAttribute="trailing" constant="16" id="ECi-Zh-R9O"/>
+                            <constraint firstItem="hoF-l0-3lc" firstAttribute="bottom" secondItem="JUG-hd-tQm" secondAttribute="bottom" constant="16" id="EEv-lY-jPz"/>
+                            <constraint firstItem="JUG-hd-tQm" firstAttribute="top" secondItem="13J-cP-hQB" secondAttribute="bottom" constant="8" id="LQO-Ig-C5m"/>
                             <constraint firstItem="13J-cP-hQB" firstAttribute="top" secondItem="hoF-l0-3lc" secondAttribute="top" constant="16" id="MC7-sr-XeY"/>
                             <constraint firstItem="13J-cP-hQB" firstAttribute="leading" secondItem="hoF-l0-3lc" secondAttribute="leading" constant="16" id="NoM-N1-IXt"/>
-                            <constraint firstItem="hoF-l0-3lc" firstAttribute="bottom" secondItem="13J-cP-hQB" secondAttribute="bottom" constant="16" id="XpT-um-vMo"/>
+                            <constraint firstItem="hoF-l0-3lc" firstAttribute="trailing" secondItem="JUG-hd-tQm" secondAttribute="trailing" constant="24" id="Qf3-BK-zFP"/>
+                            <constraint firstItem="JUG-hd-tQm" firstAttribute="leading" secondItem="hoF-l0-3lc" secondAttribute="leading" constant="24" id="eUk-OI-Vze"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="chatRoomTableView" destination="13J-cP-hQB" id="0RY-5Q-fS5"/>
+                        <outlet property="chattingTextField" destination="JUG-hd-tQm" id="YRK-TS-9PJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jCg-Hh-OOX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

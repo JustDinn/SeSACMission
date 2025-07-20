@@ -69,6 +69,6 @@ final class TravelTalkCollectionViewCell: UICollectionViewCell {
         profileImageView.image = UIImage(named: chatingRoomInfo.chatroomImage)
         nameLabel.text = chatingRoomInfo.chatroomName
         lastChatLabel.text = chatingRoomInfo.chatList[chatingLastIndex].message
-        dateLabel.text = chatingRoomInfo.chatList[chatingLastIndex].date.convertDateFormat()
+        dateLabel.text = chatingRoomInfo.chatList[chatingLastIndex].date.convertDateFormat(toFormat: "yyyy.MM.dd")
     }
 }

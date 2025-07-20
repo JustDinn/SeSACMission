@@ -16,8 +16,9 @@ final class TravelTalkPartnerTableViewCell: UITableViewCell {
     // MARK: - Component
     
     @IBOutlet private var chatRoomProfileImageView: UIImageView!
-    @IBOutlet var partnerNameLabel: UILabel!
-    @IBOutlet var partnerChattingLabel: UILabel!
+    @IBOutlet private var partnerNameLabel: UILabel!
+    @IBOutlet private var partnerChattingLabel: UILabel!
+    @IBOutlet private var messageTimeLabel: UILabel!
     
     // MARK: - Life Cycle
     
@@ -27,6 +28,7 @@ final class TravelTalkPartnerTableViewCell: UITableViewCell {
         setProfileImageView()
         setPartnerNameLabel()
         setPartnerChattingLabel()
+        setPartnerMessageTimeLabel()
     }
     
     // MARK: - 프로필 사진 설정
@@ -50,11 +52,20 @@ final class TravelTalkPartnerTableViewCell: UITableViewCell {
         partnerChattingLabel.numberOfLines = 0
     }
     
+    // MARK: - 파트너 채팅 시간 레이블 설정
+    
+    private func setPartnerMessageTimeLabel() {
+        messageTimeLabel.font = UIFont.systemFont(ofSize: 12, weight: .light)
+        messageTimeLabel.textColor = .gray
+        messageTimeLabel.textAlignment = .right
+    }
+    
     // MARK: - Configure Cell
     
     func configureCell(with userChatInfo: Chat) {
         chatRoomProfileImageView.image = UIImage(named: userChatInfo.user.image)
         partnerNameLabel.text = userChatInfo.user.name
         partnerChattingLabel.text = userChatInfo.message
+        messageTimeLabel.text = userChatInfo.date.convertDateFormat(toFormat: "HH:mm a")
     }
 }

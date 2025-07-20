@@ -34,20 +34,31 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PmW-cj-LDM">
-                        <rect key="frame" x="72" y="41" width="42" height="84"/>
+                        <rect key="frame" x="72" y="41" width="220" height="84"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bdb-Qg-vkq">
+                        <rect key="frame" x="300" y="104" width="64" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="64" id="gva-Vj-qFW"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="bdb-Qg-vkq" firstAttribute="leading" secondItem="PmW-cj-LDM" secondAttribute="trailing" constant="8" id="7EE-Q7-FdD"/>
                     <constraint firstItem="gND-IC-gKG" firstAttribute="leading" secondItem="OaX-HF-fW9" secondAttribute="trailing" constant="8" id="AA6-KY-Q2N"/>
+                    <constraint firstAttribute="bottom" secondItem="bdb-Qg-vkq" secondAttribute="bottom" constant="16" id="Aqy-bs-dlr"/>
+                    <constraint firstAttribute="trailing" secondItem="bdb-Qg-vkq" secondAttribute="trailing" constant="16" id="CQg-1e-TC5"/>
                     <constraint firstAttribute="bottom" secondItem="PmW-cj-LDM" secondAttribute="bottom" constant="16" id="Df9-Mx-C9O"/>
                     <constraint firstItem="PmW-cj-LDM" firstAttribute="top" secondItem="gND-IC-gKG" secondAttribute="bottom" id="EO4-2q-mmo"/>
                     <constraint firstItem="PmW-cj-LDM" firstAttribute="leading" secondItem="OaX-HF-fW9" secondAttribute="trailing" constant="8" id="Kc8-Fn-JVx"/>
                     <constraint firstItem="gND-IC-gKG" firstAttribute="top" secondItem="OaX-HF-fW9" secondAttribute="top" constant="4" id="YYr-wo-Dvw"/>
                     <constraint firstItem="OaX-HF-fW9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="bHx-fV-OIs"/>
-                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="PmW-cj-LDM" secondAttribute="trailing" constant="16" id="bdM-q8-mu2"/>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="OaX-HF-fW9" secondAttribute="bottom" constant="28" id="cEx-dv-miU"/>
                     <constraint firstItem="OaX-HF-fW9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="zMn-Cn-tPh"/>
                 </constraints>
@@ -55,6 +66,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="chatRoomProfileImageView" destination="OaX-HF-fW9" id="gG3-py-sbF"/>
+                <outlet property="messageTimeLabel" destination="bdb-Qg-vkq" id="n9L-fH-Sol"/>
                 <outlet property="partnerChattingLabel" destination="PmW-cj-LDM" id="09I-f4-WV5"/>
                 <outlet property="partnerNameLabel" destination="gND-IC-gKG" id="2k3-uf-GMi"/>
             </connections>

@@ -40,4 +40,10 @@ final class TravelTalkPartnerTableViewCell: UITableViewCell {
     private func setPartnerNameLabel() {
         partnerNameLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
     }
+    
+    // MARK: - Configure Cell
+    
+    func configureCell(with userChatInfo: Chat) {
+        chatRoomProfileImageView.image = UIImage(named: userChatInfo.user.image)
+    }
 }

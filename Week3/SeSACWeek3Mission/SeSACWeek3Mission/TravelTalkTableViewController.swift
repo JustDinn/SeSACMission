@@ -43,12 +43,13 @@ extension TravelTalkTableViewController: UITableViewDataSource {
     
     // row 개수
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return chatRoomInfo.count
     }
     
     // cell 설정
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TravelTalkPartnerTableViewCell.identifier, for: indexPath) as! TravelTalkPartnerTableViewCell
+        cell.configureCell(with: chatRoomInfo[indexPath.row])
         
         return cell
     }

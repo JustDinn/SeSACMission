@@ -22,5 +22,14 @@ final class TravelTalkTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        setProfileImageView()
+    }
+    
+    // MARK: - 프로필 사진 설정
+    
+    private func setProfileImageView() {
+        let profileImageHeight = chatRoomProfileImageView.frame.height
+        
+        chatRoomProfileImageView.layer.cornerRadius = profileImageHeight / 2
     }
 }

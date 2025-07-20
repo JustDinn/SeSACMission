@@ -28,9 +28,11 @@ final class TravelTalkTableViewController: UIViewController {
     // MARK: - Set TableView
     
     private func setTableView() {
-        let cell = UINib(nibName: "TravelTalkTableViewCell", bundle: nil)
+        let partnerCell = UINib(nibName: "TravelTalkTableViewCell", bundle: nil)
+        let myCell = UINib(nibName: "MyTravelTalkTableViewCell", bundle: nil)
         
-        chatRoomTableView.register(cell, forCellReuseIdentifier: TravelTalkPartnerTableViewCell.identifier)
+        chatRoomTableView.register(partnerCell, forCellReuseIdentifier: TravelTalkPartnerTableViewCell.identifier)
+        chatRoomTableView.register(myCell, forCellReuseIdentifier: MyTravelTalkTableViewCell.identifier)
         chatRoomTableView.dataSource = self
         chatRoomTableView.delegate = self
         chatRoomTableView.separatorStyle = .none
@@ -48,10 +50,19 @@ extension TravelTalkTableViewController: UITableViewDataSource {
     
     // cell 설정
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: TravelTalkPartnerTableViewCell.identifier, for: indexPath) as! TravelTalkPartnerTableViewCell
-        cell.configureCell(with: chatRoomInfo[indexPath.row])
+        let indexCell = indexPath.row
         
-        return cell
+        if chatRoomInfo[indexCell].user.name == "김새싹" {
+            let cell = tableView.dequeueReusableCell(withIdentifier: MyTravelTalkTableViewCell.identifier, for: indexPath) as! MyTravelTalkTableViewCell
+            cell.configureCell(with: chatRoomInfo[indexCell])
+            
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: TravelTalkPartnerTableViewCell.identifier, for: indexPath) as! TravelTalkPartnerTableViewCell
+            cell.configureCell(with: chatRoomInfo[indexCell])
+            
+            return cell
+        }
     }
 }
 

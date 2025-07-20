@@ -9,6 +9,10 @@ import UIKit
 
 final class MyTravelTalkTableViewCell: UITableViewCell {
 
+    // MARK: - Identifier
+    
+    static let identifier = "MyTravelTalkTableViewCell"
+    
     // MARK: - Components
     
     @IBOutlet private var myMessageLabel: UILabel!
@@ -36,5 +40,12 @@ final class MyTravelTalkTableViewCell: UITableViewCell {
         myMessageTimeLabel.font = UIFont.systemFont(ofSize: 12, weight: .light)
         myMessageTimeLabel.textColor = .gray
         myMessageTimeLabel.textAlignment = .right
+    }
+    
+    // MARK: - Configure Cell
+    
+    func configureCell(with userChatInfo: Chat) {
+        myMessageLabel.text = userChatInfo.message
+        myMessageTimeLabel.text = userChatInfo.date.convertDateFormat(toFormat: "HH:mm a")
     }
 }

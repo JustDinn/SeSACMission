@@ -43,10 +43,8 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="YoD-WQ-9x2"/>
             <connections>
-                <outlet property="messageTimeLabel" destination="W38-el-rho" id="Ewa-fY-YmD"/>
                 <outlet property="myMessageLabel" destination="5aA-MU-F2P" id="ssk-6k-4UM"/>
                 <outlet property="myMessageTimeLabel" destination="W38-el-rho" id="rMl-pc-9CV"/>
-                <outlet property="partnerChattingLabel" destination="5aA-MU-F2P" id="55E-c2-Gfb"/>
             </connections>
             <point key="canvasLocation" x="53" y="29"/>
         </tableViewCell>

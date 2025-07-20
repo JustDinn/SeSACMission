@@ -10,7 +10,7 @@ import UIKit
 final class TravelTalkViewController: UIViewController {
 
     @IBOutlet private var searchBar: UISearchBar!
-    @IBOutlet var talkCollectionView: UICollectionView!
+    @IBOutlet private var talkCollectionView: UICollectionView!
     
     // MARK: - Life Cycle
     

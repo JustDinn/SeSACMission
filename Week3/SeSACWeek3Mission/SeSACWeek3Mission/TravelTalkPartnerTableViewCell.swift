@@ -7,11 +7,11 @@
 
 import UIKit
 
-final class TravelTalkTableViewCell: UITableViewCell {
+final class TravelTalkPartnerTableViewCell: UITableViewCell {
 
     // MARK: Identifier
     
-    static let identifier = "TravelTalkTableViewCell"
+    static let identifier = "TravelTalkPartnerTableViewCell"
     
     // MARK: - Component
     

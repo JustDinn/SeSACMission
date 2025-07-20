@@ -30,7 +30,7 @@ final class TravelTalkTableViewController: UIViewController {
     private func setTableView() {
         let cell = UINib(nibName: "TravelTalkTableViewCell", bundle: nil)
         
-        chatRoomTableView.register(cell, forCellReuseIdentifier: TravelTalkTableViewCell.identifier)
+        chatRoomTableView.register(cell, forCellReuseIdentifier: TravelTalkPartnerTableViewCell.identifier)
         chatRoomTableView.dataSource = self
         chatRoomTableView.delegate = self
         chatRoomTableView.separatorStyle = .none
@@ -48,7 +48,7 @@ extension TravelTalkTableViewController: UITableViewDataSource {
     
     // cell 설정
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: TravelTalkTableViewCell.identifier, for: indexPath) as! TravelTalkTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: TravelTalkPartnerTableViewCell.identifier, for: indexPath) as! TravelTalkPartnerTableViewCell
         
         return cell
     }

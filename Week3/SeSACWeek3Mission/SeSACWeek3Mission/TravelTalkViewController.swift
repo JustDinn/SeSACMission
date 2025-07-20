@@ -80,6 +80,7 @@ extension TravelTalkViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let talkTableVC = self.storyboard?.instantiateViewController(withIdentifier: "TravelTalkTableViewController") as! TravelTalkTableViewController
         talkTableVC.hidesBottomBarWhenPushed = true
+        talkTableVC.navigationItem.title = chatingList[indexPath.item].chatroomName
         
         navigationController?.pushViewController(talkTableVC, animated: true)
     }

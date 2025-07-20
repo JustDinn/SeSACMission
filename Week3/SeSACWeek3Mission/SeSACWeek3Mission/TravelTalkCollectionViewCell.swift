@@ -17,6 +17,7 @@ final class TravelTalkCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet private var profileImageView: UIImageView!
     @IBOutlet private var nameLabel: UILabel!
+    @IBOutlet private var lastChatLabel: UILabel!
     
     // MARK: - Life Cycle
     
@@ -25,6 +26,7 @@ final class TravelTalkCollectionViewCell: UICollectionViewCell {
         
         setProfileImageView()
         setNameLabel()
+        setLastChatLabel()
     }
 
     // MARK: - 프로필 이미지뷰 설정
@@ -40,5 +42,12 @@ final class TravelTalkCollectionViewCell: UICollectionViewCell {
     
     private func setNameLabel() {
         nameLabel.font = UIFont.systemFont(ofSize: 17, weight: .bold)
+    }
+    
+    // MARK: - 마지막 채팅 레이블 설정
+    
+    private func setLastChatLabel() {
+        lastChatLabel.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        lastChatLabel.textColor = .gray
     }
 }

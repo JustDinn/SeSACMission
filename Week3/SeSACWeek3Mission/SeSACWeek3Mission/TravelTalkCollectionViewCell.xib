@@ -31,6 +31,15 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XbZ-y6-VBR">
+                        <rect key="frame" x="96" y="43" width="70" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="70" id="fHS-hV-olc"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
@@ -38,11 +47,14 @@
                 <constraint firstItem="mSY-y1-AdJ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="6GI-JI-YjU"/>
                 <constraint firstItem="mSY-y1-AdJ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="Emk-Rn-huu"/>
                 <constraint firstItem="Hzc-QS-xxv" firstAttribute="top" secondItem="mSY-y1-AdJ" secondAttribute="top" constant="8" id="HB2-0C-lec"/>
+                <constraint firstItem="XbZ-y6-VBR" firstAttribute="bottom" secondItem="mSY-y1-AdJ" secondAttribute="bottom" constant="-8" id="nB8-Tc-AGp"/>
+                <constraint firstItem="XbZ-y6-VBR" firstAttribute="leading" secondItem="mSY-y1-AdJ" secondAttribute="trailing" constant="16" id="nQ4-Uu-uPh"/>
                 <constraint firstItem="Hzc-QS-xxv" firstAttribute="leading" secondItem="mSY-y1-AdJ" secondAttribute="trailing" constant="16" id="oX6-pW-eUB"/>
                 <constraint firstAttribute="bottom" secondItem="mSY-y1-AdJ" secondAttribute="bottom" constant="8" id="qd9-D2-KlH"/>
             </constraints>
             <size key="customSize" width="327" height="80"/>
             <connections>
+                <outlet property="lastChatLabel" destination="XbZ-y6-VBR" id="zQS-fe-UjP"/>
                 <outlet property="nameLabel" destination="Hzc-QS-xxv" id="Sah-v2-e9g"/>
                 <outlet property="profileImageView" destination="mSY-y1-AdJ" id="6b5-kh-YXh"/>
             </connections>

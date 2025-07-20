@@ -50,6 +50,9 @@ final class TravelTalkPartnerTableViewCell: UITableViewCell {
     private func setPartnerChattingLabel() {
         partnerChattingLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         partnerChattingLabel.numberOfLines = 0
+        partnerChattingLabel.layer.borderColor = UIColor.gray.cgColor
+        partnerChattingLabel.layer.borderWidth = 1
+        partnerChattingLabel.layer.cornerRadius = 10
     }
     
     // MARK: - 파트너 채팅 시간 레이블 설정

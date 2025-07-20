@@ -82,6 +82,7 @@ extension TravelTalkViewController: UICollectionViewDelegate {
         
         talkTableVC.hidesBottomBarWhenPushed = true
         talkTableVC.navigationItem.title = chatingList[indexPath.item].chatroomName
+        talkTableVC.chatRoomInfo = chatingList[indexPath.item].chatList
 
         navigationItem.backBarButtonItem = UIBarButtonItem(title: nil, style: .plain, target: self, action: nil)
         navigationItem.backBarButtonItem?.tintColor = .black

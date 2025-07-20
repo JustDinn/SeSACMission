@@ -62,6 +62,7 @@
                 <constraint firstItem="XbZ-y6-VBR" firstAttribute="leading" secondItem="mSY-y1-AdJ" secondAttribute="trailing" constant="16" id="nQ4-Uu-uPh"/>
                 <constraint firstItem="Hzc-QS-xxv" firstAttribute="leading" secondItem="mSY-y1-AdJ" secondAttribute="trailing" constant="16" id="oX6-pW-eUB"/>
                 <constraint firstAttribute="bottom" secondItem="mSY-y1-AdJ" secondAttribute="bottom" constant="8" id="qd9-D2-KlH"/>
+                <constraint firstItem="ClM-0J-f9P" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Hzc-QS-xxv" secondAttribute="trailing" constant="8" id="skb-OY-AMz"/>
             </constraints>
             <size key="customSize" width="327" height="80"/>
             <connections>

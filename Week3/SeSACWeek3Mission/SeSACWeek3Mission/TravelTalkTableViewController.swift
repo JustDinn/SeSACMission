@@ -17,6 +17,7 @@ final class TravelTalkTableViewController: UIViewController {
     
     @IBOutlet private var chatRoomTableView: UITableView!
     @IBOutlet private var chattingTextField: UITextField!
+    @IBOutlet private var sendButton: UIButton!
     
     // MARK: - Life Cycle
     
@@ -25,6 +26,7 @@ final class TravelTalkTableViewController: UIViewController {
         
         setTableView()
         setChattingTextField()
+        setSendButton()
     }
     
     // MARK: - Set TableView
@@ -46,6 +48,13 @@ final class TravelTalkTableViewController: UIViewController {
         chattingTextField.backgroundColor = .systemGroupedBackground
         chattingTextField.layer.cornerRadius = 8
         chattingTextField.placeholder = "메시지를 입력하세요"
+    }
+    
+    // MARK: - Set Send Button
+    
+    private func setSendButton() {
+        sendButton.setImage(UIImage(systemName: "paperplane"), for: .normal)
+        sendButton.tintColor = .gray
     }
 }
 

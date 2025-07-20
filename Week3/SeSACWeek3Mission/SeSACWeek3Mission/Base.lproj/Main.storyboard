@@ -87,12 +87,23 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wxz-99-M53">
+                                <rect key="frame" x="325" y="762" width="32" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="32" id="Sx9-gc-HOT"/>
+                                    <constraint firstAttribute="height" constant="32" id="nz0-l8-xLt"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title=""/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="hoF-l0-3lc"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="wxz-99-M53" firstAttribute="centerY" secondItem="JUG-hd-tQm" secondAttribute="centerY" id="ArL-2P-Gvh"/>
                             <constraint firstItem="hoF-l0-3lc" firstAttribute="trailing" secondItem="13J-cP-hQB" secondAttribute="trailing" constant="16" id="ECi-Zh-R9O"/>
                             <constraint firstItem="hoF-l0-3lc" firstAttribute="bottom" secondItem="JUG-hd-tQm" secondAttribute="bottom" constant="16" id="EEv-lY-jPz"/>
+                            <constraint firstItem="hoF-l0-3lc" firstAttribute="trailing" secondItem="wxz-99-M53" secondAttribute="trailing" constant="36" id="L8D-BW-gK6"/>
                             <constraint firstItem="JUG-hd-tQm" firstAttribute="top" secondItem="13J-cP-hQB" secondAttribute="bottom" constant="8" id="LQO-Ig-C5m"/>
                             <constraint firstItem="13J-cP-hQB" firstAttribute="top" secondItem="hoF-l0-3lc" secondAttribute="top" constant="16" id="MC7-sr-XeY"/>
                             <constraint firstItem="13J-cP-hQB" firstAttribute="leading" secondItem="hoF-l0-3lc" secondAttribute="leading" constant="16" id="NoM-N1-IXt"/>
@@ -103,6 +114,7 @@
                     <connections>
                         <outlet property="chatRoomTableView" destination="13J-cP-hQB" id="0RY-5Q-fS5"/>
                         <outlet property="chattingTextField" destination="JUG-hd-tQm" id="YRK-TS-9PJ"/>
+                        <outlet property="sendButton" destination="wxz-99-M53" id="mBa-Of-8UL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jCg-Hh-OOX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

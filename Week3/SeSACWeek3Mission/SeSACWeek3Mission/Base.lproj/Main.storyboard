@@ -74,9 +74,24 @@
                     <view key="view" contentMode="scaleToFill" id="Dun-Ig-QDO">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="13J-cP-hQB">
+                                <rect key="frame" x="16" y="75" width="361" height="727"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="hoF-l0-3lc"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="hoF-l0-3lc" firstAttribute="trailing" secondItem="13J-cP-hQB" secondAttribute="trailing" constant="16" id="ECi-Zh-R9O"/>
+                            <constraint firstItem="13J-cP-hQB" firstAttribute="top" secondItem="hoF-l0-3lc" secondAttribute="top" constant="16" id="MC7-sr-XeY"/>
+                            <constraint firstItem="13J-cP-hQB" firstAttribute="leading" secondItem="hoF-l0-3lc" secondAttribute="leading" constant="16" id="NoM-N1-IXt"/>
+                            <constraint firstItem="hoF-l0-3lc" firstAttribute="bottom" secondItem="13J-cP-hQB" secondAttribute="bottom" constant="16" id="XpT-um-vMo"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="chatRoomTableView" destination="13J-cP-hQB" id="0RY-5Q-fS5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jCg-Hh-OOX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -29,6 +29,18 @@ final class TravelTalkTableViewController: UIViewController {
         setSendButton()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            
+            DispatchQueue.main.async {
+                self.chatRoomTableView.scrollToRow(at: IndexPath(row: self.chatRoomInfo.count - 1, section: 0), at: .bottom, animated: false)
+            }
+        }
+    }
+    
     // MARK: - Set TableView
     
     private func setTableView() {

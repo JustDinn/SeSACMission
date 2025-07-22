@@ -95,11 +95,13 @@ extension TravelTalkTableViewController: UITableViewDataSource {
         if chatRoomInfo[section][row].user.name == "김새싹" {
             let cell = tableView.dequeueReusableCell(withIdentifier: MyTravelTalkTableViewCell.identifier, for: indexPath) as! MyTravelTalkTableViewCell
             cell.configureCell(with: chatRoomInfo[section][row])
+            cell.selectionStyle = .none
             
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: TravelTalkPartnerTableViewCell.identifier, for: indexPath) as! TravelTalkPartnerTableViewCell
             cell.configureCell(with: chatRoomInfo[section][row])
+            cell.selectionStyle = .none
             
             return cell
         }

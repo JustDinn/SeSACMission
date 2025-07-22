@@ -32,14 +32,7 @@ final class TravelTalkTableViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
-            
-            let section = self.chatRoomInfo.count - 1
-            let row = self.chatRoomInfo[self.chatRoomInfo.count - 1].count - 1
-            
-            self.chatRoomTableView.scrollToRow(at: IndexPath(row: row, section: section), at: .bottom, animated: false)
-        }
+        scrollToBottom()
     }
     
     // MARK: - Set TableView
@@ -71,6 +64,19 @@ final class TravelTalkTableViewController: UIViewController {
         sendButton.addTarget(self, action: #selector(didTapSendButton), for: .touchUpInside)
     }
     
+    // MARK: - collectionView 스크롤
+    
+    private func scrollToBottom() {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            
+            let section = self.chatRoomInfo.count - 1
+            let row = self.chatRoomInfo[self.chatRoomInfo.count - 1].count - 1
+            
+            self.chatRoomTableView.scrollToRow(at: IndexPath(row: row, section: section), at: .bottom, animated: false)
+        }
+    }
+    
     // MARK: - Action
     
     @objc private func didTapSendButton() {
@@ -97,15 +103,7 @@ final class TravelTalkTableViewController: UIViewController {
         }
         
         chatRoomTableView.reloadData()
-        
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
-            
-            let section = self.chatRoomInfo.count - 1
-            let row = self.chatRoomInfo[self.chatRoomInfo.count - 1].count - 1
-            
-            self.chatRoomTableView.scrollToRow(at: IndexPath(row: row, section: section), at: .bottom, animated: false)
-        }
+        scrollToBottom()
     }
 }
 

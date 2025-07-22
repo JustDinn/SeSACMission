@@ -14,7 +14,7 @@
 		3F7B41662E2BFA3D004BEFA8 /* Exceptions for "SeSACWeek3Mission" folder in "SeSACWeek3Mission" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Info.plist,
+				Resource/Info.plist,
 			);
 			target = 3F7B41532E2BFA3B004BEFA8 /* SeSACWeek3Mission */;
 		};

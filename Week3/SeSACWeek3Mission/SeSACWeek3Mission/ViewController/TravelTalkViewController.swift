@@ -54,20 +54,35 @@ final class TravelTalkViewController: UIViewController {
         searchBar.placeholder = "친구 이름을 검색해보세요"
         searchBar.searchBarStyle = .minimal
         searchBar.searchTextField.addTarget(self, action: #selector(didEndEditing), for: .editingDidEndOnExit)
+        searchBar.searchTextField.addTarget(self, action: #selector(didChangedEditing), for: .editingChanged)
     }
     
     // MARK: - Action
     
+    // 채팅방 필터
+    
+    private func filterChattingRoom(searchingKeyword: String) {
+        // 빈 값 입력 시 초기화
+        if searchingKeyword.isEmpty {
+            filteredChaingList = chatingList
+        } else {
+            filteredChaingList = chatingList.filter { $0.chatroomName.contains(searchingKeyword) }
+        }
+        talkCollectionView.reloadData()
+    }
+    
+    // 엔터, search 눌렀을 경우
     @objc private func didEndEditing() {
         let searchKeyword = searchBar.searchTextField.text!.trimmingCharacters(in: .whitespaces)
         
-        // 빈 값 입력 시 초기화
-        if searchKeyword.isEmpty {
-            filteredChaingList = chatingList
-        } else {
-            filteredChaingList = chatingList.filter { $0.chatroomName.contains(searchKeyword) }
-        }
-        talkCollectionView.reloadData()
+        filterChattingRoom(searchingKeyword: searchKeyword)
+    }
+    
+    // 서치바의 입력 내용이 변경될 경우
+    @objc private func didChangedEditing() {
+        let searchKeyword = searchBar.searchTextField.text!.trimmingCharacters(in: .whitespaces)
+        
+        filterChattingRoom(searchingKeyword: searchKeyword)
     }
 }
 

@@ -38,9 +38,7 @@ final class TravelTalkTableViewController: UIViewController {
             let section = self.chatRoomInfo.count - 1
             let row = self.chatRoomInfo[self.chatRoomInfo.count - 1].count - 1
             
-            DispatchQueue.main.async {
-                self.chatRoomTableView.scrollToRow(at: IndexPath(row: row, section: section), at: .bottom, animated: false)
-            }
+            self.chatRoomTableView.scrollToRow(at: IndexPath(row: row, section: section), at: .bottom, animated: false)
         }
     }
     
@@ -70,6 +68,44 @@ final class TravelTalkTableViewController: UIViewController {
     private func setSendButton() {
         sendButton.setImage(UIImage(systemName: "paperplane"), for: .normal)
         sendButton.tintColor = .gray
+        sendButton.addTarget(self, action: #selector(didTapSendButton), for: .touchUpInside)
+    }
+    
+    // MARK: - Action
+    
+    @objc private func didTapSendButton() {
+        let now = Date()
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        dateFormatter.locale = Locale(identifier:"ko_KR")
+        
+        let convertNowStr = dateFormatter.string(from: now)
+        let nowMyChattingMessage = chattingTextField.text!
+        let nowChatting = Chat(user: ChatList.me, date: convertNowStr, message: nowMyChattingMessage)
+        
+        for (index, section) in chatRoomInfo.enumerated() {
+            // 기존 채팅 날짜중에 현재 채팅의 날짜가 있을 경우
+            if section[0].date.prefix(10) == convertNowStr.prefix(10) {
+                chatRoomInfo[index].append(nowChatting)
+            }
+            // 마지막까지 검사했지만 기존 채팅 날짜와 현재 채팅 날짜가 겹치지 않을 경우
+            else if index == chatRoomInfo.count - 1 {
+                // 기존 채팅의 날짜에 현재 채팅의 날짜가 없는 경우 새로운 날짜 섹션을 생성
+                chatRoomInfo.append([nowChatting])
+            }
+        }
+        
+        chatRoomTableView.reloadData()
+        
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            
+            let section = self.chatRoomInfo.count - 1
+            let row = self.chatRoomInfo[self.chatRoomInfo.count - 1].count - 1
+            
+            self.chatRoomTableView.scrollToRow(at: IndexPath(row: row, section: section), at: .bottom, animated: false)
+        }
     }
 }
 

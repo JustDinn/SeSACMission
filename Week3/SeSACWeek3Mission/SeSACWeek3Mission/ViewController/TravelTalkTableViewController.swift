@@ -104,6 +104,12 @@ extension TravelTalkTableViewController: UITableViewDataSource {
             return cell
         }
     }
+    
+    // section 헤더 타이틀
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "============ \(chatRoomInfo[section][0].date.prefix(10)) ============"
+    }
 }
 
 // MARK: - UITableView Delegate

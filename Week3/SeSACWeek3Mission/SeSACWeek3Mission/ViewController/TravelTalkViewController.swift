@@ -12,6 +12,7 @@ final class TravelTalkViewController: UIViewController {
     // MARK: - Properties
     
     private var chatingList = ChatList.list
+    private var filteredChaingList = ChatList.list
     
     // MARK: - Components
     
@@ -52,6 +53,21 @@ final class TravelTalkViewController: UIViewController {
     private func setSearchBar() {
         searchBar.placeholder = "친구 이름을 검색해보세요"
         searchBar.searchBarStyle = .minimal
+        searchBar.searchTextField.addTarget(self, action: #selector(didEndEditing), for: .editingDidEndOnExit)
+    }
+    
+    // MARK: - Action
+    
+    @objc private func didEndEditing() {
+        let searchKeyword = searchBar.searchTextField.text!.trimmingCharacters(in: .whitespaces)
+        
+        // 빈 값 입력 시 초기화
+        if searchKeyword.isEmpty {
+            filteredChaingList = chatingList
+        } else {
+            filteredChaingList = chatingList.filter { $0.chatroomName.contains(searchKeyword) }
+        }
+        talkCollectionView.reloadData()
     }
 }
 
@@ -60,14 +76,14 @@ final class TravelTalkViewController: UIViewController {
 extension TravelTalkViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return chatingList.count
+        return filteredChaingList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TravelTalkCollectionViewCell.identifier, for: indexPath) as! TravelTalkCollectionViewCell
         let cellIndex = indexPath.item
         
-        cell.configureCell(with: chatingList[cellIndex])
+        cell.configureCell(with: filteredChaingList[cellIndex])
         
         return cell
     }
@@ -81,8 +97,8 @@ extension TravelTalkViewController: UICollectionViewDelegate {
         let talkTableVC = self.storyboard?.instantiateViewController(withIdentifier: "TravelTalkTableViewController") as! TravelTalkTableViewController
         
         talkTableVC.hidesBottomBarWhenPushed = true
-        talkTableVC.navigationItem.title = chatingList[indexPath.item].chatroomName
-        talkTableVC.chatRoomInfo = chatingList[indexPath.item].chatList
+        talkTableVC.navigationItem.title = filteredChaingList[indexPath.item].chatroomName
+        talkTableVC.chatRoomInfo = filteredChaingList[indexPath.item].chatList
 
         navigationItem.backBarButtonItem = UIBarButtonItem(title: nil, style: .plain, target: self, action: nil)
         navigationItem.backBarButtonItem?.tintColor = .black

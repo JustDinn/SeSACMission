@@ -17,7 +17,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5aA-MU-F2P">
-                        <rect key="frame" x="88" y="16" width="276" height="109"/>
+                        <rect key="frame" x="322.66666666666669" y="16" width="41.333333333333314" height="109"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="10" id="bd0-bl-Uaw"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -38,7 +41,7 @@
                     <constraint firstItem="W38-el-rho" firstAttribute="leading" secondItem="MPT-mZ-G9i" secondAttribute="leading" constant="16" id="6fN-D8-LDi"/>
                     <constraint firstAttribute="trailing" secondItem="5aA-MU-F2P" secondAttribute="trailing" constant="16" id="gEr-JO-3Nx"/>
                     <constraint firstAttribute="bottom" secondItem="W38-el-rho" secondAttribute="bottom" constant="16" id="qv9-DC-7C8"/>
-                    <constraint firstItem="5aA-MU-F2P" firstAttribute="leading" secondItem="W38-el-rho" secondAttribute="trailing" constant="8" id="wBA-jj-Uja"/>
+                    <constraint firstItem="5aA-MU-F2P" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="W38-el-rho" secondAttribute="trailing" constant="8" id="wBA-jj-Uja"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="YoD-WQ-9x2"/>

@@ -37,6 +37,7 @@ final class MyTravelTalkTableViewCell: UITableViewCell {
         myMessageLabel.layer.cornerRadius = 10
         myMessageLabel.layer.masksToBounds = true
         myMessageLabel.backgroundColor = .systemGray5
+        myMessageLabel.textAlignment = .right
     }
     
     // MARK: - 나의 메시지 시간 레이블 설정

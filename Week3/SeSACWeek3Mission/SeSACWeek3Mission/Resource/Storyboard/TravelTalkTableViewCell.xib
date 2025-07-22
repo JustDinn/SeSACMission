@@ -34,7 +34,10 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PmW-cj-LDM">
-                        <rect key="frame" x="72" y="41" width="220" height="84"/>
+                        <rect key="frame" x="72" y="41" width="41.333333333333343" height="84"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="10" id="8ar-zn-zTn"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -50,7 +53,7 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="bdb-Qg-vkq" firstAttribute="leading" secondItem="PmW-cj-LDM" secondAttribute="trailing" constant="8" id="7EE-Q7-FdD"/>
+                    <constraint firstItem="bdb-Qg-vkq" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="PmW-cj-LDM" secondAttribute="trailing" constant="8" id="7EE-Q7-FdD"/>
                     <constraint firstItem="gND-IC-gKG" firstAttribute="leading" secondItem="OaX-HF-fW9" secondAttribute="trailing" constant="8" id="AA6-KY-Q2N"/>
                     <constraint firstAttribute="bottom" secondItem="bdb-Qg-vkq" secondAttribute="bottom" constant="16" id="Aqy-bs-dlr"/>
                     <constraint firstAttribute="trailing" secondItem="bdb-Qg-vkq" secondAttribute="trailing" constant="16" id="CQg-1e-TC5"/>

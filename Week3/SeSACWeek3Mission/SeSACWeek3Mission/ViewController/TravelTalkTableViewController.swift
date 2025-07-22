@@ -11,7 +11,7 @@ final class TravelTalkTableViewController: UIViewController {
     
     // MARK: - Properties
     
-    var chatRoomInfo: [Chat] = []
+    var chatRoomInfo: [[Chat]] = []
     
     // MARK: - Components
     
@@ -35,8 +35,11 @@ final class TravelTalkTableViewController: UIViewController {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             
+            let section = self.chatRoomInfo.count - 1
+            let row = self.chatRoomInfo[self.chatRoomInfo.count - 1].count - 1
+            
             DispatchQueue.main.async {
-                self.chatRoomTableView.scrollToRow(at: IndexPath(row: self.chatRoomInfo.count - 1, section: 0), at: .bottom, animated: false)
+                self.chatRoomTableView.scrollToRow(at: IndexPath(row: row, section: section), at: .bottom, animated: false)
             }
         }
     }
@@ -74,23 +77,29 @@ final class TravelTalkTableViewController: UIViewController {
 
 extension TravelTalkTableViewController: UITableViewDataSource {
     
+    // section 개수
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return chatRoomInfo.count
+    }
+    
     // row 개수
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return chatRoomInfo.count
+        return chatRoomInfo[section].count
     }
     
     // cell 설정
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let indexCell = indexPath.row
+        let section = indexPath.section
+        let row = indexPath.row
         
-        if chatRoomInfo[indexCell].user.name == "김새싹" {
+        if chatRoomInfo[section][row].user.name == "김새싹" {
             let cell = tableView.dequeueReusableCell(withIdentifier: MyTravelTalkTableViewCell.identifier, for: indexPath) as! MyTravelTalkTableViewCell
-            cell.configureCell(with: chatRoomInfo[indexCell])
+            cell.configureCell(with: chatRoomInfo[section][row])
             
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: TravelTalkPartnerTableViewCell.identifier, for: indexPath) as! TravelTalkPartnerTableViewCell
-            cell.configureCell(with: chatRoomInfo[indexCell])
+            cell.configureCell(with: chatRoomInfo[section][row])
             
             return cell
         }

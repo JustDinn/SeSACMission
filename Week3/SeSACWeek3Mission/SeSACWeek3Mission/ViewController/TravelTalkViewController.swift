@@ -57,6 +57,26 @@ final class TravelTalkViewController: UIViewController {
         searchBar.searchTextField.addTarget(self, action: #selector(didChangedEditing), for: .editingChanged)
     }
     
+    // MARK: - 채팅 데이터를 날짜별로 섹션 나누기
+    
+    private func toSectionedChatting(indexPath: IndexPath) -> [[Chat]] {
+        var newChatting: [[Chat]] = []
+        var sectionChatting: [Chat] = []
+        var initialDate = filteredChaingList[indexPath.item].chatList[0].date
+            
+        filteredChaingList[indexPath.item].chatList.forEach {
+            if $0.date.prefix(10) != initialDate.prefix(10) {
+                initialDate = String($0.date)
+                newChatting.append(sectionChatting)
+                sectionChatting.removeAll()
+            }
+            sectionChatting.append($0)
+        }
+        newChatting.append(sectionChatting)
+        
+        return newChatting
+    }
+    
     // MARK: - Action
     
     // 채팅방 필터
@@ -113,7 +133,7 @@ extension TravelTalkViewController: UICollectionViewDelegate {
         
         talkTableVC.hidesBottomBarWhenPushed = true
         talkTableVC.navigationItem.title = filteredChaingList[indexPath.item].chatroomName
-        talkTableVC.chatRoomInfo = filteredChaingList[indexPath.item].chatList
+        talkTableVC.chatRoomInfo = toSectionedChatting(indexPath: indexPath)
 
         navigationItem.backBarButtonItem = UIBarButtonItem(title: nil, style: .plain, target: self, action: nil)
         navigationItem.backBarButtonItem?.tintColor = .black

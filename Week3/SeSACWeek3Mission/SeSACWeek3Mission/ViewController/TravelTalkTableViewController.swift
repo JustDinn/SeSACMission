@@ -102,6 +102,7 @@ final class TravelTalkTableViewController: UIViewController {
             }
         }
         
+        chattingTextField.text = nil
         chatRoomTableView.reloadData()
         scrollToBottom()
     }

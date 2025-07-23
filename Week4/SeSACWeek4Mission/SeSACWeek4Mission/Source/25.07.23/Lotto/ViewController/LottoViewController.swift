@@ -200,7 +200,9 @@ final class LottoViewController: UIViewController, InitialSetProtocol {
     // MARK: - Action
     
     @objc private func didTapPushButton() {
-        
+        DispatchQueue.main.async {
+            self.pushMovieVC()
+        }
     }
 }
 

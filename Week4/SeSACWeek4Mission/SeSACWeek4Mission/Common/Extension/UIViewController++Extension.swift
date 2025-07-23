@@ -5,4 +5,14 @@
 //  Created by HyoTaek on 7/24/25.
 //
 
-import Foundation
+import UIKit
+
+extension UIViewController {
+    
+    // 영화 페이지로 이동
+    func pushMovieVC() {
+        let movieVC = MovieViewController()
+        
+        navigationController?.pushViewController(movieVC, animated: true)
+    }
+}

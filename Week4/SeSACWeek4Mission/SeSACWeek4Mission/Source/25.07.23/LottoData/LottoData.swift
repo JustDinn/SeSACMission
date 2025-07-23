@@ -7,6 +7,18 @@
 
 import UIKit
 
+struct Lotto {
+    let number: String
+    let backgroundColor: UIColor
+    var textColor: UIColor = .black
+    
+    init(number: String, color: UIColor, textColor: UIColor = .white) {
+        self.number = number
+        self.backgroundColor = color
+        self.textColor = textColor
+    }
+}
+
 struct LottoData {
     
     private static var initialLottoRound: [String] = []
@@ -17,6 +29,17 @@ struct LottoData {
         }
         return initialLottoRound
     }
+    
+    static let lottoNumbers: [Lotto] = [
+        Lotto(number: "6", color: .systemYellow),
+        Lotto(number: "14", color: .systemCyan),
+        Lotto(number: "16", color: .systemCyan),
+        Lotto(number: "21", color: .systemPink),
+        Lotto(number: "26", color: .systemPink),
+        Lotto(number: "38", color: .lightGray),
+        Lotto(number: "+", color: .white, textColor: .black),
+        Lotto(number: "40", color: .lightGray)
+    ]
 }
 
 struct NowDate {

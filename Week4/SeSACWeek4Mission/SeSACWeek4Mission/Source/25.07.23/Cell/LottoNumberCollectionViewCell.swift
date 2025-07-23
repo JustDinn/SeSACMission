@@ -19,6 +19,7 @@ final class LottoNumberCollectionViewCell: UICollectionViewCell, InitialSetProto
         let label = UILabel()
         
         label.textColor = .white
+        label.textAlignment = .center
         label.font = .systemFont(ofSize: 15, weight: .semibold)
         label.layer.cornerRadius = 18
         label.layer.masksToBounds = true
@@ -53,5 +54,13 @@ final class LottoNumberCollectionViewCell: UICollectionViewCell, InitialSetProto
         lottoNumberLabel.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+    }
+    
+    // MARK: - ConfigureCell
+    
+    func configureCell(with lotto: Lotto) {
+        lottoNumberLabel.text = lotto.number
+        lottoNumberLabel.textColor = lotto.textColor
+        lottoNumberLabel.backgroundColor = lotto.backgroundColor
     }
 }

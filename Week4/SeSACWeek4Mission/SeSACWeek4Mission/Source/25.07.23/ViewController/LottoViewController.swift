@@ -10,6 +10,8 @@ import SnapKit
 
 final class LottoViewController: UIViewController, InitialSetProtocol {
 
+    // MARK: - Properties
+    
     private var selectedLottoRound = "" {
         didSet {
             let attributedStr = NSMutableAttributedString(string: selectedLottoRound)
@@ -163,11 +165,14 @@ final class LottoViewController: UIViewController, InitialSetProtocol {
 
 extension LottoViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 8
+        return LottoData.lottoNumbers.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LottoNumberCollectionViewCell.identifier, for: indexPath) as! LottoNumberCollectionViewCell
+        let cellIndex = indexPath.item
+        
+        cell.configureCell(with: LottoData.lottoNumbers[cellIndex])
         
         return cell
     }

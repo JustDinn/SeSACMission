@@ -23,6 +23,18 @@ final class MovieViewController: UIViewController, InitialSetProtocol {
     
     private let separatingLine = SeparatingLine(color: .white)
     
+    private lazy var searchButton: UIButton = {
+        let button = UIButton()
+        
+        button.setTitle("검색", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.backgroundColor = .white
+        button.layer.cornerRadius = 10
+        button.layer.masksToBounds = true
+        
+        return button
+    }()
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -42,7 +54,8 @@ final class MovieViewController: UIViewController, InitialSetProtocol {
     func setAddView() {
         [
             searchTextField,
-            separatingLine
+            separatingLine,
+            searchButton
         ].forEach(view.addSubview)
     }
     
@@ -58,6 +71,12 @@ final class MovieViewController: UIViewController, InitialSetProtocol {
             $0.top.equalTo(searchTextField.snp.bottom)
             $0.width.equalTo(searchTextField)
             $0.height.equalTo(1)
+        }
+        
+        searchButton.snp.makeConstraints {
+            $0.verticalEdges.equalTo(searchTextField)
+            $0.width.equalTo(UIScreen.main.bounds.width * 0.2)
+            $0.trailing.equalToSuperview().inset(16)
         }
     }
 }

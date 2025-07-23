@@ -37,6 +37,16 @@ final class MovieTableViewCell: UITableViewCell, InitialSetProtocol {
         return label
     }()
     
+    private let releaseDateLabel: UILabel = {
+        let label = UILabel()
+        
+        label.text = "25-25-25"
+        label.textColor = .white
+        label.textAlignment = .right
+        
+        return label
+    }()
+    
     // MARK: - Init
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -61,7 +71,8 @@ final class MovieTableViewCell: UITableViewCell, InitialSetProtocol {
     func setAddView() {
         [
             numberingLabel,
-            movieTitleLabel
+            movieTitleLabel,
+            releaseDateLabel
         ].forEach(contentView.addSubview)
     }
     
@@ -77,6 +88,11 @@ final class MovieTableViewCell: UITableViewCell, InitialSetProtocol {
         movieTitleLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.leading.equalTo(numberingLabel.snp.trailing).offset(16)
+        }
+        
+        releaseDateLabel.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.trailing.equalToSuperview()
         }
     }
 }

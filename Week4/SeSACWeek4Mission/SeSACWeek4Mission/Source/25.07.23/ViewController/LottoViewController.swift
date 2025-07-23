@@ -12,7 +12,7 @@ final class LottoViewController: UIViewController, InitialSetProtocol {
 
     // MARK: - Component
     
-    private let lottoNumberTextField: UITextField = {
+    private lazy var lottoNumberTextField: UITextField = {
         let textField = UITextField()
         
         textField.layer.borderColor = UIColor.gray.cgColor
@@ -20,8 +20,18 @@ final class LottoViewController: UIViewController, InitialSetProtocol {
         textField.layer.cornerRadius = 5
         textField.layer.masksToBounds = true
         textField.textAlignment = .center
+        textField.inputView = lottoNumberPickerView
         
         return textField
+    }()
+    
+    private lazy var lottoNumberPickerView: UIPickerView = {
+        let pickerView = UIPickerView()
+        
+        pickerView.delegate = self
+        pickerView.dataSource = self
+        
+        return pickerView
     }()
     
     // MARK: - Life Cycle
@@ -55,5 +65,30 @@ final class LottoViewController: UIViewController, InitialSetProtocol {
             $0.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(16)
             $0.height.equalTo(44)
         }
+    }
+}
+
+// MARK: UIPickerView Delegate
+
+extension LottoViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+
+    // 행의 개수
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+        
+    // 행의 아이템 개수
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return LottoData.lottoRound.count
+    }
+        
+    // 아이템 데이터
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return LottoData.lottoRound[row]
+    }
+        
+    // 아이템 선택
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        lottoNumberTextField.text = LottoData.lottoRound[row]
     }
 }

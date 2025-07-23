@@ -40,6 +40,7 @@ final class MovieViewController: UIViewController, InitialSetProtocol {
         
         tableView.register(MovieTableViewCell.self, forCellReuseIdentifier: MovieTableViewCell.identifier)
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.backgroundColor = .black
         
         return tableView
@@ -98,7 +99,9 @@ final class MovieViewController: UIViewController, InitialSetProtocol {
     }
 }
 
-extension MovieViewController: UITableViewDataSource {
+// MARK: - UITableView DataSource, Delegate
+
+extension MovieViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 10
     }
@@ -108,5 +111,9 @@ extension MovieViewController: UITableViewDataSource {
         cell.backgroundColor = .clear
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 64
     }
 }

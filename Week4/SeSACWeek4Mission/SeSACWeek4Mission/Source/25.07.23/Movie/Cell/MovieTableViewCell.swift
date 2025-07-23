@@ -59,7 +59,7 @@ final class MovieTableViewCell: UITableViewCell, InitialSetProtocol {
     
     func setConstraints() {
         numberingLabel.snp.makeConstraints {
-            $0.verticalEdges.equalToSuperview()
+            $0.verticalEdges.equalToSuperview().inset(8)
             $0.leading.equalToSuperview()
             $0.width.equalTo(48)
         }

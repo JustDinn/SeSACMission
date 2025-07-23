@@ -6,24 +6,54 @@
 //
 
 import UIKit
+import SnapKit
 
-class LottoViewController: UIViewController {
+final class LottoViewController: UIViewController, InitialSetProtocol {
 
+    // MARK: - Component
+    
+    private let lottoNumberTextField: UITextField = {
+        let textField = UITextField()
+        
+        textField.layer.borderColor = UIColor.gray.cgColor
+        textField.layer.borderWidth = 1
+        textField.layer.cornerRadius = 5
+        textField.layer.masksToBounds = true
+        textField.textAlignment = .center
+        
+        return textField
+    }()
+    
+    // MARK: - Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        setUI()
+        setAddView()
+        setConstraints()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    // MARK: - Set UI
+    
+    func setUI() {
+        view.backgroundColor = .white
     }
-    */
-
+    
+    // MARK: - Set AddView
+    
+    func setAddView() {
+        [
+            lottoNumberTextField
+        ].forEach(view.addSubview)
+    }
+    
+    // MARK: - Set Constraints
+    
+    func setConstraints() {
+        lottoNumberTextField.snp.makeConstraints {
+            $0.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(16)
+            $0.height.equalTo(44)
+        }
+    }
 }

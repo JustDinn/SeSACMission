@@ -91,6 +91,7 @@ final class LottoViewController: UIViewController, InitialSetProtocol {
         collectionView.register(LottoNumberCollectionViewCell.self, forCellWithReuseIdentifier: LottoNumberCollectionViewCell.identifier)
         collectionView.collectionViewLayout = layout
         collectionView.dataSource = self
+        collectionView.isHidden = true
         
         return collectionView
     }()
@@ -201,5 +202,6 @@ extension LottoViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         lottoNumberTextField.text = LottoData.lottoRound[row]
         selectedLottoRound = "\(LottoData.lottoRound[row])회 당첨결과"
+        lottoNumberCollectionView.isHidden = false
     }
 }

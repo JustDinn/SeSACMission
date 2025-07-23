@@ -63,13 +63,7 @@ final class LottoViewController: UIViewController, InitialSetProtocol {
         return label
     }()
     
-    private let separatingLine: UIView = {
-        let view = UIView()
-        
-        view.backgroundColor = .systemGray4
-        
-        return view
-    }()
+    private let separatingLine = SeparatingLine(color: .systemGray4)
     
     private let lottoRoundTitleLabel: UILabel = {
         let label = UILabel()

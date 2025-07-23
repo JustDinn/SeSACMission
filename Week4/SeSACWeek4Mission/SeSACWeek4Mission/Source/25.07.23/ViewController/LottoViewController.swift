@@ -102,6 +102,7 @@ final class LottoViewController: UIViewController, InitialSetProtocol {
         label.text = "보너스"
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 12, weight: .medium)
+        label.isHidden = true
         
         return label
     }()
@@ -220,5 +221,6 @@ extension LottoViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         lottoNumberTextField.text = LottoData.lottoRound[row]
         selectedLottoRound = "\(LottoData.lottoRound[row])회 당첨결과"
         lottoNumberCollectionView.isHidden = false
+        bonusLabel.isHidden = false
     }
 }

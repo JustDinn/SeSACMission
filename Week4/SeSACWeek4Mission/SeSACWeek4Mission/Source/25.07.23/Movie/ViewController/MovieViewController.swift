@@ -21,6 +21,8 @@ final class MovieViewController: UIViewController, InitialSetProtocol {
         return textField
     }()
     
+    private let separatingLine = SeparatingLine(color: .white)
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -39,7 +41,8 @@ final class MovieViewController: UIViewController, InitialSetProtocol {
     
     func setAddView() {
         [
-            searchTextField
+            searchTextField,
+            separatingLine
         ].forEach(view.addSubview)
     }
     
@@ -49,6 +52,12 @@ final class MovieViewController: UIViewController, InitialSetProtocol {
             $0.leading.equalToSuperview().offset(16)
             $0.width.equalTo(UIScreen.main.bounds.width * 0.7)
             $0.height.equalTo(44)
+        }
+        
+        separatingLine.snp.makeConstraints {
+            $0.top.equalTo(searchTextField.snp.bottom)
+            $0.width.equalTo(searchTextField)
+            $0.height.equalTo(1)
         }
     }
 }

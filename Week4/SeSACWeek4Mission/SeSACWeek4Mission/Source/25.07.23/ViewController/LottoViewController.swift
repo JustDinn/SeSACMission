@@ -96,6 +96,16 @@ final class LottoViewController: UIViewController, InitialSetProtocol {
         return collectionView
     }()
     
+    private let bonusLabel: UILabel = {
+        let label = UILabel()
+        
+        label.text = "보너스"
+        label.textAlignment = .center
+        label.font = .systemFont(ofSize: 12, weight: .medium)
+        
+        return label
+    }()
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -121,7 +131,8 @@ final class LottoViewController: UIViewController, InitialSetProtocol {
             dateLabel,
             separatingLine,
             lottoRoundTitleLabel,
-            lottoNumberCollectionView
+            lottoNumberCollectionView,
+            bonusLabel
         ].forEach(view.addSubview)
     }
     
@@ -158,6 +169,12 @@ final class LottoViewController: UIViewController, InitialSetProtocol {
             $0.top.equalTo(lottoRoundTitleLabel.snp.bottom).offset(32)
             $0.horizontalEdges.equalTo(separatingLine)
             $0.height.equalTo(36)
+        }
+        
+        bonusLabel.snp.makeConstraints {
+            $0.top.equalTo(lottoNumberCollectionView.snp.bottom).offset(8)
+            $0.trailing.equalToSuperview().inset(32)
+            $0.width.equalTo(36)
         }
     }
 }

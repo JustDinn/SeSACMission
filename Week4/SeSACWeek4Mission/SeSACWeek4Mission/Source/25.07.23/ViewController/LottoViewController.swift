@@ -51,6 +51,14 @@ final class LottoViewController: UIViewController, InitialSetProtocol {
         return label
     }()
     
+    private let separatingLine: UIView = {
+        let view = UIView()
+        
+        view.backgroundColor = .systemGray4
+        
+        return view
+    }()
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -73,7 +81,8 @@ final class LottoViewController: UIViewController, InitialSetProtocol {
         [
             lottoNumberTextField,
             guideLabel,
-            dateLabel
+            dateLabel,
+            separatingLine
         ].forEach(view.addSubview)
     }
     
@@ -93,6 +102,12 @@ final class LottoViewController: UIViewController, InitialSetProtocol {
         dateLabel.snp.makeConstraints {
             $0.centerY.equalTo(guideLabel)
             $0.trailing.equalToSuperview().inset(12)
+        }
+        
+        separatingLine.snp.makeConstraints {
+            $0.top.equalTo(guideLabel.snp.bottom).offset(16)
+            $0.horizontalEdges.equalToSuperview().inset(12)
+            $0.height.equalTo(1)
         }
     }
 }

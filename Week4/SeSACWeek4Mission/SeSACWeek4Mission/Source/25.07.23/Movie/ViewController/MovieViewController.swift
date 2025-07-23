@@ -38,7 +38,7 @@ final class MovieViewController: UIViewController, InitialSetProtocol {
     private lazy var movieTableView: UITableView = {
         let tableView = UITableView(frame: .zero)
         
-        tableView.register(MovieTableViewCell.self, forCellReuseIdentifier: MovieTableViewCell.identifier)
+        tableView.register(MovieTableViewCell.self, forCellReuseIdentifier: MovieTableViewCell.identifier)\
         tableView.dataSource = self
         tableView.delegate = self
         tableView.backgroundColor = .black
@@ -108,7 +108,11 @@ extension MovieViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: MovieTableViewCell.identifier, for: indexPath) as! MovieTableViewCell
+        let cellIndex = indexPath.row
+        
+        cell.selectionStyle = .none
         cell.backgroundColor = .clear
+        cell.configureCell(movie: MovieInfo.movies[cellIndex], index: cellIndex + 1)
         
         return cell
     }

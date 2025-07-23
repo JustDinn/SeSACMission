@@ -18,7 +18,6 @@ final class MovieTableViewCell: UITableViewCell, InitialSetProtocol {
     private let numberingLabel: UILabel = {
         let label = UILabel()
         
-        label.text = "10"
         label.textColor = .black
         label.textAlignment = .center
         label.backgroundColor = .white
@@ -31,7 +30,6 @@ final class MovieTableViewCell: UITableViewCell, InitialSetProtocol {
     private let movieTitleLabel: UILabel = {
         let label = UILabel()
         
-        label.text = "내가간다 하와이"
         label.textColor = .white
         
         return label
@@ -40,7 +38,6 @@ final class MovieTableViewCell: UITableViewCell, InitialSetProtocol {
     private let releaseDateLabel: UILabel = {
         let label = UILabel()
         
-        label.text = "25-25-25"
         label.textColor = .white
         label.textAlignment = .right
         
@@ -94,5 +91,13 @@ final class MovieTableViewCell: UITableViewCell, InitialSetProtocol {
             $0.centerY.equalToSuperview()
             $0.trailing.equalToSuperview()
         }
+    }
+    
+    // MARK: - Configure Cell
+    
+    func configureCell(movie: Movie, index: Int) {
+        numberingLabel.text = "\(index)"
+        movieTitleLabel.text = movie.title
+        releaseDateLabel.text = movie.releaseDate
     }
 }

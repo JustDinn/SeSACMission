@@ -34,6 +34,14 @@ final class LottoViewController: UIViewController, InitialSetProtocol {
         return pickerView
     }()
     
+    private let guideLabel: UILabel = {
+        let label = UILabel()
+        
+        label.text = "당첨번호 안내"
+        
+        return label
+    }()
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -54,7 +62,8 @@ final class LottoViewController: UIViewController, InitialSetProtocol {
     
     func setAddView() {
         [
-            lottoNumberTextField
+            lottoNumberTextField,
+            guideLabel
         ].forEach(view.addSubview)
     }
     
@@ -64,6 +73,11 @@ final class LottoViewController: UIViewController, InitialSetProtocol {
         lottoNumberTextField.snp.makeConstraints {
             $0.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(16)
             $0.height.equalTo(44)
+        }
+        
+        guideLabel.snp.makeConstraints {
+            $0.top.equalTo(lottoNumberTextField.snp.bottom).offset(32)
+            $0.leading.equalToSuperview().offset(12)
         }
     }
 }

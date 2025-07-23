@@ -77,6 +77,22 @@ final class LottoViewController: UIViewController, InitialSetProtocol {
         return label
     }()
     
+    private lazy var lottoNumberCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        
+        layout.scrollDirection = .horizontal
+        layout.minimumInteritemSpacing = 8
+        layout.itemSize = CGSize(width: 36, height: 36)
+        
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        
+        collectionView.register(LottoNumberCollectionViewCell.self, forCellWithReuseIdentifier: LottoNumberCollectionViewCell.identifier)
+        collectionView.collectionViewLayout = layout
+        collectionView.dataSource = self
+        
+        return collectionView
+    }()
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -101,7 +117,8 @@ final class LottoViewController: UIViewController, InitialSetProtocol {
             guideLabel,
             dateLabel,
             separatingLine,
-            lottoRoundTitleLabel
+            lottoRoundTitleLabel,
+            lottoNumberCollectionView
         ].forEach(view.addSubview)
     }
     
@@ -133,10 +150,30 @@ final class LottoViewController: UIViewController, InitialSetProtocol {
             $0.top.equalTo(separatingLine.snp.bottom).offset(32)
             $0.centerX.equalToSuperview()
         }
+        
+        lottoNumberCollectionView.snp.makeConstraints {
+            $0.top.equalTo(lottoRoundTitleLabel.snp.bottom).offset(32)
+            $0.horizontalEdges.equalTo(separatingLine)
+            $0.height.equalTo(36)
+        }
     }
 }
 
-// MARK: UIPickerView Delegate
+// MARK: - UICollectionView DataSource
+
+extension LottoViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 8
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LottoNumberCollectionViewCell.identifier, for: indexPath) as! LottoNumberCollectionViewCell
+        
+        return cell
+    }
+}
+
+// MARK: - UIPickerView Delegate
 
 extension LottoViewController: UIPickerViewDelegate, UIPickerViewDataSource {
 

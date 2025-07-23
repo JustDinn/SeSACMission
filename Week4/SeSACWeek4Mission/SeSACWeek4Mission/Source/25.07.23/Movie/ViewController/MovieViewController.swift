@@ -35,6 +35,16 @@ final class MovieViewController: UIViewController, InitialSetProtocol {
         return button
     }()
     
+    private lazy var movieTableView: UITableView = {
+        let tableView = UITableView(frame: .zero)
+        
+        tableView.register(MovieTableViewCell.self, forCellReuseIdentifier: MovieTableViewCell.identifier)
+        tableView.dataSource = self
+        tableView.backgroundColor = .black
+        
+        return tableView
+    }()
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -55,7 +65,8 @@ final class MovieViewController: UIViewController, InitialSetProtocol {
         [
             searchTextField,
             separatingLine,
-            searchButton
+            searchButton,
+            movieTableView
         ].forEach(view.addSubview)
     }
     
@@ -78,5 +89,24 @@ final class MovieViewController: UIViewController, InitialSetProtocol {
             $0.width.equalTo(UIScreen.main.bounds.width * 0.2)
             $0.trailing.equalToSuperview().inset(16)
         }
+        
+        movieTableView.snp.makeConstraints {
+            $0.top.equalTo(separatingLine.snp.bottom).offset(20)
+            $0.horizontalEdges.equalToSuperview().inset(16)
+            $0.bottom.equalToSuperview()
+        }
+    }
+}
+
+extension MovieViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: MovieTableViewCell.identifier, for: indexPath) as! MovieTableViewCell
+        cell.backgroundColor = .clear
+        
+        return cell
     }
 }

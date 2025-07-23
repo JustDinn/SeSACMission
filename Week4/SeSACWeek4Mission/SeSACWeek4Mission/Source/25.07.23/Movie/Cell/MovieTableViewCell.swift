@@ -28,6 +28,15 @@ final class MovieTableViewCell: UITableViewCell, InitialSetProtocol {
         return label
     }()
     
+    private let movieTitleLabel: UILabel = {
+        let label = UILabel()
+        
+        label.text = "내가간다 하와이"
+        label.textColor = .white
+        
+        return label
+    }()
+    
     // MARK: - Init
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -51,7 +60,8 @@ final class MovieTableViewCell: UITableViewCell, InitialSetProtocol {
     
     func setAddView() {
         [
-            numberingLabel
+            numberingLabel,
+            movieTitleLabel
         ].forEach(contentView.addSubview)
     }
     
@@ -62,6 +72,11 @@ final class MovieTableViewCell: UITableViewCell, InitialSetProtocol {
             $0.verticalEdges.equalToSuperview().inset(8)
             $0.leading.equalToSuperview()
             $0.width.equalTo(48)
+        }
+        
+        movieTitleLabel.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.leading.equalTo(numberingLabel.snp.trailing).offset(16)
         }
     }
 }

@@ -10,11 +10,16 @@ import SnapKit
 
 final class MovieViewController: UIViewController, InitialSetProtocol {
 
+    // MARK: - Properties
+    
+    private var movies = MovieInfo.movies
+    
     // MARK: - Component
     
     private lazy var searchTextField: UITextField = {
         let textField = UITextField()
         
+        textField.delegate = self
         textField.placeholder = "영화 검색"
         textField.textColor = .white
         
@@ -38,7 +43,7 @@ final class MovieViewController: UIViewController, InitialSetProtocol {
     private lazy var movieTableView: UITableView = {
         let tableView = UITableView(frame: .zero)
         
-        tableView.register(MovieTableViewCell.self, forCellReuseIdentifier: MovieTableViewCell.identifier)\
+        tableView.register(MovieTableViewCell.self, forCellReuseIdentifier: MovieTableViewCell.identifier)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.backgroundColor = .black
@@ -102,6 +107,7 @@ final class MovieViewController: UIViewController, InitialSetProtocol {
 // MARK: - UITableView DataSource, Delegate
 
 extension MovieViewController: UITableViewDataSource, UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 10
     }
@@ -112,12 +118,24 @@ extension MovieViewController: UITableViewDataSource, UITableViewDelegate {
         
         cell.selectionStyle = .none
         cell.backgroundColor = .clear
-        cell.configureCell(movie: MovieInfo.movies[cellIndex], index: cellIndex + 1)
+        cell.configureCell(movie: movies[cellIndex], index: cellIndex + 1)
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 64
+    }
+}
+
+// MARK: - UITextField Delegate
+
+extension MovieViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        movies = MovieInfo.randomMovies
+        movieTableView.reloadData()
+        
+        return true
     }
 }

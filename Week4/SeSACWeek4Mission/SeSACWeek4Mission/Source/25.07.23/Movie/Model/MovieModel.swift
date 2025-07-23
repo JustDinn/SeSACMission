@@ -114,4 +114,8 @@ struct MovieInfo {
         Movie(title: "닥터 스트레인지", releaseDate: "20161026", audienceCount: 5447269),
         Movie(title: "검은 사제들", releaseDate: "20151105", audienceCount: 5443232),
     ]
+    
+    static var randomMovies: [Movie] {
+        return Array(movies.shuffled().prefix(10))
+    }
 }

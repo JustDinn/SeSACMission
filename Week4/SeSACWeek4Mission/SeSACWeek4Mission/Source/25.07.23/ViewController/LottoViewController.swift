@@ -42,6 +42,15 @@ final class LottoViewController: UIViewController, InitialSetProtocol {
         return label
     }()
     
+    private let dateLabel: UILabel = {
+        let label = UILabel()
+        
+        label.text = "\(NowDate.today) 추첨"
+        label.textColor = .gray
+        
+        return label
+    }()
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -63,7 +72,8 @@ final class LottoViewController: UIViewController, InitialSetProtocol {
     func setAddView() {
         [
             lottoNumberTextField,
-            guideLabel
+            guideLabel,
+            dateLabel
         ].forEach(view.addSubview)
     }
     
@@ -78,6 +88,11 @@ final class LottoViewController: UIViewController, InitialSetProtocol {
         guideLabel.snp.makeConstraints {
             $0.top.equalTo(lottoNumberTextField.snp.bottom).offset(32)
             $0.leading.equalToSuperview().offset(12)
+        }
+        
+        dateLabel.snp.makeConstraints {
+            $0.centerY.equalTo(guideLabel)
+            $0.trailing.equalToSuperview().inset(12)
         }
     }
 }

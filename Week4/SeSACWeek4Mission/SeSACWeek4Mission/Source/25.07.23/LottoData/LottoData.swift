@@ -18,3 +18,19 @@ struct LottoData {
         return initialLottoRound
     }
 }
+
+struct NowDate {
+    
+    private static let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        
+        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.locale = Locale(identifier: "ko_KR")
+        
+        return formatter
+    }()
+    
+    static var today: String {
+        return dateFormatter.string(from: Date())
+    }
+}

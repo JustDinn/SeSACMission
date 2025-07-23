@@ -5,7 +5,7 @@
 //  Created by HyoTaek on 7/24/25.
 //
 
-import Foundation
+import UIKit
 
 struct LottoData {
     

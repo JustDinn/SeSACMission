@@ -10,6 +10,16 @@ import SnapKit
 
 final class LottoViewController: UIViewController, InitialSetProtocol {
 
+    private var selectedLottoRound = "" {
+        didSet {
+            let attributedStr = NSMutableAttributedString(string: selectedLottoRound)
+
+            attributedStr.addAttribute(.foregroundColor, value: UIColor.black, range: (selectedLottoRound as NSString).range(of: "당첨결과"))
+            
+            lottoRoundTitleLabel.attributedText = attributedStr
+        }
+    }
+    
     // MARK: - Component
     
     private lazy var lottoNumberTextField: UITextField = {
@@ -59,6 +69,14 @@ final class LottoViewController: UIViewController, InitialSetProtocol {
         return view
     }()
     
+    private let lottoRoundTitleLabel: UILabel = {
+        let label = UILabel()
+        
+        label.textColor = .systemYellow
+        
+        return label
+    }()
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -82,7 +100,8 @@ final class LottoViewController: UIViewController, InitialSetProtocol {
             lottoNumberTextField,
             guideLabel,
             dateLabel,
-            separatingLine
+            separatingLine,
+            lottoRoundTitleLabel
         ].forEach(view.addSubview)
     }
     
@@ -109,6 +128,11 @@ final class LottoViewController: UIViewController, InitialSetProtocol {
             $0.horizontalEdges.equalToSuperview().inset(12)
             $0.height.equalTo(1)
         }
+        
+        lottoRoundTitleLabel.snp.makeConstraints {
+            $0.top.equalTo(separatingLine.snp.bottom).offset(32)
+            $0.centerX.equalToSuperview()
+        }
     }
 }
 
@@ -134,5 +158,6 @@ extension LottoViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     // 아이템 선택
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         lottoNumberTextField.text = LottoData.lottoRound[row]
+        selectedLottoRound = "\(LottoData.lottoRound[row])회 당첨결과"
     }
 }

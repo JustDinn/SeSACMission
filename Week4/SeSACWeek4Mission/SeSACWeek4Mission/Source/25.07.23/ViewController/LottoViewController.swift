@@ -107,6 +107,16 @@ final class LottoViewController: UIViewController, InitialSetProtocol {
         return label
     }()
     
+    private lazy var pushButton: UIButton = {
+        let button = UIButton()
+        
+        button.setTitle("영화 페이지", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.addTarget(self, action: #selector(didTapPushButton), for: .touchUpInside)
+        
+        return button
+    }()
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -133,7 +143,8 @@ final class LottoViewController: UIViewController, InitialSetProtocol {
             separatingLine,
             lottoRoundTitleLabel,
             lottoNumberCollectionView,
-            bonusLabel
+            bonusLabel,
+            pushButton
         ].forEach(view.addSubview)
     }
     
@@ -177,6 +188,19 @@ final class LottoViewController: UIViewController, InitialSetProtocol {
             $0.trailing.equalToSuperview().inset(32)
             $0.width.equalTo(36)
         }
+        
+        pushButton.snp.makeConstraints {
+            $0.top.equalTo(bonusLabel.snp.bottom).offset(32)
+            $0.centerX.equalToSuperview()
+            $0.width.equalTo(84)
+            $0.height.equalTo(44)
+        }
+    }
+    
+    // MARK: - Action
+    
+    @objc private func didTapPushButton() {
+        
     }
 }
 

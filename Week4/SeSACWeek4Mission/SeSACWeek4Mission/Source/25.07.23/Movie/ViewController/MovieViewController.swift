@@ -36,6 +36,7 @@ final class MovieViewController: UIViewController, InitialSetProtocol {
         button.backgroundColor = .white
         button.layer.cornerRadius = 10
         button.layer.masksToBounds = true
+        button.addTarget(self, action: #selector(didTapSearhButton), for: .touchUpInside)
         
         return button
     }()
@@ -67,6 +68,8 @@ final class MovieViewController: UIViewController, InitialSetProtocol {
         view.backgroundColor = .black
     }
     
+    // MARK: - Set AddView
+    
     func setAddView() {
         [
             searchTextField,
@@ -75,6 +78,8 @@ final class MovieViewController: UIViewController, InitialSetProtocol {
             movieTableView
         ].forEach(view.addSubview)
     }
+    
+    // MARK: - Set Constraints
     
     func setConstraints() {
         searchTextField.snp.makeConstraints {
@@ -101,6 +106,19 @@ final class MovieViewController: UIViewController, InitialSetProtocol {
             $0.horizontalEdges.equalToSuperview().inset(16)
             $0.bottom.equalToSuperview()
         }
+    }
+    
+    // MARK: - Action
+    
+    // 영화 섞고 테이블뷰 리로드
+    private func shuffleMovies() {
+        movies = MovieInfo.randomMovies
+        movieTableView.reloadData()
+    }
+    
+    // 검색 버튼 탭할 경우
+    @objc private func didTapSearhButton() {
+        shuffleMovies()
     }
 }
 
@@ -133,8 +151,7 @@ extension MovieViewController: UITableViewDataSource, UITableViewDelegate {
 extension MovieViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        movies = MovieInfo.randomMovies
-        movieTableView.reloadData()
+        shuffleMovies()
         
         return true
     }

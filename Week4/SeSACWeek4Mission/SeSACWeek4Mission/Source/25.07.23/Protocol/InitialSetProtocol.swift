@@ -7,9 +7,9 @@
 
 import Foundation
 
-protocol InitialSetProtocol: AnyObject {
+@objc protocol InitialSetProtocol: AnyObject {
     
-    func setUI()
+    @objc optional func setUI()
     func setAddView()
     func setConstraints()
 }

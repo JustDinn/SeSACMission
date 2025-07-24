@@ -122,6 +122,7 @@ final class LottoViewController: UIViewController, InitialSetProtocol {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        lottoNumberTextField.text = "\(LottoData.latestLotteryRound)"
         selectedLottoRound = "\(LottoData.latestLotteryRound)회 당첨결과"
         updateLatestRound()
         requestGetLotto()

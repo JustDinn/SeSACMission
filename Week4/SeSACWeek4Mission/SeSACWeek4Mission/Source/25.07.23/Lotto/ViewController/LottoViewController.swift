@@ -211,9 +211,7 @@ extension LottoViewController {
     
     // 로또 정보 가져오기
     func requestGetLotto() {
-        let lottoURL = "https://www.dhlottery.co.kr/common.do?method=getLottoNumber&drwNo=\(LottoData.latestLotteryRound)"
-        
-        AF.request(lottoURL, method: .get)
+        AF.request(LottoData.lottoRequestURL, method: .get)
             .validate(statusCode: 200..<300)
             .responseDecodable(of: LottoModel.self) { response in
                 switch response.result {

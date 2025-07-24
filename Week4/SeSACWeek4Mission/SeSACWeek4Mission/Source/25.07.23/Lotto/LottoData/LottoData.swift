@@ -42,6 +42,10 @@ struct LottoData {
     ]
     
     static var latestLotteryRound = 1181
+    
+    static var lottoRequestURL: String {
+        return "https://www.dhlottery.co.kr/common.do?method=getLottoNumber&drwNo=\(LottoData.latestLotteryRound)"
+    }
 }
 
 struct NowDate {

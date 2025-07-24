@@ -13,7 +13,6 @@ final class MovieViewController: UIViewController, InitialSetProtocol {
 
     // MARK: - Properties
     
-//    private var movies = MovieInfo.movies
     private var movies: [MovieInfo] = []
     
     // MARK: - Component
@@ -129,23 +128,40 @@ final class MovieViewController: UIViewController, InitialSetProtocol {
 //        shuffleMovies()
     }
     
-    // MARK: - API Calling
     
+}
+
+// MARK: - API Calling
+
+extension MovieViewController {
     private func requestGetMovie() {
         guard let movieAPIKey = Bundle.main.infoDictionary?["BOX_OFFICE_API_KEY"] as? String else {
             print("<< movie key 바인딩 실패")
             return
         }
+        let boxOfficeURL = "http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=\(movieAPIKey)&targetDt=20120101"
         
-        print("<< key: \(movieAPIKey)")
-        
-        let url = "http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=\(movieAPIKey)&targetDt=20120101"
-        
-        AF.request(url, method: .get)
+        AF.request(boxOfficeURL, method: .get)
             .validate(statusCode: 200..<300)
-            .responseString { response in
-                print("<< 응답: \(response)")
+            .responseDecodable(of: MovieModel.self) { response in
+                switch response.result {
+                case .success(let boxOfficeInfo):
+                    self.saveBoxOfficeInfo(boxOfficeInfo: boxOfficeInfo.movie.movieList)
+                    
+                case .failure(let error):
+                    print("<< 박스오피스 Get 요청 실패: \(error.localizedDescription)")
+                }
             }
+    }
+}
+
+// MARK: - Process API Response
+
+extension MovieViewController {
+    
+    // 박스 오피스 정보 저장하기
+    func saveBoxOfficeInfo(boxOfficeInfo: [MovieInfo]) {
+        movies = boxOfficeInfo
     }
 }
 

@@ -95,9 +95,9 @@ final class MovieTableViewCell: UITableViewCell, InitialSetProtocol {
     
     // MARK: - Configure Cell
     
-    func configureCell(movie: Movie, index: Int) {
-        numberingLabel.text = "\(index)"
-        movieTitleLabel.text = movie.title
-        releaseDateLabel.text = movie.releaseDate
+    func configureCell(with boxOfficeInfo: MovieInfo) {
+        numberingLabel.text = "\(boxOfficeInfo.ranking)"
+        movieTitleLabel.text = boxOfficeInfo.title
+        releaseDateLabel.text = boxOfficeInfo.realeasedDate
     }
 }

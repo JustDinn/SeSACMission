@@ -134,6 +134,8 @@ final class MovieViewController: UIViewController, InitialSetProtocol {
 // MARK: - API Calling
 
 extension MovieViewController {
+    
+    // 박스 오피스 정보 Get 요청
     private func requestGetMovie() {
         guard let movieAPIKey = Bundle.main.infoDictionary?["BOX_OFFICE_API_KEY"] as? String else {
             print("<< movie key 바인딩 실패")
@@ -147,6 +149,12 @@ extension MovieViewController {
                 switch response.result {
                 case .success(let boxOfficeInfo):
                     self.saveBoxOfficeInfo(boxOfficeInfo: boxOfficeInfo.movie.movieList)
+                    
+                    DispatchQueue.main.async {
+                        UIView.performWithoutAnimation {
+                            self.movieTableView.reloadData()
+                        }
+                    }
                     
                 case .failure(let error):
                     print("<< 박스오피스 Get 요청 실패: \(error.localizedDescription)")
@@ -170,7 +178,7 @@ extension MovieViewController {
 extension MovieViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return movies.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -179,7 +187,7 @@ extension MovieViewController: UITableViewDataSource, UITableViewDelegate {
         
         cell.selectionStyle = .none
         cell.backgroundColor = .clear
-        cell.configureCell(movie: movies[cellIndex], index: cellIndex + 1)
+        cell.configureCell(with: movies[cellIndex])
         
         return cell
     }
@@ -194,7 +202,6 @@ extension MovieViewController: UITableViewDataSource, UITableViewDelegate {
 extension MovieViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        shuffleMovies()
         
         return true
     }

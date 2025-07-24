@@ -21,11 +21,11 @@ struct Lotto {
 
 struct LottoData {
     
-    private static var initialLottoRound: [String] = []
+    private static var initialLottoRound: [Int] = []
     
-    static var lottoRound: [String] {
+    static var lottoRound: [Int] {
         for i in 1..<1182 {
-            initialLottoRound.append(String(i))
+            initialLottoRound.append(i)
         }
         return initialLottoRound
     }
@@ -40,6 +40,8 @@ struct LottoData {
         Lotto(number: "+", color: .white, textColor: .black),
         Lotto(color: .lightGray)
     ]
+    
+    static var latestLotteryRound = 1181
 }
 
 struct NowDate {

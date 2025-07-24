@@ -86,7 +86,6 @@ final class LottoViewController: UIViewController, InitialSetProtocol {
         collectionView.register(LottoNumberCollectionViewCell.self, forCellWithReuseIdentifier: LottoNumberCollectionViewCell.identifier)
         collectionView.collectionViewLayout = layout
         collectionView.dataSource = self
-        collectionView.isHidden = true
         
         return collectionView
     }()
@@ -97,7 +96,6 @@ final class LottoViewController: UIViewController, InitialSetProtocol {
         label.text = "보너스"
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 12, weight: .medium)
-        label.isHidden = true
         
         return label
     }()
@@ -125,6 +123,7 @@ final class LottoViewController: UIViewController, InitialSetProtocol {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        selectedLottoRound = "\(LottoData.latestLotteryRound)회 당첨결과"
         requestGetLotto()
     }
     
@@ -213,7 +212,7 @@ extension LottoViewController {
     
     // 로또 정보 가져오기
     func requestGetLotto() {
-        let lottoURL = "https://www.dhlottery.co.kr/common.do?method=getLottoNumber&drwNo=1181"
+        let lottoURL = "https://www.dhlottery.co.kr/common.do?method=getLottoNumber&drwNo=\(LottoData.latestLotteryRound)"
         
         AF.request(lottoURL, method: .get)
             .validate(statusCode: 200..<300)
@@ -222,11 +221,22 @@ extension LottoViewController {
                 case .success(let lottoInfo):
                     self.saveAllLottoNumbers(lottoInfo: lottoInfo)
                     
+                    DispatchQueue.main.async {
+                        UIView.performWithoutAnimation {
+                            self.lottoNumberCollectionView.reloadData()
+                        }
+                    }
+                    
                 case .failure(let error):
                     print("<< 실패 응답: \(error.localizedDescription)")
                 }
             }
     }
+}
+
+// MARK: - Process API Response
+
+extension LottoViewController {
     
     // 로또 정보 저장하기
     func saveAllLottoNumbers(lottoInfo: LottoModel) {
@@ -273,14 +283,14 @@ extension LottoViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         
     // 아이템 데이터
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return LottoData.lottoRound[row]
+        return String(LottoData.lottoRound[row])
     }
         
     // 아이템 선택
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        lottoNumberTextField.text = LottoData.lottoRound[row]
+        lottoNumberTextField.text = String(LottoData.lottoRound[row])
         selectedLottoRound = "\(LottoData.lottoRound[row])회 당첨결과"
-        lottoNumberCollectionView.isHidden = false
-        bonusLabel.isHidden = false
+        LottoData.latestLotteryRound = LottoData.lottoRound[row]
+        requestGetLotto()
     }
 }

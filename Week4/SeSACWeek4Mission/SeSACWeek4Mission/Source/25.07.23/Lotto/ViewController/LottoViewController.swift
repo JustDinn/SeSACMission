@@ -58,7 +58,6 @@ final class LottoViewController: UIViewController, InitialSetProtocol {
     private let dateLabel: UILabel = {
         let label = UILabel()
         
-        label.text = "\(NowDate.today) 추첨"
         label.textColor = .gray
         
         return label
@@ -222,6 +221,7 @@ extension LottoViewController {
                     self.saveAllLottoNumbers(lottoInfo: lottoInfo)
                     
                     DispatchQueue.main.async {
+                        self.setDateLabel(drawnDate: lottoInfo.drawnDate)
                         UIView.performWithoutAnimation {
                             self.lottoNumberCollectionView.reloadData()
                         }
@@ -247,6 +247,11 @@ extension LottoViewController {
         LottoData.lottoNumbers[4].number = String(lottoInfo.lottoNumber5)
         LottoData.lottoNumbers[5].number = String(lottoInfo.lottoNumber6)
         LottoData.lottoNumbers[7].number = String(lottoInfo.lottoBonusNumber)
+    }
+    
+    // 당첨 날짜 label 설정
+    func setDateLabel(drawnDate: String) {
+        dateLabel.text = "\(drawnDate) 추첨"
     }
 }
 

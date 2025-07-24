@@ -19,9 +19,12 @@ final class MovieViewController: UIViewController, InitialSetProtocol {
     
     private lazy var searchTextField: UITextField = {
         let textField = UITextField()
+        let attributedPlaceholder = NSAttributedString(
+                                        string: "영화 검색 (ex: \(makeYesterday()))",
+                                        attributes: [.foregroundColor: UIColor.white])
         
         textField.delegate = self
-        textField.placeholder = "영화 검색"
+        textField.attributedPlaceholder = attributedPlaceholder
         textField.textColor = .white
         
         return textField

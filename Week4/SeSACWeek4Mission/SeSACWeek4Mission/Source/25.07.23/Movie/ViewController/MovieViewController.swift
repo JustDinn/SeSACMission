@@ -139,6 +139,7 @@ final class MovieViewController: UIViewController, InitialSetProtocol {
 
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyyMMdd"
+        dateFormatter.locale = Locale(identifier:"ko_KR")
         let yesterdayToString = dateFormatter.string(from: yesterday)
         
         return yesterdayToString

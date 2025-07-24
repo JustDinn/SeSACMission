@@ -66,7 +66,7 @@ final class MovieViewController: UIViewController, InitialSetProtocol {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        requestGetMovie(query: "20250723")
+        requestGetMovie(query: makeYesterday())
     }
     
     // MARK: - Set UI
@@ -124,8 +124,21 @@ final class MovieViewController: UIViewController, InitialSetProtocol {
     }
     
     // 박스오피스 Get 요청 url의 파라미터에 날짜 추가
-    func addDateQuery() {
+    private func addDateQuery() {
         requestGetMovie(query: searchTextField.text!)
+    }
+    
+    // MARK: - 어제 날짜 만들기
+    
+    private func makeYesterday() -> String {
+        let today = Date()
+        let yesterday = Calendar.current.date(byAdding: .day, value: -1, to: today)!
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyyMMdd"
+        let yesterdayToString = dateFormatter.string(from: yesterday)
+        
+        return yesterdayToString
     }
 }
 

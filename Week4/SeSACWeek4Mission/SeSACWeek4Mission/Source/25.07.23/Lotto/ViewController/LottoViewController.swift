@@ -123,6 +123,7 @@ final class LottoViewController: UIViewController, InitialSetProtocol {
         super.viewWillAppear(animated)
         
         selectedLottoRound = "\(LottoData.latestLotteryRound)회 당첨결과"
+        updateLatestRound()
         requestGetLotto()
     }
     
@@ -250,6 +251,35 @@ extension LottoViewController {
     // 당첨 날짜 label 설정
     func setDateLabel(drawnDate: String) {
         dateLabel.text = "\(drawnDate) 추첨"
+    }
+    
+    // 가장 최신 회차 저장
+    func updateLatestRound() {
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.timeZone = TimeZone(identifier: "ko_KR")
+        
+        guard let responseToDate = dateFormatter.date(from: "2025-07-19") else {
+            print("<< 로또 당첨일 Date 변환 실패")
+            return
+        }
+        
+        // 기준일은 항상 7월 19일로 고정임. 즉, 과거가 될 가능성이 없기 때문에 회차를 빼줄 가능성이 없어서 더해주기만 하면 됨
+        let dateGap = getDateGap(responseDate: responseToDate)
+        let roundGap = dateGap / 7
+        
+        // 일주일 이상 차이날 경우 1회차를 더한 회차의 로또 번호를 요청
+        if roundGap > 0 {
+            LottoData.latestLotteryRound += roundGap
+        }
+    }
+    
+    // 날짜 차이 계산
+    func getDateGap(responseDate: Date) -> Int {
+        let dateGap = Calendar.current.getDateGap(from: responseDate, to: Date())
+        
+        return dateGap
     }
 }
 

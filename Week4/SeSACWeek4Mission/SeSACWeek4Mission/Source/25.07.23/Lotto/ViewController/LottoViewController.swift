@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Alamofire
 
 final class LottoViewController: UIViewController, InitialSetProtocol {
 
@@ -121,6 +122,12 @@ final class LottoViewController: UIViewController, InitialSetProtocol {
         setConstraints()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        requestGetLotto()
+    }
+    
     // MARK: - Set UI
     
     func setUI() {
@@ -197,6 +204,39 @@ final class LottoViewController: UIViewController, InitialSetProtocol {
         DispatchQueue.main.async {
             self.pushMovieVC()
         }
+    }
+}
+
+// MARK: - API Calling
+
+extension LottoViewController {
+    
+    // 로또 정보 가져오기
+    func requestGetLotto() {
+        let lottoURL = "https://www.dhlottery.co.kr/common.do?method=getLottoNumber&drwNo=1181"
+        
+        AF.request(lottoURL, method: .get)
+            .validate(statusCode: 200..<300)
+            .responseDecodable(of: LottoModel.self) { response in
+                switch response.result {
+                case .success(let lottoInfo):
+                    self.saveAllLottoNumbers(lottoInfo: lottoInfo)
+                    
+                case .failure(let error):
+                    print("<< 실패 응답: \(error.localizedDescription)")
+                }
+            }
+    }
+    
+    // 로또 정보 저장하기
+    func saveAllLottoNumbers(lottoInfo: LottoModel) {
+        LottoData.lottoNumbers[0].number = String(lottoInfo.lottoNumber1)
+        LottoData.lottoNumbers[1].number = String(lottoInfo.lottoNumber2)
+        LottoData.lottoNumbers[2].number = String(lottoInfo.lottoNumber3)
+        LottoData.lottoNumbers[3].number = String(lottoInfo.lottoNumber4)
+        LottoData.lottoNumbers[4].number = String(lottoInfo.lottoNumber5)
+        LottoData.lottoNumbers[5].number = String(lottoInfo.lottoNumber6)
+        LottoData.lottoNumbers[7].number = String(lottoInfo.lottoBonusNumber)
     }
 }
 

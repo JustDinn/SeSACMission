@@ -8,11 +8,11 @@
 import UIKit
 
 struct Lotto {
-    let number: String
+    var number: String
     let backgroundColor: UIColor
     var textColor: UIColor
     
-    init(number: String, color: UIColor, textColor: UIColor = .white) {
+    init(number: String = "", color: UIColor, textColor: UIColor = .white) {
         self.number = number
         self.backgroundColor = color
         self.textColor = textColor
@@ -30,15 +30,15 @@ struct LottoData {
         return initialLottoRound
     }
     
-    static let lottoNumbers: [Lotto] = [
-        Lotto(number: "6", color: .systemYellow),
-        Lotto(number: "14", color: .systemCyan),
-        Lotto(number: "16", color: .systemCyan),
-        Lotto(number: "21", color: .systemPink),
-        Lotto(number: "26", color: .systemPink),
-        Lotto(number: "38", color: .lightGray),
+    static var lottoNumbers: [Lotto] = [
+        Lotto(color: .systemYellow),
+        Lotto(color: .systemCyan),
+        Lotto(color: .systemCyan),
+        Lotto(color: .systemPink),
+        Lotto(color: .systemPink),
+        Lotto(color: .lightGray),
         Lotto(number: "+", color: .white, textColor: .black),
-        Lotto(number: "40", color: .lightGray)
+        Lotto(color: .lightGray)
     ]
 }
 

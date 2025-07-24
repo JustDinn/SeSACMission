@@ -100,6 +100,7 @@ final class MovieTableViewCell: UITableViewCell, InitialSetProtocol {
         releaseDateLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.trailing.equalToSuperview()
+            $0.leading.greaterThanOrEqualTo(movieTitleLabel.snp.trailing).offset(16)
         }
     }
     

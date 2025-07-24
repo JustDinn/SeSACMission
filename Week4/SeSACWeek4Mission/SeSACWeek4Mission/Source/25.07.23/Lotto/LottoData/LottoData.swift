@@ -10,7 +10,7 @@ import UIKit
 struct Lotto {
     let number: String
     let backgroundColor: UIColor
-    var textColor: UIColor = .black
+    var textColor: UIColor
     
     init(number: String, color: UIColor, textColor: UIColor = .white) {
         self.number = number

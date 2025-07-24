@@ -66,7 +66,7 @@ final class MovieViewController: UIViewController, InitialSetProtocol {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        requestGetMovie()
+        requestGetMovie(query: "20250723")
     }
     
     // MARK: - Set UI
@@ -117,18 +117,16 @@ final class MovieViewController: UIViewController, InitialSetProtocol {
     
     // MARK: - Action
     
-//    // 영화 섞고 테이블뷰 리로드
-//    private func shuffleMovies() {
-//        movies = MovieInfo.randomMovies
-//        movieTableView.reloadData()
-//    }
-    
     // 검색 버튼 탭할 경우
     @objc private func didTapSearhButton() {
-//        shuffleMovies()
+        addDateQuery()
+        searchTextField.endEditing(true)
     }
     
-    
+    // 박스오피스 Get 요청 url의 파라미터에 날짜 추가
+    func addDateQuery() {
+        requestGetMovie(query: searchTextField.text!)
+    }
 }
 
 // MARK: - API Calling
@@ -136,12 +134,12 @@ final class MovieViewController: UIViewController, InitialSetProtocol {
 extension MovieViewController {
     
     // 박스 오피스 정보 Get 요청
-    private func requestGetMovie() {
+    private func requestGetMovie(query: String) {
         guard let movieAPIKey = Bundle.main.infoDictionary?["BOX_OFFICE_API_KEY"] as? String else {
             print("<< movie key 바인딩 실패")
             return
         }
-        let boxOfficeURL = "http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=\(movieAPIKey)&targetDt=20120101"
+        let boxOfficeURL = "http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=\(movieAPIKey)&targetDt=\(query)"
         
         AF.request(boxOfficeURL, method: .get)
             .validate(statusCode: 200..<300)
@@ -202,6 +200,8 @@ extension MovieViewController: UITableViewDataSource, UITableViewDelegate {
 extension MovieViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        addDateQuery()
+        textField.endEditing(true)
         
         return true
     }

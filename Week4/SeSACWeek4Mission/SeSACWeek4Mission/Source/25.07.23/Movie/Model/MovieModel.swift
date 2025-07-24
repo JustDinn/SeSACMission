@@ -7,115 +7,30 @@
 
 import Foundation
 
-struct Movie {
-    let title: String
-    let releaseDate: String
-    let audienceCount: Int
+struct MovieModel: Decodable {
+    let movie: MovieResult
+    
+    enum CodingKeys: String, CodingKey {
+        case movie = "boxOfficeResult"
+    }
 }
 
-struct MovieInfo {
-    static let movies: [Movie] = [
-        Movie(title: "명량", releaseDate: "20140730", audienceCount: 17615919),
-        Movie(title: "극한직업", releaseDate: "20190123", audienceCount: 16266480),
-        Movie(title: "신과함께‑죄와 벌", releaseDate: "20171220", audienceCount: 14414658),
-        Movie(title: "국제시장", releaseDate: "20141217", audienceCount: 14265049),
-        Movie(title: "어벤져스: 엔드게임", releaseDate: "20190424", audienceCount: 13977602),
-        Movie(title: "겨울왕국 2", releaseDate: "20191121", audienceCount: 13750668),
-        Movie(title: "베테랑", releaseDate: "20150805", audienceCount: 13414484),
-        Movie(title: "아바타", releaseDate: "20091217", audienceCount: 13338863),
-        Movie(title: "도둑들", releaseDate: "20120725", audienceCount: 12984701),
-        Movie(title: "7번방의 선물", releaseDate: "20130123", audienceCount: 12812144),
-        Movie(title: "알라딘", releaseDate: "20190523", audienceCount: 12797927),
-        Movie(title: "암살", releaseDate: "20150722", audienceCount: 12706947),
-        Movie(title: "범죄도시2", releaseDate: "20220518", audienceCount: 12693415),
-        Movie(title: "광해, 왕이 된 남자", releaseDate: "20120913", audienceCount: 12324062),
-        Movie(title: "신과함께‑인과 연", releaseDate: "20180801", audienceCount: 12278010),
-        Movie(title: "택시운전사", releaseDate: "20170802", audienceCount: 12189606),
-        Movie(title: "부산행", releaseDate: "20160720", audienceCount: 11567816),
-        Movie(title: "변호인", releaseDate: "20131218", audienceCount: 11375399),
-        Movie(title: "해운대", releaseDate: "20090722", audienceCount: 11325117),
-        Movie(title: "어벤져스: 인피니티 워", releaseDate: "20180425", audienceCount: 11233176),
-        Movie(title: "괴물", releaseDate: "20060727", audienceCount: 10917400),
-        Movie(title: "아바타: 물의 길", releaseDate: "20221214", audienceCount: 10805065),
-        Movie(title: "범죄도시3", releaseDate: "20230531", audienceCount: 10682443),
-        Movie(title: "왕의 남자", releaseDate: "20051229", audienceCount: 10514177),
-        Movie(title: "어벤져스: 에이지 오브 울트론", releaseDate: "20150423", audienceCount: 10504487),
-        Movie(title: "인터스텔라", releaseDate: "20141106", audienceCount: 10342523),
-        Movie(title: "겨울왕국", releaseDate: "20140116", audienceCount: 10329222),
-        Movie(title: "기생충", releaseDate: "20190530", audienceCount: 10314319),
-        Movie(title: "보헤미안 랩소디", releaseDate: "20181031", audienceCount: 9948386),
-        Movie(title: "검사외전", releaseDate: "20160203", audienceCount: 9707581),
-        Movie(title: "엑시트", releaseDate: "20190731", audienceCount: 9427588),
-        Movie(title: "설국열차", releaseDate: "20130801", audienceCount: 9354547),
-        Movie(title: "관상", releaseDate: "20130911", audienceCount: 9135806),
-        Movie(title: "아이언맨 3", releaseDate: "20130425", audienceCount: 9001679),
-        Movie(title: "캡틴 아메리카: 시빌 워", releaseDate: "20160427", audienceCount: 8678761),
-        Movie(title: "해적: 바다로 간 산적", releaseDate: "20140806", audienceCount: 8666208),
-        Movie(title: "수상한 그녀", releaseDate: "20140122", audienceCount: 8662080),
-        Movie(title: "백두산", releaseDate: "20191219", audienceCount: 8253470),
-        Movie(title: "탑건: 매버릭", releaseDate: "20220622", audienceCount: 8229367),
-        Movie(title: "과속스캔들", releaseDate: "20081203", audienceCount: 8223342),
-        Movie(title: "국가대표", releaseDate: "20090729", audienceCount: 8035181),
-        Movie(title: "스파이더맨: 파 프롬 홈", releaseDate: "20190702", audienceCount: 8023606),
-        Movie(title: "디워", releaseDate: "20070801", audienceCount: 7855474),
-        Movie(title: "공조", releaseDate: "20170118", audienceCount: 7817686),
-        Movie(title: "트랜스포머 3", releaseDate: "20110629", audienceCount: 7785189),
-        Movie(title: "히말라야", releaseDate: "20151216", audienceCount: 7759761),
-        Movie(title: "스파이더맨: 노 웨이 홈", releaseDate: "20211215", audienceCount: 7552306),
-        Movie(title: "미션임파서블: 고스트 프로토콜", releaseDate: "20111215", audienceCount: 7508976),
-        Movie(title: "밀정", releaseDate: "20160907", audienceCount: 7500457),
-        Movie(title: "최종병기 활", releaseDate: "20110810", audienceCount: 7470751),
-        Movie(title: "트랜스포머", releaseDate: "20070628", audienceCount: 7405449),
-        Movie(title: "트랜스포머: 패자의 역습", releaseDate: "20090624", audienceCount: 7393443),
-        Movie(title: "써니", releaseDate: "20110504", audienceCount: 7363457),
-        Movie(title: "한산: 용의 출현", releaseDate: "20220727", audienceCount: 7266340),
-        Movie(title: "스파이더맨: 홈 커밍", releaseDate: "20170705", audienceCount: 7258678),
-        Movie(title: "엘리멘탈", releaseDate: "20230614", audienceCount: 7240110),
-        Movie(title: "1987", releaseDate: "20171227", audienceCount: 7232527),
-        Movie(title: "베를린", releaseDate: "20130130", audienceCount: 7166688),
-        Movie(title: "마스터", releaseDate: "20161221", audienceCount: 7150586),
-        Movie(title: "터널", releaseDate: "20160810", audienceCount: 7120780),
-        Movie(title: "어벤져스", releaseDate: "20120426", audienceCount: 7087971),
-        Movie(title: "내부자들", releaseDate: "20151119", audienceCount: 7073581),
-        Movie(title: "인천상륙작전", releaseDate: "20160727", audienceCount: 7051660),
-        Movie(title: "공조2: 인터내셔날", releaseDate: "20220907", audienceCount: 6983077),
-        Movie(title: "럭키", releaseDate: "20161013", audienceCount: 6975631),
-        Movie(title: "은밀하게 위대하게", releaseDate: "20130605", audienceCount: 6959083),
-        Movie(title: "범죄도시", releaseDate: "20171003", audienceCount: 6880546),
-        Movie(title: "곡성", releaseDate: "20160512", audienceCount: 6879989),
-        Movie(title: "화려한 휴가", releaseDate: "20070725", audienceCount: 6855433),
-        Movie(title: "좋은 놈, 나쁜 놈, 이상한 놈", releaseDate: "20080717", audienceCount: 6686075),
-        Movie(title: "늑대소년", releaseDate: "20121031", audienceCount: 6655501),
-        Movie(title: "군함도", releaseDate: "20170726", audienceCount: 6592151),
-        Movie(title: "미션 임파서블: 폴아웃", releaseDate: "20180725", audienceCount: 6589061),
-        Movie(title: "웰컴 투 동막골", releaseDate: "20050804", audienceCount: 6436900),
-        Movie(title: "다크 나이트 라이즈", releaseDate: "20120719", audienceCount: 6428574),
-        Movie(title: "사도", releaseDate: "20150916", audienceCount: 6247745),
-        Movie(title: "아저씨", releaseDate: "20100804", audienceCount: 6179525),
-        Movie(title: "킹스맨: 시크릿 에이전트", releaseDate: "20150211", audienceCount: 6129681),
-        Movie(title: "미션 임파서블: 로그네이션", releaseDate: "20150730", audienceCount: 6126488),
-        Movie(title: "미녀는 괴로워", releaseDate: "20061214", audienceCount: 6081480),
-        Movie(title: "전우치", releaseDate: "20091223", audienceCount: 6065474),
-        Movie(title: "연평해전", releaseDate: "20150624", audienceCount: 6045726),
-        Movie(title: "인셉션", releaseDate: "20100721", audienceCount: 6014577),
-        Movie(title: "레미제라블", releaseDate: "20121219", audienceCount: 5945614),
-        Movie(title: "닥터 스트레인지: 대혼돈의 멀티버스", releaseDate: "20220504", audienceCount: 5884587),
-        Movie(title: "캡틴 마블", releaseDate: "20190306", audienceCount: 5802810),
-        Movie(title: "타짜", releaseDate: "20060928", audienceCount: 5692997),
-        Movie(title: "쥬라기 월드: 폴른 킹덤", releaseDate: "20180606", audienceCount: 5661128),
-        Movie(title: "청년경찰", releaseDate: "20170809", audienceCount: 5653444),
-        Movie(title: "숨바꼭질", releaseDate: "20130814", audienceCount: 5604106),
-        Movie(title: "덕혜옹주", releaseDate: "20160803", audienceCount: 5599995),
-        Movie(title: "더 테러 라이브", releaseDate: "20130731", audienceCount: 5584295),
-        Movie(title: "스즈메의 문단속", releaseDate: "20230308", audienceCount: 5575926),
-        Movie(title: "쥬라기 월드", releaseDate: "20150611", audienceCount: 5547463),
-        Movie(title: "감시자들", releaseDate: "20130703", audienceCount: 5509019),
-        Movie(title: "앤트맨과 와스프", releaseDate: "20180704", audienceCount: 5448357),
-        Movie(title: "닥터 스트레인지", releaseDate: "20161026", audienceCount: 5447269),
-        Movie(title: "검은 사제들", releaseDate: "20151105", audienceCount: 5443232),
-    ]
+struct MovieResult: Decodable {
+    let movieList: [MovieInfo]
     
-    static var randomMovies: [Movie] {
-        return Array(movies.shuffled().prefix(10))
+    enum CodingKeys: String, CodingKey {
+        case movieList = "dailyBoxOfficeList"
+    }
+}
+
+struct MovieInfo: Decodable {
+    let title: String
+    let ranking: String
+    let realeasedDate: String
+    
+    enum CodingKeys: String, CodingKey {
+        case title = "movieNm"
+        case ranking = "rank"
+        case realeasedDate = "openDt"
     }
 }

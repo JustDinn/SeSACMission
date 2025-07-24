@@ -7,12 +7,14 @@
 
 import UIKit
 import SnapKit
+import Alamofire
 
 final class MovieViewController: UIViewController, InitialSetProtocol {
 
     // MARK: - Properties
     
-    private var movies = MovieInfo.movies
+//    private var movies = MovieInfo.movies
+    private var movies: [MovieInfo] = []
     
     // MARK: - Component
     
@@ -60,6 +62,12 @@ final class MovieViewController: UIViewController, InitialSetProtocol {
         setUI()
         setAddView()
         setConstraints()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        requestGetMovie()
     }
     
     // MARK: - Set UI
@@ -110,15 +118,34 @@ final class MovieViewController: UIViewController, InitialSetProtocol {
     
     // MARK: - Action
     
-    // 영화 섞고 테이블뷰 리로드
-    private func shuffleMovies() {
-        movies = MovieInfo.randomMovies
-        movieTableView.reloadData()
-    }
+//    // 영화 섞고 테이블뷰 리로드
+//    private func shuffleMovies() {
+//        movies = MovieInfo.randomMovies
+//        movieTableView.reloadData()
+//    }
     
     // 검색 버튼 탭할 경우
     @objc private func didTapSearhButton() {
-        shuffleMovies()
+//        shuffleMovies()
+    }
+    
+    // MARK: - API Calling
+    
+    private func requestGetMovie() {
+        guard let movieAPIKey = Bundle.main.infoDictionary?["BOX_OFFICE_API_KEY"] as? String else {
+            print("<< movie key 바인딩 실패")
+            return
+        }
+        
+        print("<< key: \(movieAPIKey)")
+        
+        let url = "http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=\(movieAPIKey)&targetDt=20120101"
+        
+        AF.request(url, method: .get)
+            .validate(statusCode: 200..<300)
+            .responseString { response in
+                print("<< 응답: \(response)")
+            }
     }
 }
 

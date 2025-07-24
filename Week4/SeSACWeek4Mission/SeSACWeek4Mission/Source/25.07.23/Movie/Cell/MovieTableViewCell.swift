@@ -57,6 +57,16 @@ final class MovieTableViewCell: UITableViewCell, InitialSetProtocol {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Reuse Cell
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        numberingLabel.text = nil
+        movieTitleLabel.text = nil
+        releaseDateLabel.text = nil
+    }
+    
     // MARK: - Set UI
     
     func setUI() {

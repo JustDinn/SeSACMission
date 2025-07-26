@@ -72,9 +72,29 @@ extension SearchViewController: UITextFieldDelegate {
 
     // returnKey 탭
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        searchBar.searchTextField.endEditing(true)
-        pushSearchResultVC()
-        
-        return true
+        if isEnablePush {
+            searchBar.searchTextField.endEditing(true)
+            pushSearchResultVC()
+            
+            return true
+        }
+        return false
+    }
+}
+
+// MARK: - TextField Validate
+
+extension SearchViewController {
+    
+    // 2글자 이상인지 검증
+    private var isEnablePush: Bool {
+        if let searchBarText = searchBar.searchTextField.text {
+            if searchBarText.trimmingCharacters(in: .whitespacesAndNewlines).count >= 2 {
+                return true
+            } else {
+                print("<< 2글자 이상 입력해주세요 :D")
+            }
+        }
+        return false
     }
 }

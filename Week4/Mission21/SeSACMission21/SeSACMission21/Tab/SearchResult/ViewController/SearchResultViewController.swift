@@ -12,12 +12,15 @@ final class SearchResultViewController: UIViewController {
 
     // MARK: - Properties
     
+    private var searchedResult: [SearchResultModel] = []
     private let keyword: String
     
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        searchKeyword(keyword: keyword)
     }
     
     init(keyword: String) {
@@ -75,7 +78,6 @@ extension SearchResultViewController {
                 "X-Naver-Client-Id": cliendID,
                 "X-Naver-Client-Secret": secretKey
             ]
-            print("<< cliendID: \(cliendID), secretKey: \(secretKey)")
             return headers
         }
         print("<< cliendID, secretKey 찾을 수 없음")

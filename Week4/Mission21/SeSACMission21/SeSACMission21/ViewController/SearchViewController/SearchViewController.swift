@@ -13,10 +13,11 @@ final class SearchViewController: UIViewController, InitialSetProtocol {
 
     // MARK: - Component
     
-    private let searchBar = UISearchBar().then {
+    private lazy var searchBar = UISearchBar().then {
         $0.placeholder = "브랜드, 상품, 프로필, 태그 등"
-        $0.searchTextField.setPlaceholderUI(color: .systemGray)
         $0.barTintColor = .black
+        $0.searchTextField.setPlaceholderUI(color: .systemGray)
+        $0.searchTextField.delegate = self
     }
     
     private let defaultImageView = UIImageView().then {
@@ -62,5 +63,18 @@ final class SearchViewController: UIViewController, InitialSetProtocol {
             $0.center.equalToSuperview()
             $0.width.height.equalTo(250)
         }
+    }
+}
+
+// MARK: - UITextField Delegate
+
+extension SearchViewController: UITextFieldDelegate {
+
+    // returnKey 탭
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        searchBar.searchTextField.endEditing(true)
+        pushSearchResultVC()
+        
+        return true
     }
 }

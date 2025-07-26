@@ -18,6 +18,11 @@ final class SearchViewController: UIViewController, InitialSetProtocol {
         $0.barTintColor = .black
     }
     
+    private let defaultImageView = UIImageView().then {
+        $0.image = UIImage(systemName: "cart")
+        $0.tintColor = .white
+    }
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -39,7 +44,8 @@ final class SearchViewController: UIViewController, InitialSetProtocol {
     
     func setHierarchy() {
         [
-            searchBar
+            searchBar,
+            defaultImageView
         ].forEach(view.addSubview)
     }
     
@@ -49,6 +55,11 @@ final class SearchViewController: UIViewController, InitialSetProtocol {
         searchBar.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide)
             $0.horizontalEdges.equalToSuperview().inset(20)
+        }
+        
+        defaultImageView.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.width.height.equalTo(250)
         }
     }
 }

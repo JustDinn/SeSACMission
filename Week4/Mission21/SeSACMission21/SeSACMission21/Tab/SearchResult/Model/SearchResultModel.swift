@@ -7,6 +7,10 @@
 
 import Foundation
 
+struct Search: Decodable {
+    let items: [SearchResultModel]
+}
+
 struct SearchResultModel: Decodable {
     let itemImage: String
     let mallName: String

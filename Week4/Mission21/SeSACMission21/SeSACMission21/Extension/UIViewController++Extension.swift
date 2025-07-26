@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Then
 
 extension UIViewController {
     
@@ -13,13 +14,9 @@ extension UIViewController {
     
     // Back 버튼이 없는 Navigation Bar
     func setNaviBar(_ title: String) {
-        let titleLabel: UILabel = {
-            let label = UILabel()
-            
-            label.setLabelUI(title, size: 18, weight: .black, color: .white)
-            
-            return label
-        }()
+        let titleLabel = UILabel().then {   
+            $0.setLabelUI(title, size: 18, weight: .black, color: .white)
+        }
         
         self.navigationItem.titleView = titleLabel
     }

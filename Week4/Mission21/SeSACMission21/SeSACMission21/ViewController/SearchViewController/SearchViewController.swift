@@ -82,8 +82,12 @@ extension SearchViewController: UITextFieldDelegate {
     // returnKey 탭
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if isEnablePush {
+            guard let keyword = searchBar.searchTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) else {
+                print("<< 서치바 텍스트 에러")
+                return false
+            }
             searchBar.searchTextField.endEditing(true)
-            pushSearchResultVC()
+            pushSearchResultVC(keyword: keyword)
             
             return true
         }

@@ -24,8 +24,8 @@ extension UIViewController {
     // MARK: - Push ViewController
     
     // SearchResultVC로 push
-    func pushSearchResultVC() {
-        let searchResultVC = SearchResultViewController()
+    func pushSearchResultVC(keyword: String) {
+        let searchResultVC = SearchResultViewController(keyword: keyword)
         
         searchResultVC.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(searchResultVC, animated: true)

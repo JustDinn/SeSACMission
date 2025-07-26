@@ -10,6 +10,7 @@
 		3FAB45FD2E345A440048C8C2 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3FAB45FC2E345A440048C8C2 /* SnapKit */; };
 		3FAB46002E345A8B0048C8C2 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 3FAB45FF2E345A8B0048C8C2 /* Then */; };
 		3FAB46082E346FCA0048C8C2 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 3FAB46072E346FCA0048C8C2 /* Toast */; };
+		3FAB47452E3478600048C8C2 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 3FAB47442E3478600048C8C2 /* Alamofire */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3FAB46082E346FCA0048C8C2 /* Toast in Frameworks */,
+				3FAB47452E3478600048C8C2 /* Alamofire in Frameworks */,
 				3FAB45FD2E345A440048C8C2 /* SnapKit in Frameworks */,
 				3FAB46002E345A8B0048C8C2 /* Then in Frameworks */,
 			);
@@ -90,6 +92,7 @@
 				3FAB45FC2E345A440048C8C2 /* SnapKit */,
 				3FAB45FF2E345A8B0048C8C2 /* Then */,
 				3FAB46072E346FCA0048C8C2 /* Toast */,
+				3FAB47442E3478600048C8C2 /* Alamofire */,
 			);
 			productName = SeSACMission21;
 			productReference = 3FAB459B2E3453BE0048C8C2 /* SeSACMission21.app */;
@@ -123,6 +126,7 @@
 				3FAB45FB2E345A440048C8C2 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				3FAB45FE2E345A8B0048C8C2 /* XCRemoteSwiftPackageReference "Then" */,
 				3FAB46062E346FCA0048C8C2 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
+				3FAB47432E3478600048C8C2 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 3FAB459C2E3453BE0048C8C2 /* Products */;
@@ -390,6 +394,14 @@
 				minimumVersion = 5.1.1;
 			};
 		};
+		3FAB47432E3478600048C8C2 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.10.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -407,6 +419,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3FAB46062E346FCA0048C8C2 /* XCRemoteSwiftPackageReference "Toast-Swift" */;
 			productName = Toast;
+		};
+		3FAB47442E3478600048C8C2 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3FAB47432E3478600048C8C2 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

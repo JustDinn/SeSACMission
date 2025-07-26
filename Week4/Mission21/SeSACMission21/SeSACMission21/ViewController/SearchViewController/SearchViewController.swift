@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import Then
+import Toast
 
 final class SearchViewController: UIViewController, InitialSetProtocol {
 
@@ -92,7 +93,10 @@ extension SearchViewController {
             if searchBarText.trimmingCharacters(in: .whitespacesAndNewlines).count >= 2 {
                 return true
             } else {
-                print("<< 2글자 이상 입력해주세요 :D")
+                let centerX = view.frame.width / 2
+                let currentY = view.frame.height * 0.25
+                
+                self.view.makeToast("2글자 이상 입력해주세요 :D", duration: 1.5, point: CGPoint(x: centerX, y: currentY), title: nil, image: nil){ _ in }
             }
         }
         return false

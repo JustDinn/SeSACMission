@@ -6,9 +6,18 @@
 //
 
 import UIKit
+import SnapKit
+import Then
 
 final class SearchViewController: UIViewController, InitialSetProtocol {
 
+    // MARK: - Component
+    
+    private let searchBar = UISearchBar().then {
+        $0.placeholder = "브랜드, 상품, 프로필, 태그 등"
+        $0.barTintColor = .black
+    }
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -30,13 +39,16 @@ final class SearchViewController: UIViewController, InitialSetProtocol {
     
     func setHierarchy() {
         [
-            
+            searchBar
         ].forEach(view.addSubview)
     }
     
     // MARK: - Set Constraints
     
     func setConstraints() {
-        <#code#>
+        searchBar.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide)
+            $0.horizontalEdges.equalToSuperview().inset(20)
+        }
     }
 }

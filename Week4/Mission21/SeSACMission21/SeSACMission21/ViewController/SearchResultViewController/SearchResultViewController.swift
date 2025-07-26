@@ -28,3 +28,20 @@ final class SearchResultViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
+// MARK: - API Calling
+
+extension SearchResultViewController {
+    
+    // 요청 URL 생성
+    private var url: URL? {
+        guard var urlComponents = URLComponents(string: "https://openapi.naver.com/v1/search/shop.json") else {
+            print("<< urlComponents 생성 실패")
+            return nil
+        }
+        let queryParameter = URLQueryItem(name: "query", value: keyword)
+        urlComponents.queryItems = [queryParameter]
+        
+        return urlComponents.url
+    }
+}

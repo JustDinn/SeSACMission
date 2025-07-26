@@ -17,6 +17,7 @@ final class SearchViewController: UIViewController, InitialSetProtocol {
     private lazy var searchBar = UISearchBar().then {
         $0.placeholder = "브랜드, 상품, 프로필, 태그 등"
         $0.barTintColor = .black
+        $0.searchTextField.textColor = .white
         $0.searchTextField.setPlaceholderUI(color: .systemGray)
         $0.searchTextField.delegate = self
     }

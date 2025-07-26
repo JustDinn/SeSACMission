@@ -32,15 +32,16 @@ final class SearchViewController: UIViewController, InitialSetProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setUI()
+        setViewController()
         setHierarchy()
         setConstraints()
     }
     
     // MARK: - Set UI
     
-    func setUI() {
+    func setViewController() {
         view.backgroundColor = .black
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))
         setNaviBar("영캠러의 쇼핑쇼핑")
     }
     
@@ -65,6 +66,12 @@ final class SearchViewController: UIViewController, InitialSetProtocol {
             $0.center.equalToSuperview()
             $0.width.height.equalTo(250)
         }
+    }
+    
+    // MARK: Action
+    
+    @objc private func dismissKeyboard() {
+        searchBar.searchTextField.endEditing(true)
     }
 }
 

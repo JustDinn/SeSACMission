@@ -9,7 +9,7 @@ import Foundation
 
 @objc protocol InitialSetProtocol: AnyObject {
     
-    @objc optional func setUI()
+    @objc optional func setViewController()
     func setHierarchy()
     func setConstraints()
 }

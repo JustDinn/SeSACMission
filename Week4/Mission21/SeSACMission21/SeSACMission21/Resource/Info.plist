@@ -4,8 +4,8 @@
 <dict>
 	<key>SHOPPING_SECRET_KEY</key>
 	<string>$(SHOPPING_SECRET_KEY)</string>
-	<key>SHOPPING_API_KEY</key>
-	<string>$(SHOPPING_API_KEY)</string>
+	<key>SHOPPING_CLIENT_ID</key>
+	<string>$(SHOPPING_CLIENT_ID)</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

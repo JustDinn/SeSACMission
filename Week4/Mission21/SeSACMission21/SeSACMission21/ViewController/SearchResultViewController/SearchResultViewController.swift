@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 final class SearchResultViewController: UIViewController {
 
@@ -43,5 +44,20 @@ extension SearchResultViewController {
         urlComponents.queryItems = [queryParameter]
         
         return urlComponents.url
+    }
+    
+    // 요청 헤더 설정
+    private var headers: HTTPHeaders {
+        if let cliendID = Bundle.main.infoDictionary?["SHOPPING_CLIENT_ID"] as? String,
+           let secretKey = Bundle.main.infoDictionary?["SHOPPING_SECRET_KEY"] as? String {
+            let headers: HTTPHeaders = [
+                "X-Naver-Client-Id": cliendID,
+                "X-Naver-Client-Secret": secretKey
+            ]
+            print("<< cliendID: \(cliendID), secretKey: \(secretKey)")
+            return headers
+        }
+        print("<< cliendID, secretKey 찾을 수 없음")
+        return [:]
     }
 }

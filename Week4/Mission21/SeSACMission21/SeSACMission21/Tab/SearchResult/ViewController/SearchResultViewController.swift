@@ -34,14 +34,35 @@ final class SearchResultViewController: UIViewController {
 
 extension SearchResultViewController {
     
+    // 네이버 쇼핑 검색 API Get 요청
+    private func searchKeyword(keyword: String) {
+        guard let searchURL = url else {
+            print("<< url 생성 실패")
+            return
+        }
+        
+        AF.request(searchURL, method: .get, headers: headers)
+            .validate(statusCode: 200..<300)
+            .responseDecodable(of: Search.self) { response in
+                switch response.result {
+                case .success(let searchResult):
+                    self.searchedResult = searchResult.items
+                    
+                case .failure(let error):
+                    print("<< 검색 error: \(error.localizedDescription)")
+                }
+            }
+    }
+    
     // 요청 URL 생성
     private var url: URL? {
         guard var urlComponents = URLComponents(string: "https://openapi.naver.com/v1/search/shop.json") else {
             print("<< urlComponents 생성 실패")
             return nil
         }
-        let queryParameter = URLQueryItem(name: "query", value: keyword)
-        urlComponents.queryItems = [queryParameter]
+        let keyword = URLQueryItem(name: "query", value: keyword)
+        let displayCount = URLQueryItem(name: "display", value: "100")
+        urlComponents.queryItems = [keyword, displayCount]
         
         return urlComponents.url
     }

@@ -22,7 +22,8 @@ final class SearchViewController: UIViewController, InitialSetProtocol {
     // MARK: - Set UI
     
     func setUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = .black
+        setNaviBar("영캠러의 쇼핑쇼핑")
     }
     
     // MARK: - Set Hierarchy

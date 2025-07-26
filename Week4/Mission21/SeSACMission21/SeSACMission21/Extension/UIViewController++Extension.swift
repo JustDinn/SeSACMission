@@ -20,4 +20,14 @@ extension UIViewController {
         
         self.navigationItem.titleView = titleLabel
     }
+    
+    // MARK: - Push ViewController
+    
+    // SearchResultVC로 push
+    func pushSearchResultVC() {
+        let searchResultVC = SearchResultViewController()
+        
+        searchResultVC.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(searchResultVC, animated: true)
+    }
 }

@@ -17,4 +17,13 @@ final class QueryData {
     var lastPage: Int?
     
     private init() { }
+    
+    // 싱글톤 사용을 위한 억지(?) reset
+    func reset() {
+        keyword = ""
+        sort = "sim"
+        pageNumber = 1
+        pageSize = 30
+        lastPage = nil
+    }
 }

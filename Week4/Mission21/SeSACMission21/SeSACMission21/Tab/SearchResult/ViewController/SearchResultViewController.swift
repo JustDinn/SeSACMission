@@ -70,6 +70,12 @@ final class SearchResultViewController: UIViewController, InitialSetProtocol {
         setConstraints()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        queryData.reset()
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

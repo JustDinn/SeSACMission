@@ -13,11 +13,8 @@ final class SearchResultViewController: UIViewController, InitialSetProtocol {
 
     // MARK: - Properties
     
+    private let queryData = QueryData.shared
     private var searchedResult: [SearchResultModel] = []
-    private let keyword: String
-    private let pageSize = 30
-    private var filter = "sim"
-    private var pageNumber = 1
     
     // MARK: - Component
     
@@ -65,11 +62,13 @@ final class SearchResultViewController: UIViewController, InitialSetProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        searchKeyword(keyword: keyword, sort: filter)
+        if let keyword = queryData.keyword {
+            searchKeyword(keyword: keyword, sort: queryData.sort)
+        }
     }
     
     init(keyword: String) {
-        self.keyword = keyword
+        queryData.keyword = keyword
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -80,7 +79,9 @@ final class SearchResultViewController: UIViewController, InitialSetProtocol {
     // MARK: - Set ViewController
     
     func setViewController() {
-        setNaviBar(keyword)
+        if let keyword = queryData.keyword {
+            setNaviBar(keyword)
+        }
         view.backgroundColor = .black
     }
     
@@ -131,10 +132,12 @@ final class SearchResultViewController: UIViewController, InitialSetProtocol {
     @objc private func didTapFilterButton(_ sender: UIButton) {
         let selectedFilter = Sort.filters[sender.tag].sort
         
-        filter = selectedFilter
-        pageNumber = 1
+        queryData.sort = selectedFilter
+        queryData.pageNumber = 1
         searchedResult.removeAll()
-        searchKeyword(keyword: keyword, sort: selectedFilter, isScrollToTop: true)
+        if let keyword = queryData.keyword {
+            searchKeyword(keyword: keyword, sort: queryData.sort, isScrollToTop: true)
+        }
     }
 }
 
@@ -162,8 +165,10 @@ extension SearchResultViewController: UICollectionViewDataSource, UICollectionVi
         let index = indexPath.item
         
         if index == searchedResult.count - 6 {
-            pageNumber += 1
-            searchKeyword(keyword: keyword, sort: filter)
+            queryData.pageNumber += 1
+            if let keyword = queryData.keyword {
+                searchKeyword(keyword: keyword, sort: queryData.sort)
+            }
         }
     }
 }
@@ -174,7 +179,7 @@ extension SearchResultViewController {
     
     // 네이버 쇼핑 검색 API Get 요청
     private func searchKeyword(keyword: String, sort: String, isScrollToTop: Bool = false) {
-        guard let searchURL = makeURL(sort: sort, pageNumber: pageNumber) else {
+        guard let searchURL = makeURL(sort: sort, pageNumber: queryData.pageNumber) else {
             print("<< url 생성 실패")
             return
         }
@@ -200,8 +205,13 @@ extension SearchResultViewController {
             print("<< urlComponents 생성 실패")
             return nil
         }
-        let keyword = URLQueryItem(name: "query", value: keyword)
-        let pageSize = URLQueryItem(name: "display", value: pageSize.formatted())
+        guard let keywordStr = queryData.keyword else {
+            print("<< 키워드 옵셔널 바인딩 실패")
+            return nil
+        }
+        
+        let keyword = URLQueryItem(name: "query", value: keywordStr)
+        let pageSize = URLQueryItem(name: "display", value: queryData.pageSize.formatted())
         let sort = URLQueryItem(name: "sort", value: sort)
         let pageNumber = URLQueryItem(name: "start", value: pageNumber.formatted())
         urlComponents.queryItems = [keyword, pageSize, sort, pageNumber]

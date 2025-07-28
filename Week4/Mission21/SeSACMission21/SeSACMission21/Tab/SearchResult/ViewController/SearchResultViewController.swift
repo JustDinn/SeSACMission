@@ -7,13 +7,20 @@
 
 import UIKit
 import Alamofire
+import Then
 
-final class SearchResultViewController: UIViewController {
+final class SearchResultViewController: UIViewController, InitialSetProtocol {
 
     // MARK: - Properties
     
     private var searchedResult: [SearchResultModel] = []
     private let keyword: String
+    
+    // MARK: - Component
+    
+    private let resultLabel = UILabel().then {
+        $0.setLabelUI("", size: 15, weight: .semibold, color: .systemGreen)
+    }
     
     // MARK: - Life Cycle
     
@@ -21,6 +28,8 @@ final class SearchResultViewController: UIViewController {
         super.viewWillAppear(animated)
         
         setViewController()
+        setHierarchy()
+        setConstraints()
     }
     
     override func viewDidLoad() {
@@ -40,9 +49,26 @@ final class SearchResultViewController: UIViewController {
     
     // MARK: - Set ViewController
     
-    private func setViewController() {
+    func setViewController() {
         setNaviBar(keyword)
         view.backgroundColor = .black
+    }
+    
+    // MARK: - Set Hierarchy
+    
+    func setHierarchy() {
+        [
+            resultLabel
+        ].forEach(view.addSubview)
+    }
+    
+    // MARK: - Set Constraints
+    
+    func setConstraints() {
+        resultLabel.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(16)
+            $0.leading.equalToSuperview().offset(16)
+        }
     }
 }
 

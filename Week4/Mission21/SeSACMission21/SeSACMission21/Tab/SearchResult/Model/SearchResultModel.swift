@@ -30,3 +30,15 @@ struct SearchResultModel: Decodable {
         case itemPrice = "lprice"
     }
 }
+
+struct Sort {
+    let sort: String
+    let title: String
+    
+    static let filters = [
+        Sort(sort: "sim", title: "정확도"),
+        Sort(sort: "date", title: "날짜순"),
+        Sort(sort: "asc", title: "가격높은순"),
+        Sort(sort: "dsc", title: "가격낮은순")
+    ]
+}

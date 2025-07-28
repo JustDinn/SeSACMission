@@ -13,7 +13,6 @@ final class SearchResultViewController: UIViewController, InitialSetProtocol {
 
     // MARK: - Properties
     
-    private let filterConditions = ["정확도", "날짜순", "가격높은순", "가격낮은순"]
     private var searchedResult: [SearchResultModel] = []
     private let keyword: String
     
@@ -123,6 +122,12 @@ final class SearchResultViewController: UIViewController, InitialSetProtocol {
             $0.bottom.equalTo(view.safeAreaLayoutGuide)
         }
     }
+    
+    // MARK: - Action
+    
+    @objc private func didTapFilterButton(_ sender: UIButton) {
+        
+    }
 }
 
 // MARK: - UICollectionView DataSource, Delegate
@@ -212,9 +217,10 @@ extension SearchResultViewController {
     
     // 필터 스택뷰 생성 함수
     private func makeFilterStackView() {
-        filterConditions.forEach { filter in
+        
+        for (index, filter) in Sort.filters.enumerated() {
             let filterButton = UIButton().then {
-                $0.setTitle(filter, for: .normal)
+                $0.setTitle(filter.title, for: .normal)
                 $0.setTitleColor(.white, for: .normal)
                 $0.layer.cornerRadius = 10
                 $0.layer.masksToBounds = true
@@ -226,6 +232,9 @@ extension SearchResultViewController {
                 $0.width.equalTo(100)
                 $0.height.equalTo(44)
             }
+            
+            filterButton.addTarget(self, action: #selector(didTapFilterButton), for: .touchUpInside)
+            filterButton.tag = index
             
             filterStackView.addArrangedSubview(filterButton)
         }

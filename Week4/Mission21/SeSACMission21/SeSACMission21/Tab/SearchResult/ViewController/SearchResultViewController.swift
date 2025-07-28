@@ -89,6 +89,7 @@ extension SearchResultViewController {
                 switch response.result {
                 case .success(let searchResult):
                     self.searchedResult = searchResult.items
+                    self.updateUI(searchedResult: searchResult)
                     
                 case .failure(let error):
                     print("<< 검색 error: \(error.localizedDescription)")
@@ -121,5 +122,12 @@ extension SearchResultViewController {
         }
         print("<< cliendID, secretKey 찾을 수 없음")
         return [:]
+    }
+    
+    // API 호출 후 UI 업데이트
+    private func updateUI(searchedResult: Search) {
+        DispatchQueue.main.async {
+            self.resultLabel.text = "\(searchedResult.totalCount)개의 검색 결과"
+        }
     }
 }

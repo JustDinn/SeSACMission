@@ -137,6 +137,9 @@ extension SearchResultViewController: UICollectionViewDataSource, UICollectionVi
     // 셀 구성
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchResultCollectionViewCell.identifier, for: indexPath) as! SearchResultCollectionViewCell
+        let item = indexPath.item
+        
+        cell.configureCell(with: searchedResult[item])
         
         return cell
     }

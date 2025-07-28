@@ -8,7 +8,13 @@
 import Foundation
 
 struct Search: Decodable {
+    let totalCount: Int
     let items: [SearchResultModel]
+    
+    enum CodingKeys: String, CodingKey {
+        case totalCount = "total"
+        case items
+    }
 }
 
 struct SearchResultModel: Decodable {

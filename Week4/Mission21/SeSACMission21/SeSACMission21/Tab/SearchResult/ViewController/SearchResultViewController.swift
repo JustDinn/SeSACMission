@@ -22,6 +22,20 @@ final class SearchResultViewController: UIViewController, InitialSetProtocol {
         $0.setLabelUI("", size: 15, weight: .semibold, color: .systemGreen)
     }
     
+    private let filterStackView = UIStackView().then {
+        $0.axis = .horizontal
+        $0.spacing = 16
+    }
+    
+    private let sortByAccuracyButton = UIButton().then {
+        $0.setTitle("정확도", for: .normal)
+        $0.setTitleColor(.white, for: .normal)
+        $0.layer.cornerRadius = 10
+        $0.layer.masksToBounds = true
+        $0.layer.borderColor = UIColor.white.cgColor
+        $0.layer.borderWidth = 1
+    }
+    
     // MARK: - Life Cycle
     
     override func viewWillAppear(_ animated: Bool) {
@@ -58,8 +72,13 @@ final class SearchResultViewController: UIViewController, InitialSetProtocol {
     
     func setHierarchy() {
         [
-            resultLabel
+            resultLabel,
+            filterStackView
         ].forEach(view.addSubview)
+        
+        [
+            sortByAccuracyButton
+        ].forEach(filterStackView.addArrangedSubview)
     }
     
     // MARK: - Set Constraints
@@ -68,6 +87,16 @@ final class SearchResultViewController: UIViewController, InitialSetProtocol {
         resultLabel.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide).offset(16)
             $0.leading.equalToSuperview().offset(16)
+        }
+        
+        filterStackView.snp.makeConstraints {
+            $0.top.equalTo(resultLabel.snp.bottom).offset(16)
+            $0.leading.equalTo(resultLabel)
+        }
+        
+        sortByAccuracyButton.snp.makeConstraints {
+            $0.width.equalTo(100)
+            $0.height.equalTo(44)
         }
     }
 }

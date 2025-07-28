@@ -21,6 +21,17 @@ extension UIViewController {
         self.navigationItem.titleView = titleLabel
     }
     
+    // Back 버튼이 있는 Navigation Bar
+    func setBackNaviBar(_ title: String) {
+        let titleLabel = UILabel().then {
+            $0.setLabelUI(title, size: 18, weight: .black, color: .white)
+        }
+        
+        self.navigationItem.titleView = titleLabel
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: nil, style: .plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem?.tintColor = .white
+    }
+    
     // MARK: - Push ViewController
     
     // SearchResultVC로 push

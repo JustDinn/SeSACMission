@@ -201,10 +201,10 @@ extension SearchResultViewController {
             return nil
         }
         let keyword = URLQueryItem(name: "query", value: keyword)
-        let displayCount = URLQueryItem(name: "display", value: pageSize.formatted())
+        let pageSize = URLQueryItem(name: "display", value: pageSize.formatted())
         let sort = URLQueryItem(name: "sort", value: sort)
         let pageNumber = URLQueryItem(name: "start", value: pageNumber.formatted())
-        urlComponents.queryItems = [keyword, displayCount, sort, pageNumber]
+        urlComponents.queryItems = [keyword, pageSize, sort, pageNumber]
         
         return urlComponents.url
     }

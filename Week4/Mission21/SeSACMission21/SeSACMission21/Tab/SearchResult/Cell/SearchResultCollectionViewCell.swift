@@ -21,6 +21,10 @@ final class SearchResultCollectionViewCell: UICollectionViewCell, InitialSetProt
         $0.layer.masksToBounds = true
     }
     
+    private let mallNameLabel = UILabel().then {
+        $0.setLabelUI("", size: 13, weight: .medium, color: .white)
+    }
+    
     // MARK: - Life Cycle
     
     override init(frame: CGRect) {
@@ -38,7 +42,8 @@ final class SearchResultCollectionViewCell: UICollectionViewCell, InitialSetProt
     
     func setHierarchy() {
         [
-            imageView
+            imageView,
+            mallNameLabel
         ].forEach(contentView.addSubview)
     }
     
@@ -49,11 +54,17 @@ final class SearchResultCollectionViewCell: UICollectionViewCell, InitialSetProt
             $0.top.horizontalEdges.equalToSuperview()
             $0.height.equalTo(177)
         }
+        
+        mallNameLabel.snp.makeConstraints {
+            $0.top.equalTo(imageView.snp.bottom).offset(8)
+            $0.leading.equalToSuperview().offset(8)
+        }
     }
     
     // MARK: - Configure Cell
     
     func configureCell(with result: SearchResultModel) {
         imageView.kf.setImage(with: URL(string: result.itemImage))
+        mallNameLabel.text = result.mallName
     }
 }

@@ -14,6 +14,7 @@ final class QueryData {
     var sort = "sim"
     var pageNumber = 1
     var pageSize = 30
+    var lastPage: Int?
     
     private init() { }
 }

@@ -181,9 +181,21 @@ extension SearchResultViewController {
             .responseDecodable(of: Search.self) { response in
                 switch response.result {
                 case .success(let searchResult):
-                    self.searchedResult.append(contentsOf: searchResult.items)
-                    // TODO: API 호출과 UI 업데이트 강한 결합. 분리하기?
-                    self.updateUI(searchedResult: searchResult, isScrollToTop: isScrollToTop)
+                    // 첫 API 호출시에만 마지막 페이지 개수 계산
+                    if self.queryData.lastPage == nil {
+                        self.queryData.lastPage = Int(ceil(Double(searchResult.totalCount) / Double(self.queryData.pageSize)))
+                    }
+                    
+                    // 최대 페이지 설정
+                    if let lastPage = self.queryData.lastPage {
+                        let pageNumber = self.queryData.pageNumber
+                        
+                        if pageNumber <= min(lastPage, 1000) {
+                            self.searchedResult.append(contentsOf: searchResult.items)
+                            // TODO: API 호출과 UI 업데이트 강한 결합. 분리하기?
+                            self.updateUI(searchedResult: searchResult, isScrollToTop: isScrollToTop)
+                        }
+                    }
                     
                 case .failure(let error):
                     print("<< 검색 error: \(error.localizedDescription)")

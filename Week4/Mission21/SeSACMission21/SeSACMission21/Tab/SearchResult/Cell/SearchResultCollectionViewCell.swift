@@ -30,6 +30,10 @@ final class SearchResultCollectionViewCell: UICollectionViewCell, InitialSetProt
         $0.numberOfLines = 2
     }
     
+    private let priceLabel = UILabel().then {
+        $0.setLabelUI("", size: 16, weight: .bold, color: .white)
+    }
+    
     // MARK: - Life Cycle
     
     override init(frame: CGRect) {
@@ -49,7 +53,8 @@ final class SearchResultCollectionViewCell: UICollectionViewCell, InitialSetProt
         [
             imageView,
             mallNameLabel,
-            titleLabel
+            titleLabel,
+            priceLabel
         ].forEach(contentView.addSubview)
     }
     
@@ -70,6 +75,11 @@ final class SearchResultCollectionViewCell: UICollectionViewCell, InitialSetProt
             $0.top.equalTo(mallNameLabel.snp.bottom).offset(10)
             $0.horizontalEdges.equalToSuperview().inset(8)
         }
+        
+        priceLabel.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).offset(8)
+            $0.horizontalEdges.equalToSuperview().inset(8)
+        }
     }
     
     // MARK: - Configure Cell
@@ -78,5 +88,6 @@ final class SearchResultCollectionViewCell: UICollectionViewCell, InitialSetProt
         imageView.kf.setImage(with: URL(string: result.itemImage))
         mallNameLabel.text = result.mallName
         titleLabel.text = result.title
+        priceLabel.text = result.itemPrice
     }
 }

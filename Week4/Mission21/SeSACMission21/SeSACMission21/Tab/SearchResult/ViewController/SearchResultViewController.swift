@@ -36,7 +36,7 @@ final class SearchResultViewController: UIViewController, InitialSetProtocol {
     ).then {
         let layout = UICollectionViewFlowLayout()
         let width = (UIScreen.main.bounds.width - 16 * 2 - 16) / 2
-        let height = CGFloat(300)
+        let height = CGFloat(280)
         
         layout.scrollDirection = .vertical
         layout.minimumLineSpacing = 28

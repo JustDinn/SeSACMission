@@ -30,6 +30,24 @@ final class SearchResultViewController: UIViewController, InitialSetProtocol {
         $0.spacing = 16
     }
     
+    private lazy var resultCollectionView = UICollectionView(
+        frame: .zero,
+        collectionViewLayout: UICollectionViewFlowLayout()
+    ).then {
+        let layout = UICollectionViewFlowLayout()
+        let width = (UIScreen.main.bounds.width - 16 * 2 - 16) / 2
+        let height = CGFloat(300)
+        
+        layout.scrollDirection = .vertical
+        layout.minimumLineSpacing = 16
+        layout.minimumInteritemSpacing = 24
+        layout.itemSize = CGSize(width: width, height: height)
+        
+        $0.collectionViewLayout = layout
+        $0.register(SearchResultCollectionViewCell.self, forCellWithReuseIdentifier: SearchResultCollectionViewCell.identifier)
+        $0.backgroundColor = .black
+    }
+    
     // MARK: - Life Cycle
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,7 +85,8 @@ final class SearchResultViewController: UIViewController, InitialSetProtocol {
     func setHierarchy() {
         [
             resultLabel,
-            filterScrollView
+            filterScrollView,
+            resultCollectionView
         ].forEach(view.addSubview)
         
         [
@@ -94,6 +113,12 @@ final class SearchResultViewController: UIViewController, InitialSetProtocol {
         filterStackView.snp.makeConstraints {
             $0.edges.equalTo(filterScrollView.contentLayoutGuide)
             $0.height.equalTo(filterScrollView)
+        }
+        
+        resultCollectionView.snp.makeConstraints {
+            $0.top.equalTo(filterScrollView.snp.bottom).offset(16)
+            $0.horizontalEdges.equalToSuperview().inset(16)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide)
         }
     }
 }

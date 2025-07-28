@@ -23,6 +23,8 @@ final class SearchResultViewController: UIViewController, InitialSetProtocol {
         $0.setLabelUI("", size: 15, weight: .semibold, color: .systemGreen)
     }
     
+    private let filterScrollView = UIScrollView()
+    
     private let filterStackView = UIStackView().then {
         $0.axis = .horizontal
         $0.spacing = 16
@@ -65,8 +67,12 @@ final class SearchResultViewController: UIViewController, InitialSetProtocol {
     func setHierarchy() {
         [
             resultLabel,
-            filterStackView
+            filterScrollView
         ].forEach(view.addSubview)
+        
+        [
+            filterStackView
+        ].forEach(filterScrollView.addSubview)
         
         makeFilterStackView()
     }
@@ -79,9 +85,15 @@ final class SearchResultViewController: UIViewController, InitialSetProtocol {
             $0.leading.equalToSuperview().offset(16)
         }
         
-        filterStackView.snp.makeConstraints {
+        filterScrollView.snp.makeConstraints {
             $0.top.equalTo(resultLabel.snp.bottom).offset(16)
-            $0.leading.equalTo(resultLabel)
+            $0.horizontalEdges.equalToSuperview().inset(16)
+            $0.height.equalTo(44)
+        }
+        
+        filterStackView.snp.makeConstraints {
+            $0.edges.equalTo(filterScrollView.contentLayoutGuide)
+            $0.height.equalTo(filterScrollView)
         }
     }
 }

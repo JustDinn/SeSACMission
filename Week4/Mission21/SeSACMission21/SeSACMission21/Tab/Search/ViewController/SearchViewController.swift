@@ -42,7 +42,7 @@ final class SearchViewController: UIViewController, InitialSetProtocol {
     func setViewController() {
         view.backgroundColor = .black
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))
-        setNaviBar("영캠러의 쇼핑쇼핑")
+        setBackNaviBar("영캠러의 쇼핑쇼핑")
     }
     
     // MARK: - Set Hierarchy

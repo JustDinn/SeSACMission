@@ -21,6 +21,14 @@ final class SearchResultCollectionViewCell: UICollectionViewCell, InitialSetProt
         $0.layer.masksToBounds = true
     }
     
+    private let likeButton = UIButton().then {
+        $0.setImage(UIImage(systemName: "heart"), for: .normal)
+        $0.tintColor = .black
+        $0.layer.cornerRadius = 18
+        $0.layer.masksToBounds = true
+        $0.backgroundColor = .white
+    }
+    
     private let mallNameLabel = UILabel().then {
         $0.setLabelUI("", size: 13, weight: .medium, color: .white)
     }
@@ -52,6 +60,7 @@ final class SearchResultCollectionViewCell: UICollectionViewCell, InitialSetProt
     func setHierarchy() {
         [
             imageView,
+            likeButton,
             mallNameLabel,
             titleLabel,
             priceLabel
@@ -64,6 +73,11 @@ final class SearchResultCollectionViewCell: UICollectionViewCell, InitialSetProt
         imageView.snp.makeConstraints {
             $0.top.horizontalEdges.equalToSuperview()
             $0.height.equalTo(177)
+        }
+        
+        likeButton.snp.makeConstraints {
+            $0.trailing.bottom.equalTo(imageView).inset(8)
+            $0.width.height.equalTo(36)
         }
         
         mallNameLabel.snp.makeConstraints {

@@ -15,6 +15,9 @@ final class SearchResultViewController: UIViewController, InitialSetProtocol {
     
     private var searchedResult: [SearchResultModel] = []
     private let keyword: String
+    private let pageSize = 30
+    private var filter = "sim"
+    private var pageNumber = 1
     
     // MARK: - Component
     
@@ -62,7 +65,7 @@ final class SearchResultViewController: UIViewController, InitialSetProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        searchKeyword(keyword: keyword, sort: "sim")
+        searchKeyword(keyword: keyword, sort: filter)
     }
     
     init(keyword: String) {
@@ -126,7 +129,12 @@ final class SearchResultViewController: UIViewController, InitialSetProtocol {
     // MARK: - Action
     
     @objc private func didTapFilterButton(_ sender: UIButton) {
-        searchKeyword(keyword: keyword, sort: Sort.filters[sender.tag].sort)
+        let selectedFilter = Sort.filters[sender.tag].sort
+        
+        filter = selectedFilter
+        pageNumber = 1
+        searchedResult.removeAll()
+        searchKeyword(keyword: keyword, sort: selectedFilter)
     }
 }
 
@@ -148,6 +156,16 @@ extension SearchResultViewController: UICollectionViewDataSource, UICollectionVi
         
         return cell
     }
+    
+    // 셀 미리 보여주기
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let index = indexPath.item
+        
+        if index == searchedResult.count - 6 {
+            pageNumber += 1
+            searchKeyword(keyword: keyword, sort: filter)
+        }
+    }
 }
 
 // MARK: - API Calling
@@ -156,7 +174,7 @@ extension SearchResultViewController {
     
     // 네이버 쇼핑 검색 API Get 요청
     private func searchKeyword(keyword: String, sort: String) {
-        guard let searchURL = makeURL(sort: sort) else {
+        guard let searchURL = makeURL(sort: sort, pageNumber: pageNumber) else {
             print("<< url 생성 실패")
             return
         }
@@ -166,7 +184,7 @@ extension SearchResultViewController {
             .responseDecodable(of: Search.self) { response in
                 switch response.result {
                 case .success(let searchResult):
-                    self.searchedResult = searchResult.items
+                    self.searchedResult.append(contentsOf: searchResult.items)
                     // TODO: API 호출과 UI 업데이트 강한 결합. 분리하기?
                     self.updateUI(searchedResult: searchResult)
                     
@@ -177,15 +195,16 @@ extension SearchResultViewController {
     }
     
     // 요청 URL 생성
-    private func makeURL(sort: String) -> URL? {
+    private func makeURL(sort: String, pageNumber: Int) -> URL? {
         guard var urlComponents = URLComponents(string: "https://openapi.naver.com/v1/search/shop.json") else {
             print("<< urlComponents 생성 실패")
             return nil
         }
         let keyword = URLQueryItem(name: "query", value: keyword)
-        let displayCount = URLQueryItem(name: "display", value: "30")
+        let displayCount = URLQueryItem(name: "display", value: pageSize.formatted())
         let sort = URLQueryItem(name: "sort", value: sort)
-        urlComponents.queryItems = [keyword, displayCount, sort]
+        let pageNumber = URLQueryItem(name: "start", value: pageNumber.formatted())
+        urlComponents.queryItems = [keyword, displayCount, sort, pageNumber]
         
         return urlComponents.url
     }

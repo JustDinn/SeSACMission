@@ -126,7 +126,7 @@ final class SearchResultViewController: UIViewController, InitialSetProtocol {
     // MARK: - Action
     
     @objc private func didTapFilterButton(_ sender: UIButton) {
-        
+        searchKeyword(keyword: keyword, sort: Sort.filters[sender.tag].sort)
     }
 }
 
@@ -167,6 +167,7 @@ extension SearchResultViewController {
                 switch response.result {
                 case .success(let searchResult):
                     self.searchedResult = searchResult.items
+                    // TODO: API 호출과 UI 업데이트 강한 결합. 분리하기?
                     self.updateUI(searchedResult: searchResult)
                     
                 case .failure(let error):
@@ -184,7 +185,7 @@ extension SearchResultViewController {
         let keyword = URLQueryItem(name: "query", value: keyword)
         let displayCount = URLQueryItem(name: "display", value: "30")
         let sort = URLQueryItem(name: "sort", value: sort)
-        urlComponents.queryItems = [keyword, displayCount]
+        urlComponents.queryItems = [keyword, displayCount, sort]
         
         return urlComponents.url
     }
@@ -207,7 +208,11 @@ extension SearchResultViewController {
     private func updateUI(searchedResult: Search) {
         DispatchQueue.main.async {
             self.resultLabel.text = "\(searchedResult.totalCount)개의 검색 결과"
-            self.resultCollectionView.reloadData()
+            
+            // 애니메이션 효과 없이 새로고침
+            UIView.performWithoutAnimation {
+                self.resultCollectionView.reloadData()
+            }
         }
     }
 }

@@ -39,12 +39,14 @@ final class SearchResultViewController: UIViewController, InitialSetProtocol {
         let height = CGFloat(300)
         
         layout.scrollDirection = .vertical
-        layout.minimumLineSpacing = 16
-        layout.minimumInteritemSpacing = 24
+        layout.minimumLineSpacing = 28
+        layout.minimumInteritemSpacing = 16
         layout.itemSize = CGSize(width: width, height: height)
         
-        $0.collectionViewLayout = layout
         $0.register(SearchResultCollectionViewCell.self, forCellWithReuseIdentifier: SearchResultCollectionViewCell.identifier)
+        $0.dataSource = self
+        $0.delegate = self
+        $0.collectionViewLayout = layout
         $0.backgroundColor = .black
     }
     
@@ -123,6 +125,23 @@ final class SearchResultViewController: UIViewController, InitialSetProtocol {
     }
 }
 
+// MARK: - UICollectionView DataSource, Delegate
+
+extension SearchResultViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+    
+    // 섹션당 아이템 개수
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return searchedResult.count
+    }
+    
+    // 셀 구성
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchResultCollectionViewCell.identifier, for: indexPath) as! SearchResultCollectionViewCell
+        
+        return cell
+    }
+}
+
 // MARK: - API Calling
 
 extension SearchResultViewController {
@@ -155,7 +174,7 @@ extension SearchResultViewController {
             return nil
         }
         let keyword = URLQueryItem(name: "query", value: keyword)
-        let displayCount = URLQueryItem(name: "display", value: "100")
+        let displayCount = URLQueryItem(name: "display", value: "30")
         urlComponents.queryItems = [keyword, displayCount]
         
         return urlComponents.url
@@ -179,9 +198,12 @@ extension SearchResultViewController {
     private func updateUI(searchedResult: Search) {
         DispatchQueue.main.async {
             self.resultLabel.text = "\(searchedResult.totalCount)개의 검색 결과"
+            self.resultCollectionView.reloadData()
         }
     }
 }
+
+// MARK: - 스택뷰 생성
 
 extension SearchResultViewController {
     

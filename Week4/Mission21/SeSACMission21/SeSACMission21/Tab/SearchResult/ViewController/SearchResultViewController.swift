@@ -13,6 +13,7 @@ final class SearchResultViewController: UIViewController, InitialSetProtocol {
 
     // MARK: - Properties
     
+    private let filterConditions = ["정확도", "날짜순", "가격높은순", "가격낮은순"]
     private var searchedResult: [SearchResultModel] = []
     private let keyword: String
     
@@ -25,15 +26,6 @@ final class SearchResultViewController: UIViewController, InitialSetProtocol {
     private let filterStackView = UIStackView().then {
         $0.axis = .horizontal
         $0.spacing = 16
-    }
-    
-    private let sortByAccuracyButton = UIButton().then {
-        $0.setTitle("정확도", for: .normal)
-        $0.setTitleColor(.white, for: .normal)
-        $0.layer.cornerRadius = 10
-        $0.layer.masksToBounds = true
-        $0.layer.borderColor = UIColor.white.cgColor
-        $0.layer.borderWidth = 1
     }
     
     // MARK: - Life Cycle
@@ -76,9 +68,7 @@ final class SearchResultViewController: UIViewController, InitialSetProtocol {
             filterStackView
         ].forEach(view.addSubview)
         
-        [
-            sortByAccuracyButton
-        ].forEach(filterStackView.addArrangedSubview)
+        makeFilterStackView()
     }
     
     // MARK: - Set Constraints
@@ -92,11 +82,6 @@ final class SearchResultViewController: UIViewController, InitialSetProtocol {
         filterStackView.snp.makeConstraints {
             $0.top.equalTo(resultLabel.snp.bottom).offset(16)
             $0.leading.equalTo(resultLabel)
-        }
-        
-        sortByAccuracyButton.snp.makeConstraints {
-            $0.width.equalTo(100)
-            $0.height.equalTo(44)
         }
     }
 }
@@ -157,6 +142,30 @@ extension SearchResultViewController {
     private func updateUI(searchedResult: Search) {
         DispatchQueue.main.async {
             self.resultLabel.text = "\(searchedResult.totalCount)개의 검색 결과"
+        }
+    }
+}
+
+extension SearchResultViewController {
+    
+    // 필터 스택뷰 생성 함수
+    private func makeFilterStackView() {
+        filterConditions.forEach { filter in
+            let filterButton = UIButton().then {
+                $0.setTitle(filter, for: .normal)
+                $0.setTitleColor(.white, for: .normal)
+                $0.layer.cornerRadius = 10
+                $0.layer.masksToBounds = true
+                $0.layer.borderColor = UIColor.white.cgColor
+                $0.layer.borderWidth = 1
+            }
+            
+            filterButton.snp.makeConstraints {
+                $0.width.equalTo(100)
+                $0.height.equalTo(44)
+            }
+            
+            filterStackView.addArrangedSubview(filterButton)
         }
     }
 }

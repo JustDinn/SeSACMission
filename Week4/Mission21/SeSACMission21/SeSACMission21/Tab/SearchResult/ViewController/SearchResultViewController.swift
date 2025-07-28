@@ -134,7 +134,7 @@ final class SearchResultViewController: UIViewController, InitialSetProtocol {
         filter = selectedFilter
         pageNumber = 1
         searchedResult.removeAll()
-        searchKeyword(keyword: keyword, sort: selectedFilter)
+        searchKeyword(keyword: keyword, sort: selectedFilter, isScrollToTop: true)
     }
 }
 
@@ -173,7 +173,7 @@ extension SearchResultViewController: UICollectionViewDataSource, UICollectionVi
 extension SearchResultViewController {
     
     // 네이버 쇼핑 검색 API Get 요청
-    private func searchKeyword(keyword: String, sort: String) {
+    private func searchKeyword(keyword: String, sort: String, isScrollToTop: Bool = false) {
         guard let searchURL = makeURL(sort: sort, pageNumber: pageNumber) else {
             print("<< url 생성 실패")
             return
@@ -186,7 +186,7 @@ extension SearchResultViewController {
                 case .success(let searchResult):
                     self.searchedResult.append(contentsOf: searchResult.items)
                     // TODO: API 호출과 UI 업데이트 강한 결합. 분리하기?
-                    self.updateUI(searchedResult: searchResult)
+                    self.updateUI(searchedResult: searchResult, isScrollToTop: isScrollToTop)
                     
                 case .failure(let error):
                     print("<< 검색 error: \(error.localizedDescription)")
@@ -224,13 +224,22 @@ extension SearchResultViewController {
     }
     
     // API 호출 후 UI 업데이트
-    private func updateUI(searchedResult: Search) {
+    private func updateUI(searchedResult: Search, isScrollToTop: Bool) {
         DispatchQueue.main.async {
             self.resultLabel.text = "\(searchedResult.totalCount)개의 검색 결과"
             
             // 애니메이션 효과 없이 새로고침
             UIView.performWithoutAnimation {
                 self.resultCollectionView.reloadData()
+            }
+            
+            // 정렬 조건 바꾸는 경우
+            if isScrollToTop {
+                self.resultCollectionView.scrollToItem(
+                    at: IndexPath(item: 0, section: 0),
+                    at: .top,
+                    animated: false
+                )
             }
         }
     }

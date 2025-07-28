@@ -62,7 +62,7 @@ final class SearchResultViewController: UIViewController, InitialSetProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        searchKeyword(keyword: keyword)
+        searchKeyword(keyword: keyword, sort: "sim")
     }
     
     init(keyword: String) {
@@ -155,8 +155,8 @@ extension SearchResultViewController: UICollectionViewDataSource, UICollectionVi
 extension SearchResultViewController {
     
     // 네이버 쇼핑 검색 API Get 요청
-    private func searchKeyword(keyword: String) {
-        guard let searchURL = url else {
+    private func searchKeyword(keyword: String, sort: String) {
+        guard let searchURL = makeURL(sort: sort) else {
             print("<< url 생성 실패")
             return
         }
@@ -176,13 +176,14 @@ extension SearchResultViewController {
     }
     
     // 요청 URL 생성
-    private var url: URL? {
+    private func makeURL(sort: String) -> URL? {
         guard var urlComponents = URLComponents(string: "https://openapi.naver.com/v1/search/shop.json") else {
             print("<< urlComponents 생성 실패")
             return nil
         }
         let keyword = URLQueryItem(name: "query", value: keyword)
         let displayCount = URLQueryItem(name: "display", value: "30")
+        let sort = URLQueryItem(name: "sort", value: sort)
         urlComponents.queryItems = [keyword, displayCount]
         
         return urlComponents.url

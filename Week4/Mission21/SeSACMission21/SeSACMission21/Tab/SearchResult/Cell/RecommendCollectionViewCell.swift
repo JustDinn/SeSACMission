@@ -8,6 +8,17 @@
 import UIKit
 
 final class RecommendCollectionViewCell: UICollectionViewCell {
+
+    // MARK: - Identifier
+    
+    static let identifier = "RecommendCollectionViewCell"
+    
+    // MARK: - Init
+    
+    override init(frame: CGRect) {
+        super.init(frame: .zero)
+        
+    }
     
     @available(*, unavailable)
     required init?(coder: NSCoder) {

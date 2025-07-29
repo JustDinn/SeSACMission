@@ -56,7 +56,15 @@ final class SearchResultViewController: UIViewController, InitialSetProtocol {
     ).then {
         let layout = UICollectionViewFlowLayout()
         
+        layout.scrollDirection = .horizontal
+        layout.minimumInteritemSpacing = 8
+        layout.itemSize = CGSize(width: 100, height: 100)
+        
+        $0.register(RecommendCollectionViewCell.self, forCellWithReuseIdentifier: RecommendCollectionViewCell.identifier)
+        $0.dataSource = self
+        $0.delegate = self
         $0.collectionViewLayout = layout
+        $0.showsHorizontalScrollIndicator = false
     }
     
     // MARK: - Life Cycle
@@ -165,26 +173,42 @@ extension SearchResultViewController: UICollectionViewDataSource, UICollectionVi
     
     // 섹션당 아이템 개수
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return searchedResult.count
+        if collectionView == resultCollectionView {
+            return searchedResult.count
+        } else if collectionView == recommendCollectionView {
+            return 10
+        } else {
+            fatalError("collectionView 찾을 수 없음")
+        }
     }
     
     // 셀 구성
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchResultCollectionViewCell.identifier, for: indexPath) as! SearchResultCollectionViewCell
-        let item = indexPath.item
-        
-        cell.configureCell(with: searchedResult[item])
-        
-        return cell
+        if collectionView == resultCollectionView{
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchResultCollectionViewCell.identifier, for: indexPath) as! SearchResultCollectionViewCell
+            let item = indexPath.item
+            
+            cell.configureCell(with: searchedResult[item])
+            
+            return cell
+        } else if collectionView == recommendCollectionView {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecommendCollectionViewCell.identifier, for: indexPath) as! RecommendCollectionViewCell
+            
+            return cell
+        } else {
+            fatalError("collectionView 찾을 수 없음")
+        }
     }
     
     // 셀 미리 보여주기
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        let index = indexPath.item
-        
-        if index == searchedResult.count - 6 {
-            queryData.pageNumber += 1
-            searchKeyword(queryData: queryData)
+        if collectionView == resultCollectionView {
+            let index = indexPath.item
+            
+            if index == searchedResult.count - 6 {
+                queryData.pageNumber += 1
+                searchKeyword(queryData: queryData)
+            }
         }
     }
 }

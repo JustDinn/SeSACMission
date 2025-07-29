@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class RecommendCollectionViewCell: UICollectionViewCell {
 
@@ -55,5 +56,11 @@ final class RecommendCollectionViewCell: UICollectionViewCell {
         recommendImageView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+    }
+    
+    // MARK: - Configure Cell
+    
+    func configureCell(with recommendInfo: SearchResultModel) {
+        recommendImageView.kf.setImage(with: URL(string: recommendInfo.itemImage))
     }
 }

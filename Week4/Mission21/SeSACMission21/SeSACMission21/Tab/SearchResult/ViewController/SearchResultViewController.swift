@@ -179,7 +179,7 @@ extension SearchResultViewController: UICollectionViewDataSource, UICollectionVi
         if collectionView == resultCollectionView {
             return searchedResult.count
         } else if collectionView == recommendCollectionView {
-            return 10
+            return recommendResult.count
         } else {
             fatalError("collectionView 찾을 수 없음")
         }
@@ -196,6 +196,9 @@ extension SearchResultViewController: UICollectionViewDataSource, UICollectionVi
             return cell
         } else if collectionView == recommendCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecommendCollectionViewCell.identifier, for: indexPath) as! RecommendCollectionViewCell
+            let item = indexPath.item
+            
+            cell.configureCell(with: recommendResult[item])
             
             return cell
         } else {
@@ -240,33 +243,42 @@ extension SearchResultViewController {
                 let pageNumber = self.queryData.pageNumber
                 
                 if pageNumber <= min(lastPage, 1000) {
-                    isRecommendSearching
-                        ? self.recommendResult.append(contentsOf: result.items)
-                        : self.searchedResult.append(contentsOf: result.items)
                     // TODO: API 호출과 UI 업데이트 강한 결합. 분리하기?
-                    self.updateUI(searchedResult: result, isScrollToTop: isScrollToTop)
+                    if isRecommendSearching {
+                        self.recommendResult.append(contentsOf: result.items)
+                        self.updateUI(searchedResult: result, isRecommendSearching: true, isScrollToTop: isScrollToTop)
+                    } else {
+                        self.searchedResult.append(contentsOf: result.items)
+                        self.updateUI(searchedResult: result, isScrollToTop: isScrollToTop)
+                    }
                 }
             }
         }
     }
     
     // API 호출 후 UI 업데이트
-    private func updateUI(searchedResult: Search, isScrollToTop: Bool) {
+    private func updateUI(searchedResult: Search, isRecommendSearching: Bool = false, isScrollToTop: Bool) {
         DispatchQueue.main.async {
             self.resultLabel.text = "\(searchedResult.totalCount)개의 검색 결과"
             
-            // 애니메이션 효과 없이 새로고침
-            UIView.performWithoutAnimation {
-                self.resultCollectionView.reloadData()
-            }
-            
-            // 정렬 조건 바꾸는 경우
-            if isScrollToTop {
-                self.resultCollectionView.scrollToItem(
-                    at: IndexPath(item: 0, section: 0),
-                    at: .top,
-                    animated: false
-                )
+            if isRecommendSearching{
+                // 애니메이션 효과 없이 새로고침
+                UIView.performWithoutAnimation {
+                    self.recommendCollectionView.reloadData()
+                }
+            } else {
+                UIView.performWithoutAnimation {
+                    self.resultCollectionView.reloadData()
+                }
+                
+                // 정렬 조건 바꾸는 경우
+                if isScrollToTop {
+                    self.resultCollectionView.scrollToItem(
+                        at: IndexPath(item: 0, section: 0),
+                        at: .top,
+                        animated: false
+                    )
+                }
             }
         }
     }

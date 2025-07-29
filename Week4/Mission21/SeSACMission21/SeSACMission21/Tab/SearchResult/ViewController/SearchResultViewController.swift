@@ -256,8 +256,52 @@ extension SearchResultViewController {
                 }
                 
             case .failure(let error):
-                print("<< 검색 API 요청 실패: \(error.localizedDescription)")
+                var message: String
                 
+                if let networkError = error as? NetworkError {
+                    switch networkError {
+                    case .responseFail(let statusCode, let errorMessage):
+                        print("<< 네이버 쇼핑 검색 API 응답 실패 - 상태코드: \(statusCode), 메시지: \(errorMessage ?? "없음")")
+                        
+                        switch statusCode {
+                        case 400:
+                            print("<< 네이버 쇼핑 검색 API: 잘못된 요청")
+                            message = "[\(statusCode)] 잘못된 요청입니다"
+                            
+                        case 401:
+                            print("<< 네이버 쇼핑 검색 API: 인증 실패")
+                            message = "[\(statusCode)] 인증 실패(API Key, Cliend ID 누락 혹은 만료)"
+                            
+                        case 403:
+                            print("<< 네이버 쇼핑 검색 API: 접근 거부")
+                            message = "[\(statusCode)] 접근 거부"
+                        
+                        case 404:
+                            print("<< 네이버 쇼핑 검색 API: 찾을 수 없음")
+                            message = "[\(statusCode)] 서버 찾을 수 없음"
+                            
+                        case 500...599:
+                            print("<< 네이버 쇼핑 검색 API: 서버 오류")
+                            message = "[\(statusCode)] 서버 에러"
+
+                        default:
+                            print("<< 네이버 쇼핑 검색 API: 기타 오류")
+                            message = "[\(statusCode)] 기타 에러"
+                        }
+                        
+                    case .decodingFailed(let errorMessage):
+                        print("<< 네이버 쇼핑 검색 API: 디코딩 실패 \(errorMessage)")
+                        message = "디코딩 에러"
+                        
+                    case .unknownError:
+                        print("<< 알 수 없는 네트워크 에러")
+                        message = "알 수 없는 네트워크 에러"
+                    }
+                } else {
+                    print("<< 알 수 없는 에러: \(error.localizedDescription)")
+                    message = "알 수 없는 에러"
+                }
+                self.showAlert(title: "에러 발생", message: message)
             }
         }
     }

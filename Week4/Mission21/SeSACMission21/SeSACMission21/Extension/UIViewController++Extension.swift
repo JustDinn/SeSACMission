@@ -41,4 +41,24 @@ extension UIViewController {
         searchResultVC.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(searchResultVC, animated: true)
     }
+    
+    // MARK: - Alert
+    
+    func showAlert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let okButton = UIAlertAction(title: "재시도", style: .default) { ok in
+            print("<< 재시도 선택", ok)
+        }
+        let cancelButton = UIAlertAction(title: "취소", style: .cancel) { cancel in
+            print("<< 취소 선택", cancel)
+        }
+        
+        [
+            okButton,
+            cancelButton
+        ].forEach(alertController.addAction)
+        
+        present(alertController, animated: true)
+    }
 }

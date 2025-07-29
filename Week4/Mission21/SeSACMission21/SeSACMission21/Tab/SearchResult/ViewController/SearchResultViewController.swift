@@ -16,6 +16,7 @@ final class SearchResultViewController: UIViewController, InitialSetProtocol {
     private let networkManager = NetworkManager.shared
     private let queryData = QueryData.shared
     private var searchedResult: [SearchResultModel] = []
+    private var recommendResult: [SearchResultModel] = []
     
     // MARK: - Component
     
@@ -79,6 +80,7 @@ final class SearchResultViewController: UIViewController, InitialSetProtocol {
         super.viewDidLoad()
         
         searchKeyword(queryData: queryData)
+        searchKeyword(queryData: queryData, isRecommendSearching: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -220,8 +222,13 @@ extension SearchResultViewController {
     
     // 네이버 쇼핑 검색 API Get 요청
     
-    private func searchKeyword(queryData: QueryData, isScrollToTop: Bool = false) {
-        networkManager.searchKeyword(query: queryData) { result in
+    private func searchKeyword(queryData: QueryData, isScrollToTop: Bool = false, isRecommendSearching: Bool = false) {
+        
+        // 검색 기록 추가
+        queryData.searchedHistory.insert(queryData.keyword)
+        
+        // 네이버 쇼핑 검색 API 호출
+        networkManager.searchKeyword(query: queryData, isRecommendSearching: isRecommendSearching) { result in
             
             // 첫 API 호출시에만 마지막 페이지 개수 계산
             if self.queryData.lastPage == nil {
@@ -233,7 +240,9 @@ extension SearchResultViewController {
                 let pageNumber = self.queryData.pageNumber
                 
                 if pageNumber <= min(lastPage, 1000) {
-                    self.searchedResult.append(contentsOf: result.items)
+                    isRecommendSearching
+                        ? self.recommendResult.append(contentsOf: result.items)
+                        : self.searchedResult.append(contentsOf: result.items)
                     // TODO: API 호출과 UI 업데이트 강한 결합. 분리하기?
                     self.updateUI(searchedResult: result, isScrollToTop: isScrollToTop)
                 }

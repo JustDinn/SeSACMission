@@ -15,8 +15,8 @@ final class NetworkManager {
     private init() { }
     
     // 네이버 쇼핑 검색 API Get 요청
-    func searchKeyword(query: QueryData, completion: @escaping (Search) -> Void) {
-        guard let searchURL = makeURL(queryData: query) else {
+    func searchKeyword(query: QueryData, isRecommendSearching: Bool = false, completion: @escaping (Search) -> Void) {
+        guard let searchURL = makeURL(queryData: query, isRecommendSearching: isRecommendSearching) else {
             print("<< url 생성 실패")
             return
         }
@@ -35,13 +35,15 @@ final class NetworkManager {
     }
     
     // 요청 URL 생성
-    private func makeURL(queryData: QueryData) -> URL? {
+    private func makeURL(queryData: QueryData, isRecommendSearching: Bool) -> URL? {
         guard var urlComponents = URLComponents(string: "https://openapi.naver.com/v1/search/shop.json") else {
             print("<< urlComponents 생성 실패")
             return nil
         }
         
-        let keyword = URLQueryItem(name: "query", value: queryData.keyword)
+        let keyword = isRecommendSearching
+                        ? URLQueryItem(name: "query", value: queryData.searchedHistory.randomElement() ?? "가오리")
+                        : URLQueryItem(name: "query", value: queryData.keyword)
         let pageSize = URLQueryItem(name: "display", value: queryData.pageSize.formatted())
         let sort = URLQueryItem(name: "sort", value: queryData.sort)
         let pageNumber = URLQueryItem(name: "start", value: queryData.pageNumber.formatted())

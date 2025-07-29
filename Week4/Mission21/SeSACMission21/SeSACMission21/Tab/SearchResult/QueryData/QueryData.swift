@@ -15,6 +15,7 @@ final class QueryData {
     var pageNumber = 1
     var pageSize = 30
     var lastPage: Int?
+    var searchedHistory: Set<String> = []
     
     private init() { }
     

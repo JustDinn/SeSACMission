@@ -232,26 +232,32 @@ extension SearchResultViewController {
         
         // 네이버 쇼핑 검색 API 호출
         networkManager.searchKeyword(query: queryData, isRecommendSearching: isRecommendSearching) { result in
-            
-            // 첫 API 호출시에만 마지막 페이지 개수 계산
-            if self.queryData.lastPage == nil {
-                self.queryData.lastPage = Int(ceil(Double(result.totalCount) / Double(self.queryData.pageSize)))
-            }
-            
-            // 최대 페이지 설정
-            if let lastPage = self.queryData.lastPage {
-                let pageNumber = self.queryData.pageNumber
+            switch result {
+            case .success(let searchedResult):
+                // 첫 API 호출시에만 마지막 페이지 개수 계산
+                if self.queryData.lastPage == nil {
+                    self.queryData.lastPage = Int(ceil(Double(searchedResult.totalCount) / Double(self.queryData.pageSize)))
+                }
                 
-                if pageNumber <= min(lastPage, 1000) {
-                    // TODO: API 호출과 UI 업데이트 강한 결합. 분리하기?
-                    if isRecommendSearching {
-                        self.recommendResult.append(contentsOf: result.items)
-                        self.updateUI(searchedResult: result, isRecommendSearching: true, isScrollToTop: isScrollToTop)
-                    } else {
-                        self.searchedResult.append(contentsOf: result.items)
-                        self.updateUI(searchedResult: result, isScrollToTop: isScrollToTop)
+                // 최대 페이지 설정
+                if let lastPage = self.queryData.lastPage {
+                    let pageNumber = self.queryData.pageNumber
+                    
+                    if pageNumber <= min(lastPage, 1000) {
+                        // TODO: API 호출과 UI 업데이트 강한 결합. 분리하기?
+                        if isRecommendSearching {
+                            self.recommendResult.append(contentsOf: searchedResult.items)
+                            self.updateUI(searchedResult: searchedResult, isRecommendSearching: true, isScrollToTop: isScrollToTop)
+                        } else {
+                            self.searchedResult.append(contentsOf: searchedResult.items)
+                            self.updateUI(searchedResult: searchedResult, isScrollToTop: isScrollToTop)
+                        }
                     }
                 }
+                
+            case .failure(let error):
+                print("<< 검색 API 요청 실패: \(error.localizedDescription)")
+                
             }
         }
     }

@@ -86,6 +86,7 @@ final class SearchResultViewController: UIViewController, InitialSetProtocol {
         queryData.reset()
     }
     
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

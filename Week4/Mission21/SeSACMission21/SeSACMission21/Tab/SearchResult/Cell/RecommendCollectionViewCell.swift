@@ -13,6 +13,13 @@ final class RecommendCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "RecommendCollectionViewCell"
     
+    // MARK: - Component
+    
+    private let recommendImageView = UIImageView().then {
+        $0.layer.cornerRadius = 4
+        $0.layer.masksToBounds = true
+    }
+    
     // MARK: - Init
     
     override init(frame: CGRect) {
@@ -37,12 +44,16 @@ final class RecommendCollectionViewCell: UICollectionViewCell {
     // MARK: - Set AddView
     
     private func setAddView() {
-        
+        [
+            recommendImageView
+        ].forEach(contentView.addSubview)
     }
     
     // MARK: - Set Constraints
     
     private func setConstraints() {
-        
+        recommendImageView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
     }
 }

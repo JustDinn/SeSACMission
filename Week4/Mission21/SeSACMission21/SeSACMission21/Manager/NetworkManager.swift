@@ -15,7 +15,7 @@ final class NetworkManager {
     private init() { }
     
     // 네이버 쇼핑 검색 API Get 요청
-    func searchKeyword(query: QueryData, isRecommendSearching: Bool = false, completion: @escaping (Search) -> Void) {
+    func searchKeyword(query: QueryData, isRecommendSearching: Bool = false, completion: @escaping (Result<Search, Error>) -> Void) {
         guard let searchURL = makeURL(queryData: query, isRecommendSearching: isRecommendSearching) else {
             print("<< url 생성 실패")
             return
@@ -26,10 +26,21 @@ final class NetworkManager {
             .responseDecodable(of: Search.self) { response in
                 switch response.result {
                 case .success(let searchResult):
-                    completion(searchResult)
+                    completion(.success(searchResult))
                     
                 case .failure(let error):
-                    print("<< 검색 error: \(error.localizedDescription)")
+                    if let statusCode = response.response?.statusCode {
+                        completion(.failure(NetworkError.responseFail(statusCode: statusCode, errorMessage: error.localizedDescription)))
+                    }
+                    // 200번대 성공 응답을 받았지만, 모델로 디코딩하는 과정에서 실패한 경우
+                    // 예: 서버가 다른 형식의 JSON을 보냈거나, 필수 필드가 누락된 경우
+                    else if error.isResponseSerializationError {
+                        completion(.failure(NetworkError.decodingFailed(errorMessage: error.localizedDescription)))
+                    }
+                    // 명시적으로 처리하지 않은 응답 실패 경우
+                    else {
+                        completion(.failure(NetworkError.unknownError))
+                    }
                 }
             }
     }

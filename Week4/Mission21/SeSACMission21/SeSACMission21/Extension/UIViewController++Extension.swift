@@ -44,14 +44,14 @@ extension UIViewController {
     
     // MARK: - Alert
     
-    func showAlert(title: String, message: String) {
+    func showAlert(title: String, message: String, retryHandler: (() -> Void)? = nil) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        
-        let okButton = UIAlertAction(title: "재시도", style: .default) { ok in
-            print("<< 재시도 선택", ok)
+         
+        let okButton = UIAlertAction(title: "재시도", style: .default) { _ in
+            retryHandler?()
         }
-        let cancelButton = UIAlertAction(title: "취소", style: .cancel) { cancel in
-            print("<< 취소 선택", cancel)
+        let cancelButton = UIAlertAction(title: "취소", style: .cancel) { _ in
+            self.navigationController?.popViewController(animated: true)
         }
         
         [

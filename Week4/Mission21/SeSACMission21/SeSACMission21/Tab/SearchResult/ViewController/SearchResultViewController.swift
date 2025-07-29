@@ -301,7 +301,15 @@ extension SearchResultViewController {
                     print("<< 알 수 없는 에러: \(error.localizedDescription)")
                     message = "알 수 없는 에러"
                 }
-                self.showAlert(title: "에러 발생", message: message)
+                self.showAlert(title: "에러 발생", message: message) { [weak self] in
+                    guard let self = self else { return }
+                    
+                    self.searchKeyword(
+                        queryData: queryData,
+                        isScrollToTop: isScrollToTop,
+                        isRecommendSearching: isRecommendSearching
+                    )
+                }
             }
         }
     }

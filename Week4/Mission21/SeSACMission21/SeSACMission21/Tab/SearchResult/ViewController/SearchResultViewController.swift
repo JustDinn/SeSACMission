@@ -50,6 +50,15 @@ final class SearchResultViewController: UIViewController, InitialSetProtocol {
         $0.backgroundColor = .black
     }
     
+    private lazy var recommendCollectionView = UICollectionView(
+        frame: .zero,
+        collectionViewLayout: UICollectionViewFlowLayout()
+    ).then {
+        let layout = UICollectionViewFlowLayout()
+        
+        $0.collectionViewLayout = layout
+    }
+    
     // MARK: - Life Cycle
     
     init(keyword: String) {
@@ -94,7 +103,8 @@ final class SearchResultViewController: UIViewController, InitialSetProtocol {
         [
             resultLabel,
             filterScrollView,
-            resultCollectionView
+            resultCollectionView,
+            recommendCollectionView
         ].forEach(view.addSubview)
         
         [
@@ -126,6 +136,12 @@ final class SearchResultViewController: UIViewController, InitialSetProtocol {
         resultCollectionView.snp.makeConstraints {
             $0.top.equalTo(filterScrollView.snp.bottom).offset(16)
             $0.horizontalEdges.equalToSuperview().inset(16)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(80)
+        }
+        
+        recommendCollectionView.snp.makeConstraints {
+            $0.top.equalTo(resultCollectionView.snp.bottom).offset(10)
+            $0.horizontalEdges.equalToSuperview()
             $0.bottom.equalTo(view.safeAreaLayoutGuide)
         }
     }
@@ -180,7 +196,6 @@ extension SearchResultViewController {
     
     private func searchKeyword(queryData: QueryData, isScrollToTop: Bool = false) {
         networkManager.searchKeyword(query: queryData) { result in
-            print("<< result: \(result)")
             
             // 첫 API 호출시에만 마지막 페이지 개수 계산
             if self.queryData.lastPage == nil {

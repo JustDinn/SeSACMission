@@ -17,11 +17,32 @@ final class RecommendCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
-        
+     
+        setUI()
+        setAddView()
+        setConstraints()
     }
     
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Set UI
+    
+    private func setUI() {
+        contentView.backgroundColor = .black
+    }
+    
+    // MARK: - Set AddView
+    
+    private func setAddView() {
+        
+    }
+    
+    // MARK: - Set Constraints
+    
+    private func setConstraints() {
+        
     }
 }

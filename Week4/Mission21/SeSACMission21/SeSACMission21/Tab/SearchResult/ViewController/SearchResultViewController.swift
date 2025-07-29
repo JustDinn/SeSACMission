@@ -58,13 +58,14 @@ final class SearchResultViewController: UIViewController, InitialSetProtocol {
         
         layout.scrollDirection = .horizontal
         layout.minimumInteritemSpacing = 8
-        layout.itemSize = CGSize(width: 100, height: 100)
+        layout.itemSize = CGSize(width: 80, height: 80)
         
         $0.register(RecommendCollectionViewCell.self, forCellWithReuseIdentifier: RecommendCollectionViewCell.identifier)
         $0.dataSource = self
         $0.delegate = self
         $0.collectionViewLayout = layout
         $0.showsHorizontalScrollIndicator = false
+        $0.backgroundColor = .black
     }
     
     // MARK: - Life Cycle
@@ -145,7 +146,7 @@ final class SearchResultViewController: UIViewController, InitialSetProtocol {
         resultCollectionView.snp.makeConstraints {
             $0.top.equalTo(filterScrollView.snp.bottom).offset(16)
             $0.horizontalEdges.equalToSuperview().inset(16)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(80)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(90)
         }
         
         recommendCollectionView.snp.makeConstraints {

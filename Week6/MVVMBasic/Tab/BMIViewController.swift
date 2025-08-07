@@ -9,6 +9,7 @@ import UIKit
 
 enum BMIValidError: Error {
     case isNotIntHeight
+    case outOfHeight
 }
 
 class BMIViewController: UIViewController {
@@ -91,6 +92,8 @@ class BMIViewController: UIViewController {
             switch error {
             case .isNotIntHeight:
                 showAlert(title: "경고", message: "키에는 정수를 입력해야합니다")
+            case .outOfHeight:
+                showAlert(title: "경고", message: "입력한 키가 정말 맞습니까?")
             }
         }
         view.endEditing(true)
@@ -106,6 +109,10 @@ class BMIViewController: UIViewController {
         
         if Int(height) == nil {
             throw .isNotIntHeight
+        }
+        
+        if !(100...200).contains(Int(height)!) {
+            throw .outOfHeight
         }
         
         return true

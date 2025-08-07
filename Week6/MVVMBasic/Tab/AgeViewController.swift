@@ -12,6 +12,7 @@ import Then
 enum AgeValidError: Error {
     case empty
     case notInt
+    case outOfRange
 }
 
 final class AgeViewController: UIViewController {
@@ -91,6 +92,8 @@ final class AgeViewController: UIViewController {
                 label.text = "나이 입력 비었음"
             case .notInt:
                 label.text = "나이 정수 변환 실패"
+            case .outOfRange:
+                label.text = "인간의 나이를 벗어난 당신은 외계인👽"
             }
         }
         
@@ -110,6 +113,11 @@ final class AgeViewController: UIViewController {
         
         if Int(age) == nil {
             throw .notInt
+        }
+        
+        // 위에서 Int(age)를 통과했으므로 강제 언래핑
+        if !(1...100).contains(Int(age)!) {
+            throw .outOfRange
         }
         
         return true

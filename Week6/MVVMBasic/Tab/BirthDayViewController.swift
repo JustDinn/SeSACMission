@@ -13,6 +13,7 @@ enum DateError: Error {
     case notIntYear
     case outOfYear
     case notIntMonth
+    case outOfMonth
 }
 
 final class BirthDayViewController: UIViewController {
@@ -149,6 +150,8 @@ final class BirthDayViewController: UIViewController {
                 resultLabel.text = "입력 가능한 연도의 범위를 벗어남"
             case .notIntMonth:
                 resultLabel.text = "입력한 월을 정수로 변환할 수 없음"
+            case .outOfMonth:
+                resultLabel.text = "입력 가능한 월의 범위를 벗어남"
             }
         }
         
@@ -176,6 +179,10 @@ final class BirthDayViewController: UIViewController {
         // 월 유효성 검사
         if Int(month) == nil {
             throw .notIntMonth
+        }
+        
+        if !(1...12).contains(Int(month)!) {
+            throw .outOfMonth
         }
         
         return true

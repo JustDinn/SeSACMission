@@ -143,7 +143,13 @@ final class BirthDayViewController: UIViewController {
     @objc func resultButtonTapped() {
         do {
             try isValidDate()
-            resultLabel.text = "\(yearTextField.text!)년 \(monthTextField.text!)월 \(dateTextField.text!)일"
+            let inputDate = "\(yearTextField.text!).\(monthTextField.text!).\(dateTextField.text!)"
+            guard let toDate = inputDate.toDate() else {
+                return
+            }
+            let dateGap = dateGap(toDate: toDate)
+            
+            resultLabel.text = "오늘 날짜 기준으로 \(dateGap)일째입니다"
         } catch {
             switch error {
             case .notIntYear:

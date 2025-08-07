@@ -14,6 +14,7 @@ enum DateError: Error {
     case outOfYear
     case notIntMonth
     case outOfMonth
+    case notIntDate
 }
 
 final class BirthDayViewController: UIViewController {
@@ -38,12 +39,12 @@ final class BirthDayViewController: UIViewController {
         $0.text = "월"
     }
     
-    private let dayTextField = UITextField().then {
+    private let dateTextField = UITextField().then {
         $0.placeholder = "일을 입력해주세요"
         $0.borderStyle = .roundedRect
     }
     
-    private let dayLabel = UILabel().then {
+    private let dateLabel = UILabel().then {
         $0.text = "일"
     }
     
@@ -75,8 +76,8 @@ final class BirthDayViewController: UIViewController {
         view.addSubview(yearLabel)
         view.addSubview(monthTextField)
         view.addSubview(monthLabel)
-        view.addSubview(dayTextField)
-        view.addSubview(dayLabel)
+        view.addSubview(dateTextField)
+        view.addSubview(dateLabel)
         view.addSubview(resultButton)
         view.addSubview(resultLabel)
     }
@@ -107,20 +108,20 @@ final class BirthDayViewController: UIViewController {
             make.leading.equalTo(monthTextField.snp.trailing).offset(12)
         }
         
-        dayTextField.snp.makeConstraints { make in
+        dateTextField.snp.makeConstraints { make in
             make.top.equalTo(monthTextField.snp.bottom).offset(20)
             make.leading.equalTo(view.safeAreaLayoutGuide).offset(20)
             make.width.equalTo(200)
             make.height.equalTo(44)
         }
         
-        dayLabel.snp.makeConstraints { make in
-            make.centerY.equalTo(dayTextField)
-            make.leading.equalTo(dayTextField.snp.trailing).offset(12)
+        dateLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(dateTextField)
+            make.leading.equalTo(dateTextField.snp.trailing).offset(12)
         }
         
         resultButton.snp.makeConstraints { make in
-            make.top.equalTo(dayTextField.snp.bottom).offset(20)
+            make.top.equalTo(dateLabel.snp.bottom).offset(20)
             make.horizontalEdges.equalToSuperview().inset(20)
             make.height.equalTo(44)
         }
@@ -141,7 +142,7 @@ final class BirthDayViewController: UIViewController {
     @objc func resultButtonTapped() {
         do {
             try isValidDate()
-            resultLabel.text = "\(yearTextField.text!)년 \(monthTextField.text!)월"
+            resultLabel.text = "\(yearTextField.text!)년 \(monthTextField.text!)월 \(dateTextField.text!)일"
         } catch {
             switch error {
             case .notIntYear:
@@ -152,6 +153,8 @@ final class BirthDayViewController: UIViewController {
                 resultLabel.text = "입력한 월을 정수로 변환할 수 없음"
             case .outOfMonth:
                 resultLabel.text = "입력 가능한 월의 범위를 벗어남"
+            case .notIntDate:
+                resultLabel.text = "입력한 일을 정수로 변환할 수 없음"
             }
         }
         
@@ -163,7 +166,7 @@ final class BirthDayViewController: UIViewController {
     private func isValidDate() throws(DateError) -> Bool {
         guard let year = yearTextField.text,
               let month = monthTextField.text,
-              let day = dayTextField.text else {
+              let date = dateTextField.text else {
             return false
         }
         
@@ -183,6 +186,11 @@ final class BirthDayViewController: UIViewController {
         
         if !(1...12).contains(Int(month)!) {
             throw .outOfMonth
+        }
+        
+        // 일 유효성 검사
+        if Int(date) == nil {
+            throw .notIntDate
         }
         
         return true

@@ -229,4 +229,17 @@ final class BirthDayViewController: UIViewController {
             return false
         }
     }
+    
+    // MARK: - 날짜 차이 구하기
+    
+    func dateGap(toDate: Date) -> Int {
+        let calendar = Calendar.current
+        
+        let toDate = calendar.startOfDay(for: toDate)
+        let today = calendar.startOfDay(for: .now)
+        
+        let gap = calendar.dateComponents([.day], from: today, to: toDate).day ?? 0
+        
+        return gap
+    }
 }

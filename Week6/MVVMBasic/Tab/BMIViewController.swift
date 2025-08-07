@@ -15,6 +15,14 @@ enum BMIValidError: Error {
 }
 
 class BMIViewController: UIViewController {
+    
+    private var bmi: String {
+        let height = (Double(heightTextField.text!) ?? 0) / 100
+        let weight = Double(weightTextField.text!) ?? 0
+        
+        return String(format: "%.2f", weight / (height * height))
+    }
+    
     let heightTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "키를 입력해주세요"
@@ -89,7 +97,7 @@ class BMIViewController: UIViewController {
     @objc func resultButtonTapped() {
         do {
             try isValidBMI()
-            resultLabel.text = "키 정상 입력"
+            resultLabel.text = "BMI: \(bmi)"
         } catch {
             switch error {
             case .isNotIntHeight:

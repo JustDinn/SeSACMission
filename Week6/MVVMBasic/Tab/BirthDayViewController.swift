@@ -12,6 +12,7 @@ import Then
 enum DateError: Error {
     case notIntYear
     case outOfYear
+    case notIntMonth
 }
 
 final class BirthDayViewController: UIViewController {
@@ -139,13 +140,15 @@ final class BirthDayViewController: UIViewController {
     @objc func resultButtonTapped() {
         do {
             try isValidDate()
-            resultLabel.text = "\(yearTextField.text!)년"
+            resultLabel.text = "\(yearTextField.text!)년 \(monthTextField.text!)월"
         } catch {
             switch error {
             case .notIntYear:
                 resultLabel.text = "입력한 연도를 정수로 변환할 수 없음"
             case .outOfYear:
                 resultLabel.text = "입력 가능한 연도의 범위를 벗어남"
+            case .notIntMonth:
+                resultLabel.text = "입력한 월을 정수로 변환할 수 없음"
             }
         }
         
@@ -168,6 +171,11 @@ final class BirthDayViewController: UIViewController {
         
         if Int(year)! < 0 {
             throw .outOfYear
+        }
+        
+        // 월 유효성 검사
+        if Int(month) == nil {
+            throw .notIntMonth
         }
         
         return true

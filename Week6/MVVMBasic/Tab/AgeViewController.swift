@@ -9,6 +9,11 @@ import UIKit
 import SnapKit
 import Then
 
+enum AgeValidError: Error {
+    case empty
+    case notInt
+}
+
 final class AgeViewController: UIViewController {
     
     // MARK: - Component
@@ -16,6 +21,7 @@ final class AgeViewController: UIViewController {
     private let textField = UITextField().then {
         $0.placeholder = "나이를 입력해주세요"
         $0.borderStyle = .roundedRect
+        $0.keyboardType = .phonePad
     }
     
     private lazy var resultButton = UIButton().then {
@@ -76,6 +82,36 @@ final class AgeViewController: UIViewController {
     }
     
     @objc func resultButtonTapped() {
+        do {
+            try isValidAge()
+            label.text = "나이 유효성 검사 통과: \(textField.text!)"
+        } catch {
+            switch error {
+            case .empty:
+                label.text = "나이 입력 비었음"
+            case .notInt:
+                label.text = "나이 정수 변환 실패"
+            }
+        }
+        
         view.endEditing(true)
+    }
+    
+    // MARK: - 나이 유효성 검사
+    
+    private func isValidAge() throws(AgeValidError) -> Bool {
+        guard let age = textField.text else {
+            return false
+        }
+        
+        if age.isEmpty {
+            throw .empty
+        }
+        
+        if Int(age) == nil {
+            throw .notInt
+        }
+        
+        return true
     }
 }

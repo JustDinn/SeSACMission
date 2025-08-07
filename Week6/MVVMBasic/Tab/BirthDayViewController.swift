@@ -7,54 +7,51 @@
 
 import UIKit
 import SnapKit
+import Then
 
-class BirthDayViewController: UIViewController {
-    let yearTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "년도를 입력해주세요"
-        textField.borderStyle = .roundedRect
-        return textField
-    }()
-    let yearLabel: UILabel = {
-        let label = UILabel()
-        label.text = "년"
-        return label
-    }()
-    let monthTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "월을 입력해주세요"
-        textField.borderStyle = .roundedRect
-        return textField
-    }()
-    let monthLabel: UILabel = {
-        let label = UILabel()
-        label.text = "월"
-        return label
-    }()
-    let dayTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "일을 입력해주세요"
-        textField.borderStyle = .roundedRect
-        return textField
-    }()
-    let dayLabel: UILabel = {
-        let label = UILabel()
-        label.text = "일"
-        return label
-    }()
-    let resultButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .systemBlue
-        button.setTitle( "클릭", for: .normal)
-        button.layer.cornerRadius = 8
-        return button
-    }()
-    let resultLabel: UILabel = {
-        let label = UILabel()
-        label.text = "여기에 결과를 보여주세요"
-        label.textAlignment = .center
-        return label
-    }()
+final class BirthDayViewController: UIViewController {
+    
+    // MARK: - Component
+    
+    private let yearTextField = UITextField().then {
+        $0.placeholder = "년도를 입력해주세요"
+        $0.borderStyle = .roundedRect
+    }
+    
+    private let yearLabel = UILabel().then {
+        $0.text = "년"
+    }
+    
+    private let monthTextField = UITextField().then {
+        $0.placeholder = "월을 입력해주세요"
+        $0.borderStyle = .roundedRect
+    }
+    
+    private let monthLabel = UILabel().then {
+        $0.text = "월"
+    }
+    
+    private let dayTextField = UITextField().then {
+        $0.placeholder = "일을 입력해주세요"
+        $0.borderStyle = .roundedRect
+    }
+    
+    private let dayLabel = UILabel().then {
+        $0.text = "일"
+    }
+    
+    private let resultButton = UIButton().then {
+        $0.backgroundColor = .systemBlue
+        $0.setTitle( "클릭", for: .normal)
+        $0.layer.cornerRadius = 8
+    }
+    
+    private let resultLabel = UILabel().then {
+        $0.text = "여기에 결과를 보여주세요"
+        $0.textAlignment = .center
+    }
+    
+    // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,6 +60,8 @@ class BirthDayViewController: UIViewController {
         
         resultButton.addTarget(self, action: #selector(resultButtonTapped), for: .touchUpInside)
     }
+    
+    // MARK: - Set Hierarchy
     
     func configureHierarchy() {
         view.addSubview(yearTextField)
@@ -74,6 +73,8 @@ class BirthDayViewController: UIViewController {
         view.addSubview(resultButton)
         view.addSubview(resultLabel)
     }
+    
+    // MARK: - Set Constraints
     
     func configureLayout() {
         yearTextField.snp.makeConstraints { make in
@@ -123,6 +124,8 @@ class BirthDayViewController: UIViewController {
             make.height.equalTo(44)
         }
     }
+    
+    // MARK: - Action
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)

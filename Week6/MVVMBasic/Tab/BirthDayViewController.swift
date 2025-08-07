@@ -15,6 +15,7 @@ enum DateError: Error {
     case notIntMonth
     case outOfMonth
     case notIntDate
+    case outOfDate
 }
 
 final class BirthDayViewController: UIViewController {
@@ -155,6 +156,8 @@ final class BirthDayViewController: UIViewController {
                 resultLabel.text = "입력 가능한 월의 범위를 벗어남"
             case .notIntDate:
                 resultLabel.text = "입력한 일을 정수로 변환할 수 없음"
+            case .outOfDate:
+                resultLabel.text = "입력 가능한 일의 범위를 벗어남"
             }
         }
         
@@ -193,6 +196,37 @@ final class BirthDayViewController: UIViewController {
             throw .notIntDate
         }
         
+        switch Int(month)! {
+        case 1, 3, 5, 7, 8, 10, 12:
+            if !(1...31).contains(Int(date)!) {
+                throw .outOfDate
+            }
+        case 4, 6, 9, 11:
+            if !(1...30).contains(Int(date)!) {
+                throw .outOfDate
+            }
+        case 2:
+            if isLeapYear(Int(year)!) && !(1...29).contains(Int(date)!) {
+                throw .outOfDate
+            } else if !isLeapYear(Int(year)!) && !(1...28).contains(Int(date)!) {
+                throw .outOfDate
+            }
+        default:
+            return false
+        }
         return true
+    }
+    
+    // MARK: - 윤년 판별
+    
+    func isLeapYear(_ year: Int) -> Bool {
+        
+        if year % 400 == 0 {
+            return true
+        } else if year % 100 != 0 && year % 4 == 0 {
+            return true
+        } else {
+            return false
+        }
     }
 }

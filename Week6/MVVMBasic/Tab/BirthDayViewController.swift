@@ -9,6 +9,10 @@ import UIKit
 import SnapKit
 import Then
 
+enum DateError: Error {
+    case notIntYear
+}
+
 final class BirthDayViewController: UIViewController {
     
     // MARK: - Component
@@ -40,10 +44,11 @@ final class BirthDayViewController: UIViewController {
         $0.text = "일"
     }
     
-    private let resultButton = UIButton().then {
+    private lazy var resultButton = UIButton().then {
         $0.backgroundColor = .systemBlue
         $0.setTitle( "클릭", for: .normal)
         $0.layer.cornerRadius = 8
+        $0.addTarget(self, action: #selector(resultButtonTapped), for: .touchUpInside)
     }
     
     private let resultLabel = UILabel().then {
@@ -55,10 +60,9 @@ final class BirthDayViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         configureHierarchy()
         configureLayout()
-        
-        resultButton.addTarget(self, action: #selector(resultButtonTapped), for: .touchUpInside)
     }
     
     // MARK: - Set Hierarchy
@@ -132,6 +136,32 @@ final class BirthDayViewController: UIViewController {
     }
     
     @objc func resultButtonTapped() {
+        do {
+            try isValidDate()
+            resultLabel.text = "\(yearTextField.text!)년"
+        } catch {
+            switch error {
+            case .notIntYear:
+                resultLabel.text = "입력한 연도를 정수로 변환할 수 없음"
+            }
+        }
+        
         view.endEditing(true)
+    }
+    
+    // MARK: - 날짜 유효성 검사
+    
+    private func isValidDate() throws(DateError) -> Bool {
+        guard let year = yearTextField.text,
+              let month = monthTextField.text,
+              let day = dayTextField.text else {
+            return false
+        }
+        
+        if Int(year) == nil {
+            throw .notIntYear
+        }
+        
+        return true
     }
 }

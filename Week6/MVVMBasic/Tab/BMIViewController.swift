@@ -18,7 +18,7 @@ class BMIViewController: UIViewController {
         textField.borderStyle = .roundedRect
         return textField
     }()
-    let ageTextField: UITextField = {
+    let weightTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "몸무게를 입력해주세요"
         textField.borderStyle = .roundedRect
@@ -48,7 +48,7 @@ class BMIViewController: UIViewController {
     
     func configureHierarchy() {
         view.addSubview(heightTextField)
-        view.addSubview(ageTextField)
+        view.addSubview(weightTextField)
         view.addSubview(resultButton)
         view.addSubview(resultLabel)
     }
@@ -60,14 +60,14 @@ class BMIViewController: UIViewController {
             make.height.equalTo(44)
         }
         
-        ageTextField.snp.makeConstraints { make in
+        weightTextField.snp.makeConstraints { make in
             make.top.equalTo(heightTextField.snp.bottom).offset(20)
             make.horizontalEdges.equalToSuperview().inset(20)
             make.height.equalTo(44)
         }
         
         resultButton.snp.makeConstraints { make in
-            make.top.equalTo(ageTextField.snp.bottom).offset(20)
+            make.top.equalTo(weightTextField.snp.bottom).offset(20)
             make.horizontalEdges.equalToSuperview().inset(20)
             make.height.equalTo(44)
         }

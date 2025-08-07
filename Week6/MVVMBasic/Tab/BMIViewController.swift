@@ -7,6 +7,10 @@
 
 import UIKit
 
+enum BMIValidError: Error {
+    case isNotIntHeight
+}
+
 class BMIViewController: UIViewController {
     let heightTextField: UITextField = {
         let textField = UITextField()
@@ -80,6 +84,30 @@ class BMIViewController: UIViewController {
     }
     
     @objc func resultButtonTapped() {
+        do {
+            try isValidBMI()
+            resultLabel.text = "키 정상 입력"
+        } catch {
+            switch error {
+            case .isNotIntHeight:
+                showAlert(title: "경고", message: "키에는 정수를 입력해야합니다")
+            }
+        }
         view.endEditing(true)
+    }
+    
+    //MARK: - BMI 유효성 검사
+    
+    private func isValidBMI() throws(BMIValidError) -> Bool {
+        guard let height = heightTextField.text,
+              let weight = weightTextField.text else {
+            return false
+        }
+        
+        if Int(height) == nil {
+            throw .isNotIntHeight
+        }
+        
+        return true
     }
 }

@@ -8,8 +8,8 @@
 import Foundation
 
 enum CurrencyErrorEnum: Error {
-//    case isEmpty
-//    case isNegativeInt
-//    case isNotInt
+    case isEmpty
+    case isNotInt
+    case isNegativeInt
     case unknownError
 }

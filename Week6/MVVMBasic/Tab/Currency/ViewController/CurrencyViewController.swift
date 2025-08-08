@@ -11,6 +11,10 @@ import Then
 
 final class CurrencyViewController: UIViewController {
     
+    // MARK: - Property
+    
+    private let currencyViewModel = CurrencyViewModel()
+    
     // MARK: - Component
     
     private let exchangeRateLabel = UILabel().then { label in
@@ -98,14 +102,7 @@ final class CurrencyViewController: UIViewController {
     // MARK: - Action
      
     @objc private func convertButtonTapped() {
-        guard let amountText = amountTextField.text,
-              let amount = Double(amountText) else {
-            resultLabel.text = "올바른 금액을 입력해주세요"
-            return
-        }
-        
-        let exchangeRate = 1350.0 // 실제 환율 데이터로 대체 필요
-        let convertedAmount = amount / exchangeRate
-        resultLabel.text = String(format: "%.2f USD (약 $%.2f)", convertedAmount, convertedAmount)
+        currencyViewModel.moneyRawString = amountTextField.text
+        resultLabel.text = currencyViewModel.resultMessage
     }
 }

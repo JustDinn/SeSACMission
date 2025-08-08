@@ -22,7 +22,8 @@ final class CurrencyViewModel {
     
     private func wonToDollar() {
         guard let moneyRawString,
-              let money = Double(moneyRawString) else {
+              let money = Double(moneyRawString),
+              money >= 0 else {
             resultMessage = "올바른 금액을 입력해주세요"
             return
         }

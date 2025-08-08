@@ -194,9 +194,14 @@ final class BirthDayViewController: UIViewController {
             throw .notIntMonth
         }
         
-        if !(1...12).contains(Int(month)!) {
+        // 범위 비교는 한개와 비교하기 때문에 시간복잡도가 O(1)이지만, contains는 배열의 모두와 비고하기 떄문에 시간복잡도가 O(1)보다 큼.
+        // 코드 시간복잡도 개선
+        if Int(month)! < 1 && Int(month)! > 12 {
             throw .outOfMonth
         }
+//        if !(1...12).contains(Int(month)!) {
+//            throw .outOfMonth
+//        }
         
         // 일 유효성 검사
         if Int(date) == nil {

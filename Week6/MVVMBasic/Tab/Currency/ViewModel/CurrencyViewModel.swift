@@ -17,6 +17,7 @@ final class CurrencyViewModel {
         }
     }
     var resultMessage = ""
+    var result: ((String) -> Void)?
     
     // MARK: - Method
     
@@ -25,6 +26,7 @@ final class CurrencyViewModel {
               let money = Double(moneyRawString),
               money >= 0 else {
             resultMessage = "올바른 금액을 입력해주세요"
+            result?(resultMessage)
             return
         }
         
@@ -32,5 +34,6 @@ final class CurrencyViewModel {
         let convertedAmount = money / exchangeRate
         
         resultMessage = String(format: "%.2f USD (약 $%.2f)", convertedAmount, convertedAmount)
+        result?(resultMessage)
     }
 }

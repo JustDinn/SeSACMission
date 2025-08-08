@@ -59,6 +59,7 @@ final class CurrencyViewController: UIViewController {
         
         setupUI()
         setupConstraints()
+        bindClosure()
     }
      
     // MARK: - Set UI
@@ -99,10 +100,17 @@ final class CurrencyViewController: UIViewController {
         }
     }
     
+    // MARK: - Bind Closure
+    
+    private func bindClosure() {
+        currencyViewModel.result = { message in
+            self.resultLabel.text = message
+        }
+    }
+    
     // MARK: - Action
      
     @objc private func convertButtonTapped() {
         currencyViewModel.moneyRawString = amountTextField.text
-        resultLabel.text = currencyViewModel.resultMessage
     }
 }

@@ -11,9 +11,17 @@ final class CurrencyViewModel {
     
     // MARK: - Property
     
-    var moneyRawString: String? = "" {
+    var money: String? = "" {
         didSet {
-            wonToDollar()
+            do {
+                try isValid()
+                wonToDollar()
+            } catch {
+                switch error {
+                case .unknownError:
+                    resultMessage = "알 수 없는 에러가 발생했습니다"
+                }
+            }
         }
     }
     var resultMessage = ""
@@ -21,17 +29,27 @@ final class CurrencyViewModel {
     
     // MARK: - Method
     
-    private func wonToDollar() {
-        guard let moneyRawString,
-              let money = Double(moneyRawString),
-              money >= 0 else {
-            resultMessage = "올바른 금액을 입력해주세요"
-            result?(resultMessage)
-            return
+    // 입력 텍스트 유효성 검사
+    @discardableResult
+    private func isValid() throws(CurrencyErrorEnum) -> Bool {
+        
+        // 옵셔널 바인딩 실패
+        guard let money else {
+            throw .unknownError
         }
         
+//        // 입력 텍스트가 빈 값
+//        if money.isEmpty {
+//            throw .isEmpty
+//        }
+        
+        return true
+    }
+    
+    // 원화 -> 달러 변환
+    private func wonToDollar() {
         let exchangeRate = 1350.0 // 실제 환율 데이터로 대체 필요
-        let convertedAmount = money / exchangeRate
+        let convertedAmount = Double(money!)! / exchangeRate
         
         resultMessage = String(format: "%.2f USD (약 $%.2f)", convertedAmount, convertedAmount)
         result?(resultMessage)

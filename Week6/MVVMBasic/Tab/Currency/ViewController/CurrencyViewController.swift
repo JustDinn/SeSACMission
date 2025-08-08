@@ -111,6 +111,6 @@ final class CurrencyViewController: UIViewController {
     // MARK: - Action
      
     @objc private func convertButtonTapped() {
-        currencyViewModel.moneyRawString = amountTextField.text
+        currencyViewModel.money = amountTextField.text
     }
 }

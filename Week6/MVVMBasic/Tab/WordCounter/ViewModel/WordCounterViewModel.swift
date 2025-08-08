@@ -17,17 +17,17 @@ final class WordCounterViewModel {
         }
     }
     
-    var resultMessage = ""
+    var result: ((String) -> Void)?
     
     // MARK: - Update CharacterCount
     
     private func updateCharacterCount() {
         guard let text else {
-            resultMessage = "입력한 글자에 문제가 생겼습니다"
+            result?("입력한 글자에 문제가 생겼습니다")
             return
         }
         
         let count = text.count
-        resultMessage = "현재까지 \(count)글자 작성중"
+        result?("현재까지 \(count)글자 작성중")
     }
 }

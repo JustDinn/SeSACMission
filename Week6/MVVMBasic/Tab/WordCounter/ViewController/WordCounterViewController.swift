@@ -43,6 +43,7 @@ final class WordCounterViewController: UIViewController {
         
         setupUI()
         setupConstraints()
+        bindClosure()
     }
      
     // MARK: - Set UI
@@ -71,6 +72,14 @@ final class WordCounterViewController: UIViewController {
             make.height.equalTo(view.snp.width)
         }
     }
+    
+    // MARK: - Bind Closure
+    
+    private func bindClosure() {
+        wordCounterViewModel.result = { message in
+            self.countLabel.text = message
+        }
+    }
 }
  
 // MARK: - UITextView Delegate
@@ -80,6 +89,5 @@ extension WordCounterViewController: UITextViewDelegate {
     // 텍스트뷰 입력값 변경
     func textViewDidChange(_ textView: UITextView) {
         wordCounterViewModel.text = textView.text
-        countLabel.text = wordCounterViewModel.resultMessage
     }
 }

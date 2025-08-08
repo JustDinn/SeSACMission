@@ -8,15 +8,18 @@
 import UIKit
 import SnapKit
  
-class WordCounterViewController: UIViewController {
+final class WordCounterViewController: UIViewController {
     
-    private let textView: UITextView = {
+    // MARK: - Component
+    
+    private lazy var textView: UITextView = {
         let textView = UITextView()
         textView.font = .systemFont(ofSize: 16)
         textView.layer.borderWidth = 1
         textView.layer.borderColor = UIColor.systemGray4.cgColor
         textView.layer.cornerRadius = 8
         textView.textContainerInset = UIEdgeInsets(top: 12, left: 8, bottom: 12, right: 8)
+        textView.delegate = self
         return textView
     }()
     
@@ -29,20 +32,27 @@ class WordCounterViewController: UIViewController {
         return label
     }()
      
+    // MARK: - Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupUI()
         setupConstraints()
-        setupTextView()
     }
      
+    // MARK: - Set UI
+    
     private func setupUI() {
         view.backgroundColor = .white
         
-        [textView, countLabel].forEach {
-            view.addSubview($0)
-        }
+        [
+            textView,
+            countLabel
+        ].forEach(view.addSubview)
     }
+    
+    // MARK: - Set Constraints
     
     private func setupConstraints() {
         countLabel.snp.makeConstraints { make in
@@ -57,18 +67,20 @@ class WordCounterViewController: UIViewController {
             make.height.equalTo(view.snp.width)
         }
     }
-    
-    private func setupTextView() {
-        textView.delegate = self
-    }
      
+    // MARK: - Update CharacterCount
+    
     private func updateCharacterCount() {
         let count = textView.text.count
         countLabel.text = "현재까지 \(count)글자 작성중"
     }
 }
  
+// MARK: - UITextView Delegate
+
 extension WordCounterViewController: UITextViewDelegate {
+    
+    // 텍스트뷰 입력값 변경
     func textViewDidChange(_ textView: UITextView) {
         updateCharacterCount()
     }

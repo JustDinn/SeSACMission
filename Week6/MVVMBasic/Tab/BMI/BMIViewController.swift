@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum BMIValidError: Error {
+private enum BMIValidError: Error {
     case isNotIntHeight
     case outOfHeight
     case isNotIntWeight
@@ -115,6 +115,7 @@ class BMIViewController: UIViewController {
     
     //MARK: - BMI 유효성 검사
     
+    @discardableResult
     private func isValidBMI() throws(BMIValidError) -> Bool {
         guard let height = heightTextField.text,
               let weight = weightTextField.text else {

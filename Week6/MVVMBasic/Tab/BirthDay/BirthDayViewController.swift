@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Then
 
-enum DateError: Error {
+private enum DateError: Error {
     case notIntYear
     case outOfYear
     case notIntMonth
@@ -172,6 +172,7 @@ final class BirthDayViewController: UIViewController {
     
     // MARK: - 날짜 유효성 검사
     
+    @discardableResult
     private func isValidDate() throws(DateError) -> Bool {
         guard let year = yearTextField.text,
               let month = monthTextField.text,

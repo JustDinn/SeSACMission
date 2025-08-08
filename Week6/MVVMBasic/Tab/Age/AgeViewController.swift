@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Then
 
-enum AgeValidError: Error {
+private enum AgeValidError: Error {
     case empty
     case notInt
     case outOfRange
@@ -101,7 +101,7 @@ final class AgeViewController: UIViewController {
     }
     
     // MARK: - 나이 유효성 검사
-    
+    @discardableResult
     private func isValidAge() throws(AgeValidError) -> Bool {
         guard let age = textField.text else {
             return false

@@ -9,13 +9,11 @@ import UIKit
 import SnapKit
 import Then
 
-private enum AgeValidError: Error {
-    case empty
-    case notInt
-    case outOfRange
-}
-
 final class AgeViewController: UIViewController {
+    
+    // MARK: - Property
+    
+    private let ageViewModel = AgeViewModel()
     
     // MARK: - Component
     
@@ -44,14 +42,18 @@ final class AgeViewController: UIViewController {
         
         configureHierarchy()
         configureLayout()
+        bindClosure()
     }
     
     // MARK: - Set Hierarchy
     
     private func configureHierarchy() {
-        view.addSubview(textField)
-        view.addSubview(resultButton)
-        view.addSubview(label)
+        [
+            textField,
+            resultButton,
+            label,
+            resultButton
+        ].forEach(view.addSubview)
     }
     
     // MARK: - Set Constraints
@@ -73,6 +75,14 @@ final class AgeViewController: UIViewController {
             make.top.equalTo(resultButton.snp.bottom).offset(20)
             make.horizontalEdges.equalToSuperview().inset(20)
             make.height.equalTo(44)
+        }
+    }
+    
+    // MARK: - Bind Closure
+    
+    private func bindClosure() {
+        ageViewModel.result = { message in
+            self.label.text = message
         }
     }
     

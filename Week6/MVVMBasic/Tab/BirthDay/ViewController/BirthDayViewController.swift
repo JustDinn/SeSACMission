@@ -9,15 +9,6 @@ import UIKit
 import SnapKit
 import Then
 
-private enum DateError: Error {
-    case notIntYear
-    case outOfYear
-    case notIntMonth
-    case outOfMonth
-    case notIntDate
-    case outOfDate
-}
-
 final class BirthDayViewController: UIViewController {
     
     // MARK: - Component

@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+enum AgeValidError: Error {
+    case empty
+    case notInt
+    case outOfRange
+    case unknownError
+}

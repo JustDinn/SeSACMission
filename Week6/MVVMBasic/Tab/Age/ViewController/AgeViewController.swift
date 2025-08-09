@@ -83,43 +83,8 @@ final class AgeViewController: UIViewController {
     }
     
     @objc func resultButtonTapped() {
-        do {
-            try isValidAge()
-            label.text = "나이 유효성 검사 통과: \(textField.text!)"
-        } catch {
-            switch error {
-            case .empty:
-                label.text = "나이 입력 비었음"
-            case .notInt:
-                label.text = "나이 정수 변환 실패"
-            case .outOfRange:
-                label.text = "인간의 나이를 벗어난 당신은 외계인👽"
-            }
-        }
+        ageViewModel.age = textField.text
         
         view.endEditing(true)
-    }
-    
-    // MARK: - 나이 유효성 검사
-    @discardableResult
-    private func isValidAge() throws(AgeValidError) -> Bool {
-        guard let age = textField.text else {
-            return false
-        }
-        
-        if age.isEmpty {
-            throw .empty
-        }
-        
-        if Int(age) == nil {
-            throw .notInt
-        }
-        
-        // 위에서 Int(age)를 통과했으므로 강제 언래핑
-        if !(1...100).contains(Int(age)!) {
-            throw .outOfRange
-        }
-        
-        return true
     }
 }

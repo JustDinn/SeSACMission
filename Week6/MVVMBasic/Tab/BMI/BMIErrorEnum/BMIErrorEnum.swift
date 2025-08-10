@@ -12,4 +12,5 @@ enum BMIValidError: Error {
     case outOfHeight
     case isNotIntWeight
     case outOfWeight
+    case unknownError
 }

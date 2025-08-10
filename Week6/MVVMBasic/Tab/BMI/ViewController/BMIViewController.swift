@@ -10,14 +10,11 @@ import SnapKit
 
 final class BMIViewController: UIViewController {
     
-    // MARK: - Component
+    // MARK: - Property
     
-    private var bmi: String {
-        let height = (Double(heightTextField.text!) ?? 0) / 100
-        let weight = Double(weightTextField.text!) ?? 0
-        
-        return String(format: "%.2f", weight / (height * height))
-    }
+    private let bmiViewModel = BMIViewModel()
+    
+    // MARK: - Component
     
     private let heightTextField: UITextField = {
         let textField = UITextField()
@@ -56,6 +53,7 @@ final class BMIViewController: UIViewController {
         
         configureHierarchy()
         configureLayout()
+        bindClosure()
     }
     
     // MARK: - Set Hierarchy
@@ -95,6 +93,18 @@ final class BMIViewController: UIViewController {
         }
     }
     
+    // MARK: - Bind Closure
+    
+    private func bindClosure() {
+        bmiViewModel.result = { title, message in
+            if title == "BMI" {
+                self.resultLabel.text = title + message
+            } else {
+                self.showAlert(title: title, message: message)
+            }
+        }
+    }
+    
     // MARK: - Action
     
     // 뷰의 빈곳 터치 시 키보드 내리기
@@ -104,49 +114,9 @@ final class BMIViewController: UIViewController {
     
     // 결과 버튼 클릭 시
     @objc private func resultButtonTapped() {
-        do {
-            try isValidBMI()
-            resultLabel.text = "BMI: \(bmi)"
-        } catch {
-            switch error {
-            case .isNotIntHeight:
-                showAlert(title: "경고", message: "키에는 정수를 입력해야합니다")
-            case .outOfHeight:
-                showAlert(title: "경고", message: "입력한 키가 정말 맞습니까?")
-            case .isNotIntWeight:
-                showAlert(title: "경고", message: "체중에는 정수를 입력해야합니다")
-            case .outOfWeight:
-                showAlert(title: "경고", message: "입력한 체중이 정말 맞습니까?")
-            }
-        }
+        bmiViewModel.height = heightTextField.text
+        bmiViewModel.weight = weightTextField.text
+        
         view.endEditing(true)
-    }
-    
-    //MARK: - BMI 유효성 검사
-    
-    @discardableResult
-    private func isValidBMI() throws(BMIValidError) -> Bool {
-        guard let height = heightTextField.text,
-              let weight = weightTextField.text else {
-            return false
-        }
-        
-        if Int(height) == nil {
-            throw .isNotIntHeight
-        }
-        
-        if !(100...200).contains(Int(height)!) {
-            throw .outOfHeight
-        }
-        
-        if Int(weight) == nil {
-            throw .isNotIntWeight
-        }
-        
-        if !(20...200).contains(Int(weight)!) {
-            throw .outOfWeight
-        }
-        
-        return true
     }
 }

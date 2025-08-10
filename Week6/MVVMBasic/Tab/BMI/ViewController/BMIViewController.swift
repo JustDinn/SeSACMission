@@ -6,15 +6,11 @@
 //
 
 import UIKit
+import SnapKit
 
-private enum BMIValidError: Error {
-    case isNotIntHeight
-    case outOfHeight
-    case isNotIntWeight
-    case outOfWeight
-}
-
-class BMIViewController: UIViewController {
+final class BMIViewController: UIViewController {
+    
+    // MARK: - Component
     
     private var bmi: String {
         let height = (Double(heightTextField.text!) ?? 0) / 100
@@ -23,48 +19,57 @@ class BMIViewController: UIViewController {
         return String(format: "%.2f", weight / (height * height))
     }
     
-    let heightTextField: UITextField = {
+    private let heightTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "키를 입력해주세요"
         textField.borderStyle = .roundedRect
         return textField
     }()
-    let weightTextField: UITextField = {
+    
+    private let weightTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "몸무게를 입력해주세요"
         textField.borderStyle = .roundedRect
         return textField
     }()
-    let resultButton: UIButton = {
+    
+    private lazy var resultButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .systemBlue
         button.setTitle("클릭", for: .normal)
         button.layer.cornerRadius = 8
+        button.addTarget(self, action: #selector(resultButtonTapped), for: .touchUpInside)
         return button
     }()
-    let resultLabel: UILabel = {
+    
+    private let resultLabel: UILabel = {
         let label = UILabel()
         label.text = "여기에 결과를 보여주세요"
         label.textAlignment = .center
         return label
     }()
     
+    // MARK: - Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         configureHierarchy()
         configureLayout()
-        
-        resultButton.addTarget(self, action: #selector(resultButtonTapped), for: .touchUpInside)
     }
     
-    func configureHierarchy() {
+    // MARK: - Set Hierarchy
+    
+    private func configureHierarchy() {
         view.addSubview(heightTextField)
         view.addSubview(weightTextField)
         view.addSubview(resultButton)
         view.addSubview(resultLabel)
     }
     
-    func configureLayout() {
+    // MARK: - Set Constraints
+    
+    private func configureLayout() {
         heightTextField.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(20)
             make.horizontalEdges.equalToSuperview().inset(20)
@@ -90,11 +95,15 @@ class BMIViewController: UIViewController {
         }
     }
     
+    // MARK: - Action
+    
+    // 뷰의 빈곳 터치 시 키보드 내리기
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }
     
-    @objc func resultButtonTapped() {
+    // 결과 버튼 클릭 시
+    @objc private func resultButtonTapped() {
         do {
             try isValidBMI()
             resultLabel.text = "BMI: \(bmi)"

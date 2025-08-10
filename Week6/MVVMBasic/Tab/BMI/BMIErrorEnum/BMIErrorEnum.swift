@@ -8,6 +8,8 @@
 import Foundation
 
 enum BMIValidError: Error {
+    case isHeightEmpty
+    case isWeightEmpty
     case isNotIntHeight
     case outOfHeight
     case isNotIntWeight

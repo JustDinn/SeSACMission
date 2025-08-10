@@ -13,12 +13,16 @@ final class BMIViewModel {
     
     var height: String? = "" {
         didSet {
-            updateMessage()
+            if !isHeightOrWeightEmpty {
+                updateMessage()
+            }
         }
     }
     var weight: String? = "" {
         didSet {
-            updateMessage()
+            if !isHeightOrWeightEmpty {
+                updateMessage()
+            }
         }
     }
     var result: ((String, String) -> Void)?
@@ -29,6 +33,14 @@ final class BMIViewModel {
         
         return String(format: "%.2f", weight / (height * height))
     }
+    private var isHeightOrWeightEmpty: Bool {
+        guard let height,
+              let weight else {
+            return true
+        }
+        return height.isEmpty || weight.isEmpty
+    }
+    
     private var title = ""
     private var message = ""
     
@@ -41,6 +53,10 @@ final class BMIViewModel {
             message = "\(bmi)"
         } catch {
             switch error {
+            case .isHeightEmpty:
+                message = "키에 아무것도 입력하지 않았습니다"
+            case .isWeightEmpty:
+                message = "체중에 아무것도 입력하지 않았습니다"
             case .isNotIntHeight:
                 message = "키에는 정수를 입력해야합니다"
             case .outOfHeight:
@@ -66,6 +82,16 @@ final class BMIViewModel {
         guard let height,
               let weight else {
             throw .unknownError
+        }
+        
+        // 키가 빈 값일 경우
+        if height.isEmpty {
+            throw .isHeightEmpty
+        }
+        
+        // 몸무게가 빈 값일 경우
+        if weight.isEmpty {
+            throw .isWeightEmpty
         }
         
         // 키 정수 변환 실패

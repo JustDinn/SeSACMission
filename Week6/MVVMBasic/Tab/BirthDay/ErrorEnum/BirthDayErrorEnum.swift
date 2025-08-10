@@ -14,4 +14,5 @@ enum DateError: Error {
     case outOfMonth
     case notIntDate
     case outOfDate
+    case unknownError
 }

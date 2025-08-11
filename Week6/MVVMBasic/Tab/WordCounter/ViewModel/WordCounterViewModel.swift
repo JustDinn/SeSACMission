@@ -11,23 +11,15 @@ final class WordCounterViewModel {
     
     // MARK: - Property
     
-    var text: String? = "" {
-        didSet {
-            updateCharacterCount()
+    var input = Observable("")
+    var output = Observable("")
+    
+    // MARK: - Init
+    
+    init() {
+        input.bind { _ in
+            let count = self.input.value.count
+            self.output.value = "현재까지 \(count)글자 작성중"
         }
-    }
-    
-    var result: ((String) -> Void)?
-    
-    // MARK: - Update CharacterCount
-    
-    private func updateCharacterCount() {
-        guard let text else {
-            result?("입력한 글자에 문제가 생겼습니다")
-            return
-        }
-        
-        let count = text.count
-        result?("현재까지 \(count)글자 작성중")
     }
 }

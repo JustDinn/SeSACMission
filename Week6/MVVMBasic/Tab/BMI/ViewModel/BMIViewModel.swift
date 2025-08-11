@@ -11,45 +11,37 @@ final class BMIViewModel {
     
     // MARK: - Property
     
-    var height: String? = "" {
-        didSet {
-            if !isHeightOrWeightEmpty {
-                updateMessage()
-            }
-        }
-    }
-    var weight: String? = "" {
-        didSet {
-            if !isHeightOrWeightEmpty {
-                updateMessage()
-            }
-        }
-    }
-    var result: ((String, String) -> Void)?
-    
     private var bmi: String {
-        let height = (Double(height!) ?? 0) / 100
-        let weight = Double(weight!) ?? 0
+        let height = (Double(height.value) ?? 0) / 100
+        let weight = Double(weight.value) ?? 0
         
         return String(format: "%.2f", weight / (height * height))
     }
-    private var isHeightOrWeightEmpty: Bool {
-        guard let height,
-              let weight else {
-            return true
-        }
-        return height.isEmpty || weight.isEmpty
-    }
-    
-    private var title = ""
     private var message = ""
+    
+    // MARK: - Observable
+    
+    var weight = Observable("")
+    var height = Observable("")
+    var bmiResult = Observable("")
+    
+    // MARK: - Init
+    
+    init() {
+        weight.bind { _ in
+            self.updateMessage()
+        }
+        
+        height.bind { _ in
+            self.updateMessage()
+        }
+    }
     
     // MARK: - 메시지 업데이트
     
     private func updateMessage() {
         do {
             try isValidBMI()
-            title = "BMI"
             message = "\(bmi)"
         } catch {
             switch error {
@@ -68,9 +60,8 @@ final class BMIViewModel {
             case .unknownError:
                 message = "알 수 없는 에러가 발생했습니다"
             }
-            title = "경고"
         }
-        result?(title, message)
+        bmiResult.value = message
     }
     
     //MARK: - BMI 유효성 검사
@@ -78,11 +69,8 @@ final class BMIViewModel {
     @discardableResult
     private func isValidBMI() throws(BMIValidError) -> Bool {
         
-        // 키, 몸무게 옵셔널 바인딩 실패
-        guard let height,
-              let weight else {
-            throw .unknownError
-        }
+        let height = height.value
+        let weight = weight.value
         
         // 키가 빈 값일 경우
         if height.isEmpty {

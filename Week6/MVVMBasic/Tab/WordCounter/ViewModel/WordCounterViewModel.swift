@@ -17,8 +17,8 @@ final class WordCounterViewModel {
     // MARK: - Init
     
     init() {
-        input.bind { _ in
-            let count = self.input.value.count
+        input.bind { text in
+            let count = text.count
             self.output.value = "현재까지 \(count)글자 작성중"
         }
     }

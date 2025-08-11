@@ -8,11 +8,13 @@
 import Foundation
 
 enum DateError: Error {
+    case isEmptyYear
     case notIntYear
     case outOfYear
+    case isEmptyMonth
     case notIntMonth
     case outOfMonth
+    case isEmptyDate
     case notIntDate
     case outOfDate
-    case unknownError
 }

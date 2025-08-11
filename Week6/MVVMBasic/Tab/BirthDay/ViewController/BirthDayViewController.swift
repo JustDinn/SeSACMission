@@ -63,7 +63,7 @@ final class BirthDayViewController: UIViewController {
         
         configureHierarchy()
         configureLayout()
-        bindClosure()
+        bind()
     }
     
     // MARK: - Set Hierarchy
@@ -137,17 +137,17 @@ final class BirthDayViewController: UIViewController {
     }
     
     @objc func resultButtonTapped() {
-        birthDayViewModel.year = yearTextField.text
-        birthDayViewModel.month = monthTextField.text
-        birthDayViewModel.date = dateTextField.text
+        birthDayViewModel.year.value = yearTextField.text!
+        birthDayViewModel.month.value = monthTextField.text!
+        birthDayViewModel.date.value = dateTextField.text!
         
         view.endEditing(true)
     }
     
-    // MARK: - Bind Closure
+    // MARK: - Bind
     
-    private func bindClosure() {
-        birthDayViewModel.result = { message in
+    private func bind() {
+        birthDayViewModel.output.bind { message in
             self.resultLabel.text = message
         }
     }

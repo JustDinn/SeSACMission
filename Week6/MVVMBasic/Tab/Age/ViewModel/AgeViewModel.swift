@@ -9,14 +9,21 @@ import Foundation
 
 final class AgeViewModel {
     
-    // MARK: - Property
+    // MARK: - Observable
     
-    var age: String? = "" {
-        didSet {
+    var age = Observable("")
+    var output = Observable("")
+    
+    // MARK: - Init
+    
+    init() {
+        age.bind { age in
+            var message = ""
+            
             do {
-                try isValidAge()
-                message = "나이 유효성 검사 통과: \(age!)"
-            } catch {
+                try self.isValidAge(age: age)
+                message = "나이 유효성 검사 통과: \(age)"
+            } catch let error as AgeValidError {
                 switch error {
                 case .empty:
                     message = "나이 입력 비었음"
@@ -24,25 +31,18 @@ final class AgeViewModel {
                     message = "나이 정수 변환 실패"
                 case .outOfRange:
                     message = "인간의 나이를 벗어난 당신은 외계인👽"
-                case .unknownError:
-                    message = "예상치 못한 에러가 발생했습니다"
                 }
+            } catch {
+                message = "예상치 못한 에러가 발생했습니다"
             }
-            result?(message)
+            self.output.value = message
         }
     }
-    private var message = ""
-    var result: ((String) -> Void)?
     
     // MARK: - 나이 유효성 검사
     
     @discardableResult
-    private func isValidAge() throws(AgeValidError) -> Bool {
-        
-        // age 옵셔널 바인딩 실패할 경우
-        guard let age else {
-            throw .unknownError
-        }
+    private func isValidAge(age: String) throws(AgeValidError) -> Bool {
         
         // age가 빈 값일 경우
         if age.isEmpty {

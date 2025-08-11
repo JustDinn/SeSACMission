@@ -43,7 +43,7 @@ final class WordCounterViewController: UIViewController {
         
         setupUI()
         setupConstraints()
-        bindClosure()
+        bind()
     }
      
     // MARK: - Set UI
@@ -75,9 +75,9 @@ final class WordCounterViewController: UIViewController {
     
     // MARK: - Bind Closure
     
-    private func bindClosure() {
-        wordCounterViewModel.result = { message in
-            self.countLabel.text = message
+    private func bind() { 
+        wordCounterViewModel.output.bind { text in
+            self.countLabel.text = text
         }
     }
 }
@@ -88,6 +88,6 @@ extension WordCounterViewController: UITextViewDelegate {
     
     // 텍스트뷰 입력값 변경
     func textViewDidChange(_ textView: UITextView) {
-        wordCounterViewModel.text = textView.text
+        wordCounterViewModel.input.value = textView.text
     }
 }

@@ -11,5 +11,5 @@ enum CurrencyErrorEnum: Error {
     case isEmpty
     case isNotInt
     case isNegativeInt
-    case unknownError
+//    case unknownError
 }

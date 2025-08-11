@@ -104,8 +104,25 @@ class MapViewController: UIViewController {
             self.mapView.showAnnotations(annotations, animated: true)
         }
         
-        let alert2Action = UIAlertAction(title: "얼럿 2", style: .default) { _ in
-            print("얼럿 2가 선택되었습니다.")
+        let alert2Action = UIAlertAction(title: "카페", style: .default) { _ in
+            self.mapView.removeAnnotations(self.mapView.annotations)
+            
+            var annotations: [MKPointAnnotation] = []
+            
+            self.restaurantList.filter { $0.category == "카페" }.forEach {
+                let annotation = MKPointAnnotation()
+                
+                annotation.coordinate = CLLocationCoordinate2D(
+                    latitude: $0.latitude,
+                    longitude: $0.longitude
+                )
+                annotation.title = $0.name
+                annotation.subtitle = "\($0.category) | \($0.price)원"
+                
+                annotations.append(annotation)
+            }
+            self.mapView.addAnnotations(annotations)
+            self.mapView.showAnnotations(annotations, animated: true)
         }
         
         let alert3Action = UIAlertAction(title: "얼럿 3", style: .default) { _ in

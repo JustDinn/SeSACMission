@@ -34,9 +34,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let wordCounterVC = WordCounterViewController()
         wordCounterVC.tabBarItem = UITabBarItem(title: "글자수 세기", image: UIImage(systemName: "pencil.and.ellipsis.rectangle"), tag: 4)
         
+        let mapVC = MapViewController()
+        mapVC.tabBarItem = UITabBarItem(title: "지도", image: UIImage(systemName: "map"), tag: 5)
         
         tabBarController.viewControllers = [
-            ageVC, bmiVC, birthDayVC, currencyVC, wordCounterVC
+            ageVC, bmiVC, birthDayVC, currencyVC, wordCounterVC, mapVC
         ]
         tabBarController.tabBar.tintColor = .systemBlue
         tabBarController.tabBar.unselectedItemTintColor = .systemGray

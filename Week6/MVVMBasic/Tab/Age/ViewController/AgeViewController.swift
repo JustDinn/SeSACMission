@@ -42,7 +42,7 @@ final class AgeViewController: UIViewController {
         
         configureHierarchy()
         configureLayout()
-        bindClosure()
+        bind()
     }
     
     // MARK: - Set Hierarchy
@@ -78,10 +78,10 @@ final class AgeViewController: UIViewController {
         }
     }
     
-    // MARK: - Bind Closure
+    // MARK: - Bind
     
-    private func bindClosure() {
-        ageViewModel.result = { message in
+    private func bind() {
+        ageViewModel.output.bind { message in
             self.label.text = message
         }
     }
@@ -93,7 +93,7 @@ final class AgeViewController: UIViewController {
     }
     
     @objc func resultButtonTapped() {
-        ageViewModel.age = textField.text
+        ageViewModel.age.value = textField.text!
         
         view.endEditing(true)
     }

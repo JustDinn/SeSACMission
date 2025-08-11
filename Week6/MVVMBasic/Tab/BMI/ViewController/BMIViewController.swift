@@ -53,7 +53,7 @@ final class BMIViewController: UIViewController {
         
         configureHierarchy()
         configureLayout()
-        bindClosure()
+        bind()
     }
     
     // MARK: - Set Hierarchy
@@ -93,15 +93,11 @@ final class BMIViewController: UIViewController {
         }
     }
     
-    // MARK: - Bind Closure
+    // MARK: - Bind
     
-    private func bindClosure() {
-        bmiViewModel.result = { title, message in
-            if title == "BMI" {
-                self.resultLabel.text = title + message
-            } else {
-                self.showAlert(title: title, message: message)
-            }
+    private func bind() {
+        bmiViewModel.bmiResult.bind { message in
+            self.resultLabel.text = message
         }
     }
     
@@ -114,8 +110,8 @@ final class BMIViewController: UIViewController {
     
     // 결과 버튼 클릭 시
     @objc private func resultButtonTapped() {
-        bmiViewModel.height = heightTextField.text
-        bmiViewModel.weight = weightTextField.text
+        bmiViewModel.height.value = heightTextField.text!
+        bmiViewModel.weight.value = weightTextField.text!
         
         view.endEditing(true)
     }

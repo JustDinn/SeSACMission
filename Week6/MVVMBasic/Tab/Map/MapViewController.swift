@@ -146,14 +146,38 @@ class MapViewController: UIViewController {
             self.mapView.showAnnotations(annotations, animated: true)
         }
         
+        let alert4Action = UIAlertAction(title: "분식", style: .default) { _ in
+            self.mapView.removeAnnotations(self.mapView.annotations)
+            
+            var annotations: [MKPointAnnotation] = []
+            
+            self.restaurantList.filter { $0.category == "분식" }.forEach {
+                let annotation = MKPointAnnotation()
+                
+                annotation.coordinate = CLLocationCoordinate2D(
+                    latitude: $0.latitude,
+                    longitude: $0.longitude
+                )
+                annotation.title = $0.name
+                annotation.subtitle = "\($0.category) | \($0.price)원"
+                
+                annotations.append(annotation)
+            }
+            self.mapView.addAnnotations(annotations)
+            self.mapView.showAnnotations(annotations, animated: true)
+        }
+        
         let cancelAction = UIAlertAction(title: "취소", style: .cancel) { _ in
             print("취소가 선택되었습니다.")
         }
         
-        alertController.addAction(alert1Action)
-        alertController.addAction(alert2Action)
-        alertController.addAction(alert3Action)
-        alertController.addAction(cancelAction)
+        [
+            alert1Action,
+            alert2Action,
+            alert3Action,
+            alert4Action,
+            cancelAction
+        ].forEach(alertController.addAction)
          
         present(alertController, animated: true, completion: nil)
     }

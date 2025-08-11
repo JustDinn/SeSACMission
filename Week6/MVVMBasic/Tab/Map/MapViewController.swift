@@ -10,6 +10,10 @@ import MapKit
 import SnapKit
 
 class MapViewController: UIViewController {
+    
+    // MARK: - Property
+    
+    private let restaurantList = RestaurantList.restaurantArray
      
     private let mapView = MKMapView()
      
@@ -18,6 +22,7 @@ class MapViewController: UIViewController {
         setupUI()
         setupMapView()
         addSeoulStationAnnotation()
+        addRestaurantListAnnotation()
     }
      
     private func setupUI() {
@@ -42,14 +47,6 @@ class MapViewController: UIViewController {
         mapView.mapType = .standard
         mapView.showsUserLocation = true
         mapView.userTrackingMode = .none
-         
-        let seoulStationCoordinate = CLLocationCoordinate2D(latitude: 37.5547, longitude: 126.9706)
-        let region = MKCoordinateRegion(
-            center: seoulStationCoordinate,
-            latitudinalMeters: 2000,
-            longitudinalMeters: 2000
-        )
-        mapView.setRegion(region, animated: true)
     }
     
     private func addSeoulStationAnnotation() {
@@ -58,6 +55,25 @@ class MapViewController: UIViewController {
         annotation.title = "서울역"
         annotation.subtitle = "대한민국 서울특별시"
         mapView.addAnnotation(annotation)
+    }
+    
+    private func addRestaurantListAnnotation() {
+        var annotations: [MKPointAnnotation] = []
+        
+        restaurantList.forEach {
+            let annotation = MKPointAnnotation()
+            
+            annotation.coordinate = CLLocationCoordinate2D(
+                latitude: $0.latitude,
+                longitude: $0.longitude
+            )
+            annotation.title = $0.name
+            annotation.subtitle = "\($0.category) | \($0.price)원"
+            
+            annotations.append(annotation)
+        }
+        mapView.addAnnotations(annotations)
+        mapView.showAnnotations(annotations, animated: true)
     }
      
     @objc private func rightBarButtonTapped() {

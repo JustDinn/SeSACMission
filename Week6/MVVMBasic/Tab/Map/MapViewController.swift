@@ -188,6 +188,27 @@ class MapViewController: UIViewController {
             self.mapView.showAnnotations(annotations, animated: true)
         }
         
+        let alert6Action = UIAlertAction(title: "전체보기", style: .default) { _ in
+            self.mapView.removeAnnotations(self.mapView.annotations)
+            
+            var annotations: [MKPointAnnotation] = []
+            
+            self.restaurantList.forEach {
+                let annotation = MKPointAnnotation()
+                
+                annotation.coordinate = CLLocationCoordinate2D(
+                    latitude: $0.latitude,
+                    longitude: $0.longitude
+                )
+                annotation.title = $0.name
+                annotation.subtitle = "\($0.category) | \($0.price)원"
+                
+                annotations.append(annotation)
+            }
+            self.mapView.addAnnotations(annotations)
+            self.mapView.showAnnotations(annotations, animated: true)
+        }
+        
         let cancelAction = UIAlertAction(title: "취소", style: .cancel) { _ in
             print("취소가 선택되었습니다.")
         }
@@ -198,6 +219,7 @@ class MapViewController: UIViewController {
             alert3Action,
             alert4Action,
             alert5Action,
+            alert6Action,
             cancelAction
         ].forEach(alertController.addAction)
          

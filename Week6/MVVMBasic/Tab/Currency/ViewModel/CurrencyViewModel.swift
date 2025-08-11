@@ -11,39 +11,41 @@ final class CurrencyViewModel {
     
     // MARK: - Property
     
-    var money: String? = "" {
-        didSet {
+    var resultMessage = ""
+    
+    // MARK: - Observable
+    
+    var input = Observable("")
+    var output = Observable("")
+    
+    // MARK: - Init
+    
+    init() {
+        input.bind { text in
             do {
-                try isValid()
-                wonToDollar()
-            } catch {
+                try self.isValid(money: text)
+                self.wonToDollar(money: text)
+            } catch let error as CurrencyErrorEnum{
                 switch error {
                 case .isEmpty:
-                    resultMessage = "아무것도 입력하지 않았습니다"
+                    self.resultMessage = "아무것도 입력하지 않았습니다"
                 case .isNotInt:
-                    resultMessage = "정수만 입력 가능합니다"
+                    self.resultMessage = "정수만 입력 가능합니다"
                 case .isNegativeInt:
-                    resultMessage = "음수를 입력했습니다"
-                case .unknownError:
-                    resultMessage = "알 수 없는 에러가 발생했습니다"
+                    self.resultMessage = "음수를 입력했습니다"
                 }
+            } catch {
+                self.resultMessage = "알 수 없는 에러가 발생했습니다"
             }
-            result?(resultMessage)
+            self.output.value = self.resultMessage
         }
     }
-    var resultMessage = ""
-    var result: ((String) -> Void)?
     
     // MARK: - Method
     
     // 입력 텍스트 유효성 검사
     @discardableResult
-    private func isValid() throws(CurrencyErrorEnum) -> Bool {
-        
-        // 옵셔널 바인딩 실패
-        guard let money else {
-            throw .unknownError
-        }
+    private func isValid(money: String) throws(CurrencyErrorEnum) -> Bool {
         
         // 입력 텍스트가 빈 값
         if money.isEmpty {
@@ -64,9 +66,9 @@ final class CurrencyViewModel {
     }
     
     // 원화 -> 달러 변환
-    private func wonToDollar() {
+    private func wonToDollar(money: String) {
         let exchangeRate = 1350.0 // 실제 환율 데이터로 대체 필요
-        let convertedAmount = Double(money!)! / exchangeRate
+        let convertedAmount = Double(money)! / exchangeRate
         
         resultMessage = String(format: "%.2f USD (약 $%.2f)", convertedAmount, convertedAmount)
     }

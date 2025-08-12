@@ -8,10 +8,13 @@
 import UIKit
 import SnapKit
 import Then
-import Toast
 
 final class SearchViewController: UIViewController, InitialSetProtocol {
 
+    // MARK: - Property
+    
+    private let searchViewModel = SearchViewModel()
+    
     // MARK: - Component
     
     private lazy var searchBar = UISearchBar().then {
@@ -35,6 +38,7 @@ final class SearchViewController: UIViewController, InitialSetProtocol {
         setViewController()
         setHierarchy()
         setConstraints()
+        bind()
     }
     
     // MARK: - Set UI
@@ -68,6 +72,14 @@ final class SearchViewController: UIViewController, InitialSetProtocol {
         }
     }
     
+    // MARK: - Bind
+    
+    private func bind() {
+        searchViewModel.output.lazyBind { message in
+            self.view.showToast(message)
+        }
+    }
+    
     // MARK: Action
     
     @objc private func dismissKeyboard() {
@@ -81,36 +93,8 @@ extension SearchViewController: UITextFieldDelegate {
 
     // returnKey 탭
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if isEnablePush {
-            guard let keyword = searchBar.searchTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) else {
-                print("<< 서치바 텍스트 에러")
-                return false
-            }
-            searchBar.searchTextField.endEditing(true)
-            pushSearchResultVC(keyword: keyword)
-            
-            return true
-        }
-        return false
-    }
-}
-
-// MARK: - TextField Validate
-
-extension SearchViewController {
-    
-    // 2글자 이상인지 검증
-    private var isEnablePush: Bool {
-        if let searchBarText = searchBar.searchTextField.text {
-            if searchBarText.trimmingCharacters(in: .whitespacesAndNewlines).count >= 2 {
-                return true
-            } else {
-                let centerX = view.frame.width / 2
-                let currentY = view.frame.height * 0.25
-                
-                self.view.makeToast("2글자 이상 입력해주세요 :D", duration: 1.5, point: CGPoint(x: centerX, y: currentY), title: nil, image: nil){ _ in }
-            }
-        }
-        return false
+        searchViewModel.input.value = textField.text
+        
+        return true
     }
 }

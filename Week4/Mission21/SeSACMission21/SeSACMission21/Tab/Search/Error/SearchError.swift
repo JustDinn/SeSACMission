@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+enum SearchError: Error {
+    case unknownError
+    case underTextCount
+}

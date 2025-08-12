@@ -13,6 +13,7 @@ final class SearchViewModel {
     
     var input: Observable<String?> = Observable("")
     var output: Observable<String> = Observable("")
+    var outputPushed: Observable<String> = Observable("")
     var message = ""
     
     // MARK: - Init
@@ -24,6 +25,7 @@ final class SearchViewModel {
             do {
                 try self.isEnablePush(keyword: keyword)
                 message = "환영합니다 :D"
+                outputPushed.value = keyword!
             } catch let error as SearchError {
                 switch error {
                 case .unknownError:

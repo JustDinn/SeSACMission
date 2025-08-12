@@ -78,6 +78,10 @@ final class SearchViewController: UIViewController, InitialSetProtocol {
         searchViewModel.output.lazyBind { message in
             self.view.showToast(message)
         }
+        
+        searchViewModel.outputPushed.lazyBind { keyword in
+            self.pushSearchResultVC(keyword: keyword)
+        }
     }
     
     // MARK: Action

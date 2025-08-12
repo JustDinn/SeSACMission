@@ -11,10 +11,12 @@ import Then
 
 final class SearchResultViewController: UIViewController, InitialSetProtocol {
 
+    // MARK: - ViewModel
+    
+    private let searchResultViewModel = SearchResultViewModel()
+    
     // MARK: - Properties
     
-    private let networkManager = NetworkManager.shared
-    private let queryData = QueryData.shared
     private var searchedResult: [SearchResultModel] = []
     private var recommendResult: [SearchResultModel] = []
     
@@ -22,6 +24,9 @@ final class SearchResultViewController: UIViewController, InitialSetProtocol {
     
     private let resultLabel = UILabel().then {
         $0.setLabelUI("", size: 15, weight: .semibold, color: .systemGreen)
+        
+        $0.layer.borderColor = UIColor.red.cgColor
+        $0.layer.borderWidth = 1
     }
     
     private let filterScrollView = UIScrollView()
@@ -72,15 +77,15 @@ final class SearchResultViewController: UIViewController, InitialSetProtocol {
     // MARK: - Life Cycle
     
     init(keyword: String) {
-        queryData.keyword = keyword
+        searchResultViewModel.keyword.value = keyword
         super.init(nibName: nil, bundle: nil)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        searchKeyword(queryData: queryData)
-        searchKeyword(queryData: queryData, isRecommendSearching: true)
+//        searchKeyword(queryData: queryData)
+//        searchKeyword(queryData: queryData, isRecommendSearching: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -89,12 +94,13 @@ final class SearchResultViewController: UIViewController, InitialSetProtocol {
         setViewController()
         setHierarchy()
         setConstraints()
+        bind()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        queryData.reset()
+//        queryData.reset()
     }
     
     @available(*, unavailable)
@@ -105,7 +111,7 @@ final class SearchResultViewController: UIViewController, InitialSetProtocol {
     // MARK: - Set ViewController
     
     func setViewController() {
-        setNaviBar(queryData.keyword)
+//        setNaviBar(queryData.keyword)
         view.backgroundColor = .black
     }
     
@@ -161,12 +167,24 @@ final class SearchResultViewController: UIViewController, InitialSetProtocol {
     // MARK: - Action
     
     @objc private func didTapFilterButton(_ sender: UIButton) {
-        let selectedFilter = Sort.filters[sender.tag].sort
+//        let selectedFilter = Sort.filters[sender.tag].sort
+//        
+//        queryData.sort = selectedFilter
+//        queryData.pageNumber = 1
+//        searchedResult.removeAll()
+//        searchKeyword(queryData: queryData, isScrollToTop: true)
+    }
+    
+    // MARK: - Bind
+    
+    private func bind() {
+        searchResultViewModel.searchedResult.lazyBind { searchedResults in
+            self.updateUI(isScrollToTop: false)
+        }
         
-        queryData.sort = selectedFilter
-        queryData.pageNumber = 1
-        searchedResult.removeAll()
-        searchKeyword(queryData: queryData, isScrollToTop: true)
+        searchResultViewModel.searchedCount.lazyBind { count in
+            self.resultLabel.text = "\(count)개의 검색 결과"
+        }
     }
 }
 
@@ -177,7 +195,7 @@ extension SearchResultViewController: UICollectionViewDataSource, UICollectionVi
     // 섹션당 아이템 개수
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == resultCollectionView {
-            return searchedResult.count
+            return searchResultViewModel.searchedResult.value.count
         } else if collectionView == recommendCollectionView {
             return recommendResult.count
         } else {
@@ -191,7 +209,7 @@ extension SearchResultViewController: UICollectionViewDataSource, UICollectionVi
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchResultCollectionViewCell.identifier, for: indexPath) as! SearchResultCollectionViewCell
             let item = indexPath.item
             
-            cell.configureCell(with: searchedResult[item])
+            cell.configureCell(with: searchResultViewModel.searchedResult.value[item])
             
             return cell
         } else if collectionView == recommendCollectionView {
@@ -211,9 +229,8 @@ extension SearchResultViewController: UICollectionViewDataSource, UICollectionVi
         if collectionView == resultCollectionView {
             let index = indexPath.item
             
-            if index == searchedResult.count - 6 {
-                queryData.pageNumber += 1
-                searchKeyword(queryData: queryData)
+            if index == searchResultViewModel.searchedResult.value.count - 6 {
+                searchResultViewModel.pageNumber.value += 1
             }
         }
     }
@@ -223,101 +240,9 @@ extension SearchResultViewController: UICollectionViewDataSource, UICollectionVi
 
 extension SearchResultViewController {
     
-    // 네이버 쇼핑 검색 API Get 요청
-    
-    private func searchKeyword(queryData: QueryData, isScrollToTop: Bool = false, isRecommendSearching: Bool = false) {
-        
-        // 검색 기록 추가
-        queryData.searchedHistory.insert(queryData.keyword)
-        
-        // 네이버 쇼핑 검색 API 호출
-        networkManager.searchKeyword(query: queryData, isRecommendSearching: isRecommendSearching) { result in
-            switch result {
-            case .success(let searchedResult):
-                // 첫 API 호출시에만 마지막 페이지 개수 계산
-                if self.queryData.lastPage == nil {
-                    self.queryData.lastPage = Int(ceil(Double(searchedResult.totalCount) / Double(self.queryData.pageSize)))
-                }
-                
-                // 최대 페이지 설정
-                if let lastPage = self.queryData.lastPage {
-                    let pageNumber = self.queryData.pageNumber
-                    
-                    if pageNumber <= min(lastPage, 1000) {
-                        // TODO: API 호출과 UI 업데이트 강한 결합. 분리하기?
-                        if isRecommendSearching {
-                            self.recommendResult.append(contentsOf: searchedResult.items)
-                            self.updateUI(searchedResult: searchedResult, isRecommendSearching: true, isScrollToTop: isScrollToTop)
-                        } else {
-                            self.searchedResult.append(contentsOf: searchedResult.items)
-                            self.updateUI(searchedResult: searchedResult, isScrollToTop: isScrollToTop)
-                        }
-                    }
-                }
-                
-            case .failure(let error):
-                var message: String
-                
-                if let networkError = error as? NetworkError {
-                    switch networkError {
-                    case .responseFail(let statusCode, let errorMessage):
-                        print("<< 네이버 쇼핑 검색 API 응답 실패 - 상태코드: \(statusCode), 메시지: \(errorMessage ?? "없음")")
-                        
-                        switch statusCode {
-                        case 400:
-                            print("<< 네이버 쇼핑 검색 API: 잘못된 요청")
-                            message = "[\(statusCode)] 잘못된 요청입니다"
-                            
-                        case 401:
-                            print("<< 네이버 쇼핑 검색 API: 인증 실패")
-                            message = "[\(statusCode)] 인증 실패(API Key, Cliend ID 누락 혹은 만료)"
-                            
-                        case 403:
-                            print("<< 네이버 쇼핑 검색 API: 접근 거부")
-                            message = "[\(statusCode)] 접근 거부"
-                        
-                        case 404:
-                            print("<< 네이버 쇼핑 검색 API: 찾을 수 없음")
-                            message = "[\(statusCode)] 서버 찾을 수 없음"
-                            
-                        case 500...599:
-                            print("<< 네이버 쇼핑 검색 API: 서버 오류")
-                            message = "[\(statusCode)] 서버 에러"
-
-                        default:
-                            print("<< 네이버 쇼핑 검색 API: 기타 오류")
-                            message = "[\(statusCode)] 기타 에러"
-                        }
-                        
-                    case .decodingFailed(let errorMessage):
-                        print("<< 네이버 쇼핑 검색 API: 디코딩 실패 \(errorMessage)")
-                        message = "디코딩 에러"
-                        
-                    case .unknownError:
-                        print("<< 알 수 없는 네트워크 에러")
-                        message = "알 수 없는 네트워크 에러"
-                    }
-                } else {
-                    print("<< 알 수 없는 에러: \(error.localizedDescription)")
-                    message = "알 수 없는 에러"
-                }
-                self.showAlert(title: "에러 발생", message: message) { [weak self] in
-                    guard let self = self else { return }
-                    
-                    self.searchKeyword(
-                        queryData: queryData,
-                        isScrollToTop: isScrollToTop,
-                        isRecommendSearching: isRecommendSearching
-                    )
-                }
-            }
-        }
-    }
-    
     // API 호출 후 UI 업데이트
-    private func updateUI(searchedResult: Search, isRecommendSearching: Bool = false, isScrollToTop: Bool) {
+    private func updateUI(isRecommendSearching: Bool = false, isScrollToTop: Bool) {
         DispatchQueue.main.async {
-            self.resultLabel.text = "\(searchedResult.totalCount)개의 검색 결과"
             
             if isRecommendSearching{
                 // 애니메이션 효과 없이 새로고침

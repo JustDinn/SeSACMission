@@ -15,18 +15,10 @@ final class SearchResultViewController: UIViewController, InitialSetProtocol {
     
     private let searchResultViewModel = SearchResultViewModel()
     
-    // MARK: - Properties
-    
-    private var searchedResult: [SearchResultModel] = []
-    private var recommendResult: [SearchResultModel] = []
-    
     // MARK: - Component
     
     private let resultLabel = UILabel().then {
         $0.setLabelUI("", size: 15, weight: .semibold, color: .systemGreen)
-        
-        $0.layer.borderColor = UIColor.red.cgColor
-        $0.layer.borderWidth = 1
     }
     
     private let filterScrollView = UIScrollView()
@@ -79,13 +71,6 @@ final class SearchResultViewController: UIViewController, InitialSetProtocol {
     init(keyword: String) {
         searchResultViewModel.keyword.value = keyword
         super.init(nibName: nil, bundle: nil)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-//        searchKeyword(queryData: queryData)
-//        searchKeyword(queryData: queryData, isRecommendSearching: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -178,12 +163,16 @@ final class SearchResultViewController: UIViewController, InitialSetProtocol {
     // MARK: - Bind
     
     private func bind() {
+        searchResultViewModel.searchedCount.lazyBind { count in
+            self.resultLabel.text = "\(count)개의 검색 결과"
+        }
+        
         searchResultViewModel.searchedResult.lazyBind { searchedResults in
             self.updateUI(isScrollToTop: false)
         }
         
-        searchResultViewModel.searchedCount.lazyBind { count in
-            self.resultLabel.text = "\(count)개의 검색 결과"
+        searchResultViewModel.recommendResult.lazyBind { recommendResults in
+            self.updateUI(isRecommendSearching: true, isScrollToTop: false)
         }
     }
 }
@@ -197,7 +186,7 @@ extension SearchResultViewController: UICollectionViewDataSource, UICollectionVi
         if collectionView == resultCollectionView {
             return searchResultViewModel.searchedResult.value.count
         } else if collectionView == recommendCollectionView {
-            return recommendResult.count
+            return searchResultViewModel.recommendResult.value.count
         } else {
             fatalError("collectionView 찾을 수 없음")
         }
@@ -216,7 +205,7 @@ extension SearchResultViewController: UICollectionViewDataSource, UICollectionVi
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecommendCollectionViewCell.identifier, for: indexPath) as! RecommendCollectionViewCell
             let item = indexPath.item
             
-            cell.configureCell(with: recommendResult[item])
+            cell.configureCell(with: searchResultViewModel.recommendResult.value[item])
             
             return cell
         } else {

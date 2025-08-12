@@ -19,6 +19,7 @@ final class SearchResultViewModel {
     var keyword: Observable<String> = Observable("")
     var pageNumber: Observable<Int> = Observable(1)
     var searchedResult: Observable<[SearchResultModel]> = Observable([])
+    var recommendResult: Observable<[SearchResultModel]> = Observable([])
     var searchedCount: Observable<Int> = Observable(0)
     
     // MARK: - Init
@@ -29,6 +30,7 @@ final class SearchResultViewModel {
             
             queryData.keyword = keyword
             searchKeyword(queryData: queryData)
+            searchKeyword(queryData: queryData, isRecommendSearching: true)
         }
         
         pageNumber.lazyBind { [weak self] pageNumber in
@@ -62,18 +64,9 @@ final class SearchResultViewModel {
                     
                     if pageNumber <= min(lastPage, 1000) {
                         if isRecommendSearching {
-                            print("<< 추천 검색")
-//                            self.recommendResult.append(contentsOf: searchedResult.items)
-//                            self.searchedResult.value.append(contentsOf: searchedResult.items)
-//                            self.updateUI(searchedResult: searchedResult, isRecommendSearching: true, isScrollToTop: isScrollToTop)
-                            
-                            // TODO: Update UI
+                            self.recommendResult.value.append(contentsOf: searchedResult.items)
                         } else {
-//                            self.searchedResult.append(contentsOf: searchedResult.items)
                             self.searchedResult.value.append(contentsOf: searchedResult.items)
-//                            self.updateUI(searchedResult: searchedResult, isScrollToTop: isScrollToTop)
-                            
-                            // TODO: Update UI
                         }
                     }
                 }

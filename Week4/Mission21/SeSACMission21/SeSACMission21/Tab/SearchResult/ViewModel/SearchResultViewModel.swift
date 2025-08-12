@@ -84,6 +84,7 @@ final class SearchResultViewModel {
                 if self.queryData.lastPage == nil {
                     self.queryData.lastPage = Int(ceil(Double(searchedResult.totalCount) / Double(self.queryData.pageSize)))
                 }
+                self.searchedCount.value = searchedResult.totalCount
                 
                 // 최대 페이지 설정
                 if let lastPage = self.queryData.lastPage {

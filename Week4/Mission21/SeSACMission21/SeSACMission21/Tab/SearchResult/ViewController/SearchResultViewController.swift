@@ -71,6 +71,7 @@ final class SearchResultViewController: UIViewController, InitialSetProtocol {
     init(keyword: String) {
         searchResultViewModel.keyword.value = keyword
         super.init(nibName: nil, bundle: nil)
+        setNaviBar(keyword)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -97,7 +98,6 @@ final class SearchResultViewController: UIViewController, InitialSetProtocol {
     // MARK: - Set ViewController
     
     func setViewController() {
-//        setNaviBar(queryData.keyword)
         view.backgroundColor = .black
     }
     

@@ -23,6 +23,7 @@ final class SearchResultViewModel {
     var searchedCount: Observable<Int> = Observable(0)
     var errorMessage: Observable<String> = Observable("")
     var retry: Observable<Bool> = Observable(false)
+    var reset: Observable<Bool> = Observable(false)
     
     // MARK: - Init
     
@@ -47,6 +48,12 @@ final class SearchResultViewModel {
             
             searchKeyword(queryData: queryData)
             searchKeyword(queryData: queryData, isRecommendSearching: true)
+        }
+        
+        reset.lazyBind { [weak self] _ in
+            guard let self = self else { return }
+            
+            queryData.reset()
         }
     }
     

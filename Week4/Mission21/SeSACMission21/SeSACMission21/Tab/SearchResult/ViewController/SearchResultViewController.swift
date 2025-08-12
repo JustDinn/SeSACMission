@@ -85,7 +85,8 @@ final class SearchResultViewController: UIViewController, InitialSetProtocol {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-//        queryData.reset()
+        searchResultViewModel.reset.value = true
+        searchResultViewModel.reset.value = false
     }
     
     @available(*, unavailable)

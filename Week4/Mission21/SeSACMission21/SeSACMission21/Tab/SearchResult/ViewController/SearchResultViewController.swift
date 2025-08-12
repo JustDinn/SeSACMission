@@ -174,6 +174,13 @@ final class SearchResultViewController: UIViewController, InitialSetProtocol {
         searchResultViewModel.recommendResult.lazyBind { recommendResults in
             self.updateUI(isRecommendSearching: true, isScrollToTop: false)
         }
+        
+        searchResultViewModel.errorMessage.lazyBind { message in
+            self.showAlert(title: "에러 발생", message: message) {
+                self.searchResultViewModel.retry.value = true
+                self.searchResultViewModel.retry.value = false
+            }
+        }
     }
 }
 

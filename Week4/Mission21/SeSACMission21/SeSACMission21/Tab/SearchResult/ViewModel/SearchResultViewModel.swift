@@ -21,6 +21,8 @@ final class SearchResultViewModel {
     var searchedResult: Observable<[SearchResultModel]> = Observable([])
     var recommendResult: Observable<[SearchResultModel]> = Observable([])
     var searchedCount: Observable<Int> = Observable(0)
+    var errorMessage: Observable<String> = Observable("")
+    var retry: Observable<Bool> = Observable(false)
     
     // MARK: - Init
     
@@ -38,6 +40,13 @@ final class SearchResultViewModel {
             
             queryData.pageNumber = pageNumber
             searchKeyword(queryData: queryData)
+        }
+        
+        retry.lazyBind { [weak self] _ in
+            guard let self = self else { return }
+            
+            searchKeyword(queryData: queryData)
+            searchKeyword(queryData: queryData, isRecommendSearching: true)
         }
     }
     
@@ -117,18 +126,7 @@ final class SearchResultViewModel {
                     print("<< 알 수 없는 에러: \(error.localizedDescription)")
                     message = "알 수 없는 에러"
                 }
-                
-                // TODO: Alert 띄우기
-                
-//                self.showAlert(title: "에러 발생", message: message) { [weak self] in
-//                    guard let self = self else { return }
-//                    
-//                    self.searchKeyword(
-//                        queryData: queryData,
-//                        isScrollToTop: isScrollToTop,
-//                        isRecommendSearching: isRecommendSearching
-//                    )
-//                }
+                self.errorMessage.value = message
             }
         }
     }

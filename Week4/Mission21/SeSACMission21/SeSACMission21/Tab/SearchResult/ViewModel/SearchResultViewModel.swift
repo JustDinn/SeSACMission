@@ -24,6 +24,7 @@ final class SearchResultViewModel {
     var errorMessage: Observable<String> = Observable("")
     var retry: Observable<Bool> = Observable(false)
     var reset: Observable<Bool> = Observable(false)
+    var filterSearch: Observable<Int> = Observable(0)
     
     // MARK: - Init
     
@@ -54,6 +55,16 @@ final class SearchResultViewModel {
             guard let self = self else { return }
             
             queryData.reset()
+        }
+        
+        filterSearch.lazyBind { [weak self] filterID in
+            guard let self = self else { return }
+            let selectedFilter = Sort.filters[filterID].sort
+            
+            queryData.sort = selectedFilter
+            queryData.pageNumber = 1
+            searchedResult.value.removeAll()
+            searchKeyword(queryData: queryData, isScrollToTop: true)
         }
     }
     

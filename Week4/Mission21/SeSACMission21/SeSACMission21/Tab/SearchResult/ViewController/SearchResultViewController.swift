@@ -153,12 +153,7 @@ final class SearchResultViewController: UIViewController, InitialSetProtocol {
     // MARK: - Action
     
     @objc private func didTapFilterButton(_ sender: UIButton) {
-//        let selectedFilter = Sort.filters[sender.tag].sort
-//        
-//        queryData.sort = selectedFilter
-//        queryData.pageNumber = 1
-//        searchedResult.removeAll()
-//        searchKeyword(queryData: queryData, isScrollToTop: true)
+        searchResultViewModel.filterSearch.value = sender.tag
     }
     
     // MARK: - Bind

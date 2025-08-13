@@ -8,7 +8,7 @@
 import Foundation
 
 enum NetworkError: Error {
-    case responseFail(statusCode: Int, errorMessage: String?)
-    case decodingFailed(errorMessage: String)
+    case responseFail(statusCode: Int)
+    case decodingFailed
     case unknownError
 }

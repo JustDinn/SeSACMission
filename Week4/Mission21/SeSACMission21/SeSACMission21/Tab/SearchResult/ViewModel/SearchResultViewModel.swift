@@ -125,7 +125,7 @@ final class SearchResultViewModel {
                     
                     if let networkError = error as? NetworkError {
                         switch networkError {
-                        case .responseFail(let statusCode, let errorMessage):
+                        case .responseFail(let statusCode):
                             switch statusCode {
                             case 400:
                                 message = "[\(statusCode)] 잘못된 요청입니다"
@@ -140,7 +140,7 @@ final class SearchResultViewModel {
                             default:
                                 message = "[\(statusCode)] 기타 에러"
                             }
-                        case .decodingFailed(let errorMessage):
+                        case .decodingFailed:
                             message = "디코딩 에러"
                         case .unknownError:
                             message = "알 수 없는 네트워크 에러"

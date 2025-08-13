@@ -86,8 +86,8 @@ final class SearchResultViewModel {
         queryData.searchedHistory.insert(queryData.keyword)
         
         let query = isRecommendSearching
-                        ? queryData.keyword
-                        : queryData.searchedHistory.randomElement() ?? "가오리"
+                        ? queryData.searchedHistory.randomElement() ?? "가오리"
+                        : queryData.keyword
         
         // 네이버 쇼핑 검색 API 호출
         networkManager.networkRequest(

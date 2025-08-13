@@ -38,6 +38,11 @@ final class ProfileSettingViewController: UIViewController {
         $0.backgroundColor = .gray
     }
     
+    private let validResultLabel = UILabel().then {
+        $0.text = "사용할 수 있는 닉네임이에요"
+        $0.textColor = .red
+    }
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -54,7 +59,8 @@ final class ProfileSettingViewController: UIViewController {
         [
             profileImageBackgroundView,
             nicknameTextField,
-            borderLine
+            borderLine,
+            validResultLabel
         ].forEach(view.addSubview)
         
         [
@@ -85,6 +91,11 @@ final class ProfileSettingViewController: UIViewController {
             $0.top.equalTo(nicknameTextField.snp.bottom).offset(10)
             $0.horizontalEdges.equalToSuperview().inset(15)
             $0.height.equalTo(1)
+        }
+        
+        validResultLabel.snp.makeConstraints {
+            $0.top.equalTo(borderLine.snp.bottom).offset(16)
+            $0.leading.equalTo(nicknameTextField)
         }
     }
     

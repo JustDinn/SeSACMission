@@ -13,8 +13,8 @@ final class ProfileSettingViewController: UIViewController {
 
     // MARK: - Component
     
-    private let profileImageView = UIImageView().then {
-        $0.backgroundColor = .gray
+    private let profileImageBackgroundView = UIImageView().then {
+        $0.backgroundColor = .main
         $0.layer.cornerRadius = 65
         $0.layer.masksToBounds = true
     }
@@ -32,14 +32,14 @@ final class ProfileSettingViewController: UIViewController {
     
     private func setHierarchy() {
         [
-            profileImageView
+            profileImageBackgroundView
         ].forEach(view.addSubview)
     }
     
     // MARK: - Set Constraints
     
     private func setConstraints() {
-        profileImageView.snp.makeConstraints {
+        profileImageBackgroundView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide).offset(20)
             $0.centerX.equalToSuperview()
             $0.width.height.equalTo(130)

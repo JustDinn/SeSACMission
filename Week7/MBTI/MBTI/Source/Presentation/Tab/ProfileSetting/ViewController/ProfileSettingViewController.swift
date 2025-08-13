@@ -48,6 +48,22 @@ final class ProfileSettingViewController: UIViewController {
         $0.font = .systemFont(ofSize: 20, weight: .black)
     }
     
+    private lazy var mbtiCollectionView = UICollectionView(
+        frame: .zero,
+        collectionViewLayout: UICollectionViewFlowLayout()
+    ).then {
+        let flowLayout = UICollectionViewFlowLayout()
+        
+        flowLayout.scrollDirection = .horizontal
+        flowLayout.itemSize = CGSize(width: 44, height: 44)
+        flowLayout.minimumInteritemSpacing = 12
+        flowLayout.minimumLineSpacing = 12
+        
+        $0.collectionViewLayout = flowLayout
+        $0.register(MBTICollectionViewCell.self, forCellWithReuseIdentifier: MBTICollectionViewCell.identifier)
+        $0.dataSource = self
+    }
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -66,7 +82,8 @@ final class ProfileSettingViewController: UIViewController {
             nicknameTextField,
             borderLine,
             validResultLabel,
-            mbtiTitleLabel
+            mbtiTitleLabel,
+            mbtiCollectionView
         ].forEach(view.addSubview)
         
         [
@@ -106,7 +123,14 @@ final class ProfileSettingViewController: UIViewController {
         
         mbtiTitleLabel.snp.makeConstraints {
             $0.top.equalTo(validResultLabel.snp.bottom).offset(40)
-            $0.leading.equalTo(borderLine)
+            $0.leading.equalTo(borderLine.snp.leading).inset(8)
+        }
+        
+        mbtiCollectionView.snp.makeConstraints {
+            $0.top.equalTo(mbtiTitleLabel)
+            $0.trailing.equalTo(borderLine.snp.trailing).inset(8)
+            $0.width.equalTo(212)
+            $0.height.equalTo(100)
         }
     }
     
@@ -118,5 +142,26 @@ final class ProfileSettingViewController: UIViewController {
             
             profileImageView.image = UIImage(named: randomImage)
         }
+        
+        profileSettingViewModel.output.mbtiList.lazyBind { [weak self] mbtiList in
+//            make
+        }
+    }
+}
+
+// MARK: - UICollectionView DataSource
+
+extension ProfileSettingViewController: UICollectionViewDataSource {
+    
+    // 아이템 개수
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 8
+    }
+    
+    // 셀 구성
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MBTICollectionViewCell.identifier, for: indexPath) as! MBTICollectionViewCell
+        
+        return cell
     }
 }

@@ -157,6 +157,7 @@ extension ProfileSettingViewController: UICollectionViewDataSource {
     // 셀 구성
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MBTICollectionViewCell.identifier, for: indexPath) as! MBTICollectionViewCell
+        cell.configureCell(with: profileSettingViewModel.output.mbtiList.value[indexPath.item])
         
         return cell
     }

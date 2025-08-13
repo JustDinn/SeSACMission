@@ -85,8 +85,20 @@ final class SearchResultViewModel {
         // 검색 기록 추가
         queryData.searchedHistory.insert(queryData.keyword)
         
+        let query = isRecommendSearching
+                        ? queryData.keyword
+                        : queryData.searchedHistory.randomElement() ?? "가오리"
+        
         // 네이버 쇼핑 검색 API 호출
-        networkManager.searchKeyword(query: queryData, isRecommendSearching: isRecommendSearching) { result in
+        networkManager.searchKeyword(
+            api: .search(
+                query: query,
+                pageSize: queryData.pageSize.formatted(),
+                sort: queryData.sort,
+                pageNumber: queryData.pageNumber.formatted()
+            ),
+            isRecommendSearching: isRecommendSearching
+        ) { result in
             switch result {
             case .success(let searchedResult):
                 // 첫 API 호출시에만 마지막 페이지 개수 계산

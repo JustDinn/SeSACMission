@@ -17,4 +17,11 @@ enum NetworkRouter {
         }
         return url
     }
+    
+    var endpoint: URL {
+        switch self {
+        case .search:
+            return URL(string: "search/shop.json")!
+        }
+    }
 }

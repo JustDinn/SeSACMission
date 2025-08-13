@@ -11,32 +11,44 @@ final class SearchViewModel {
     
     // MARK: - Observable
     
-    var input: Observable<String?> = Observable("")
-    var output: Observable<String> = Observable("")
-    var outputPushed: Observable<String> = Observable("")
-    var message = ""
+    // Input
+    struct Input {
+        var keyword: Observable<String?> = Observable("")
+    }
+    var input = Input()
+    
+    // Output
+    struct Output {
+        var toastMessage: Observable<String> = Observable("")
+        var pushingKeyword: Observable<String> = Observable("")
+    }
+    var output = Output()
+    
+    // MARK: - Property
+    
+    var toastMessage = ""
     
     // MARK: - Init
     
     init() {
-        input.lazyBind { [weak self] keyword in
+        input.keyword.lazyBind { [weak self] keyword in
             guard let self = self else { return }
             
             do {
                 try self.isEnablePush(keyword: keyword)
-                message = "환영합니다 :D"
-                outputPushed.value = keyword!
+                toastMessage = "환영합니다 :D"
+                output.pushingKeyword.value = keyword!
             } catch let error as SearchError {
                 switch error {
                 case .unknownError:
-                    message = "알 수 없는 에러 발생"
+                    toastMessage = "알 수 없는 에러 발생"
                 case .underTextCount:
-                    message = "2글자 이상 입력해주세요 :D"
+                    toastMessage = "2글자 이상 입력해주세요 :D"
                 }
             } catch {
-                message = "예외 상황 발생"
+                toastMessage = "예외 상황 발생"
             }
-            output.value = message
+            output.toastMessage.value = toastMessage
         }
     }
     

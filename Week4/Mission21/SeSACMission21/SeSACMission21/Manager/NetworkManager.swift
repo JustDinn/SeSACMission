@@ -30,12 +30,12 @@ final class NetworkManager {
                         
                     case .failure(let error):
                         if let statusCode = response.response?.statusCode {
-                            completion(.failure(NetworkError.responseFail(statusCode: statusCode, errorMessage: error.localizedDescription)))
+                            completion(.failure(NetworkError.responseFail(statusCode: statusCode)))
                         }
                         // 200번대 성공 응답을 받았지만, 모델로 디코딩하는 과정에서 실패한 경우
                         // 예: 서버가 다른 형식의 JSON을 보냈거나, 필수 필드가 누락된 경우
                         else if error.isResponseSerializationError {
-                            completion(.failure(NetworkError.decodingFailed(errorMessage: error.localizedDescription)))
+                            completion(.failure(NetworkError.decodingFailed))
                         }
                         // 명시적으로 처리하지 않은 응답 실패 경우
                         else {

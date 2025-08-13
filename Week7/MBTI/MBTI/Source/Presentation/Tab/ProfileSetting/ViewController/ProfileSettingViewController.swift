@@ -30,6 +30,8 @@ final class ProfileSettingViewController: UIViewController {
         $0.backgroundColor = .white
     }
     
+    private let mbtiSettingView = UIView()
+    
     private let nicknameTextField = UITextField().then {
         $0.placeholder = "닉네임을 입력해주세요 :)"
     }
@@ -79,16 +81,21 @@ final class ProfileSettingViewController: UIViewController {
     private func setHierarchy() {
         [
             profileImageBackgroundView,
-            nicknameTextField,
-            borderLine,
-            validResultLabel,
-            mbtiTitleLabel,
-            mbtiCollectionView
+            mbtiSettingView,
+            mbtiCharacterCollectionView
         ].forEach(view.addSubview)
         
         [
             profileImageView
         ].forEach(profileImageBackgroundView.addSubview)
+        
+        [
+            nicknameTextField,
+            borderLine,
+            validResultLabel,
+            mbtiTitleLabel,
+            mbtiCollectionView
+        ].forEach(mbtiSettingView.addSubview)
     }
     
     // MARK: - Set Constraints
@@ -105,14 +112,20 @@ final class ProfileSettingViewController: UIViewController {
             $0.width.height.equalTo(120)
         }
         
-        nicknameTextField.snp.makeConstraints {
+        mbtiSettingView.snp.makeConstraints {
             $0.top.equalTo(profileImageBackgroundView.snp.bottom).offset(40)
-            $0.horizontalEdges.equalToSuperview().inset(20)
+            $0.horizontalEdges.equalToSuperview().inset(15)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide)
+        }
+        
+        nicknameTextField.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.horizontalEdges.equalToSuperview().inset(5)
         }
         
         borderLine.snp.makeConstraints {
             $0.top.equalTo(nicknameTextField.snp.bottom).offset(10)
-            $0.horizontalEdges.equalToSuperview().inset(15)
+            $0.horizontalEdges.equalToSuperview()
             $0.height.equalTo(1)
         }
         

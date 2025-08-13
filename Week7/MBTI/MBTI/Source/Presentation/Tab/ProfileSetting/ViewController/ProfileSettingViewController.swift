@@ -43,6 +43,11 @@ final class ProfileSettingViewController: UIViewController {
         $0.textColor = .red
     }
     
+    private let mbtiTitleLabel = UILabel().then {
+        $0.text = "MBTI"
+        $0.font = .systemFont(ofSize: 20, weight: .black)
+    }
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -60,7 +65,8 @@ final class ProfileSettingViewController: UIViewController {
             profileImageBackgroundView,
             nicknameTextField,
             borderLine,
-            validResultLabel
+            validResultLabel,
+            mbtiTitleLabel
         ].forEach(view.addSubview)
         
         [
@@ -96,6 +102,11 @@ final class ProfileSettingViewController: UIViewController {
         validResultLabel.snp.makeConstraints {
             $0.top.equalTo(borderLine.snp.bottom).offset(16)
             $0.leading.equalTo(nicknameTextField)
+        }
+        
+        mbtiTitleLabel.snp.makeConstraints {
+            $0.top.equalTo(validResultLabel.snp.bottom).offset(40)
+            $0.leading.equalTo(borderLine)
         }
     }
     

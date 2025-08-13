@@ -16,20 +16,29 @@ final class SearchResultViewModel {
     
     // MARK: - Observable
     
-    var keyword: Observable<String> = Observable("")
-    var pageNumber: Observable<Int> = Observable(1)
-    var searchedResult: Observable<[SearchResultModel]> = Observable([])
-    var recommendResult: Observable<[SearchResultModel]> = Observable([])
-    var searchedCount: Observable<Int> = Observable(0)
-    var errorMessage: Observable<String> = Observable("")
-    var retry: Observable<Bool> = Observable(false)
-    var reset: Observable<Bool> = Observable(false)
-    var filterSearch: Observable<Int> = Observable(0)
+    // Input
+    struct Input {
+        var keyword: Observable<String> = Observable("")
+        var pageNumber: Observable<Int> = Observable(1)
+        var retry: Observable<Bool> = Observable(false)
+        var reset: Observable<Bool> = Observable(false)
+        var filterSearch: Observable<Int> = Observable(0)
+    }
+    var input = Input()
+    
+    // Output
+    struct Output {
+        var searchedResult: Observable<[SearchResultModel]> = Observable([])
+        var recommendResult: Observable<[SearchResultModel]> = Observable([])
+        var searchedCount: Observable<Int> = Observable(0)
+        var errorMessage: Observable<String> = Observable("")
+    }
+    var output = Output()
     
     // MARK: - Init
     
     init() {
-        keyword.lazyBind { [weak self] keyword in
+        input.keyword.lazyBind { [weak self] keyword in
             guard let self = self else { return }
             
             queryData.keyword = keyword
@@ -37,33 +46,33 @@ final class SearchResultViewModel {
             searchKeyword(queryData: queryData, isRecommendSearching: true)
         }
         
-        pageNumber.lazyBind { [weak self] pageNumber in
+        input.pageNumber.lazyBind { [weak self] pageNumber in
             guard let self = self else { return }
             
             queryData.pageNumber = pageNumber
             searchKeyword(queryData: queryData)
         }
         
-        retry.lazyBind { [weak self] _ in
+        input.retry.lazyBind { [weak self] _ in
             guard let self = self else { return }
             
             searchKeyword(queryData: queryData)
             searchKeyword(queryData: queryData, isRecommendSearching: true)
         }
         
-        reset.lazyBind { [weak self] _ in
+        input.reset.lazyBind { [weak self] _ in
             guard let self = self else { return }
             
             queryData.reset()
         }
         
-        filterSearch.lazyBind { [weak self] filterID in
+        input.filterSearch.lazyBind { [weak self] filterID in
             guard let self = self else { return }
             let selectedFilter = Sort.filters[filterID].sort
             
             queryData.sort = selectedFilter
             queryData.pageNumber = 1
-            searchedResult.value.removeAll()
+            output.searchedResult.value.removeAll()
             searchKeyword(queryData: queryData, isScrollToTop: true)
         }
     }
@@ -84,7 +93,7 @@ final class SearchResultViewModel {
                 if self.queryData.lastPage == nil {
                     self.queryData.lastPage = Int(ceil(Double(searchedResult.totalCount) / Double(self.queryData.pageSize)))
                 }
-                self.searchedCount.value = searchedResult.totalCount
+                self.output.searchedCount.value = searchedResult.totalCount
                 
                 // 최대 페이지 설정
                 if let lastPage = self.queryData.lastPage {
@@ -92,9 +101,9 @@ final class SearchResultViewModel {
                     
                     if pageNumber <= min(lastPage, 1000) {
                         if isRecommendSearching {
-                            self.recommendResult.value.append(contentsOf: searchedResult.items)
+                            self.output.recommendResult.value.append(contentsOf: searchedResult.items)
                         } else {
-                            self.searchedResult.value.append(contentsOf: searchedResult.items)
+                            self.output.searchedResult.value.append(contentsOf: searchedResult.items)
                         }
                     }
                 }
@@ -145,7 +154,7 @@ final class SearchResultViewModel {
                     print("<< 알 수 없는 에러: \(error.localizedDescription)")
                     message = "알 수 없는 에러"
                 }
-                self.errorMessage.value = message
+                self.output.errorMessage.value = message
             }
         }
     }

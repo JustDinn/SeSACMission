@@ -69,7 +69,7 @@ final class SearchResultViewController: UIViewController, InitialSetProtocol {
     // MARK: - Life Cycle
     
     init(keyword: String) {
-        searchResultViewModel.keyword.value = keyword
+        searchResultViewModel.input.keyword.value = keyword
         super.init(nibName: nil, bundle: nil)
         setNaviBar(keyword)
     }
@@ -86,8 +86,8 @@ final class SearchResultViewController: UIViewController, InitialSetProtocol {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        searchResultViewModel.reset.value = true
-        searchResultViewModel.reset.value = false
+        searchResultViewModel.input.reset.value = true
+        searchResultViewModel.input.reset.value = false
     }
     
     @available(*, unavailable)
@@ -153,28 +153,28 @@ final class SearchResultViewController: UIViewController, InitialSetProtocol {
     // MARK: - Action
     
     @objc private func didTapFilterButton(_ sender: UIButton) {
-        searchResultViewModel.filterSearch.value = sender.tag
+        searchResultViewModel.input.filterSearch.value = sender.tag
     }
     
     // MARK: - Bind
     
     private func bind() {
-        searchResultViewModel.searchedCount.lazyBind { count in
+        searchResultViewModel.output.searchedCount.lazyBind { count in
             self.resultLabel.text = "\(count)개의 검색 결과"
         }
         
-        searchResultViewModel.searchedResult.lazyBind { searchedResults in
+        searchResultViewModel.output.searchedResult.lazyBind { searchedResults in
             self.updateUI(isScrollToTop: false)
         }
         
-        searchResultViewModel.recommendResult.lazyBind { recommendResults in
+        searchResultViewModel.output.recommendResult.lazyBind { recommendResults in
             self.updateUI(isRecommendSearching: true, isScrollToTop: false)
         }
         
-        searchResultViewModel.errorMessage.lazyBind { message in
+        searchResultViewModel.output.errorMessage.lazyBind { message in
             self.showAlert(title: "에러 발생", message: message) {
-                self.searchResultViewModel.retry.value = true
-                self.searchResultViewModel.retry.value = false
+                self.searchResultViewModel.input.retry.value = true
+                self.searchResultViewModel.input.retry.value = false
             }
         }
     }
@@ -187,9 +187,9 @@ extension SearchResultViewController: UICollectionViewDataSource, UICollectionVi
     // 섹션당 아이템 개수
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == resultCollectionView {
-            return searchResultViewModel.searchedResult.value.count
+            return searchResultViewModel.output.searchedResult.value.count
         } else if collectionView == recommendCollectionView {
-            return searchResultViewModel.recommendResult.value.count
+            return searchResultViewModel.output.recommendResult.value.count
         } else {
             fatalError("collectionView 찾을 수 없음")
         }
@@ -201,14 +201,14 @@ extension SearchResultViewController: UICollectionViewDataSource, UICollectionVi
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchResultCollectionViewCell.identifier, for: indexPath) as! SearchResultCollectionViewCell
             let item = indexPath.item
             
-            cell.configureCell(with: searchResultViewModel.searchedResult.value[item])
+            cell.configureCell(with: searchResultViewModel.output.searchedResult.value[item])
             
             return cell
         } else if collectionView == recommendCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecommendCollectionViewCell.identifier, for: indexPath) as! RecommendCollectionViewCell
             let item = indexPath.item
             
-            cell.configureCell(with: searchResultViewModel.recommendResult.value[item])
+            cell.configureCell(with: searchResultViewModel.output.recommendResult.value[item])
             
             return cell
         } else {
@@ -221,8 +221,8 @@ extension SearchResultViewController: UICollectionViewDataSource, UICollectionVi
         if collectionView == resultCollectionView {
             let index = indexPath.item
             
-            if index == searchResultViewModel.searchedResult.value.count - 6 {
-                searchResultViewModel.pageNumber.value += 1
+            if index == searchResultViewModel.output.searchedResult.value.count - 6 {
+                searchResultViewModel.input.pageNumber.value += 1
             }
         }
     }

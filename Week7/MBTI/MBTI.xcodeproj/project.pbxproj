@@ -18,6 +18,7 @@
 		3F58EA112E4CCDB900B4308C /* ProfileSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F58EA102E4CCDB900B4308C /* ProfileSettingViewModel.swift */; };
 		3F58EA142E4CCEA000B4308C /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F58EA132E4CCEA000B4308C /* Observable.swift */; };
 		3F58EAF82E4CEF8900B4308C /* MBTICollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F58EAF72E4CEF8900B4308C /* MBTICollectionViewCell.swift */; };
+		3F58EAFA2E4CF62C00B4308C /* MBTICharacterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F58EAF92E4CF62C00B4308C /* MBTICharacterCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		3F58EA102E4CCDB900B4308C /* ProfileSettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingViewModel.swift; sourceTree = "<group>"; };
 		3F58EA132E4CCEA000B4308C /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		3F58EAF72E4CEF8900B4308C /* MBTICollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBTICollectionViewCell.swift; sourceTree = "<group>"; };
+		3F58EAF92E4CF62C00B4308C /* MBTICharacterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBTICharacterCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				3F58EAF72E4CEF8900B4308C /* MBTICollectionViewCell.swift */,
+				3F58EAF92E4CF62C00B4308C /* MBTICharacterCollectionViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F58EAFA2E4CF62C00B4308C /* MBTICharacterCollectionViewCell.swift in Sources */,
 				3F58E9662E4CC7E500B4308C /* AppDelegate.swift in Sources */,
 				3F58EAF82E4CEF8900B4308C /* MBTICollectionViewCell.swift in Sources */,
 				3F58E9672E4CC7E500B4308C /* SceneDelegate.swift in Sources */,

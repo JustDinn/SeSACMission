@@ -24,4 +24,11 @@ enum NetworkRouter {
             return URL(string: "search/shop.json")!
         }
     }
+    
+    var method: HTTPMethod {
+        switch self {
+        case .search:
+            return .get
+        }
+    }
 }

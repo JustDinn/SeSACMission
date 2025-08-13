@@ -13,10 +13,19 @@ final class ProfileSettingViewModel {
     
     private var randomImageList: [String] = []
     
+    // MARK: - Observable
+    
+    // Output
+    struct Output {
+        var randomImage: Observable<String> = Observable("")
+    }
+    var output = Output()
+    
     // MARK: - Init
     
     init() {
         makeRandomImageList()
+        output.randomImage.value = randomImage()
     }
     
     // MARK: - Method
@@ -26,5 +35,10 @@ final class ProfileSettingViewModel {
         for index in 1...12 {
             randomImageList.append("person\(index)")
         }
+    }
+    
+    // 랜덤 이미지 생성
+    private func randomImage() -> String {
+        return randomImageList.randomElement() ?? "person1"
     }
 }

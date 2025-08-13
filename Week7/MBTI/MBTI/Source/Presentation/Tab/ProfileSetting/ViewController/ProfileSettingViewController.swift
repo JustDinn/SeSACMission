@@ -66,6 +66,31 @@ final class ProfileSettingViewController: UIViewController {
         $0.dataSource = self
     }
     
+    private lazy var mbtiCharacterCollectionView = UICollectionView(
+        frame: .zero,
+        collectionViewLayout: UICollectionViewFlowLayout()
+    ).then {
+        let flowLayout = UICollectionViewFlowLayout()
+        
+        let numberOfColumns: CGFloat = 4
+        let horizontalPadding: CGFloat = 20
+        let itemSpacing: CGFloat = 16
+        
+        let width = (view.frame.width - (horizontalPadding * 2) - (itemSpacing * 3)) / 4
+        let height = width
+        
+        flowLayout.scrollDirection = .vertical
+        flowLayout.itemSize = CGSize(width: width, height: height)
+        flowLayout.minimumLineSpacing = 16
+        flowLayout.minimumInteritemSpacing = 16
+        
+        $0.collectionViewLayout = flowLayout
+        $0.register(MBTICharacterCollectionViewCell.self, forCellWithReuseIdentifier: MBTICharacterCollectionViewCell.identifier)
+        $0.dataSource = self
+        
+        $0.isHidden = true
+    }
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -145,6 +170,12 @@ final class ProfileSettingViewController: UIViewController {
             $0.width.equalTo(212)
             $0.height.equalTo(100)
         }
+        
+        mbtiCharacterCollectionView.snp.makeConstraints {
+            $0.top.equalTo(profileImageBackgroundView.snp.bottom).offset(60)
+            $0.horizontalEdges.equalToSuperview().inset(20)
+            $0.height.equalTo(267.5)
+        }
     }
     
     // MARK: - Bind
@@ -164,14 +195,29 @@ extension ProfileSettingViewController: UICollectionViewDataSource {
     
     // 아이템 개수
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return profileSettingViewModel.output.mbtiList.value.count
+        
+        if collectionView == mbtiCollectionView {
+            return profileSettingViewModel.output.mbtiList.value.count  // MBTI 문자 collectionView
+        } else {
+            return 12    // MBTI 캐릭터 collectionView
+        }
     }
     
     // 셀 구성
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MBTICollectionViewCell.identifier, for: indexPath) as! MBTICollectionViewCell
-        cell.configureCell(with: profileSettingViewModel.output.mbtiList.value[indexPath.item])
         
-        return cell
+        // MBTI 문자 collectionView
+        if collectionView == mbtiCollectionView {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MBTICollectionViewCell.identifier, for: indexPath) as! MBTICollectionViewCell
+            cell.configureCell(with: profileSettingViewModel.output.mbtiList.value[indexPath.item])
+            
+            return cell
+        }
+        // MBTI 캐릭터 collectionView
+        else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MBTICharacterCollectionViewCell.identifier, for: indexPath) as! MBTICharacterCollectionViewCell
+            
+            return cell
+        }
     }
 }

@@ -75,11 +75,11 @@ final class SearchViewController: UIViewController, InitialSetProtocol {
     // MARK: - Bind
     
     private func bind() {
-        searchViewModel.output.lazyBind { message in
+        searchViewModel.output.toastMessage.lazyBind { message in
             self.view.showToast(message)
         }
         
-        searchViewModel.outputPushed.lazyBind { keyword in
+        searchViewModel.output.pushingKeyword.lazyBind { keyword in
             self.pushSearchResultVC(keyword: keyword)
         }
     }
@@ -97,7 +97,7 @@ extension SearchViewController: UITextFieldDelegate {
 
     // returnKey 탭
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        searchViewModel.input.value = textField.text
+        searchViewModel.input.keyword.value = textField.text
         
         return true
     }

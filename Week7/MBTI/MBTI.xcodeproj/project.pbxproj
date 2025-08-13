@@ -15,6 +15,8 @@
 		3F58EA052E4CCA1B00B4308C /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F58EA042E4CCA1B00B4308C /* OnboardingViewController.swift */; };
 		3F58EA0A2E4CCB0600B4308C /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3F58EA092E4CCB0600B4308C /* SnapKit */; };
 		3F58EA0D2E4CCB0D00B4308C /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 3F58EA0C2E4CCB0D00B4308C /* Then */; };
+		3F58EA112E4CCDB900B4308C /* ProfileSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F58EA102E4CCDB900B4308C /* ProfileSettingViewModel.swift */; };
+		3F58EA142E4CCEA000B4308C /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F58EA132E4CCEA000B4308C /* Observable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		3F58E95F2E4CC7E500B4308C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		3F58EA012E4CC97A00B4308C /* ProfileSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingViewController.swift; sourceTree = "<group>"; };
 		3F58EA042E4CCA1B00B4308C /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		3F58EA102E4CCDB900B4308C /* ProfileSettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingViewModel.swift; sourceTree = "<group>"; };
+		3F58EA132E4CCEA000B4308C /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				3F58E96B2E4CC81B00B4308C /* Application */,
+				3F58EA122E4CCE9700B4308C /* Common */,
 				3F58E9FF2E4CC94B00B4308C /* Presentation */,
 				3F58EA072E4CCA8000B4308C /* Extension */,
 			);
@@ -115,7 +120,8 @@
 		3F58EA002E4CC96B00B4308C /* ProfileSetting */ = {
 			isa = PBXGroup;
 			children = (
-				3F58EA012E4CC97A00B4308C /* ProfileSettingViewController.swift */,
+				3F58EA0F2E4CCDAC00B4308C /* ViewModel */,
+				3F58EA0E2E4CCDA300B4308C /* ViewController */,
 			);
 			path = ProfileSetting;
 			sourceTree = "<group>";
@@ -141,6 +147,30 @@
 			children = (
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		3F58EA0E2E4CCDA300B4308C /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				3F58EA012E4CC97A00B4308C /* ProfileSettingViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		3F58EA0F2E4CCDAC00B4308C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				3F58EA102E4CCDB900B4308C /* ProfileSettingViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		3F58EA122E4CCE9700B4308C /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				3F58EA132E4CCEA000B4308C /* Observable.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -225,6 +255,8 @@
 				3F58E9662E4CC7E500B4308C /* AppDelegate.swift in Sources */,
 				3F58E9672E4CC7E500B4308C /* SceneDelegate.swift in Sources */,
 				3F58EA022E4CC97A00B4308C /* ProfileSettingViewController.swift in Sources */,
+				3F58EA112E4CCDB900B4308C /* ProfileSettingViewModel.swift in Sources */,
+				3F58EA142E4CCEA000B4308C /* Observable.swift in Sources */,
 				3F58EA052E4CCA1B00B4308C /* OnboardingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

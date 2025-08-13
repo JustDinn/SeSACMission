@@ -11,6 +11,10 @@ import Then
 
 final class ProfileSettingViewController: UIViewController {
 
+    // MARK: - Property
+    
+    private let profileSettingViewModel = ProfileSettingViewModel()
+    
     // MARK: - Component
     
     private let profileImageBackgroundView = UIView().then {
@@ -20,7 +24,10 @@ final class ProfileSettingViewController: UIViewController {
     }
     
     private let profileImageView = UIImageView().then {
-        $0.image = 
+        $0.contentMode = .scaleAspectFit
+        $0.layer.cornerRadius = 60
+        $0.layer.masksToBounds = true
+        $0.backgroundColor = .white
     }
     
     // MARK: - Life Cycle
@@ -30,6 +37,7 @@ final class ProfileSettingViewController: UIViewController {
         
         setHierarchy()
         setConstraints()
+        bind()
     }
     
     // MARK: - Set Hierarchy
@@ -38,6 +46,10 @@ final class ProfileSettingViewController: UIViewController {
         [
             profileImageBackgroundView
         ].forEach(view.addSubview)
+        
+        [
+            profileImageView
+        ].forEach(profileImageBackgroundView.addSubview)
     }
     
     // MARK: - Set Constraints
@@ -47,6 +59,21 @@ final class ProfileSettingViewController: UIViewController {
             $0.top.equalTo(view.safeAreaLayoutGuide).offset(20)
             $0.centerX.equalToSuperview()
             $0.width.height.equalTo(130)
+        }
+        
+        profileImageView.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.width.height.equalTo(120)
+        }
+    }
+    
+    // MARK: - Bind
+    
+    private func bind() {
+        profileSettingViewModel.output.randomImage.bind { [weak self] randomImage in
+            guard let self = self else { return }
+            
+            profileImageView.image = UIImage(named: randomImage)
         }
     }
 }

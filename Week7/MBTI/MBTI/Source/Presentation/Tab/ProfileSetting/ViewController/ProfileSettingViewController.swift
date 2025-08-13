@@ -30,6 +30,10 @@ final class ProfileSettingViewController: UIViewController {
         $0.backgroundColor = .white
     }
     
+    private let nicknameTextField = UITextField().then {
+        $0.placeholder = "닉네임을 입력해주세요 :)"
+    }
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -44,7 +48,8 @@ final class ProfileSettingViewController: UIViewController {
     
     private func setHierarchy() {
         [
-            profileImageBackgroundView
+            profileImageBackgroundView,
+            nicknameTextField
         ].forEach(view.addSubview)
         
         [
@@ -64,6 +69,11 @@ final class ProfileSettingViewController: UIViewController {
         profileImageView.snp.makeConstraints {
             $0.center.equalToSuperview()
             $0.width.height.equalTo(120)
+        }
+        
+        nicknameTextField.snp.makeConstraints {
+            $0.top.equalTo(profileImageBackgroundView.snp.bottom).offset(40)
+            $0.horizontalEdges.equalToSuperview().inset(20)
         }
     }
     

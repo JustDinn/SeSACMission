@@ -11,6 +11,10 @@
 		3F58E9642E4CC7E500B4308C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F58E95C2E4CC7E500B4308C /* LaunchScreen.storyboard */; };
 		3F58E9662E4CC7E500B4308C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F58E9582E4CC7E500B4308C /* AppDelegate.swift */; };
 		3F58E9672E4CC7E500B4308C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F58E95F2E4CC7E500B4308C /* SceneDelegate.swift */; };
+		3F58EA022E4CC97A00B4308C /* ProfileSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F58EA012E4CC97A00B4308C /* ProfileSettingViewController.swift */; };
+		3F58EA052E4CCA1B00B4308C /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F58EA042E4CCA1B00B4308C /* OnboardingViewController.swift */; };
+		3F58EA0A2E4CCB0600B4308C /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3F58EA092E4CCB0600B4308C /* SnapKit */; };
+		3F58EA0D2E4CCB0D00B4308C /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 3F58EA0C2E4CCB0D00B4308C /* Then */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +24,8 @@
 		3F58E95A2E4CC7E500B4308C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F58E95B2E4CC7E500B4308C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3F58E95F2E4CC7E500B4308C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		3F58EA012E4CC97A00B4308C /* ProfileSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingViewController.swift; sourceTree = "<group>"; };
+		3F58EA042E4CCA1B00B4308C /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,6 +33,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F58EA0A2E4CCB0600B4308C /* SnapKit in Frameworks */,
+				3F58EA0D2E4CCB0D00B4308C /* Then in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,7 +70,8 @@
 			isa = PBXGroup;
 			children = (
 				3F58E96B2E4CC81B00B4308C /* Application */,
-				3F58E9FE2E4CC8A100B4308C /* Tab */,
+				3F58E9FF2E4CC94B00B4308C /* Presentation */,
+				3F58EA072E4CCA8000B4308C /* Extension */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -89,8 +98,49 @@
 		3F58E9FE2E4CC8A100B4308C /* Tab */ = {
 			isa = PBXGroup;
 			children = (
+				3F58EA002E4CC96B00B4308C /* ProfileSetting */,
 			);
 			path = Tab;
+			sourceTree = "<group>";
+		};
+		3F58E9FF2E4CC94B00B4308C /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				3F58EA032E4CCA0F00B4308C /* Onboarding */,
+				3F58E9FE2E4CC8A100B4308C /* Tab */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		3F58EA002E4CC96B00B4308C /* ProfileSetting */ = {
+			isa = PBXGroup;
+			children = (
+				3F58EA012E4CC97A00B4308C /* ProfileSettingViewController.swift */,
+			);
+			path = ProfileSetting;
+			sourceTree = "<group>";
+		};
+		3F58EA032E4CCA0F00B4308C /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				3F58EA062E4CCA2400B4308C /* ViewController */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		3F58EA062E4CCA2400B4308C /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				3F58EA042E4CCA1B00B4308C /* OnboardingViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		3F58EA072E4CCA8000B4308C /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -110,6 +160,8 @@
 			);
 			name = MBTI;
 			packageProductDependencies = (
+				3F58EA092E4CCB0600B4308C /* SnapKit */,
+				3F58EA0C2E4CCB0D00B4308C /* Then */,
 			);
 			productName = MBTI;
 			productReference = 3F58E9402E4CC7CA00B4308C /* MBTI.app */;
@@ -139,6 +191,10 @@
 			);
 			mainGroup = 3F58E9372E4CC7CA00B4308C;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				3F58EA082E4CCB0600B4308C /* XCRemoteSwiftPackageReference "SnapKit" */,
+				3F58EA0B2E4CCB0D00B4308C /* XCRemoteSwiftPackageReference "Then" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 3F58E9412E4CC7CA00B4308C /* Products */;
 			projectDirPath = "";
@@ -168,6 +224,8 @@
 			files = (
 				3F58E9662E4CC7E500B4308C /* AppDelegate.swift in Sources */,
 				3F58E9672E4CC7E500B4308C /* SceneDelegate.swift in Sources */,
+				3F58EA022E4CC97A00B4308C /* ProfileSettingViewController.swift in Sources */,
+				3F58EA052E4CCA1B00B4308C /* OnboardingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,6 +450,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3F58EA082E4CCB0600B4308C /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+		3F58EA0B2E4CCB0D00B4308C /* XCRemoteSwiftPackageReference "Then" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devxoul/Then.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3F58EA092E4CCB0600B4308C /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3F58EA082E4CCB0600B4308C /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		3F58EA0C2E4CCB0D00B4308C /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3F58EA0B2E4CCB0D00B4308C /* XCRemoteSwiftPackageReference "Then" */;
+			productName = Then;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3F58E9382E4CC7CA00B4308C /* Project object */;
 }

@@ -142,10 +142,6 @@ final class ProfileSettingViewController: UIViewController {
             
             profileImageView.image = UIImage(named: randomImage)
         }
-        
-        profileSettingViewModel.output.mbtiList.lazyBind { [weak self] mbtiList in
-//            make
-        }
     }
 }
 
@@ -155,7 +151,7 @@ extension ProfileSettingViewController: UICollectionViewDataSource {
     
     // 아이템 개수
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 8
+        return profileSettingViewModel.output.mbtiList.value.count
     }
     
     // 셀 구성

@@ -12,12 +12,14 @@ final class ProfileSettingViewModel {
     // MARK: - Property
     
     private var randomImageList: [String] = []
+    private let mbtiList = ["E", "S", "T", "J", "I", "N", "F", "P"]
     
     // MARK: - Observable
     
     // Output
     struct Output {
         var randomImage: Observable<String> = Observable("")
+        var mbtiList: Observable<[String]> = Observable([])
     }
     var output = Output()
     
@@ -26,6 +28,7 @@ final class ProfileSettingViewModel {
     init() {
         makeRandomImageList()
         output.randomImage.value = randomImage()
+        output.mbtiList.value = mbtiList
     }
     
     // MARK: - Method

@@ -15,6 +15,8 @@ final class ProfileSettingViewController: UIViewController {
     
     private let profileImageView = UIImageView().then {
         $0.backgroundColor = .gray
+        $0.layer.cornerRadius = 65
+        $0.layer.masksToBounds = true
     }
     
     // MARK: - Life Cycle
@@ -38,8 +40,9 @@ final class ProfileSettingViewController: UIViewController {
     
     private func setConstraints() {
         profileImageView.snp.makeConstraints {
-            $0.center.equalToSuperview()
-            $0.width.height.equalTo(200)
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(20)
+            $0.centerX.equalToSuperview()
+            $0.width.height.equalTo(130)
         }
     }
 }

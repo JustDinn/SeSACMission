@@ -42,6 +42,8 @@ final class AddingNumbersViewController: UIViewController {
     private let borderLine = UIView().then {
         $0.backgroundColor = .gray
     }
+    
+    private let resultLabel = UILabel()
 
     // MARK: - Life Cycle
     
@@ -61,7 +63,8 @@ final class AddingNumbersViewController: UIViewController {
             secondNumber,
             thirdNumber,
             plusIcon,
-            borderLine
+            borderLine,
+            resultLabel
         ].forEach(view.addSubview)
     }
     
@@ -95,6 +98,11 @@ final class AddingNumbersViewController: UIViewController {
             $0.leading.equalTo(plusIcon)
             $0.trailing.equalTo(thirdNumber)
             $0.height.equalTo(1)
+        }
+        
+        resultLabel.snp.makeConstraints {
+            $0.top.equalTo(borderLine.snp.bottom).offset(10)
+            $0.trailing.equalTo(borderLine)
         }
     }
 }

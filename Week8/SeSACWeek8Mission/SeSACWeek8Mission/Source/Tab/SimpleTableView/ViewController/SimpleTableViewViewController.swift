@@ -9,16 +9,19 @@ import UIKit
 import SnapKit
 import Then
 
+import RxSwift
+import RxCocoa
+
 final class SimpleTableViewViewController: UIViewController {
+    
+    // MARK: - DisposeBag
+    
+    var disposeBag = DisposeBag()
     
     // MARK: - Component
     
     private lazy var tableView = UITableView().then {
         $0.register(SimpleTableViewCell.self, forCellReuseIdentifier: SimpleTableViewCell.identifier)
-        $0.dataSource = self
-        $0.delegate = self
-        
-        $0.backgroundColor = .systemOrange
     }
     
     // MARK: - Life Cycle
@@ -28,6 +31,7 @@ final class SimpleTableViewViewController: UIViewController {
         
         setHierarchy()
         setConstraints()
+        bind()
     }
     
     // MARK: - Set Hierarchy
@@ -45,26 +49,18 @@ final class SimpleTableViewViewController: UIViewController {
             $0.edges.equalTo(view.safeAreaLayoutGuide)
         }
     }
-}
-
-// MARK: - UITableView DataSource, Delegate
-
-extension SimpleTableViewViewController: UITableViewDataSource, UITableViewDelegate {
     
-    // 섹션당 셀 개수
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
-    }
+    // MARK: - Observable
     
-    // 셀 구성
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: SimpleTableViewCell.identifier, for: indexPath) as! SimpleTableViewCell
-        
-        return cell
-    }
+    let items = Observable.just((0..<20).map { "\($0) "})
     
-    // 셀 높이
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 44
+    // MARK: - Bind
+    
+    private func bind() {
+        items
+            .bind(to: tableView.rx.items(cellIdentifier: SimpleTableViewCell.identifier, cellType: SimpleTableViewCell.self)) { (row, element, cell) in
+                cell.label.text = "\(element) @ row \(row)"
+            }
+            .disposed(by: disposeBag)
     }
 }

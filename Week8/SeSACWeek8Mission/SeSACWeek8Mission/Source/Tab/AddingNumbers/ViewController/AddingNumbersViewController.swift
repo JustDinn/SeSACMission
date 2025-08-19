@@ -19,6 +19,20 @@ final class AddingNumbersViewController: UIViewController {
         $0.layer.borderColor = UIColor.gray.cgColor
         $0.layer.borderWidth = 1
     }
+    
+    private let secondNumber = UITextField().then {
+        $0.keyboardType = .numberPad
+        $0.textAlignment = .right
+        $0.layer.borderColor = UIColor.gray.cgColor
+        $0.layer.borderWidth = 1
+    }
+    
+    private let thirdNumber = UITextField().then {
+        $0.keyboardType = .numberPad
+        $0.textAlignment = .right
+        $0.layer.borderColor = UIColor.gray.cgColor
+        $0.layer.borderWidth = 1
+    }
 
     // MARK: - Life Cycle
     
@@ -34,7 +48,9 @@ final class AddingNumbersViewController: UIViewController {
     
     private func setHierarchy() {
         [
-            firstNumber
+            firstNumber,
+            secondNumber,
+            thirdNumber
         ].forEach(view.addSubview)
     }
     
@@ -46,6 +62,16 @@ final class AddingNumbersViewController: UIViewController {
             $0.centerX.equalToSuperview()
             $0.width.equalTo(100)
             $0.height.equalTo(30)
+        }
+        
+        secondNumber.snp.makeConstraints {
+            $0.top.equalTo(firstNumber.snp.bottom).offset(20)
+            $0.size.horizontalEdges.equalTo(firstNumber)
+        }
+        
+        thirdNumber.snp.makeConstraints {
+            $0.top.equalTo(secondNumber.snp.bottom).offset(20)
+            $0.size.horizontalEdges.equalTo(firstNumber)
         }
     }
 }

@@ -14,6 +14,7 @@ final class AddingNumbersViewController: UIViewController {
     // MARK: - Component
     
     private let firstNumber = UITextField().then {
+        $0.text = "1"
         $0.keyboardType = .numberPad
         $0.textAlignment = .right
         $0.layer.borderColor = UIColor.gray.cgColor
@@ -21,6 +22,7 @@ final class AddingNumbersViewController: UIViewController {
     }
     
     private let secondNumber = UITextField().then {
+        $0.text = "2"
         $0.keyboardType = .numberPad
         $0.textAlignment = .right
         $0.layer.borderColor = UIColor.gray.cgColor
@@ -28,6 +30,7 @@ final class AddingNumbersViewController: UIViewController {
     }
     
     private let thirdNumber = UITextField().then {
+        $0.text = "3"
         $0.keyboardType = .numberPad
         $0.textAlignment = .right
         $0.layer.borderColor = UIColor.gray.cgColor
@@ -43,7 +46,9 @@ final class AddingNumbersViewController: UIViewController {
         $0.backgroundColor = .gray
     }
     
-    private let resultLabel = UILabel()
+    private let resultLabel = UILabel().then {
+        $0.text = "6"
+    }
 
     // MARK: - Life Cycle
     

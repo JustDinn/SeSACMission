@@ -15,6 +15,7 @@
 		3FA87E662E54DA3C00494266 /* RootTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA87E652E54DA3C00494266 /* RootTableViewController.swift */; };
 		3FA87E6B2E54DB6200494266 /* RootTableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA87E6A2E54DB6200494266 /* RootTableTableViewCell.swift */; };
 		3FA87E6E2E54DE7D00494266 /* AddingNumbersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA87E6D2E54DE7D00494266 /* AddingNumbersViewController.swift */; };
+		3FA87E722E54EAAA00494266 /* SimpleValidationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA87E712E54EAAA00494266 /* SimpleValidationViewController.swift */; };
 		3FCE1EAA2E545A7F00D317DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCE1EA22E545A7F00D317DA /* AppDelegate.swift */; };
 		3FCE1EAB2E545A7F00D317DA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCE1EA72E545A7F00D317DA /* SceneDelegate.swift */; };
 		3FCE1EAD2E545A7F00D317DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FCE1EA32E545A7F00D317DA /* Assets.xcassets */; };
@@ -27,6 +28,7 @@
 		3FA87E652E54DA3C00494266 /* RootTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTableViewController.swift; sourceTree = "<group>"; };
 		3FA87E6A2E54DB6200494266 /* RootTableTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTableTableViewCell.swift; sourceTree = "<group>"; };
 		3FA87E6D2E54DE7D00494266 /* AddingNumbersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingNumbersViewController.swift; sourceTree = "<group>"; };
+		3FA87E712E54EAAA00494266 /* SimpleValidationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleValidationViewController.swift; sourceTree = "<group>"; };
 		3FCE1E8A2E545A5C00D317DA /* SeSACWeek8Mission.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSACWeek8Mission.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FCE1EA22E545A7F00D317DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3FCE1EA32E545A7F00D317DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -108,6 +110,14 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		3FA87E702E54EA8300494266 /* SimpleValidation */ = {
+			isa = PBXGroup;
+			children = (
+				3FA87E712E54EAAA00494266 /* SimpleValidationViewController.swift */,
+			);
+			path = SimpleValidation;
+			sourceTree = "<group>";
+		};
 		3FCE1E812E545A5C00D317DA = {
 			isa = PBXGroup;
 			children = (
@@ -167,6 +177,7 @@
 				3FA87E672E54DAD000494266 /* RootTableView */,
 				3FCE1EB42E545B6400D317DA /* SimpleTableView */,
 				3FA87E6C2E54DE4400494266 /* AddingNumbers */,
+				3FA87E702E54EA8300494266 /* SimpleValidation */,
 			);
 			path = Tab;
 			sourceTree = "<group>";
@@ -265,6 +276,7 @@
 				3FA87E6B2E54DB6200494266 /* RootTableTableViewCell.swift in Sources */,
 				3FCE1EAA2E545A7F00D317DA /* AppDelegate.swift in Sources */,
 				3FA87E1D2E54D35D00494266 /* SimpleTableViewCell.swift in Sources */,
+				3FA87E722E54EAAA00494266 /* SimpleValidationViewController.swift in Sources */,
 				3FA87E662E54DA3C00494266 /* RootTableViewController.swift in Sources */,
 				3FA87E6E2E54DE7D00494266 /* AddingNumbersViewController.swift in Sources */,
 				3FCE1EB62E545BBA00D317DA /* SimpleTableViewViewController.swift in Sources */,

@@ -31,6 +31,11 @@ final class SimpleValidationViewController: UIViewController {
         $0.text = "Password"
     }
     
+    private let passwordTextField = UITextField().then {
+        $0.layer.borderColor = UIColor.gray.cgColor
+        $0.layer.borderWidth = 1
+    }
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -48,7 +53,8 @@ final class SimpleValidationViewController: UIViewController {
             usernameLabel,
             usernameTextField,
             usernameValidLabel,
-            passwordLabel
+            passwordLabel,
+            passwordTextField
         ].forEach(view.addSubview)
     }
     
@@ -73,6 +79,11 @@ final class SimpleValidationViewController: UIViewController {
         passwordLabel.snp.makeConstraints {
             $0.top.equalTo(usernameValidLabel.snp.bottom).offset(10)
             $0.leading.equalToSuperview().offset(16)
+        }
+        
+        passwordTextField.snp.makeConstraints {
+            $0.top.equalTo(passwordLabel.snp.bottom).offset(10)
+            $0.horizontalEdges.equalToSuperview().inset(16)
         }
     }
 }

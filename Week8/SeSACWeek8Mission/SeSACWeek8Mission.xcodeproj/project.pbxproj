@@ -7,10 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3FA87E112E54D1F700494266 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 3FA87E102E54D1F700494266 /* RxCocoa */; };
+		3FA87E132E54D1F700494266 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3FA87E122E54D1F700494266 /* RxSwift */; };
+		3FA87E162E54D20300494266 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3FA87E152E54D20300494266 /* SnapKit */; };
+		3FA87E192E54D20A00494266 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 3FA87E182E54D20A00494266 /* Then */; };
 		3FCE1EAA2E545A7F00D317DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCE1EA22E545A7F00D317DA /* AppDelegate.swift */; };
 		3FCE1EAB2E545A7F00D317DA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCE1EA72E545A7F00D317DA /* SceneDelegate.swift */; };
 		3FCE1EAD2E545A7F00D317DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FCE1EA32E545A7F00D317DA /* Assets.xcassets */; };
 		3FCE1EAF2E545A7F00D317DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FCE1EA62E545A7F00D317DA /* LaunchScreen.storyboard */; };
+		3FCE1EB62E545BBA00D317DA /* SimpleTableViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCE1EB52E545BBA00D317DA /* SimpleTableViewViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +25,7 @@
 		3FCE1EA42E545A7F00D317DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3FCE1EA52E545A7F00D317DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3FCE1EA72E545A7F00D317DA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		3FCE1EB52E545BBA00D317DA /* SimpleTableViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTableViewViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,6 +33,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FA87E162E54D20300494266 /* SnapKit in Frameworks */,
+				3FA87E132E54D1F700494266 /* RxSwift in Frameworks */,
+				3FA87E112E54D1F700494266 /* RxCocoa in Frameworks */,
+				3FA87E192E54D20A00494266 /* Then in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,6 +107,7 @@
 		3FCE1EB42E545B6400D317DA /* SimpleTableView */ = {
 			isa = PBXGroup;
 			children = (
+				3FCE1EB52E545BBA00D317DA /* SimpleTableViewViewController.swift */,
 			);
 			path = SimpleTableView;
 			sourceTree = "<group>";
@@ -118,6 +129,10 @@
 			);
 			name = SeSACWeek8Mission;
 			packageProductDependencies = (
+				3FA87E102E54D1F700494266 /* RxCocoa */,
+				3FA87E122E54D1F700494266 /* RxSwift */,
+				3FA87E152E54D20300494266 /* SnapKit */,
+				3FA87E182E54D20A00494266 /* Then */,
 			);
 			productName = SeSACWeek8Mission;
 			productReference = 3FCE1E8A2E545A5C00D317DA /* SeSACWeek8Mission.app */;
@@ -147,6 +162,11 @@
 			);
 			mainGroup = 3FCE1E812E545A5C00D317DA;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				3FA87E0F2E54D1F700494266 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				3FA87E142E54D20300494266 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				3FA87E172E54D20A00494266 /* XCRemoteSwiftPackageReference "Then" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 3FCE1E8B2E545A5C00D317DA /* Products */;
 			projectDirPath = "";
@@ -175,6 +195,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3FCE1EAA2E545A7F00D317DA /* AppDelegate.swift in Sources */,
+				3FCE1EB62E545BBA00D317DA /* SimpleTableViewViewController.swift in Sources */,
 				3FCE1EAB2E545A7F00D317DA /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -400,6 +421,56 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3FA87E0F2E54D1F700494266 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.9.0;
+			};
+		};
+		3FA87E142E54D20300494266 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+		3FA87E172E54D20A00494266 /* XCRemoteSwiftPackageReference "Then" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devxoul/Then.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3FA87E102E54D1F700494266 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3FA87E0F2E54D1F700494266 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		3FA87E122E54D1F700494266 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3FA87E0F2E54D1F700494266 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		3FA87E152E54D20300494266 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3FA87E142E54D20300494266 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		3FA87E182E54D20A00494266 /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3FA87E172E54D20A00494266 /* XCRemoteSwiftPackageReference "Then" */;
+			productName = Then;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3FCE1E822E545A5C00D317DA /* Project object */;
 }

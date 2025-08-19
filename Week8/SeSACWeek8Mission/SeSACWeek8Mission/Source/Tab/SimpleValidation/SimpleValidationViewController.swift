@@ -36,6 +36,11 @@ final class SimpleValidationViewController: UIViewController {
         $0.layer.borderWidth = 1
     }
     
+    private let passwordValidLabel = UILabel().then {
+        $0.text = "비밀번호는 최소 5글자 이상이어야 합니다"
+        $0.textColor = .systemRed
+    }
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -54,7 +59,8 @@ final class SimpleValidationViewController: UIViewController {
             usernameTextField,
             usernameValidLabel,
             passwordLabel,
-            passwordTextField
+            passwordTextField,
+            passwordValidLabel
         ].forEach(view.addSubview)
     }
     
@@ -84,6 +90,11 @@ final class SimpleValidationViewController: UIViewController {
         passwordTextField.snp.makeConstraints {
             $0.top.equalTo(passwordLabel.snp.bottom).offset(10)
             $0.horizontalEdges.equalToSuperview().inset(16)
+        }
+        
+        passwordValidLabel.snp.makeConstraints {
+            $0.top.equalTo(passwordTextField.snp.bottom).offset(10)
+            $0.leading.equalToSuperview().offset(16)
         }
     }
 }

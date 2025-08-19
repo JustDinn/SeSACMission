@@ -50,7 +50,7 @@ final class RootTableViewController: UIViewController {
     
     // MARK: - Observable
     
-    let items = Observable.just(["SimpleTableView"])
+    let items = Observable.just(["SimpleTableView", "AddingNumbers"])
     
     // MARK: - Bind
     
@@ -67,6 +67,9 @@ final class RootTableViewController: UIViewController {
             .bind(with: self, onNext: { owner, tableView in
                 if tableView == "SimpleTableView" {
                     let vc = SimpleTableViewViewController()
+                    owner.navigationController?.pushViewController(vc, animated: true)
+                } else if tableView == "AddingNumbers" {
+                    let vc = AddingNumbersViewController()
                     owner.navigationController?.pushViewController(vc, animated: true)
                 }
             })

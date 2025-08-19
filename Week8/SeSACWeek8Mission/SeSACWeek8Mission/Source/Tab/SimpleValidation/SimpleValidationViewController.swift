@@ -11,6 +11,11 @@ import Then
 
 final class SimpleValidationViewController: UIViewController {
 
+    // MARK: - Property
+    
+    private let minimalUsernameLength = 5
+    private let minimalPasswordLength = 5
+    
     // MARK: - Component
     
     private let usernameLabel = UILabel().then {
@@ -22,8 +27,8 @@ final class SimpleValidationViewController: UIViewController {
         $0.layer.borderWidth = 1
     }
     
-    private let usernameValidLabel = UILabel().then {
-        $0.text = "이름은 최소 5글자 이상이어야 합니다"
+    private lazy var usernameValidLabel = UILabel().then {
+        $0.text = "이름은 최소 \(minimalUsernameLength)글자 이상이어야 합니다"
         $0.textColor = .systemRed
     }
     
@@ -36,8 +41,8 @@ final class SimpleValidationViewController: UIViewController {
         $0.layer.borderWidth = 1
     }
     
-    private let passwordValidLabel = UILabel().then {
-        $0.text = "비밀번호는 최소 5글자 이상이어야 합니다"
+    private lazy var passwordValidLabel = UILabel().then {
+        $0.text = "비밀번호는 최소 \(minimalPasswordLength)글자 이상이어야 합니다"
         $0.textColor = .systemRed
     }
     

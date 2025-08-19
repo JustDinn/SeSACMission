@@ -9,12 +9,19 @@ import UIKit
 import SnapKit
 import Then
 
+import RxSwift
+import RxCocoa
+
 final class SimpleValidationViewController: UIViewController {
 
     // MARK: - Property
     
     private let minimalUsernameLength = 5
     private let minimalPasswordLength = 5
+    
+    // MARK: - DisposeBag
+    
+    var disposeBag = DisposeBag()
     
     // MARK: - Component
     
@@ -60,6 +67,7 @@ final class SimpleValidationViewController: UIViewController {
         view.backgroundColor = .white
         setHierarchy()
         setConstraints()
+        bind()
     }
     
     // MARK: - Set Hierarchy
@@ -114,5 +122,57 @@ final class SimpleValidationViewController: UIViewController {
             $0.horizontalEdges.equalToSuperview().inset(16)
             $0.height.equalTo(44)
         }
+    }
+    
+    private func bind() {
+        
+        // MARK: - Observable
+        
+        let usernameValid = usernameTextField.rx.text.orEmpty
+            .map { $0.count >= self.minimalUsernameLength }
+            .share(replay: 1)
+
+        let passwordValid = passwordTextField.rx.text.orEmpty
+            .map { $0.count >= self.minimalPasswordLength }
+            .share(replay: 1)
+
+        let everythingValid = Observable.combineLatest(usernameValid, passwordValid) { $0 && $1 }
+            .share(replay: 1)
+        
+        // MARK: - Bind
+        
+        usernameValid
+            .bind(to: passwordTextField.rx.isEnabled)
+            .disposed(by: disposeBag)
+
+        usernameValid
+            .bind(to: usernameValidLabel.rx.isHidden)
+            .disposed(by: disposeBag)
+
+        passwordValid
+            .bind(to: passwordValidLabel.rx.isHidden)
+            .disposed(by: disposeBag)
+
+        everythingValid
+            .bind(to: doneButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+
+        // MARK: - Action
+        
+        doneButton.rx.tap
+            .bind(with: self, onNext: { owner, _ in
+                owner.showAlert(title: "경축", message: "유효성 검사 통과")
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    // MARK: - Alert
+    
+    func showAlert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "확인", style: .default)
+        
+        alertController.addAction(okButton)
+        present(alertController, animated: true)
     }
 }

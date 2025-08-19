@@ -22,6 +22,11 @@ final class SimpleValidationViewController: UIViewController {
         $0.layer.borderWidth = 1
     }
     
+    private let usernameValidLabel = UILabel().then {
+        $0.text = "이름은 최소 5글자 이상이어야 합니다"
+        $0.textColor = .systemRed
+    }
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -37,7 +42,8 @@ final class SimpleValidationViewController: UIViewController {
     private func setHierarchy() {
         [
             usernameLabel,
-            usernameTextField
+            usernameTextField,
+            usernameValidLabel
         ].forEach(view.addSubview)
     }
     
@@ -52,6 +58,11 @@ final class SimpleValidationViewController: UIViewController {
         usernameTextField.snp.makeConstraints {
             $0.top.equalTo(usernameLabel.snp.bottom).offset(10)
             $0.horizontalEdges.equalToSuperview().inset(16)
+        }
+        
+        usernameValidLabel.snp.makeConstraints {
+            $0.top.equalTo(usernameTextField.snp.bottom).offset(10)
+            $0.leading.equalToSuperview().offset(16)
         }
     }
 }

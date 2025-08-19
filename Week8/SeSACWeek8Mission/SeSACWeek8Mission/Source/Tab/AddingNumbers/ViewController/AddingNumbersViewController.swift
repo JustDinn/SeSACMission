@@ -38,6 +38,10 @@ final class AddingNumbersViewController: UIViewController {
         $0.image = UIImage(systemName: "plus")
         $0.tintColor = .black
     }
+    
+    private let borderLine = UIView().then {
+        $0.backgroundColor = .gray
+    }
 
     // MARK: - Life Cycle
     
@@ -56,7 +60,8 @@ final class AddingNumbersViewController: UIViewController {
             firstNumber,
             secondNumber,
             thirdNumber,
-            plusIcon
+            plusIcon,
+            borderLine
         ].forEach(view.addSubview)
     }
     
@@ -71,18 +76,25 @@ final class AddingNumbersViewController: UIViewController {
         }
         
         secondNumber.snp.makeConstraints {
-            $0.top.equalTo(firstNumber.snp.bottom).offset(20)
+            $0.top.equalTo(firstNumber.snp.bottom).offset(10)
             $0.size.horizontalEdges.equalTo(firstNumber)
         }
         
         thirdNumber.snp.makeConstraints {
-            $0.top.equalTo(secondNumber.snp.bottom).offset(20)
+            $0.top.equalTo(secondNumber.snp.bottom).offset(10)
             $0.size.horizontalEdges.equalTo(firstNumber)
         }
         
         plusIcon.snp.makeConstraints {
-            $0.trailing.equalTo(thirdNumber.snp.leading).offset(-20)
+            $0.trailing.equalTo(thirdNumber.snp.leading).offset(-10)
             $0.centerY.equalTo(thirdNumber)
+        }
+        
+        borderLine.snp.makeConstraints {
+            $0.top.equalTo(thirdNumber.snp.bottom).offset(10)
+            $0.leading.equalTo(plusIcon)
+            $0.trailing.equalTo(thirdNumber)
+            $0.height.equalTo(1)
         }
     }
 }

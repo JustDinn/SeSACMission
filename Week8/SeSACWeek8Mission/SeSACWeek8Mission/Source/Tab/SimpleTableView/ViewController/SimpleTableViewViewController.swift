@@ -62,5 +62,29 @@ final class SimpleTableViewViewController: UIViewController {
                 cell.label.text = "\(element) @ row \(row)"
             }
             .disposed(by: disposeBag)
+        
+        tableView.rx
+            .modelSelected(String.self)
+            .subscribe(onNext:  { value in
+                self.showAlert(title: "알림", message: "Tapped \(value)")
+            })
+            .disposed(by: disposeBag)
+
+//        tableView.rx
+//            .itemAccessoryButtonTapped
+//            .subscribe(onNext: { indexPath in
+//                self.showAlert(title: "알림", message: "Tapped Detail \(indexPath)")
+//            })
+//            .disposed(by: disposeBag)
+    }
+    
+    // MARK: - Alert
+    
+    func showAlert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "확인", style: .default)
+        
+        alertController.addAction(okButton)
+        present(alertController, animated: true)
     }
 }

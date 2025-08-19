@@ -17,6 +17,11 @@ final class SimpleValidationViewController: UIViewController {
         $0.text = "Username"
     }
     
+    private let usernameTextField = UITextField().then {
+        $0.layer.borderColor = UIColor.gray.cgColor
+        $0.layer.borderWidth = 1
+    }
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -31,7 +36,8 @@ final class SimpleValidationViewController: UIViewController {
     
     private func setHierarchy() {
         [
-            usernameLabel
+            usernameLabel,
+            usernameTextField
         ].forEach(view.addSubview)
     }
     
@@ -41,6 +47,11 @@ final class SimpleValidationViewController: UIViewController {
         usernameLabel.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide).offset(30)
             $0.leading.equalToSuperview().offset(16)
+        }
+        
+        usernameTextField.snp.makeConstraints {
+            $0.top.equalTo(usernameLabel.snp.bottom).offset(10)
+            $0.horizontalEdges.equalToSuperview().inset(16)
         }
     }
 }

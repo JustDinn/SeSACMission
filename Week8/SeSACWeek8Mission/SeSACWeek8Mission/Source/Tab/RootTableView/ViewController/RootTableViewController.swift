@@ -58,7 +58,18 @@ final class RootTableViewController: UIViewController {
         items
             .bind(to: tableView.rx.items(cellIdentifier: RootTableTableViewCell.identifier, cellType: RootTableTableViewCell.self)) { (row, element, cell) in
                 cell.label.text = "\(element)"
+                cell.selectionStyle = .none
             }
+            .disposed(by: disposeBag)
+        
+        tableView.rx
+            .modelSelected(String.self)
+            .bind(with: self, onNext: { owner, tableView in
+                if tableView == "SimpleTableView" {
+                    let vc = SimpleTableViewViewController()
+                    owner.navigationController?.pushViewController(vc, animated: true)
+                }
+            })
             .disposed(by: disposeBag)
     }
 }

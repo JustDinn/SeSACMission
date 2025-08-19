@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let rootTableViewVC = RootTableViewController()
         
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = rootTableViewVC
+        window?.rootViewController = UINavigationController(rootViewController: rootTableViewVC)
         window?.makeKeyAndVisible()
         window?.backgroundColor = .white
     }

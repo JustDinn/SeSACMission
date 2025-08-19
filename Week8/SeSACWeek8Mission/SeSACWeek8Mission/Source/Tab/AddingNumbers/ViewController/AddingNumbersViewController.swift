@@ -9,7 +9,14 @@ import UIKit
 import SnapKit
 import Then
 
+import RxSwift
+import RxCocoa
+
 final class AddingNumbersViewController: UIViewController {
+    
+    // MARK: - DisposeBag
+    
+    var disposeBag = DisposeBag()
     
     // MARK: - Component
     
@@ -58,6 +65,7 @@ final class AddingNumbersViewController: UIViewController {
         view.backgroundColor = .white
         setHierarchy()
         setConstraints()
+        bind()
     }
     
     // MARK: - Set Hierarchy
@@ -109,5 +117,19 @@ final class AddingNumbersViewController: UIViewController {
             $0.top.equalTo(borderLine.snp.bottom).offset(10)
             $0.trailing.equalTo(borderLine)
         }
+    }
+    
+    // MARK: - Bind
+    
+    private func bind() {
+        Observable.combineLatest(
+            firstNumber.rx.text.orEmpty,
+            secondNumber.rx.text.orEmpty,
+            thirdNumber.rx.text.orEmpty) { firstText, secondText, thirdText -> Int in
+                return (Int(firstText) ?? 0) + (Int(secondText) ?? 0) + (Int(thirdText) ?? 0)
+            }
+            .map { $0.description }
+            .bind(to: resultLabel.rx.text)
+            .disposed(by: disposeBag)
     }
 }

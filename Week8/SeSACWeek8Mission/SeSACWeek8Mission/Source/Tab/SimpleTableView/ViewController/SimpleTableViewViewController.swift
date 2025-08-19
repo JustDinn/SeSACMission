@@ -60,6 +60,7 @@ final class SimpleTableViewViewController: UIViewController {
         items
             .bind(to: tableView.rx.items(cellIdentifier: SimpleTableViewCell.identifier, cellType: SimpleTableViewCell.self)) { (row, element, cell) in
                 cell.label.text = "\(element) @ row \(row)"
+                cell.accessoryType = .detailButton
             }
             .disposed(by: disposeBag)
         
@@ -70,12 +71,12 @@ final class SimpleTableViewViewController: UIViewController {
             })
             .disposed(by: disposeBag)
 
-//        tableView.rx
-//            .itemAccessoryButtonTapped
-//            .subscribe(onNext: { indexPath in
-//                self.showAlert(title: "알림", message: "Tapped Detail \(indexPath)")
-//            })
-//            .disposed(by: disposeBag)
+        tableView.rx
+            .itemAccessoryButtonTapped
+            .subscribe(onNext: { indexPath in
+                self.showAlert(title: "알림", message: "Tapped Detail \(indexPath)")
+            })
+            .disposed(by: disposeBag)
     }
     
     // MARK: - Alert

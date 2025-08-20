@@ -74,6 +74,7 @@ class HomeworkViewController: UIViewController {
         Person(name: "Ann", email: "ann.howard@example.com", profileImage: "https://randomuser.me/api/portraits/thumb/women/25.jpg")
     ]
     
+    private var selectedUserList: [String] = []
     private let disposeBag = DisposeBag()
     
     let tableView = UITableView()
@@ -90,13 +91,28 @@ class HomeworkViewController: UIViewController {
         // MARK: - Observable
         
         let items = Observable.just(sampleUsers)
+        let userList = PublishSubject<[String]>()
         
         items
             .bind(to: tableView.rx.items(cellIdentifier: PersonTableViewCell.identifier, cellType: PersonTableViewCell.self)) { (row, element, cell) in
-                    cell.configureCell(with: element)
+                cell.configureCell(with: element)
             }
             .disposed(by: disposeBag)
-          
+        
+        userList
+            .bind(to: collectionView.rx.items(cellIdentifier: UserCollectionViewCell.identifier, cellType: UserCollectionViewCell.self)) { (item, element, cell) in
+                cell.configureCell(with: element)
+            }
+            .disposed(by: disposeBag)
+        
+        // MARK: - Action
+        
+        tableView.rx.modelSelected(Person.self)
+            .bind(with: self) { owner, user in
+                owner.selectedUserList.append(user.name)
+                userList.onNext(owner.selectedUserList)
+            }
+            .disposed(by: disposeBag)
     }
     
     private func configure() {

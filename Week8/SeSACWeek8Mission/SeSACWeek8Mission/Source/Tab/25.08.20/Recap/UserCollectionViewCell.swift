@@ -32,5 +32,10 @@ class UserCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Configure Cell
+    
+    func configureCell(with name: String) {
+        label.text = name
+    }
 }
 

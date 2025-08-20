@@ -93,7 +93,7 @@ class HomeworkViewController: UIViewController {
         
         items
             .bind(to: tableView.rx.items(cellIdentifier: PersonTableViewCell.identifier, cellType: PersonTableViewCell.self)) { (row, element, cell) in
-                    cell.usernameLabel.text = element.name
+                    cell.configureCell(with: element)
             }
             .disposed(by: disposeBag)
           

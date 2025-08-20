@@ -7,19 +7,20 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
 
 final class PersonTableViewCell: UITableViewCell {
     
     static let identifier = "PersonTableViewCell"
     
-    let usernameLabel: UILabel = {
+    private let usernameLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 18, weight: .bold)
         label.textColor = .black
         return label
     }()
     
-    let profileImageView: UIImageView = {
+    private let profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
@@ -28,7 +29,7 @@ final class PersonTableViewCell: UITableViewCell {
         return imageView
     }()
     
-    let detailButton: UIButton = {
+    private let detailButton: UIButton = {
         let button = UIButton()
         button.setTitle("받기", for: .normal)
         button.setTitleColor(.systemBlue, for: .normal)
@@ -73,6 +74,11 @@ final class PersonTableViewCell: UITableViewCell {
             $0.height.equalTo(32)
             $0.width.equalTo(72)
         }
+    }
+    
+    func configureCell(with personInfo: Person) {
+        profileImageView.kf.setImage(with: URL(string: personInfo.profileImage))
+        usernameLabel.text = personInfo.name
     }
 }
 

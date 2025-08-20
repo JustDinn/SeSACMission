@@ -10,6 +10,7 @@
 		3F3BBD702E55DD6300A0CB52 /* PersonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3BBD6D2E55DD6300A0CB52 /* PersonTableViewCell.swift */; };
 		3F3BBD712E55DD6300A0CB52 /* UserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3BBD6E2E55DD6300A0CB52 /* UserCollectionViewCell.swift */; };
 		3F3BBD722E55DD6300A0CB52 /* HomeworkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3BBD6B2E55DD6300A0CB52 /* HomeworkViewController.swift */; };
+		3F3BBD752E55DFB700A0CB52 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 3F3BBD742E55DFB700A0CB52 /* Kingfisher */; };
 		3FA87E112E54D1F700494266 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 3FA87E102E54D1F700494266 /* RxCocoa */; };
 		3FA87E132E54D1F700494266 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3FA87E122E54D1F700494266 /* RxSwift */; };
 		3FA87E162E54D20300494266 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3FA87E152E54D20300494266 /* SnapKit */; };
@@ -53,6 +54,7 @@
 				3FA87E132E54D1F700494266 /* RxSwift in Frameworks */,
 				3FA87E112E54D1F700494266 /* RxCocoa in Frameworks */,
 				3FA87E192E54D20A00494266 /* Then in Frameworks */,
+				3F3BBD752E55DFB700A0CB52 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,6 +255,7 @@
 				3FA87E122E54D1F700494266 /* RxSwift */,
 				3FA87E152E54D20300494266 /* SnapKit */,
 				3FA87E182E54D20A00494266 /* Then */,
+				3F3BBD742E55DFB700A0CB52 /* Kingfisher */,
 			);
 			productName = SeSACWeek8Mission;
 			productReference = 3FCE1E8A2E545A5C00D317DA /* SeSACWeek8Mission.app */;
@@ -286,6 +289,7 @@
 				3FA87E0F2E54D1F700494266 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				3FA87E142E54D20300494266 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				3FA87E172E54D20A00494266 /* XCRemoteSwiftPackageReference "Then" */,
+				3F3BBD732E55DFB700A0CB52 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 3FCE1E8B2E545A5C00D317DA /* Products */;
@@ -551,6 +555,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		3F3BBD732E55DFB700A0CB52 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.5.0;
+			};
+		};
 		3FA87E0F2E54D1F700494266 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
@@ -578,6 +590,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		3F3BBD742E55DFB700A0CB52 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3F3BBD732E55DFB700A0CB52 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		3FA87E102E54D1F700494266 /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 3FA87E0F2E54D1F700494266 /* XCRemoteSwiftPackageReference "RxSwift" */;

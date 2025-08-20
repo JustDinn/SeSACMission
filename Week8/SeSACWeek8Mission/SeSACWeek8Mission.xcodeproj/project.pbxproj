@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F3BBD702E55DD6300A0CB52 /* PersonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3BBD6D2E55DD6300A0CB52 /* PersonTableViewCell.swift */; };
+		3F3BBD712E55DD6300A0CB52 /* UserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3BBD6E2E55DD6300A0CB52 /* UserCollectionViewCell.swift */; };
+		3F3BBD722E55DD6300A0CB52 /* HomeworkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3BBD6B2E55DD6300A0CB52 /* HomeworkViewController.swift */; };
 		3FA87E112E54D1F700494266 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 3FA87E102E54D1F700494266 /* RxCocoa */; };
 		3FA87E132E54D1F700494266 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3FA87E122E54D1F700494266 /* RxSwift */; };
 		3FA87E162E54D20300494266 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3FA87E152E54D20300494266 /* SnapKit */; };
@@ -24,6 +27,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3F3BBD6B2E55DD6300A0CB52 /* HomeworkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkViewController.swift; sourceTree = "<group>"; };
+		3F3BBD6D2E55DD6300A0CB52 /* PersonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonTableViewCell.swift; sourceTree = "<group>"; };
+		3F3BBD6E2E55DD6300A0CB52 /* UserCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionViewCell.swift; sourceTree = "<group>"; };
 		3FA87E1C2E54D35D00494266 /* SimpleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTableViewCell.swift; sourceTree = "<group>"; };
 		3FA87E652E54DA3C00494266 /* RootTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTableViewController.swift; sourceTree = "<group>"; };
 		3FA87E6A2E54DB6200494266 /* RootTableTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTableTableViewCell.swift; sourceTree = "<group>"; };
@@ -62,6 +68,32 @@
 				3FA87E702E54EA8300494266 /* SimpleValidation */,
 			);
 			path = 25.08.19;
+			sourceTree = "<group>";
+		};
+		3F3BBD6A2E55DD3300A0CB52 /* 25.08.20 */ = {
+			isa = PBXGroup;
+			children = (
+				3F3BBD6C2E55DD6300A0CB52 /* Homework */,
+				3F3BBD6F2E55DD6300A0CB52 /* Recap */,
+			);
+			path = 25.08.20;
+			sourceTree = "<group>";
+		};
+		3F3BBD6C2E55DD6300A0CB52 /* Homework */ = {
+			isa = PBXGroup;
+			children = (
+				3F3BBD6B2E55DD6300A0CB52 /* HomeworkViewController.swift */,
+			);
+			path = Homework;
+			sourceTree = "<group>";
+		};
+		3F3BBD6F2E55DD6300A0CB52 /* Recap */ = {
+			isa = PBXGroup;
+			children = (
+				3F3BBD6D2E55DD6300A0CB52 /* PersonTableViewCell.swift */,
+				3F3BBD6E2E55DD6300A0CB52 /* UserCollectionViewCell.swift */,
+			);
+			path = Recap;
 			sourceTree = "<group>";
 		};
 		3FA87E1A2E54D34300494266 /* ViewController */ = {
@@ -186,6 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				3F3BBD692E55DD0C00A0CB52 /* 25.08.19 */,
+				3F3BBD6A2E55DD3300A0CB52 /* 25.08.20 */,
 			);
 			path = Tab;
 			sourceTree = "<group>";
@@ -281,6 +314,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F3BBD702E55DD6300A0CB52 /* PersonTableViewCell.swift in Sources */,
+				3F3BBD712E55DD6300A0CB52 /* UserCollectionViewCell.swift in Sources */,
+				3F3BBD722E55DD6300A0CB52 /* HomeworkViewController.swift in Sources */,
 				3FA87E6B2E54DB6200494266 /* RootTableTableViewCell.swift in Sources */,
 				3FCE1EAA2E545A7F00D317DA /* AppDelegate.swift in Sources */,
 				3FA87E1D2E54D35D00494266 /* SimpleTableViewCell.swift in Sources */,

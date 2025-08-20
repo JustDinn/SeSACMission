@@ -15,10 +15,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
                 
-        let rootTableViewVC = RootTableViewController()
+        let rootVC = HomeworkViewController()
         
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = UINavigationController(rootViewController: rootTableViewVC)
+        window?.rootViewController = UINavigationController(rootViewController: rootVC)
         window?.makeKeyAndVisible()
         window?.backgroundColor = .white
     }

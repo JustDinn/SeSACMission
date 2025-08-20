@@ -90,16 +90,16 @@ class HomeworkViewController: UIViewController {
     private func bind() {
         // MARK: - Observable
         
-        let items = Observable.just(sampleUsers)
-        let userList = PublishSubject<[String]>()
+        let userList = BehaviorSubject(value: sampleUsers)
+        let usernameList = PublishSubject<[String]>()
         
-        items
+        userList
             .bind(to: tableView.rx.items(cellIdentifier: PersonTableViewCell.identifier, cellType: PersonTableViewCell.self)) { (row, element, cell) in
                 cell.configureCell(with: element)
             }
             .disposed(by: disposeBag)
         
-        userList
+        usernameList
             .bind(to: collectionView.rx.items(cellIdentifier: UserCollectionViewCell.identifier, cellType: UserCollectionViewCell.self)) { (item, element, cell) in
                 cell.configureCell(with: element)
             }
@@ -110,7 +110,22 @@ class HomeworkViewController: UIViewController {
         tableView.rx.modelSelected(Person.self)
             .bind(with: self) { owner, user in
                 owner.selectedUserList.append(user.name)
-                userList.onNext(owner.selectedUserList)
+                usernameList.onNext(owner.selectedUserList)
+            }
+            .disposed(by: disposeBag)
+        
+        searchBar.rx.searchButtonClicked
+            .bind(with: self) { owner, _ in
+                guard let name = owner.searchBar.searchTextField.text, !name.isEmpty else { return }
+                
+                let person = Person(name: name, email: "\(name).com", profileImage: "https://mblogthumb-phinf.pstatic.net/MjAyMTAxMTlfMTAw/MDAxNjExMDEyMTY2MDU0.1C-7guLSMaDIXmS0JVW3uraS7A2cDgOUmWmJORyJweIg.Gxta9_XEtJXk1li40OKM_00Luas67kpcZ-6w95_dvWwg.JPEG.eoskan6685/오리.jpg?type=w800")
+                
+                if let currentUserList = try? userList.value() {
+                    var updatedUserList = currentUserList
+                    
+                    updatedUserList.append(person)
+                    userList.onNext(updatedUserList)
+                }
             }
             .disposed(by: disposeBag)
     }

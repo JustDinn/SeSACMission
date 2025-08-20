@@ -53,6 +53,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F3BBD692E55DD0C00A0CB52 /* 25.08.19 */ = {
+			isa = PBXGroup;
+			children = (
+				3FA87E672E54DAD000494266 /* RootTableView */,
+				3FCE1EB42E545B6400D317DA /* SimpleTableView */,
+				3FA87E6C2E54DE4400494266 /* AddingNumbers */,
+				3FA87E702E54EA8300494266 /* SimpleValidation */,
+			);
+			path = 25.08.19;
+			sourceTree = "<group>";
+		};
 		3FA87E1A2E54D34300494266 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -174,10 +185,7 @@
 		3FCE1EB32E545B3200D317DA /* Tab */ = {
 			isa = PBXGroup;
 			children = (
-				3FA87E672E54DAD000494266 /* RootTableView */,
-				3FCE1EB42E545B6400D317DA /* SimpleTableView */,
-				3FA87E6C2E54DE4400494266 /* AddingNumbers */,
-				3FA87E702E54EA8300494266 /* SimpleValidation */,
+				3F3BBD692E55DD0C00A0CB52 /* 25.08.19 */,
 			);
 			path = Tab;
 			sourceTree = "<group>";

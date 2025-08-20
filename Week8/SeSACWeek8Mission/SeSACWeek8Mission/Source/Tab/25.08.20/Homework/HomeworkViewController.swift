@@ -8,6 +8,9 @@
 import UIKit
 import SnapKit
 
+import RxSwift
+import RxCocoa
+
 struct Person: Identifiable {
     let id = UUID()
     let name: String
@@ -71,6 +74,8 @@ class HomeworkViewController: UIViewController {
         Person(name: "Ann", email: "ann.howard@example.com", profileImage: "https://randomuser.me/api/portraits/thumb/women/25.jpg")
     ]
     
+    private let disposeBag = DisposeBag()
+    
     let tableView = UITableView()
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout())
     let searchBar = UISearchBar()
@@ -82,6 +87,15 @@ class HomeworkViewController: UIViewController {
     }
      
     private func bind() {
+        // MARK: - Observable
+        
+        let items = Observable.just(sampleUsers)
+        
+        items
+            .bind(to: tableView.rx.items(cellIdentifier: PersonTableViewCell.identifier, cellType: PersonTableViewCell.self)) { (row, element, cell) in
+                    cell.usernameLabel.text = element.name
+            }
+            .disposed(by: disposeBag)
           
     }
     

@@ -134,7 +134,7 @@ class HomeworkViewController: UIViewController {
                 if let currentUserList = try? userList.value() {
                     var updatedUserList = currentUserList
                     
-                    updatedUserList.append(person)
+                    updatedUserList.insert(person, at: 0)
                     userList.onNext(updatedUserList)
                 }
             }

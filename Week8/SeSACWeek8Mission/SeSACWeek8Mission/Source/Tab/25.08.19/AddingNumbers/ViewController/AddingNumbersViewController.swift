@@ -18,6 +18,10 @@ final class AddingNumbersViewController: UIViewController {
     
     var disposeBag = DisposeBag()
     
+    // MARK: - ViewModel
+    
+    private let addingNumbersViewModel = AddingNumbersViewModel()
+    
     // MARK: - Component
     
     private let firstNumber = UITextField().then {
@@ -122,13 +126,15 @@ final class AddingNumbersViewController: UIViewController {
     // MARK: - Bind
     
     private func bind() {
-        Observable.combineLatest(
-            firstNumber.rx.text.orEmpty,
-            secondNumber.rx.text.orEmpty,
-            thirdNumber.rx.text.orEmpty) { firstText, secondText, thirdText -> Int in
-                return (Int(firstText) ?? 0) + (Int(secondText) ?? 0) + (Int(thirdText) ?? 0)
-            }
-            .map { $0.description }
+        let input = AddingNumbersViewModel.Input(
+            firstNumberText: firstNumber.rx.text.orEmpty,
+            secondNumberText: secondNumber.rx.text.orEmpty,
+            thirdNumberText: thirdNumber.rx.text.orEmpty
+        )
+        
+        let output = addingNumbersViewModel.transform(input: input)
+        
+        output.resultText
             .bind(to: resultLabel.rx.text)
             .disposed(by: disposeBag)
     }

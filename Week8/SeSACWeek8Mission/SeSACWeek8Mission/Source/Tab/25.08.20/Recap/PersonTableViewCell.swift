@@ -9,9 +9,20 @@ import UIKit
 import SnapKit
 import Kingfisher
 
+import RxSwift
+import RxCocoa
+
 final class PersonTableViewCell: UITableViewCell {
     
+    // MARK: - Identifier
+    
     static let identifier = "PersonTableViewCell"
+    
+    // MARK: - DisposeBag
+    
+    var disposeBag = DisposeBag()
+    
+    // MARK: - Component
     
     private let usernameLabel: UILabel = {
         let label = UILabel()
@@ -29,7 +40,7 @@ final class PersonTableViewCell: UITableViewCell {
         return imageView
     }()
     
-    private let detailButton: UIButton = {
+    let detailButton: UIButton = {
         let button = UIButton()
         button.setTitle("받기", for: .normal)
         button.setTitleColor(.systemBlue, for: .normal)
@@ -39,6 +50,8 @@ final class PersonTableViewCell: UITableViewCell {
         return button
     }()
       
+    // MARK: - Init
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -49,7 +62,14 @@ final class PersonTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-     
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        disposeBag = DisposeBag()
+    }
+    
+    // MARK: - Configure UI
     
     private func configure() {
         contentView.addSubview(usernameLabel)
@@ -75,6 +95,8 @@ final class PersonTableViewCell: UITableViewCell {
             $0.width.equalTo(72)
         }
     }
+    
+    // MARK: - Configure Cell
     
     func configureCell(with personInfo: Person) {
         profileImageView.kf.setImage(with: URL(string: personInfo.profileImage))

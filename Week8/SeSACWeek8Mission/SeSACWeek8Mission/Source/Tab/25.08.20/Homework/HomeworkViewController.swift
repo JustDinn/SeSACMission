@@ -95,6 +95,15 @@ class HomeworkViewController: UIViewController {
         userList
             .bind(to: tableView.rx.items(cellIdentifier: PersonTableViewCell.identifier, cellType: PersonTableViewCell.self)) { (row, element, cell) in
                 cell.configureCell(with: element)
+                
+                cell.detailButton.rx.tap
+                    .bind(with: self) { owner, _ in
+                        let homeDetailVC = HomeDetailViewController()
+                        homeDetailVC.navigationItem.title = element.name
+                        
+                        owner.navigationController?.pushViewController(homeDetailVC, animated: true)
+                    }
+                    .disposed(by: cell.disposeBag)
             }
             .disposed(by: disposeBag)
         

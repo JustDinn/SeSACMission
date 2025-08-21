@@ -119,8 +119,7 @@ class HomeworkViewController: UIViewController {
             .bind(with: self) { owner, user in
                 if let currentUsernameList = try? usernameList.value() {
                     var updatedUsernameList = currentUsernameList
-                    
-                    updatedUsernameList.append(user.name)
+                    updatedUsernameList.insert(user.name, at: 0)
                     usernameList.onNext(updatedUsernameList)
                 }
             }

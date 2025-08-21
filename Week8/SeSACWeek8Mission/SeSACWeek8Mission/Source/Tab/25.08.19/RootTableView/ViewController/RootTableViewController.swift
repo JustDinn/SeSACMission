@@ -50,7 +50,7 @@ final class RootTableViewController: UIViewController {
     
     // MARK: - Observable
     
-    let items = Observable.just(["SimpleTableView", "AddingNumbers", "SimpleValidation"])
+    let items = Observable.just(["AddingNumbers", "SimpleValidation", "Home"])
     
     // MARK: - Bind
     
@@ -65,14 +65,14 @@ final class RootTableViewController: UIViewController {
         tableView.rx
             .modelSelected(String.self)
             .bind(with: self, onNext: { owner, tableView in
-                if tableView == "SimpleTableView" {
-                    let vc = SimpleTableViewViewController()
-                    owner.navigationController?.pushViewController(vc, animated: true)
-                } else if tableView == "AddingNumbers" {
+                if tableView == "AddingNumbers" {
                     let vc = AddingNumbersViewController()
                     owner.navigationController?.pushViewController(vc, animated: true)
                 } else if tableView == "SimpleValidation" {
                     let vc = SimpleValidationViewController()
+                    owner.navigationController?.pushViewController(vc, animated: true)
+                } else if tableView == "Home" {
+                    let vc = HomeworkViewController()
                     owner.navigationController?.pushViewController(vc, animated: true)
                 }
             })

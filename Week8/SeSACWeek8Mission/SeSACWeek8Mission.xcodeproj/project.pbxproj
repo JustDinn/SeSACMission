@@ -12,6 +12,9 @@
 		3F3BBD722E55DD6300A0CB52 /* HomeworkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3BBD6B2E55DD6300A0CB52 /* HomeworkViewController.swift */; };
 		3F3BBD752E55DFB700A0CB52 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 3F3BBD742E55DFB700A0CB52 /* Kingfisher */; };
 		3F52B7412E585DA0008FD276 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F52B7402E585DA0008FD276 /* SettingViewController.swift */; };
+		3F52B7442E5860CB008FD276 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F52B7432E5860CB008FD276 /* SettingTableViewCell.swift */; };
+		3F52B7472E586102008FD276 /* ReuseIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F52B7462E586102008FD276 /* ReuseIdentifier.swift */; };
+		3F52B74A2E5863EE008FD276 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F52B7492E5863EE008FD276 /* SettingViewModel.swift */; };
 		3FA6F5412E5776920002B593 /* AddingNumbersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA6F5402E5776920002B593 /* AddingNumbersViewModel.swift */; };
 		3FA6F54B2E5780B60002B593 /* SimpleValidationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA6F54A2E5780B60002B593 /* SimpleValidationViewModel.swift */; };
 		3FA6F54E2E5783850002B593 /* HomeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA6F54D2E5783850002B593 /* HomeDetailViewController.swift */; };
@@ -36,6 +39,9 @@
 		3F3BBD6D2E55DD6300A0CB52 /* PersonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonTableViewCell.swift; sourceTree = "<group>"; };
 		3F3BBD6E2E55DD6300A0CB52 /* UserCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionViewCell.swift; sourceTree = "<group>"; };
 		3F52B7402E585DA0008FD276 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		3F52B7432E5860CB008FD276 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
+		3F52B7462E586102008FD276 /* ReuseIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseIdentifier.swift; sourceTree = "<group>"; };
+		3F52B7492E5863EE008FD276 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		3FA6F5402E5776920002B593 /* AddingNumbersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingNumbersViewModel.swift; sourceTree = "<group>"; };
 		3FA6F54A2E5780B60002B593 /* SimpleValidationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleValidationViewModel.swift; sourceTree = "<group>"; };
 		3FA6F54D2E5783850002B593 /* HomeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailViewController.swift; sourceTree = "<group>"; };
@@ -126,6 +132,8 @@
 		3F52B73E2E585D89008FD276 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				3F52B7482E5863E1008FD276 /* ViewModel */,
+				3F52B7422E5860BD008FD276 /* Cell */,
 				3F52B73F2E585D94008FD276 /* ViewController */,
 			);
 			path = Setting;
@@ -137,6 +145,30 @@
 				3F52B7402E585DA0008FD276 /* SettingViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		3F52B7422E5860BD008FD276 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				3F52B7432E5860CB008FD276 /* SettingTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		3F52B7452E5860EE008FD276 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				3F52B7462E586102008FD276 /* ReuseIdentifier.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		3F52B7482E5863E1008FD276 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				3F52B7492E5863EE008FD276 /* SettingViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		3FA6F53F2E5776870002B593 /* ViewModel */ = {
@@ -260,6 +292,7 @@
 			children = (
 				3FCE1EB22E545A9700D317DA /* Application */,
 				3FCE1EB32E545B3200D317DA /* Tab */,
+				3F52B7452E5860EE008FD276 /* Extension */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -392,9 +425,12 @@
 				3F3BBD722E55DD6300A0CB52 /* HomeworkViewController.swift in Sources */,
 				3FA87E6B2E54DB6200494266 /* RootTableTableViewCell.swift in Sources */,
 				3F52B7412E585DA0008FD276 /* SettingViewController.swift in Sources */,
+				3F52B7442E5860CB008FD276 /* SettingTableViewCell.swift in Sources */,
+				3F52B74A2E5863EE008FD276 /* SettingViewModel.swift in Sources */,
 				3FCE1EAA2E545A7F00D317DA /* AppDelegate.swift in Sources */,
 				3FA87E1D2E54D35D00494266 /* SimpleTableViewCell.swift in Sources */,
 				3FA87E722E54EAAA00494266 /* SimpleValidationViewController.swift in Sources */,
+				3F52B7472E586102008FD276 /* ReuseIdentifier.swift in Sources */,
 				3FA87E662E54DA3C00494266 /* RootTableViewController.swift in Sources */,
 				3FA6F54B2E5780B60002B593 /* SimpleValidationViewModel.swift in Sources */,
 				3FA87E6E2E54DE7D00494266 /* AddingNumbersViewController.swift in Sources */,

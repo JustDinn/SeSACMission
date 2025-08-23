@@ -19,6 +19,13 @@ final class SettingTableViewCell: UITableViewCell, ReuseIdentifier {
     
     private let settingTitleLabel = UILabel()
     
+    private let nicknameLabel = UILabel().then {
+        $0.text = "asdf"
+        $0.font = .systemFont(ofSize: 14, weight: .medium)
+        $0.textColor = .tint
+//        $0.isHidden = true
+    }
+    
     private let nextImageView = UIImageView().then {
         $0.image = UIImage(systemName: "chevron.right")
         $0.tintColor = .gray
@@ -51,6 +58,7 @@ final class SettingTableViewCell: UITableViewCell, ReuseIdentifier {
         [
             iconImageView,
             settingTitleLabel,
+            nicknameLabel,
             nextImageView
         ].forEach(contentView.addSubview)
     }
@@ -66,6 +74,11 @@ final class SettingTableViewCell: UITableViewCell, ReuseIdentifier {
         settingTitleLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.leading.equalTo(iconImageView.snp.trailing).offset(16)
+        }
+        
+        nicknameLabel.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.trailing.equalTo(nextImageView.snp.leading).offset(-8)
         }
         
         nextImageView.snp.makeConstraints {

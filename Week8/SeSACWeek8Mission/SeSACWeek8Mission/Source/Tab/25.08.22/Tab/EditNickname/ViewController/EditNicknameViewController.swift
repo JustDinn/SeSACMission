@@ -9,20 +9,68 @@ import UIKit
 import SnapKit
 import Then
 
+import RxSwift
+import RxCocoa
+
 final class EditNicknameViewController: UIViewController {
 
+    // MARK: - DisposeBag
+    
+    private let disposeBag = DisposeBag()
+    
+    // MARK: - ViewModel
+    
+    private let editNicknameViewModel = EditNicknameViewModel()
+    
+    // MARK: - Component
+    
+    private let nicknameTextField = UITextField().then {
+        $0.placeholder = "닉네임을 입력해주세요"
+    }
+    
+    private var saveButton = UIBarButtonItem()
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setUI()
+        setHierarchy()
+        setConstraints()
+        bind()
     }
     
     // MARK: - Set UI
     
     private func setUI() {
         setBackButtonNaviBar("대장님 이름 정하기")
+    }
+    
+    // MARK: - Set Hierarchy
+    
+    private func setHierarchy() {
+        [
+            nicknameTextField
+        ].forEach(view.addSubview)
+    }
+    
+    // MARK: - Set Constraints
+    
+    private func setConstraints() {
+        nicknameTextField.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(30)
+            $0.horizontalEdges.equalToSuperview().inset(20)
+        }
+    }
+    
+    // MARK: - Bind
+    
+    private func bind() {
+        let input = EditNicknameViewModel.Input(
+            saveButtonTapped: saveButton.rx.tap
+        )
+        let output = editNicknameViewModel.transform(input: input)
     }
 }
 
@@ -41,12 +89,13 @@ extension EditNicknameViewController {
             target: self,
             action: #selector(popVC)
         )
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(
+        saveButton = UIBarButtonItem(
             title: "저장",
             style: .plain,
-            target: self,
-            action: #selector(saveNickname)
+            target: nil,
+            action: nil
         )
+        self.navigationItem.rightBarButtonItem = saveButton
         self.navigationController?.navigationBar.tintColor = .tint
     }
     
@@ -54,9 +103,5 @@ extension EditNicknameViewController {
     
     @objc private func popVC() {
         navigationController?.popViewController(animated: true)
-    }
-    
-    @objc private func saveNickname() {
-        
     }
 }

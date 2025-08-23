@@ -40,6 +40,12 @@ final class SettingViewController: UIViewController {
         bind()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        settingViewModel.updateNickname()
+    }
+    
     // MARK: - Set UI
     
     private func setUI() {

@@ -15,6 +15,11 @@ final class SettingViewModel {
     
     private let disposeBag = DisposeBag()
     
+    // MARK: - Property
+    
+    private var settingData = SettingModel.settingData
+    private let settingDataSubject = BehaviorSubject(value: SettingModel.settingData)
+    
     // MARK: - Input
     
     struct Input {
@@ -33,7 +38,6 @@ final class SettingViewModel {
     // MARK: - Transform
     
     func transform(input: Input) -> Output {
-        let settingData = BehaviorSubject(value: SettingModel.settingData)
         let pushedVC = PublishSubject<Void>()
         
         input.selectedCell
@@ -44,6 +48,19 @@ final class SettingViewModel {
             }
             .disposed(by: disposeBag)
         
-        return Output(cellTitle: settingData, pushedVC: pushedVC)
+        return Output(cellTitle: settingDataSubject, pushedVC: pushedVC)
+    }
+    
+    // MARK: - 닉네임 업데이트
+    
+    func updateNickname() {
+        let nickname = UserDefaults.standard.string(forKey: UserDefaultsKey.nickname.value) ?? ""
+        
+        settingData[0] = SettingModel(
+            icon: settingData[0].icon,
+            title: settingData[0].title,
+            nickname: nickname
+        )
+        settingDataSubject.onNext(settingData)
     }
 }

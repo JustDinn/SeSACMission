@@ -20,10 +20,8 @@ final class SettingTableViewCell: UITableViewCell, ReuseIdentifier {
     private let settingTitleLabel = UILabel()
     
     private let nicknameLabel = UILabel().then {
-        $0.text = "asdf"
         $0.font = .systemFont(ofSize: 14, weight: .medium)
         $0.textColor = .tint
-//        $0.isHidden = true
     }
     
     private let nextImageView = UIImageView().then {
@@ -92,5 +90,6 @@ final class SettingTableViewCell: UITableViewCell, ReuseIdentifier {
     func configureCell(with settingData: SettingModel) {
         iconImageView.image = UIImage(systemName: settingData.icon)
         settingTitleLabel.text = settingData.title
+        nicknameLabel.text = settingData.nickname
     }
 }

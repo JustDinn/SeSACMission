@@ -90,5 +90,11 @@ final class SettingViewController: UIViewController {
                 }
             }
             .disposed(by: disposeBag)
+        
+        output.resetTapped
+            .bind(with: self) { owner, _ in
+                
+            }
+            .disposed(by: disposeBag)
     }
 }

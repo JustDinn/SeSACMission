@@ -41,4 +41,22 @@ extension UIViewController {
     @objc private func backButtonTapped() {
         navigationController?.popViewController(animated: true)
     }
+    
+    // MARK: - Alert
+    
+    func showAlert(title: String, message: String, okCompletion: (() -> Void)? = nil) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+         
+        let okButton = UIAlertAction(title: "확인", style: .default) { _ in
+            okCompletion?()
+        }
+        let cancelButton = UIAlertAction(title: "취소", style: .cancel)
+        
+        [
+            okButton,
+            cancelButton
+        ].forEach(alertController.addAction)
+        
+        present(alertController, animated: true)
+    }
 }

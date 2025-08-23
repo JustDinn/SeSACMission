@@ -36,11 +36,30 @@ final class EditNicknameViewModel {
         input.saveButtonTapped
             .withLatestFrom(input.nickname)
             .bind(with: self) { owner, nickname in
-                UserDefaults.standard.set(nickname, forKey: UserDefaultsKey.nickname.value)
-                resultMessage.onNext("닉네임 수정 완료!")
+                var message: String
+                
+                if owner.isValidNickname(nickname: nickname) {
+                    UserDefaults.standard.set(nickname, forKey: UserDefaultsKey.nickname.value)
+                    message = "닉네임 수정 완료!"
+                } else {
+                    message = "닉네임은 2글자 이상, 6글자 이하로 작성해주세요"
+                }
+                resultMessage.onNext(message)
             }
             .disposed(by: disposeBag)
         
         return Output(resultMessage: resultMessage)
+    }
+    
+    // MARK: - 닉네임 유효성 검사
+    
+    private func isValidNickname(nickname: String) -> Bool {
+        
+        // 2글자 이상, 6글자 미만만 허용
+        if nickname.count >= 2 && nickname.count <= 6 {
+            return true
+        } else {
+            return false
+        }
     }
 }

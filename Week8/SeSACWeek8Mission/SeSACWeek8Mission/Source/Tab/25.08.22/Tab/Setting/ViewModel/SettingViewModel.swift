@@ -32,7 +32,7 @@ final class SettingViewModel {
     // MARK: - Transform
     
     func transform() -> Output {
-        let settingData = BehaviorSubject(value: ["내 이름 설정하기", "다마고치 변경하기", "데이터 초기화"])
+        let settingData = BehaviorSubject(value: SettingModel.settingData.map { $0.title })
         
         return Output(cellTitle: settingData)
     }

@@ -32,6 +32,7 @@
 		3FCE1EAD2E545A7F00D317DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FCE1EA32E545A7F00D317DA /* Assets.xcassets */; };
 		3FCE1EAF2E545A7F00D317DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FCE1EA62E545A7F00D317DA /* LaunchScreen.storyboard */; };
 		3FCE1EB62E545BBA00D317DA /* SimpleTableViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCE1EB52E545BBA00D317DA /* SimpleTableViewViewController.swift */; };
+		3FEBEAF32E59DC9F00AA7AC7 /* SettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEBEAF22E59DC9F00AA7AC7 /* SettingModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,7 @@
 		3FCE1EA52E545A7F00D317DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3FCE1EA72E545A7F00D317DA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		3FCE1EB52E545BBA00D317DA /* SimpleTableViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTableViewViewController.swift; sourceTree = "<group>"; };
+		3FEBEAF22E59DC9F00AA7AC7 /* SettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +134,7 @@
 		3F52B73E2E585D89008FD276 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				3FEBEAF12E59DC9900AA7AC7 /* Model */,
 				3F52B7482E5863E1008FD276 /* ViewModel */,
 				3F52B7422E5860BD008FD276 /* Cell */,
 				3F52B73F2E585D94008FD276 /* ViewController */,
@@ -335,6 +338,14 @@
 			path = SimpleTableView;
 			sourceTree = "<group>";
 		};
+		3FEBEAF12E59DC9900AA7AC7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3FEBEAF22E59DC9F00AA7AC7 /* SettingModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -427,6 +438,7 @@
 				3F52B7412E585DA0008FD276 /* SettingViewController.swift in Sources */,
 				3F52B7442E5860CB008FD276 /* SettingTableViewCell.swift in Sources */,
 				3F52B74A2E5863EE008FD276 /* SettingViewModel.swift in Sources */,
+				3FEBEAF32E59DC9F00AA7AC7 /* SettingModel.swift in Sources */,
 				3FCE1EAA2E545A7F00D317DA /* AppDelegate.swift in Sources */,
 				3FA87E1D2E54D35D00494266 /* SimpleTableViewCell.swift in Sources */,
 				3FA87E722E54EAAA00494266 /* SimpleValidationViewController.swift in Sources */,

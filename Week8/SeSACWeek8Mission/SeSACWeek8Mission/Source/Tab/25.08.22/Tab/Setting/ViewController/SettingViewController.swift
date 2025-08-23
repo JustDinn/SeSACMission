@@ -33,9 +33,16 @@ final class SettingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setUI()
         setHierarchy()
         setConstraints()
         bind()
+    }
+    
+    // MARK: - Set UI
+    
+    private func setUI() {
+        view.backgroundColor = .main
     }
     
     // MARK: - Set Hierarchy

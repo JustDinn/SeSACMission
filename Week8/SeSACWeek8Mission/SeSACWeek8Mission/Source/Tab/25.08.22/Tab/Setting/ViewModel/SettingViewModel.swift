@@ -30,7 +30,8 @@ final class SettingViewModel {
     
     struct Output {
         let cellTitle: BehaviorSubject<[SettingModel]>
-        let pushedVC: PublishSubject<Void>
+        let pushedVC: PublishSubject<Int>
+//        let pushedResetData: PublishSubject<Void>
     }
     
     // MARK: - Init
@@ -38,13 +39,12 @@ final class SettingViewModel {
     // MARK: - Transform
     
     func transform(input: Input) -> Output {
-        let pushedVC = PublishSubject<Void>()
+        let pushedVC = PublishSubject<Int>()
         
         input.selectedCell
             .bind(with: self) { owner, indexPath in
-                if indexPath.row == 0 {
-                    pushedVC.onNext(())
-                }
+                let row = indexPath.row
+                pushedVC.onNext(row)
             }
             .disposed(by: disposeBag)
         

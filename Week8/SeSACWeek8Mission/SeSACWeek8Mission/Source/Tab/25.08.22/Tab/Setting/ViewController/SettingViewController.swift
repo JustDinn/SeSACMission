@@ -78,13 +78,16 @@ final class SettingViewController: UIViewController {
         output.cellTitle
             .bind(to: settingTableView.rx.items(cellIdentifier: SettingTableViewCell.reuseIdentifier, cellType: SettingTableViewCell.self)) { row, data, cell in
                 cell.configureCell(with: data)
+                cell.selectionStyle = .none
             }
             .disposed(by: disposeBag)
         
         output.pushedVC
-            .bind(with: self) { owner, _ in
-                let editNicknameVC = EditNicknameViewController()
-                owner.navigationController?.pushViewController(editNicknameVC, animated: true)
+            .bind(with: self) { owner, row in
+                if row == 0 {
+                    let editNicknameVC = EditNicknameViewController()
+                    owner.navigationController?.pushViewController(editNicknameVC, animated: true)
+                }
             }
             .disposed(by: disposeBag)
     }

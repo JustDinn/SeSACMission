@@ -24,6 +24,7 @@ final class SettingViewModel {
     
     struct Input {
         let selectedCell: ControlEvent<IndexPath>
+        let resetData: PublishSubject<Void>
     }
     
     // MARK: - Output
@@ -50,6 +51,13 @@ final class SettingViewModel {
                     let row = indexPath.row
                     pushedVC.onNext(row)
                 }
+            }
+            .disposed(by: disposeBag)
+        
+        input.resetData
+            .bind(with: self) { owner, _ in
+                UserDefaults.standard.removeObject(forKey: UserDefaultsKey.nickname.value)
+                owner.updateNickname()
             }
             .disposed(by: disposeBag)
         

@@ -72,7 +72,12 @@ final class SettingViewController: UIViewController {
     // MARK: - Bind
     
     private func bind() {
-        let input = SettingViewModel.Input(selectedCell: settingTableView.rx.itemSelected)
+        let resetDataSubject = PublishSubject<Void>()
+        
+        let input = SettingViewModel.Input(
+            selectedCell: settingTableView.rx.itemSelected,
+            resetData: resetDataSubject
+        )
         let output = settingViewModel.transform(input: input)
         
         output.cellTitle
@@ -93,7 +98,9 @@ final class SettingViewController: UIViewController {
         
         output.resetTapped
             .bind(with: self) { owner, _ in
-                
+                owner.showAlert(title: "데이터 초기화", message: "정말 처음부터 다시 시작하실건가용?") {
+                    resetDataSubject.onNext(())
+                }
             }
             .disposed(by: disposeBag)
     }

@@ -28,6 +28,10 @@ final class EditNicknameViewController: UIViewController {
         $0.placeholder = "닉네임을 입력해주세요"
     }
     
+    private let textFieldUnderBorder = UIView().then {
+        $0.backgroundColor = .tint
+    }
+    
     private var saveButton = UIBarButtonItem()
     
     // MARK: - Life Cycle
@@ -44,6 +48,7 @@ final class EditNicknameViewController: UIViewController {
     // MARK: - Set UI
     
     private func setUI() {
+        view.backgroundColor = .main
         setBackButtonNaviBar("대장님 이름 정하기")
     }
     
@@ -51,7 +56,8 @@ final class EditNicknameViewController: UIViewController {
     
     private func setHierarchy() {
         [
-            nicknameTextField
+            nicknameTextField,
+            textFieldUnderBorder
         ].forEach(view.addSubview)
     }
     
@@ -61,6 +67,12 @@ final class EditNicknameViewController: UIViewController {
         nicknameTextField.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide).offset(30)
             $0.horizontalEdges.equalToSuperview().inset(20)
+        }
+        
+        textFieldUnderBorder.snp.makeConstraints {
+            $0.top.equalTo(nicknameTextField.snp.bottom).offset(10)
+            $0.horizontalEdges.equalTo(nicknameTextField)
+            $0.height.equalTo(1)
         }
     }
     

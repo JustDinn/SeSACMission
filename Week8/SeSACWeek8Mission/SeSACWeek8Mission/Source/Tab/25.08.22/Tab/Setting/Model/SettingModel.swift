@@ -24,7 +24,7 @@ struct SettingModel {
             subTitle: ""
         ),
         SettingModel(
-            icon: "pencil",
+            icon: "arrow.clockwise",
             title: "데이터 초기화",
             subTitle: "arrow.clockwise"
         )

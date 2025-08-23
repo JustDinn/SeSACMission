@@ -13,13 +13,23 @@ final class SettingTableViewCell: UITableViewCell, ReuseIdentifier {
     
     // MARK: - Component
     
+    private let iconImageView = UIImageView().then {
+        $0.tintColor = .tint
+    }
+    
     private let settingTitleLabel = UILabel()
+    
+    private let nextImageView = UIImageView().then {
+        $0.image = UIImage(systemName: "chevron.right")
+        $0.tintColor = .gray
+    }
     
     // MARK: - Init
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
+        setUI()
         setHierarchy()
         setConstraints()
     }
@@ -29,25 +39,45 @@ final class SettingTableViewCell: UITableViewCell, ReuseIdentifier {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Set UI
+    
+    private func setUI() {
+        contentView.backgroundColor = .main
+    }
+    
     // MARK: - Set Hierarchy
     
     private func setHierarchy() {
         [
-            settingTitleLabel
+            iconImageView,
+            settingTitleLabel,
+            nextImageView
         ].forEach(contentView.addSubview)
     }
     
     // MARK: - Set Constraints
     
     private func setConstraints() {
+        iconImageView.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.leading.equalToSuperview().offset(20)
+        }
+        
         settingTitleLabel.snp.makeConstraints {
-            $0.center.equalToSuperview()
+            $0.centerY.equalToSuperview()
+            $0.leading.equalTo(iconImageView.snp.trailing).offset(16)
+        }
+        
+        nextImageView.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.trailing.equalToSuperview().inset(20)
         }
     }
     
     // MARK: - Configure Cell
     
-    func configureCell(with title: String) {
-        settingTitleLabel.text = title
+    func configureCell(with settingData: SettingModel) {
+        iconImageView.image = UIImage(systemName: settingData.icon)
+        settingTitleLabel.text = settingData.title
     }
 }

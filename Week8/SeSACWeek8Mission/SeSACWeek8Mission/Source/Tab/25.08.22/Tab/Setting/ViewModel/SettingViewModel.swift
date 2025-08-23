@@ -24,7 +24,7 @@ final class SettingViewModel {
     // MARK: - Output
     
     struct Output {
-        let cellTitle: BehaviorSubject<[String]>
+        let cellTitle: BehaviorSubject<[SettingModel]>
     }
     
     // MARK: - Init
@@ -32,7 +32,7 @@ final class SettingViewModel {
     // MARK: - Transform
     
     func transform() -> Output {
-        let settingData = BehaviorSubject(value: SettingModel.settingData.map { $0.title })
+        let settingData = BehaviorSubject(value: SettingModel.settingData)
         
         return Output(cellTitle: settingData)
     }

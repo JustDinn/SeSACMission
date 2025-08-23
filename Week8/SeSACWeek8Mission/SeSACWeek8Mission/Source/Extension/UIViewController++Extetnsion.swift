@@ -27,7 +27,7 @@ extension UIViewController {
         }
         
         self.navigationItem.titleView = titleLabel
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(
             image: UIImage(systemName: "chevron.left"),
             style: .plain,
             target: self,

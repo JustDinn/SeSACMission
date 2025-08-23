@@ -26,6 +26,7 @@ final class SettingViewController: UIViewController {
     
     private lazy var settingTableView = UITableView().then {
         $0.register(SettingTableViewCell.self, forCellReuseIdentifier: SettingTableViewCell.reuseIdentifier)
+        $0.backgroundColor = .main
     }
     
     // MARK: - Life Cycle

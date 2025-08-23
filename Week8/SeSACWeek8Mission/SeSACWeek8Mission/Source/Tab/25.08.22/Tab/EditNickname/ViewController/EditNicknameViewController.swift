@@ -68,7 +68,7 @@ final class EditNicknameViewController: UIViewController {
     
     private func bind() {
         let input = EditNicknameViewModel.Input(
-            saveButtonTapped: saveButton.rx.tap
+            nickname: nicknameTextField.rx.text.orEmpty
         )
         let output = editNicknameViewModel.transform(input: input)
     }

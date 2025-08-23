@@ -18,7 +18,7 @@ final class EditNicknameViewModel {
     // MARK: - Input
     
     struct Input {
-        let saveButtonTapped: ControlEvent<Void>
+        let nickname: ControlProperty<String>
     }
     
     // MARK: - Output
@@ -30,9 +30,9 @@ final class EditNicknameViewModel {
     // MARK: - Transform
     
     func transform(input: Input) -> Output {
-        input.saveButtonTapped
-            .bind(with: self) { owner, _ in
-                
+        input.nickname
+            .bind(with: self) { owner, nickname in
+                UserDefaults.standard.set(nickname, forKey: UserDefaultsKey.nickname.value)
             }
             .disposed(by: disposeBag)
         

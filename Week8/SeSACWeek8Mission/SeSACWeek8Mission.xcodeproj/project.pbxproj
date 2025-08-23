@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F1D34BD2E5A16A200C862A0 /* UIView++Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1D34BC2E5A16A200C862A0 /* UIView++Extension.swift */; };
+		3F1D34C02E5A16CE00C862A0 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 3F1D34BF2E5A16CE00C862A0 /* Toast */; };
 		3F3BBD702E55DD6300A0CB52 /* PersonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3BBD6D2E55DD6300A0CB52 /* PersonTableViewCell.swift */; };
 		3F3BBD712E55DD6300A0CB52 /* UserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3BBD6E2E55DD6300A0CB52 /* UserCollectionViewCell.swift */; };
 		3F3BBD722E55DD6300A0CB52 /* HomeworkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3BBD6B2E55DD6300A0CB52 /* HomeworkViewController.swift */; };
@@ -41,6 +43,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3F1D34BC2E5A16A200C862A0 /* UIView++Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView++Extension.swift"; sourceTree = "<group>"; };
 		3F3BBD6B2E55DD6300A0CB52 /* HomeworkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkViewController.swift; sourceTree = "<group>"; };
 		3F3BBD6D2E55DD6300A0CB52 /* PersonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonTableViewCell.swift; sourceTree = "<group>"; };
 		3F3BBD6E2E55DD6300A0CB52 /* UserCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -76,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F1D34C02E5A16CE00C862A0 /* Toast in Frameworks */,
 				3FA87E162E54D20300494266 /* SnapKit in Frameworks */,
 				3FA87E192E54D20A00494266 /* Then in Frameworks */,
 				3F9E7FA92E5A14DB00CF6A1D /* RxSwift in Frameworks */,
@@ -176,6 +180,7 @@
 				3FEBEAF82E59EA1D00AA7AC7 /* UIViewController++Extetnsion.swift */,
 				3FEBEB7D2E59EA5300AA7AC7 /* UILabel++Extension.swift */,
 				3FEBEC022E59F29500AA7AC7 /* UserDefaultsKey.swift */,
+				3F1D34BC2E5A16A200C862A0 /* UIView++Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -407,6 +412,7 @@
 				3F3BBD742E55DFB700A0CB52 /* Kingfisher */,
 				3F9E7FA62E5A14DB00CF6A1D /* RxCocoa */,
 				3F9E7FA82E5A14DB00CF6A1D /* RxSwift */,
+				3F1D34BF2E5A16CE00C862A0 /* Toast */,
 			);
 			productName = SeSACWeek8Mission;
 			productReference = 3FCE1E8A2E545A5C00D317DA /* SeSACWeek8Mission.app */;
@@ -441,6 +447,7 @@
 				3FA87E172E54D20A00494266 /* XCRemoteSwiftPackageReference "Then" */,
 				3F3BBD732E55DFB700A0CB52 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				3F9E7FA52E5A14DB00CF6A1D /* XCRemoteSwiftPackageReference "RxSwift" */,
+				3F1D34BE2E5A16CE00C862A0 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 3FCE1E8B2E545A5C00D317DA /* Products */;
@@ -471,6 +478,7 @@
 			files = (
 				3F3BBD702E55DD6300A0CB52 /* PersonTableViewCell.swift in Sources */,
 				3F3BBD712E55DD6300A0CB52 /* UserCollectionViewCell.swift in Sources */,
+				3F1D34BD2E5A16A200C862A0 /* UIView++Extension.swift in Sources */,
 				3FA6F5412E5776920002B593 /* AddingNumbersViewModel.swift in Sources */,
 				3F3BBD722E55DD6300A0CB52 /* HomeworkViewController.swift in Sources */,
 				3FEBEB7E2E59EA5300AA7AC7 /* UILabel++Extension.swift in Sources */,
@@ -719,6 +727,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		3F1D34BE2E5A16CE00C862A0 /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scalessec/Toast-Swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.1;
+			};
+		};
 		3F3BBD732E55DFB700A0CB52 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -754,6 +770,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		3F1D34BF2E5A16CE00C862A0 /* Toast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3F1D34BE2E5A16CE00C862A0 /* XCRemoteSwiftPackageReference "Toast-Swift" */;
+			productName = Toast;
+		};
 		3F3BBD742E55DFB700A0CB52 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 3F3BBD732E55DFB700A0CB52 /* XCRemoteSwiftPackageReference "Kingfisher" */;

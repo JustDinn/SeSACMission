@@ -13,10 +13,7 @@ final class SettingTableViewCell: UITableViewCell, ReuseIdentifier {
     
     // MARK: - Component
     
-    private let settingButton = UIButton().then {
-        $0.setTitle("test", for: .normal)
-        $0.setTitleColor(.black, for: .normal)
-    }
+    private let settingTitleLabel = UILabel()
     
     // MARK: - Init
     
@@ -36,15 +33,21 @@ final class SettingTableViewCell: UITableViewCell, ReuseIdentifier {
     
     private func setHierarchy() {
         [
-            settingButton
+            settingTitleLabel
         ].forEach(contentView.addSubview)
     }
     
     // MARK: - Set Constraints
     
     private func setConstraints() {
-        settingButton.snp.makeConstraints {
+        settingTitleLabel.snp.makeConstraints {
             $0.center.equalToSuperview()
         }
+    }
+    
+    // MARK: - Configure Cell
+    
+    func configureCell(with title: String) {
+        settingTitleLabel.text = title
     }
 }

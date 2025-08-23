@@ -64,11 +64,19 @@ final class SettingViewController: UIViewController {
     // MARK: - Bind
     
     private func bind() {
-        let output = settingViewModel.transform()
+        let input = SettingViewModel.Input(selectedCell: settingTableView.rx.itemSelected)
+        let output = settingViewModel.transform(input: input)
         
         output.cellTitle
             .bind(to: settingTableView.rx.items(cellIdentifier: SettingTableViewCell.reuseIdentifier, cellType: SettingTableViewCell.self)) { row, data, cell in
                 cell.configureCell(with: data)
+            }
+            .disposed(by: disposeBag)
+        
+        output.pushedVC
+            .bind(with: self) { owner, _ in
+                let editNicknameVC = EditNicknameViewController()
+                owner.navigationController?.pushViewController(editNicknameVC, animated: true)
             }
             .disposed(by: disposeBag)
     }

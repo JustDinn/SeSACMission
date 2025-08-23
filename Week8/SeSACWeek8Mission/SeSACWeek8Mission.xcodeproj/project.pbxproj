@@ -33,6 +33,7 @@
 		3FCE1EAF2E545A7F00D317DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FCE1EA62E545A7F00D317DA /* LaunchScreen.storyboard */; };
 		3FCE1EB62E545BBA00D317DA /* SimpleTableViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCE1EB52E545BBA00D317DA /* SimpleTableViewViewController.swift */; };
 		3FEBEAF32E59DC9F00AA7AC7 /* SettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEBEAF22E59DC9F00AA7AC7 /* SettingModel.swift */; };
+		3FEBEAF72E59E55C00AA7AC7 /* EditNicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEBEAF62E59E55C00AA7AC7 /* EditNicknameViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +60,7 @@
 		3FCE1EA72E545A7F00D317DA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		3FCE1EB52E545BBA00D317DA /* SimpleTableViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTableViewViewController.swift; sourceTree = "<group>"; };
 		3FEBEAF22E59DC9F00AA7AC7 /* SettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingModel.swift; sourceTree = "<group>"; };
+		3FEBEAF62E59E55C00AA7AC7 /* EditNicknameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNicknameViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +128,7 @@
 		3F52B73D2E585D83008FD276 /* Tab */ = {
 			isa = PBXGroup;
 			children = (
+				3FEBEAF42E59E54200AA7AC7 /* EditNickname */,
 				3F52B73E2E585D89008FD276 /* Setting */,
 			);
 			path = Tab;
@@ -346,6 +349,22 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		3FEBEAF42E59E54200AA7AC7 /* EditNickname */ = {
+			isa = PBXGroup;
+			children = (
+				3FEBEAF52E59E54D00AA7AC7 /* ViewController */,
+			);
+			path = EditNickname;
+			sourceTree = "<group>";
+		};
+		3FEBEAF52E59E54D00AA7AC7 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				3FEBEAF62E59E55C00AA7AC7 /* EditNicknameViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -442,6 +461,7 @@
 				3FCE1EAA2E545A7F00D317DA /* AppDelegate.swift in Sources */,
 				3FA87E1D2E54D35D00494266 /* SimpleTableViewCell.swift in Sources */,
 				3FA87E722E54EAAA00494266 /* SimpleValidationViewController.swift in Sources */,
+				3FEBEAF72E59E55C00AA7AC7 /* EditNicknameViewController.swift in Sources */,
 				3F52B7472E586102008FD276 /* ReuseIdentifier.swift in Sources */,
 				3FA87E662E54DA3C00494266 /* RootTableViewController.swift in Sources */,
 				3FA6F54B2E5780B60002B593 /* SimpleValidationViewModel.swift in Sources */,

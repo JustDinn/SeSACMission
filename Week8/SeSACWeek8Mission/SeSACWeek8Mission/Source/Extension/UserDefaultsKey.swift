@@ -1,0 +1,19 @@
+//
+//  UserDefaultsKey.swift
+//  SeSACWeek8Mission
+//
+//  Created by HyoTaek on 8/23/25.
+//
+
+import Foundation
+
+enum UserDefaultsKey {
+    case nickname
+    
+    var value: String {
+        switch self {
+        case .nickname:
+            return "NICKNAME"
+        }
+    }
+}

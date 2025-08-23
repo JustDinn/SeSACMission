@@ -43,6 +43,7 @@ final class SettingViewController: UIViewController {
     
     private func setUI() {
         view.backgroundColor = .main
+        setBackNaviBar("설정")
     }
     
     // MARK: - Set Hierarchy

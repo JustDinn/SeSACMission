@@ -18,6 +18,8 @@
 		3F52B7442E5860CB008FD276 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F52B7432E5860CB008FD276 /* SettingTableViewCell.swift */; };
 		3F52B7472E586102008FD276 /* ReuseIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F52B7462E586102008FD276 /* ReuseIdentifier.swift */; };
 		3F52B74A2E5863EE008FD276 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F52B7492E5863EE008FD276 /* SettingViewModel.swift */; };
+		3F5FCD6A2E5B100900896DC8 /* TamagotchiCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5FCD692E5B100900896DC8 /* TamagotchiCollectionViewCell.swift */; };
+		3F5FCD6D2E5B10D700896DC8 /* TamagotchiViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5FCD6C2E5B10D700896DC8 /* TamagotchiViewModel.swift */; };
 		3F9E7FA72E5A14DB00CF6A1D /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 3F9E7FA62E5A14DB00CF6A1D /* RxCocoa */; };
 		3F9E7FA92E5A14DB00CF6A1D /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3F9E7FA82E5A14DB00CF6A1D /* RxSwift */; };
 		3FA6F5412E5776920002B593 /* AddingNumbersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA6F5402E5776920002B593 /* AddingNumbersViewModel.swift */; };
@@ -41,6 +43,7 @@
 		3FEBEB7E2E59EA5300AA7AC7 /* UILabel++Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEBEB7D2E59EA5300AA7AC7 /* UILabel++Extension.swift */; };
 		3FEBEC032E59F29500AA7AC7 /* UserDefaultsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEBEC022E59F29500AA7AC7 /* UserDefaultsKey.swift */; };
 		3FEBEC062E59F30600AA7AC7 /* EditNicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEBEC052E59F30600AA7AC7 /* EditNicknameViewModel.swift */; };
+		3FF308022E5B4F2C0079CA02 /* TamagotchiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF308012E5B4F2C0079CA02 /* TamagotchiModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +56,8 @@
 		3F52B7432E5860CB008FD276 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		3F52B7462E586102008FD276 /* ReuseIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseIdentifier.swift; sourceTree = "<group>"; };
 		3F52B7492E5863EE008FD276 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
+		3F5FCD692E5B100900896DC8 /* TamagotchiCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TamagotchiCollectionViewCell.swift; sourceTree = "<group>"; };
+		3F5FCD6C2E5B10D700896DC8 /* TamagotchiViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TamagotchiViewModel.swift; sourceTree = "<group>"; };
 		3FA6F5402E5776920002B593 /* AddingNumbersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingNumbersViewModel.swift; sourceTree = "<group>"; };
 		3FA6F54A2E5780B60002B593 /* SimpleValidationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleValidationViewModel.swift; sourceTree = "<group>"; };
 		3FA6F54D2E5783850002B593 /* HomeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailViewController.swift; sourceTree = "<group>"; };
@@ -74,6 +79,7 @@
 		3FEBEB7D2E59EA5300AA7AC7 /* UILabel++Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel++Extension.swift"; sourceTree = "<group>"; };
 		3FEBEC022E59F29500AA7AC7 /* UserDefaultsKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKey.swift; sourceTree = "<group>"; };
 		3FEBEC052E59F30600AA7AC7 /* EditNicknameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNicknameViewModel.swift; sourceTree = "<group>"; };
+		3FF308012E5B4F2C0079CA02 /* TamagotchiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TamagotchiModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +102,9 @@
 		3F1D35462E5A2A7500C862A0 /* SelectTamagotchi */ = {
 			isa = PBXGroup;
 			children = (
+				3F80DCDC2E5B0F0C00707185 /* Model */,
+				3F5FCD6B2E5B10C500896DC8 /* ViewModel */,
+				3F5FCD682E5B0FFC00896DC8 /* Cell */,
 				3F1D35472E5A2AB800C862A0 /* ViewConotroller */,
 			);
 			path = SelectTamagotchi;
@@ -210,6 +219,30 @@
 				3F52B7492E5863EE008FD276 /* SettingViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		3F5FCD682E5B0FFC00896DC8 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				3F5FCD692E5B100900896DC8 /* TamagotchiCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		3F5FCD6B2E5B10C500896DC8 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				3F5FCD6C2E5B10D700896DC8 /* TamagotchiViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		3F80DCDC2E5B0F0C00707185 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3FF308012E5B4F2C0079CA02 /* TamagotchiModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		3FA6F53F2E5776870002B593 /* ViewModel */ = {
@@ -499,6 +532,7 @@
 				3F3BBD712E55DD6300A0CB52 /* UserCollectionViewCell.swift in Sources */,
 				3F1D34BD2E5A16A200C862A0 /* UIView++Extension.swift in Sources */,
 				3FA6F5412E5776920002B593 /* AddingNumbersViewModel.swift in Sources */,
+				3FF308022E5B4F2C0079CA02 /* TamagotchiModel.swift in Sources */,
 				3F3BBD722E55DD6300A0CB52 /* HomeworkViewController.swift in Sources */,
 				3FEBEB7E2E59EA5300AA7AC7 /* UILabel++Extension.swift in Sources */,
 				3FEBEC032E59F29500AA7AC7 /* UserDefaultsKey.swift in Sources */,
@@ -508,11 +542,13 @@
 				3F52B7442E5860CB008FD276 /* SettingTableViewCell.swift in Sources */,
 				3F52B74A2E5863EE008FD276 /* SettingViewModel.swift in Sources */,
 				3FEBEAF32E59DC9F00AA7AC7 /* SettingModel.swift in Sources */,
+				3F5FCD6D2E5B10D700896DC8 /* TamagotchiViewModel.swift in Sources */,
 				3FCE1EAA2E545A7F00D317DA /* AppDelegate.swift in Sources */,
 				3FA87E1D2E54D35D00494266 /* SimpleTableViewCell.swift in Sources */,
 				3FA87E722E54EAAA00494266 /* SimpleValidationViewController.swift in Sources */,
 				3FEBEAF72E59E55C00AA7AC7 /* EditNicknameViewController.swift in Sources */,
 				3F52B7472E586102008FD276 /* ReuseIdentifier.swift in Sources */,
+				3F5FCD6A2E5B100900896DC8 /* TamagotchiCollectionViewCell.swift in Sources */,
 				3FA87E662E54DA3C00494266 /* RootTableViewController.swift in Sources */,
 				3FA6F54B2E5780B60002B593 /* SimpleValidationViewModel.swift in Sources */,
 				3FA87E6E2E54DE7D00494266 /* AddingNumbersViewController.swift in Sources */,

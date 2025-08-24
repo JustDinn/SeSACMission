@@ -58,11 +58,21 @@ final class TamagotchiDetailViewController: UIViewController {
         $0.numberOfLines = 0
     }
     
+    private let buttonTopBorder = UIView().then {
+        $0.backgroundColor = .tint
+    }
+    
     private lazy var cancelButton = UIButton().then {
         $0.setTitle("취소", for: .normal)
         $0.setTitleColor(.tint, for: .normal)
         $0.titleLabel?.font = .systemFont(ofSize: 13, weight: .semibold)
         $0.backgroundColor = .skyBlue
+    }
+    
+    private lazy var selectButton = UIButton().then {
+        $0.setTitle("변경하기", for: .normal)
+        $0.setTitleColor(.tint, for: .normal)
+        $0.titleLabel?.font = .systemFont(ofSize: 13, weight: .semibold)
     }
     
     // MARK: - Life Cycle
@@ -94,7 +104,9 @@ final class TamagotchiDetailViewController: UIViewController {
             tamagotchiNameLabel,
             borderLine,
             descriptionLabel,
-            cancelButton
+            buttonTopBorder,
+            cancelButton,
+            selectButton
         ].forEach(tamagotchiInfoView.addSubview)
         
         [
@@ -138,8 +150,20 @@ final class TamagotchiDetailViewController: UIViewController {
             $0.horizontalEdges.equalToSuperview().inset(45)
         }
         
+        buttonTopBorder.snp.makeConstraints {
+            $0.bottom.equalTo(cancelButton.snp.top)
+            $0.horizontalEdges.equalToSuperview()
+            $0.height.equalTo(0.5)
+        }
+        
         cancelButton.snp.makeConstraints {
-            $0.bottom.equalToSuperview()
+            $0.leading.bottom.equalToSuperview()
+            $0.width.equalTo(150)
+            $0.height.equalTo(40)
+        }
+        
+        selectButton.snp.makeConstraints {
+            $0.trailing.bottom.equalToSuperview()
             $0.width.equalTo(150)
             $0.height.equalTo(40)
         }

@@ -17,6 +17,12 @@ final class MainViewController: UIViewController {
         $0.image = UIImage(named: "bubble")
     }
     
+    private let messageLabel = UILabel().then {
+        $0.font = .systemFont(ofSize: 16, weight: .medium)
+        $0.textColor = .tint
+        $0.numberOfLines = 0
+    }
+    
     private let containerView = UIView().then {
         $0.backgroundColor = .tint
         $0.layer.cornerRadius = 75
@@ -58,6 +64,7 @@ final class MainViewController: UIViewController {
     private func setHierarchy() {
         [
             bubbleImageView,
+            messageLabel,
             containerView,
             tamagotchiNameLabel
         ].forEach(view.addSubview)
@@ -73,6 +80,11 @@ final class MainViewController: UIViewController {
         bubbleImageView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.bottom.equalTo(containerView.snp.top).offset(-16)
+        }
+        
+        messageLabel.snp.makeConstraints {
+            $0.horizontalEdges.equalTo(bubbleImageView.snp.horizontalEdges).inset(20)
+            $0.centerY.equalTo(bubbleImageView)
         }
         
         containerView.snp.makeConstraints {

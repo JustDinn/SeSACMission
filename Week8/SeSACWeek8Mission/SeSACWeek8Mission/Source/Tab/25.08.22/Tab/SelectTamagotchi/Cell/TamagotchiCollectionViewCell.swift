@@ -24,6 +24,16 @@ final class TamagotchiCollectionViewCell: UICollectionViewCell, ReuseIdentifier 
         $0.layer.masksToBounds = true
     }
     
+    private let tamagotchiNameLabel = UILabel().then {
+        $0.font = .systemFont(ofSize: 13, weight: .semibold)
+        $0.textColor = .tint
+        $0.backgroundColor = .skyBlue
+        $0.layer.cornerRadius = 3
+        $0.layer.masksToBounds = true
+        $0.layer.borderColor = UIColor.tint.cgColor
+        $0.layer.borderWidth = 1
+    }
+    
     // MARK: - Init
     
     override init(frame: CGRect) {
@@ -42,7 +52,8 @@ final class TamagotchiCollectionViewCell: UICollectionViewCell, ReuseIdentifier 
     
     private func setHierarchy() {
         [
-            containerView
+            containerView,
+            tamagotchiNameLabel
         ].forEach(contentView.addSubview)
         
         [
@@ -62,11 +73,17 @@ final class TamagotchiCollectionViewCell: UICollectionViewCell, ReuseIdentifier 
             $0.center.equalToSuperview()
             $0.size.equalTo(98)
         }
+        
+        tamagotchiNameLabel.snp.makeConstraints {
+            $0.top.equalTo(containerView.snp.bottom).offset(8)
+            $0.centerX.equalTo(containerView)
+        }
     }
     
     // MARK: - Configure Cell
     
     func configureCell(with tamagotchi: TamagotchiModel) {
         tamagotchiImageView.image = UIImage(named: tamagotchi.image)
+        tamagotchiNameLabel.text = tamagotchi.name
     }
 }

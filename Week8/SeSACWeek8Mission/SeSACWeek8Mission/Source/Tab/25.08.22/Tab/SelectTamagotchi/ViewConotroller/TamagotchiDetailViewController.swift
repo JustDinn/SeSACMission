@@ -39,6 +39,10 @@ final class TamagotchiDetailViewController: UIViewController {
         $0.layer.borderWidth = 1
     }
     
+    private let borderLine = UIView().then {
+        $0.backgroundColor = .tint
+    }
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -64,7 +68,8 @@ final class TamagotchiDetailViewController: UIViewController {
         
         [
             containerView,
-            tamagotchiNameLabel
+            tamagotchiNameLabel,
+            borderLine
         ].forEach(tamagotchiInfoView.addSubview)
         
         [
@@ -93,8 +98,14 @@ final class TamagotchiDetailViewController: UIViewController {
         }
         
         tamagotchiNameLabel.snp.makeConstraints {
-            $0.top.equalTo(containerView.snp.bottom).offset(8)
+            $0.top.equalTo(containerView.snp.bottom).offset(16)
             $0.centerX.equalTo(containerView)
+        }
+        
+        borderLine.snp.makeConstraints {
+            $0.top.equalTo(tamagotchiNameLabel.snp.bottom).offset(30)
+            $0.horizontalEdges.equalToSuperview().inset(45)
+            $0.height.equalTo(1)
         }
     }
     

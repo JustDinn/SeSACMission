@@ -186,6 +186,16 @@ final class TamagotchiDetailViewController: UIViewController {
             }
             .disposed(by: disposeBag)
         
+        output.pushMainVC
+            .bind(with: self) { owner, _ in
+                if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                   let sceneDelegate = windowScene.delegate as? SceneDelegate,
+                   let window = sceneDelegate.window {
+                    window.rootViewController = MainViewController()
+                }
+            }
+            .disposed(by: disposeBag)
+        
         selectButton.rx.tap
             .bind(with: self) { owner, _ in
                 owner.selectTappedSubject.onNext(owner.selectedTamagotchiName)

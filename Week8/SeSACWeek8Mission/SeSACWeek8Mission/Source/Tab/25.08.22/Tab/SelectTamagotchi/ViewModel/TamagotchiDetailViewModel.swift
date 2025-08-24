@@ -27,6 +27,7 @@ final class TamagotchiDetailViewModel {
     struct Output {
         let dismiss: PublishSubject<Void>
         let select: PublishSubject<Void>
+        let pushMainVC: PublishSubject<Void>
     }
     
     // MARK: - Transform
@@ -34,6 +35,7 @@ final class TamagotchiDetailViewModel {
     func transform(input: Input) -> Output {
         let popVC = PublishSubject<Void>()
         let selectedTamagotchi = PublishSubject<Void>()
+        let pushMainVC = PublishSubject<Void>()
         
         input.cancelTapped
             .bind(to: popVC)
@@ -41,11 +43,17 @@ final class TamagotchiDetailViewModel {
         
         input.selectTapped
             .bind(with: self) { owner, tamagotchiName in
+                let isExistTamagotchi = UserDefaults.standard.string(forKey: UserDefaultsKey.tamagotchi.value)
+                
                 UserDefaults.standard.set(tamagotchiName, forKey: UserDefaultsKey.tamagotchi.value)
-                popVC.onNext(())
+                if isExistTamagotchi == nil {
+                    pushMainVC.onNext(())
+                } else {
+                    popVC.onNext(())
+                }
             }
             .disposed(by: disposeBag)
         
-        return Output(dismiss: popVC, select: selectedTamagotchi)
+        return Output(dismiss: popVC, select: selectedTamagotchi, pushMainVC: pushMainVC)
     }
 }

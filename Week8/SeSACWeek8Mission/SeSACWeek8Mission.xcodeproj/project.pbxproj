@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3F1D34BD2E5A16A200C862A0 /* UIView++Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1D34BC2E5A16A200C862A0 /* UIView++Extension.swift */; };
 		3F1D34C02E5A16CE00C862A0 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 3F1D34BF2E5A16CE00C862A0 /* Toast */; };
+		3F1D35492E5A2AC900C862A0 /* SelectTamagotchiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1D35482E5A2AC900C862A0 /* SelectTamagotchiViewController.swift */; };
 		3F3BBD702E55DD6300A0CB52 /* PersonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3BBD6D2E55DD6300A0CB52 /* PersonTableViewCell.swift */; };
 		3F3BBD712E55DD6300A0CB52 /* UserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3BBD6E2E55DD6300A0CB52 /* UserCollectionViewCell.swift */; };
 		3F3BBD722E55DD6300A0CB52 /* HomeworkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3BBD6B2E55DD6300A0CB52 /* HomeworkViewController.swift */; };
@@ -44,6 +45,7 @@
 
 /* Begin PBXFileReference section */
 		3F1D34BC2E5A16A200C862A0 /* UIView++Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView++Extension.swift"; sourceTree = "<group>"; };
+		3F1D35482E5A2AC900C862A0 /* SelectTamagotchiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTamagotchiViewController.swift; sourceTree = "<group>"; };
 		3F3BBD6B2E55DD6300A0CB52 /* HomeworkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkViewController.swift; sourceTree = "<group>"; };
 		3F3BBD6D2E55DD6300A0CB52 /* PersonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonTableViewCell.swift; sourceTree = "<group>"; };
 		3F3BBD6E2E55DD6300A0CB52 /* UserCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -91,6 +93,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F1D35462E5A2A7500C862A0 /* SelectTamagotchi */ = {
+			isa = PBXGroup;
+			children = (
+				3F1D35472E5A2AB800C862A0 /* ViewConotroller */,
+			);
+			path = SelectTamagotchi;
+			sourceTree = "<group>";
+		};
+		3F1D35472E5A2AB800C862A0 /* ViewConotroller */ = {
+			isa = PBXGroup;
+			children = (
+				3F1D35482E5A2AC900C862A0 /* SelectTamagotchiViewController.swift */,
+			);
+			path = ViewConotroller;
+			sourceTree = "<group>";
+		};
 		3F3BBD692E55DD0C00A0CB52 /* 25.08.19 */ = {
 			isa = PBXGroup;
 			children = (
@@ -140,8 +158,9 @@
 		3F52B73D2E585D83008FD276 /* Tab */ = {
 			isa = PBXGroup;
 			children = (
-				3FEBEAF42E59E54200AA7AC7 /* EditNickname */,
+				3F1D35462E5A2A7500C862A0 /* SelectTamagotchi */,
 				3F52B73E2E585D89008FD276 /* Setting */,
+				3FEBEAF42E59E54200AA7AC7 /* EditNickname */,
 			);
 			path = Tab;
 			sourceTree = "<group>";
@@ -483,6 +502,7 @@
 				3F3BBD722E55DD6300A0CB52 /* HomeworkViewController.swift in Sources */,
 				3FEBEB7E2E59EA5300AA7AC7 /* UILabel++Extension.swift in Sources */,
 				3FEBEC032E59F29500AA7AC7 /* UserDefaultsKey.swift in Sources */,
+				3F1D35492E5A2AC900C862A0 /* SelectTamagotchiViewController.swift in Sources */,
 				3FA87E6B2E54DB6200494266 /* RootTableTableViewCell.swift in Sources */,
 				3F52B7412E585DA0008FD276 /* SettingViewController.swift in Sources */,
 				3F52B7442E5860CB008FD276 /* SettingTableViewCell.swift in Sources */,

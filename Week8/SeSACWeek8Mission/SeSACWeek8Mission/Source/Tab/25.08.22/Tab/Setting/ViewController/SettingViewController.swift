@@ -92,6 +92,9 @@ final class SettingViewController: UIViewController {
                 if row == 0 {
                     let editNicknameVC = EditNicknameViewController()
                     owner.navigationController?.pushViewController(editNicknameVC, animated: true)
+                } else if row == 1 {
+                    let selectTamagotchiVC = SelectTamagotchiViewController()
+                    owner.navigationController?.pushViewController(selectTamagotchiVC, animated: true)
                 }
             }
             .disposed(by: disposeBag)

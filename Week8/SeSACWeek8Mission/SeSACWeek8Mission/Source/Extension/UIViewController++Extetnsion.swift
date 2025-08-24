@@ -36,10 +36,38 @@ extension UIViewController {
         self.navigationController?.navigationBar.tintColor = .tint
     }
     
+    // 프로필 버튼 Navigation Bar
+    func setProfileNaviBar(_ title: String) {
+        let titleLabel = UILabel().then {
+            $0.setLabel(text: title, fontSize: 18, fontWeight: .black, textColor: .tint)
+        }
+        
+        let profileButton = UIBarButtonItem(
+            image: UIImage(systemName: "person.circle"),
+            style: .plain,
+            target: self,
+            action: #selector(profileButtonTapped)
+        )
+        profileButton.tintColor = .tint
+        
+        self.navigationItem.titleView = titleLabel
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(
+            title: nil,
+            style: .plain,
+            target: nil,
+            action: nil
+        )
+        self.navigationItem.rightBarButtonItem = profileButton
+    }
+    
     // MARK: - Action
     
     @objc private func backButtonTapped() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    @objc private func profileButtonTapped() {
+        navigationController?.pushViewController(SettingViewController(), animated: true)
     }
     
     // MARK: - Alert

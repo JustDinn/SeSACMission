@@ -52,6 +52,21 @@ final class MainViewController: UIViewController {
         $0.layer.borderWidth = 1
     }
     
+    private let levelLabel = UILabel().then {
+        $0.font = .systemFont(ofSize: 13, weight: .medium)
+        $0.textColor = .tint
+    }
+    
+    private let riceCountLabel = UILabel().then {
+        $0.font = .systemFont(ofSize: 13, weight: .medium)
+        $0.textColor = .tint
+    }
+    
+    private let waterCountLabel = UILabel().then {
+        $0.font = .systemFont(ofSize: 13, weight: .medium)
+        $0.textColor = .tint
+    }
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -76,7 +91,10 @@ final class MainViewController: UIViewController {
             bubbleImageView,
             messageLabel,
             containerView,
-            tamagotchiNameLabel
+            tamagotchiNameLabel,
+            levelLabel,
+            riceCountLabel,
+            waterCountLabel
         ].forEach(view.addSubview)
         
         [
@@ -110,6 +128,21 @@ final class MainViewController: UIViewController {
         tamagotchiNameLabel.snp.makeConstraints {
             $0.top.equalTo(containerView.snp.bottom).offset(16)
             $0.centerX.equalTo(containerView)
+        }
+        
+        levelLabel.snp.makeConstraints {
+            $0.top.equalTo(tamagotchiNameLabel.snp.bottom).offset(20)
+            $0.leading.equalTo(tamagotchiImageView)
+        }
+        
+        riceCountLabel.snp.makeConstraints {
+            $0.centerY.equalTo(levelLabel)
+            $0.centerX.equalTo(tamagotchiImageView)
+        }
+        
+        waterCountLabel.snp.makeConstraints {
+            $0.trailing.equalTo(tamagotchiImageView)
+            $0.centerY.equalTo(levelLabel)
         }
     }
     

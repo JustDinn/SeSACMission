@@ -67,6 +67,16 @@ final class MainViewController: UIViewController {
         $0.textColor = .tint
     }
     
+    private let riceTextField = UITextField().then {
+        $0.placeholder = "밥주세용"
+        $0.textColor = .tint
+    }
+    
+    private let waterTextField = UITextField().then {
+        $0.placeholder = "물주세용"
+        $0.textColor = .tint
+    }
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -94,7 +104,9 @@ final class MainViewController: UIViewController {
             tamagotchiNameLabel,
             levelLabel,
             riceCountLabel,
-            waterCountLabel
+            waterCountLabel,
+            riceTextField,
+            waterTextField
         ].forEach(view.addSubview)
         
         [
@@ -143,6 +155,18 @@ final class MainViewController: UIViewController {
         waterCountLabel.snp.makeConstraints {
             $0.trailing.equalTo(tamagotchiImageView)
             $0.centerY.equalTo(levelLabel)
+        }
+        
+        riceTextField.snp.makeConstraints {
+            $0.top.equalTo(waterCountLabel.snp.bottom).offset(40)
+            $0.leading.equalTo(tamagotchiImageView.snp.leading).offset(-15)
+            $0.width.equalTo(150)
+        }
+        
+        waterTextField.snp.makeConstraints {
+            $0.top.equalTo(riceTextField.snp.bottom).offset(30)
+            $0.leading.equalTo(riceTextField)
+            $0.width.equalTo(150)
         }
     }
     

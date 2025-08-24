@@ -25,14 +25,15 @@ final class SelectTamagotchiViewController: UIViewController {
         collectionViewLayout: UICollectionViewFlowLayout()
     ).then {
         let layout = UICollectionViewFlowLayout()
-        let width = (view.frame.width - (2 * 20)) / 3
-        
         layout.scrollDirection = .vertical
-        layout.itemSize = CGSize(width: width, height: width)
+        layout.itemSize = CGSize(width: 100, height: 120)
+        layout.minimumLineSpacing = 40
+        layout.minimumInteritemSpacing = 20
         
         $0.collectionViewLayout = layout
         $0.register(TamagotchiCollectionViewCell.self, forCellWithReuseIdentifier: TamagotchiCollectionViewCell.reuseIdentifier)
-        $0.backgroundColor = .systemBlue
+        $0.backgroundColor = .main
+        $0.showsVerticalScrollIndicator = false
     }
     
     // MARK: - Life Cycle
@@ -77,8 +78,11 @@ final class SelectTamagotchiViewController: UIViewController {
         let output = viewModel.transform()
         
         output.tamagotchiList
-            .bind(with: self) { owner, tamagotchiList in
-                
+            .bind(to: tamagotchiCollectionView.rx.items(
+                cellIdentifier: TamagotchiCollectionViewCell.reuseIdentifier,
+                cellType: TamagotchiCollectionViewCell.self)
+            ) { i, item, cell in
+                cell.configureCell(with: item)
             }
             .disposed(by: disposeBag)
     }

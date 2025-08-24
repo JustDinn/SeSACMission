@@ -77,6 +77,24 @@ final class MainViewController: UIViewController {
         $0.textColor = .tint
     }
     
+    private let riceButton = UIButton().then {
+        $0.setTitle("밥먹기", for: .normal)
+        $0.setTitleColor(.tint, for: .normal)
+        $0.layer.borderColor = UIColor.tint.cgColor
+        $0.layer.borderWidth = 1
+        $0.layer.cornerRadius = 5
+        $0.layer.masksToBounds = true
+    }
+    
+    private let waterButton = UIButton().then {
+        $0.setTitle("물먹기", for: .normal)
+        $0.setTitleColor(.tint, for: .normal)
+        $0.layer.borderColor = UIColor.tint.cgColor
+        $0.layer.borderWidth = 1
+        $0.layer.cornerRadius = 5
+        $0.layer.masksToBounds = true
+    }
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -106,7 +124,9 @@ final class MainViewController: UIViewController {
             riceCountLabel,
             waterCountLabel,
             riceTextField,
-            waterTextField
+            waterTextField,
+            riceButton,
+            waterButton
         ].forEach(view.addSubview)
         
         [
@@ -167,6 +187,20 @@ final class MainViewController: UIViewController {
             $0.top.equalTo(riceTextField.snp.bottom).offset(30)
             $0.leading.equalTo(riceTextField)
             $0.width.equalTo(150)
+        }
+        
+        riceButton.snp.makeConstraints {
+            $0.leading.equalTo(riceTextField.snp.trailing).offset(12)
+            $0.centerY.equalTo(riceTextField)
+            $0.width.equalTo(100)
+            $0.height.equalTo(44)
+        }
+        
+        waterButton.snp.makeConstraints {
+            $0.top.equalTo(riceButton.snp.bottom).offset(12)
+            $0.leading.equalTo(riceButton)
+            $0.width.equalTo(100)
+            $0.height.equalTo(44)
         }
     }
     

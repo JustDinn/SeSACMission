@@ -50,9 +50,13 @@ final class SelectTamagotchiViewController: UIViewController {
     // MARK: - Set UI
     
     private func setUI() {
-        let title = UserDefaults.standard.string(forKey: UserDefaultsKey.tamagotchi.value) != nil ? "다마고치 변경하기" : "다마고치 시작하기"
+        let tamagotchi = UserDefaults.standard.string(forKey: UserDefaultsKey.tamagotchi.value)
         
-        setBackNaviBar(title)
+        if tamagotchi == nil {
+            setTitleNaviBar("다마고치 시작하기")
+        } else {
+            setBackNaviBar("다마고치 변경하기")
+        }
         view.backgroundColor = .main
     }
     

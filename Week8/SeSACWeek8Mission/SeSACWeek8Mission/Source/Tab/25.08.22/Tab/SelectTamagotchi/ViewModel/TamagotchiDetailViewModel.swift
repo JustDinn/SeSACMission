@@ -41,7 +41,7 @@ final class TamagotchiDetailViewModel {
         
         input.selectTapped
             .bind(with: self) { owner, tamagotchiName in
-                UserDefaults.standard.set(tamagotchiName, forKey: UserDefaultsKey.nickname.value)
+                UserDefaults.standard.set(tamagotchiName, forKey: UserDefaultsKey.tamagotchi.value)
                 popVC.onNext(())
             }
             .disposed(by: disposeBag)

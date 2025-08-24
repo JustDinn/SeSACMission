@@ -96,6 +96,8 @@ final class MainViewModel {
         let calculatedLevel = Int((Double(riceCount) / 5.0) + (Double(waterCount) / 2.0))
         let level = max(1, min(calculatedLevel, 10))
         
+        UserDefaults.standard.set(level, forKey: UserDefaultsKey.level.value)
+        
         return level
     }
     

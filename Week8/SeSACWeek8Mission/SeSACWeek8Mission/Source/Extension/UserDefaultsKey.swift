@@ -11,6 +11,7 @@ enum UserDefaultsKey {
     case nickname
     case tamagotchiName
     case tamagotchiImage
+    case level
     
     var value: String {
         switch self {
@@ -20,6 +21,8 @@ enum UserDefaultsKey {
             return "TAMAGOTCHI_NAME"
         case .tamagotchiImage:
             return "TAMAGOTCHI_IMAGE"
+        case .level:
+            return "LEVEL"
         }
     }
 }

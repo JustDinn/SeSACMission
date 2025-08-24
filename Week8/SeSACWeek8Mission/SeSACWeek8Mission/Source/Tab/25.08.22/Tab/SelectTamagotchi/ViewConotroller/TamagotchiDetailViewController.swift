@@ -8,14 +8,22 @@
 import UIKit
 import SnapKit
 import Then
+import RxSwift
+import RxCocoa
 
 final class TamagotchiDetailViewController: UIViewController {
 
+    // MARK: - Property
+    
+    private let viewModel = TamagotchiDetailViewModel()
+    private let disposeBag = DisposeBag()
+    
     // MARK: - Component
     
     private let tamagotchiInfoView = UIView().then {
         $0.backgroundColor = .main
         $0.layer.cornerRadius = 10
+        $0.layer.masksToBounds = true
     }
     
     private let containerView = UIView().then {
@@ -50,6 +58,13 @@ final class TamagotchiDetailViewController: UIViewController {
         $0.numberOfLines = 0
     }
     
+    private lazy var cancelButton = UIButton().then {
+        $0.setTitle("취소", for: .normal)
+        $0.setTitleColor(.tint, for: .normal)
+        $0.titleLabel?.font = .systemFont(ofSize: 13, weight: .semibold)
+        $0.backgroundColor = .skyBlue
+    }
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -58,6 +73,7 @@ final class TamagotchiDetailViewController: UIViewController {
         setUI()
         setHierarchy()
         setConstraints()
+        bind()
     }
     
     // MARK: - Set UI
@@ -77,7 +93,8 @@ final class TamagotchiDetailViewController: UIViewController {
             containerView,
             tamagotchiNameLabel,
             borderLine,
-            descriptionLabel
+            descriptionLabel,
+            cancelButton
         ].forEach(tamagotchiInfoView.addSubview)
         
         [
@@ -120,6 +137,25 @@ final class TamagotchiDetailViewController: UIViewController {
             $0.top.equalTo(borderLine.snp.bottom).offset(30)
             $0.horizontalEdges.equalToSuperview().inset(45)
         }
+        
+        cancelButton.snp.makeConstraints {
+            $0.bottom.equalToSuperview()
+            $0.width.equalTo(150)
+            $0.height.equalTo(40)
+        }
+    }
+    
+    // MARK: - Bind
+    
+    private func bind() {
+        let input = TamagotchiDetailViewModel.Input(cancelTapped: cancelButton.rx.tap)
+        let output = viewModel.transform(input: input)
+        
+        output.dismiss
+            .bind(with: self) { owner, _ in
+                owner.dismiss(animated: true)
+            }
+            .disposed(by: disposeBag)
     }
     
     // MARK: - Configure VC

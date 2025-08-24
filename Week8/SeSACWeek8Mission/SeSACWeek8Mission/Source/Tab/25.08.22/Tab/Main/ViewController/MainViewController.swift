@@ -24,15 +24,15 @@ final class MainViewController: UIViewController {
         $0.layer.masksToBounds = true
     }
     
-//    private let tamagotchiNameLabel = UILabel().then {
-//        $0.font = .systemFont(ofSize: 13, weight: .semibold)
-//        $0.textColor = .tint
-//        $0.backgroundColor = .skyBlue
-//        $0.layer.cornerRadius = 3
-//        $0.layer.masksToBounds = true
-//        $0.layer.borderColor = UIColor.tint.cgColor
-//        $0.layer.borderWidth = 1
-//    }
+    private let tamagotchiNameLabel = UILabel().then {
+        $0.font = .systemFont(ofSize: 16, weight: .semibold)
+        $0.textColor = .tint
+        $0.backgroundColor = .skyBlue
+        $0.layer.cornerRadius = 3
+        $0.layer.masksToBounds = true
+        $0.layer.borderColor = UIColor.tint.cgColor
+        $0.layer.borderWidth = 1
+    }
     
     // MARK: - Life Cycle
     
@@ -53,7 +53,8 @@ final class MainViewController: UIViewController {
     
     private func setHierarchy() {
         [
-            containerView
+            containerView,
+            tamagotchiNameLabel
         ].forEach(view.addSubview)
         
         [
@@ -74,10 +75,10 @@ final class MainViewController: UIViewController {
             $0.size.equalTo(144)
         }
         
-//        tamagotchiNameLabel.snp.makeConstraints {
-//            $0.top.equalTo(containerView.snp.bottom).offset(8)
-//            $0.centerX.equalTo(containerView)
-//        }
+        tamagotchiNameLabel.snp.makeConstraints {
+            $0.top.equalTo(containerView.snp.bottom).offset(16)
+            $0.centerX.equalTo(containerView)
+        }
     }
     
     // MARK: - Configure VC
@@ -93,5 +94,6 @@ final class MainViewController: UIViewController {
         
         setProfileNaviBar("\(nickname)님의 다마고치")
         tamagotchiImageView.image = UIImage(named: tamagotchiImage)
+        tamagotchiNameLabel.text = tamagotchiName
     }
 }

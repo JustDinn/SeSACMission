@@ -17,6 +17,8 @@ final class TamagotchiDetailViewController: UIViewController {
     
     private let viewModel = TamagotchiDetailViewModel()
     private let disposeBag = DisposeBag()
+    private var selectedTamagotchiName = ""
+    private let selectTappedSubject = PublishSubject<String>()
     
     // MARK: - Component
     
@@ -172,7 +174,10 @@ final class TamagotchiDetailViewController: UIViewController {
     // MARK: - Bind
     
     private func bind() {
-        let input = TamagotchiDetailViewModel.Input(cancelTapped: cancelButton.rx.tap)
+        let input = TamagotchiDetailViewModel.Input(
+            cancelTapped: cancelButton.rx.tap,
+            selectTapped: selectTappedSubject
+        )
         let output = viewModel.transform(input: input)
         
         output.dismiss
@@ -180,11 +185,18 @@ final class TamagotchiDetailViewController: UIViewController {
                 owner.dismiss(animated: true)
             }
             .disposed(by: disposeBag)
+        
+        selectButton.rx.tap
+            .bind(with: self) { owner, _ in
+                owner.selectTappedSubject.onNext(owner.selectedTamagotchiName)
+            }
+            .disposed(by: disposeBag)
     }
     
     // MARK: - Configure VC
     
     func configureVC(with tamagotchi: TamagotchiModel) {
+        selectedTamagotchiName = tamagotchi.name
         tamagotchiImageView.image = UIImage(named: tamagotchi.image)
         tamagotchiNameLabel.text = tamagotchi.name
         descriptionLabel.text = tamagotchi.description

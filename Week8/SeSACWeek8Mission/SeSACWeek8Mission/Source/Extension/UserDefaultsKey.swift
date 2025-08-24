@@ -9,11 +9,14 @@ import Foundation
 
 enum UserDefaultsKey {
     case nickname
+    case tamagotchi
     
     var value: String {
         switch self {
         case .nickname:
             return "NICKNAME"
+        case .tamagotchi:
+            return "TAMAGOTCHI"
         }
     }
 }

@@ -19,23 +19,33 @@ final class TamagotchiDetailViewModel {
 
     struct Input {
         let cancelTapped: ControlEvent<Void>
+        let selectTapped: PublishSubject<String>
     }
     
     // MARK: - Output
     
     struct Output {
         let dismiss: PublishSubject<Void>
+        let select: PublishSubject<Void>
     }
     
     // MARK: - Transform
     
     func transform(input: Input) -> Output {
         let popVC = PublishSubject<Void>()
+        let selectedTamagotchi = PublishSubject<Void>()
         
         input.cancelTapped
             .bind(to: popVC)
             .disposed(by: disposeBag)
         
-        return Output(dismiss: popVC)
+        input.selectTapped
+            .bind(with: self) { owner, tamagotchiName in
+                UserDefaults.standard.set(tamagotchiName, forKey: UserDefaultsKey.nickname.value)
+                popVC.onNext(())
+            }
+            .disposed(by: disposeBag)
+        
+        return Output(dismiss: popVC, select: selectedTamagotchi)
     }
 }

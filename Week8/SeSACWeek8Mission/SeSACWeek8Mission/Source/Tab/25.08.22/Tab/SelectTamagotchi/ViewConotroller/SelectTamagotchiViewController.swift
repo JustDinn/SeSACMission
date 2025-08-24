@@ -8,15 +8,42 @@
 import UIKit
 import SnapKit
 import Then
+import RxSwift
+import RxCocoa
 
 final class SelectTamagotchiViewController: UIViewController {
 
+    // MARK: - Property
+    
+    private let viewModel = TamagotchiViewModel()
+    private let disposeBag = DisposeBag()
+    
+    // MARK: - Component
+    
+    private lazy var tamagotchiCollectionView = UICollectionView(
+        frame: .zero,
+        collectionViewLayout: UICollectionViewFlowLayout()
+    ).then {
+        let layout = UICollectionViewFlowLayout()
+        let width = (view.frame.width - (2 * 20)) / 3
+        
+        layout.scrollDirection = .vertical
+        layout.itemSize = CGSize(width: width, height: width)
+        
+        $0.collectionViewLayout = layout
+        $0.register(TamagotchiCollectionViewCell.self, forCellWithReuseIdentifier: TamagotchiCollectionViewCell.reuseIdentifier)
+        $0.backgroundColor = .systemBlue
+    }
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setUI()
+        setHierarchy()
+        setConstraints()
+        bind()
     }
     
     // MARK: - Set UI
@@ -24,5 +51,35 @@ final class SelectTamagotchiViewController: UIViewController {
     private func setUI() {
         view.backgroundColor = .main
         setBackNaviBar("다마고치 변경하기")
+    }
+    
+    // MARK: - Set Hierarchy
+    
+    private func setHierarchy() {
+        [
+            tamagotchiCollectionView
+        ].forEach(view.addSubview)
+    }
+    
+    // MARK: - Set Constraints
+    
+    private func setConstraints() {
+        tamagotchiCollectionView.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(20)
+            $0.horizontalEdges.equalToSuperview().inset(20)
+            $0.bottom.equalToSuperview()
+        }
+    }
+    
+    // MARK: - Bind
+    
+    private func bind() {
+        let output = viewModel.transform()
+        
+        output.tamagotchiList
+            .bind(with: self) { owner, tamagotchiList in
+                
+            }
+            .disposed(by: disposeBag)
     }
 }

@@ -17,7 +17,7 @@ final class TamagotchiDetailViewController: UIViewController {
     
     private let viewModel = TamagotchiDetailViewModel()
     private let disposeBag = DisposeBag()
-    private var selectedTamagotchi = TamagotchiModel(name: "", image: "", description: "")
+    private var selectedTamagotchi = TamagotchiModel(name: "", image: "", description: "", greeting: [])
     private let selectTappedSubject = PublishSubject<TamagotchiModel>()
     
     // MARK: - Component

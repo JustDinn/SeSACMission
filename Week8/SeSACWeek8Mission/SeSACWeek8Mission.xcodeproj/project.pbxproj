@@ -47,6 +47,7 @@
 		3FF308042E5B69AB0079CA02 /* TamagotchiDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF308032E5B69AB0079CA02 /* TamagotchiDetailViewController.swift */; };
 		3FF308062E5B71A40079CA02 /* TamagotchiDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF308052E5B71A40079CA02 /* TamagotchiDetailViewModel.swift */; };
 		3FF3081B2E5B84570079CA02 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF3081A2E5B84570079CA02 /* MainViewController.swift */; };
+		3FF308A42E5B91BB0079CA02 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF308A32E5B91BB0079CA02 /* MainViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +87,7 @@
 		3FF308032E5B69AB0079CA02 /* TamagotchiDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TamagotchiDetailViewController.swift; sourceTree = "<group>"; };
 		3FF308052E5B71A40079CA02 /* TamagotchiDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TamagotchiDetailViewModel.swift; sourceTree = "<group>"; };
 		3FF3081A2E5B84570079CA02 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		3FF308A32E5B91BB0079CA02 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -462,6 +464,7 @@
 		3FF308182E5B84430079CA02 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				3FF308A22E5B91B20079CA02 /* ViewModel */,
 				3FF308192E5B844A0079CA02 /* ViewController */,
 			);
 			path = Main;
@@ -473,6 +476,14 @@
 				3FF3081A2E5B84570079CA02 /* MainViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		3FF308A22E5B91B20079CA02 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				3FF308A32E5B91BB0079CA02 /* MainViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -593,6 +604,7 @@
 				3FA6F54E2E5783850002B593 /* HomeDetailViewController.swift in Sources */,
 				3FEBEC062E59F30600AA7AC7 /* EditNicknameViewModel.swift in Sources */,
 				3FCE1EAB2E545A7F00D317DA /* SceneDelegate.swift in Sources */,
+				3FF308A42E5B91BB0079CA02 /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,8 +8,16 @@
 import UIKit
 import SnapKit
 import Then
+import RxSwift
+import RxCocoa
 
 final class MainViewController: UIViewController {
+
+    // MARK: - Property
+    
+    private let viewModel = MainViewModel()
+    private let disposeBag = DisposeBag()
+    private let viewWillAppearSubject = PublishSubject<Void>()
 
     // MARK: - Component
     
@@ -51,12 +59,14 @@ final class MainViewController: UIViewController {
         
         setHierarchy()
         setConstraints()
+        bind()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         configureVC()
+        viewWillAppearSubject.onNext(())
     }
     
     // MARK: - Set Hierarchy
@@ -101,6 +111,19 @@ final class MainViewController: UIViewController {
             $0.top.equalTo(containerView.snp.bottom).offset(16)
             $0.centerX.equalTo(containerView)
         }
+    }
+    
+    // MARK: - Bind
+    
+    private func bind() {
+        let input = MainViewModel.Input(
+            viewWillAppear: viewWillAppearSubject.asObservable()
+        )
+        let output = viewModel.transform(input: input)
+        
+        output.randomGreeting
+            .bind(to: messageLabel.rx.text)
+            .disposed(by: disposeBag)
     }
     
     // MARK: - Configure VC

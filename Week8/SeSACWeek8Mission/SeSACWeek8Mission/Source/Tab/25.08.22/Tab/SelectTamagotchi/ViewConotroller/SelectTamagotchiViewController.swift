@@ -50,8 +50,10 @@ final class SelectTamagotchiViewController: UIViewController {
     // MARK: - Set UI
     
     private func setUI() {
+        let title = UserDefaults.standard.string(forKey: UserDefaultsKey.tamagotchi.value) != nil ? "다마고치 변경하기" : "다마고치 시작하기"
+        
+        setBackNaviBar(title)
         view.backgroundColor = .main
-        setBackNaviBar("다마고치 변경하기")
     }
     
     // MARK: - Set Hierarchy

@@ -172,6 +172,7 @@
 		3F52B73D2E585D83008FD276 /* Tab */ = {
 			isa = PBXGroup;
 			children = (
+				3FF308072E5B7E090079CA02 /* PickTamagotchi */,
 				3F1D35462E5A2A7500C862A0 /* SelectTamagotchi */,
 				3F52B73E2E585D89008FD276 /* Setting */,
 				3FEBEAF42E59E54200AA7AC7 /* EditNickname */,
@@ -446,6 +447,13 @@
 				3FEBEC052E59F30600AA7AC7 /* EditNicknameViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		3FF308072E5B7E090079CA02 /* PickTamagotchi */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = PickTamagotchi;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

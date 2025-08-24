@@ -14,10 +14,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        let rootVC = SettingViewController()
         
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = UINavigationController(rootViewController: rootVC)
+        
+        if UserDefaults.standard.string(forKey: UserDefaultsKey.tamagotchi.value) != nil {
+            window?.rootViewController = UINavigationController(rootViewController: SettingViewController())
+        } else {
+            window?.rootViewController = UINavigationController(rootViewController: SelectTamagotchiViewController())
+        }
+        
         window?.makeKeyAndVisible()
         window?.backgroundColor = .main
     }

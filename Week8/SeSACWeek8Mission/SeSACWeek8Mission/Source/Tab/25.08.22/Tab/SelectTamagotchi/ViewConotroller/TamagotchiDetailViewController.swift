@@ -196,6 +196,9 @@ final class TamagotchiDetailViewController: UIViewController {
     // MARK: - Configure VC
     
     func configureVC(with tamagotchi: TamagotchiModel) {
+        let buttonTitle = UserDefaults.standard.string(forKey: UserDefaultsKey.tamagotchi.value) != nil ? "변경하기" : "시작하기"
+        
+        selectButton.setTitle(buttonTitle, for: .normal)
         selectedTamagotchiName = tamagotchi.name
         tamagotchiImageView.image = UIImage(named: tamagotchi.image)
         tamagotchiNameLabel.text = tamagotchi.name

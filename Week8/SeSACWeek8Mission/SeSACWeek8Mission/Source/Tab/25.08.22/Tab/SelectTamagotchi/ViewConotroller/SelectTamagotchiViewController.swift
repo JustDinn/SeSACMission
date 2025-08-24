@@ -85,5 +85,14 @@ final class SelectTamagotchiViewController: UIViewController {
                 cell.configureCell(with: item)
             }
             .disposed(by: disposeBag)
+        
+        tamagotchiCollectionView.rx.modelSelected(TamagotchiModel.self)
+            .bind(with: self) { owner, tamagotchi in
+                let tamagotchiDetailVC = TamagotchiDetailViewController()
+                
+                tamagotchiDetailVC.modalPresentationStyle = .overCurrentContext
+                owner.present(tamagotchiDetailVC, animated: true)
+            }
+            .disposed(by: disposeBag)
     }
 }

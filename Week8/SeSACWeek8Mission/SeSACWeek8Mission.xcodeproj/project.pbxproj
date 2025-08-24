@@ -44,6 +44,7 @@
 		3FEBEC032E59F29500AA7AC7 /* UserDefaultsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEBEC022E59F29500AA7AC7 /* UserDefaultsKey.swift */; };
 		3FEBEC062E59F30600AA7AC7 /* EditNicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEBEC052E59F30600AA7AC7 /* EditNicknameViewModel.swift */; };
 		3FF308022E5B4F2C0079CA02 /* TamagotchiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF308012E5B4F2C0079CA02 /* TamagotchiModel.swift */; };
+		3FF308042E5B69AB0079CA02 /* TamagotchiDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF308032E5B69AB0079CA02 /* TamagotchiDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,6 +81,7 @@
 		3FEBEC022E59F29500AA7AC7 /* UserDefaultsKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKey.swift; sourceTree = "<group>"; };
 		3FEBEC052E59F30600AA7AC7 /* EditNicknameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNicknameViewModel.swift; sourceTree = "<group>"; };
 		3FF308012E5B4F2C0079CA02 /* TamagotchiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TamagotchiModel.swift; sourceTree = "<group>"; };
+		3FF308032E5B69AB0079CA02 /* TamagotchiDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TamagotchiDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				3F1D35482E5A2AC900C862A0 /* SelectTamagotchiViewController.swift */,
+				3FF308032E5B69AB0079CA02 /* TamagotchiDetailViewController.swift */,
 			);
 			path = ViewConotroller;
 			sourceTree = "<group>";
@@ -552,6 +555,7 @@
 				3FA87E662E54DA3C00494266 /* RootTableViewController.swift in Sources */,
 				3FA6F54B2E5780B60002B593 /* SimpleValidationViewModel.swift in Sources */,
 				3FA87E6E2E54DE7D00494266 /* AddingNumbersViewController.swift in Sources */,
+				3FF308042E5B69AB0079CA02 /* TamagotchiDetailViewController.swift in Sources */,
 				3FEBEAF92E59EA1D00AA7AC7 /* UIViewController++Extetnsion.swift in Sources */,
 				3FCE1EB62E545BBA00D317DA /* SimpleTableViewViewController.swift in Sources */,
 				3FA6F54E2E5783850002B593 /* HomeDetailViewController.swift in Sources */,

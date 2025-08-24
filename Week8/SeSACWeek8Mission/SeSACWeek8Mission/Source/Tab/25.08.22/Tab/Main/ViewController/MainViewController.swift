@@ -38,16 +38,15 @@ final class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        setUI()
+        
         setHierarchy()
         setConstraints()
     }
     
-    // MARK: - Set UI
-    
-    private func setUI() {
-        setProfileNaviBar("대장님의 다마고치")
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        configureVC()
     }
     
     // MARK: - Set Hierarchy
@@ -79,5 +78,20 @@ final class MainViewController: UIViewController {
 //            $0.top.equalTo(containerView.snp.bottom).offset(8)
 //            $0.centerX.equalTo(containerView)
 //        }
+    }
+    
+    // MARK: - Configure VC
+    
+    private func configureVC() {
+        let nickname = UserDefaults.standard.string(forKey: UserDefaultsKey.nickname.value) ?? "대장"
+        guard let tamagotchiName = UserDefaults.standard.string(forKey: UserDefaultsKey.tamagotchiName.value) else {
+            return
+        }
+        guard let tamagotchiImage = UserDefaults.standard.string(forKey: UserDefaultsKey.tamagotchiImage.value) else {
+            return
+        }
+        
+        setProfileNaviBar("\(nickname)님의 다마고치")
+        tamagotchiImageView.image = UIImage(named: tamagotchiImage)
     }
 }

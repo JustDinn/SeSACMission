@@ -19,7 +19,7 @@ final class TamagotchiDetailViewModel {
 
     struct Input {
         let cancelTapped: ControlEvent<Void>
-        let selectTapped: PublishSubject<String>
+        let selectTapped: PublishSubject<TamagotchiModel>
     }
     
     // MARK: - Output
@@ -42,10 +42,11 @@ final class TamagotchiDetailViewModel {
             .disposed(by: disposeBag)
         
         input.selectTapped
-            .bind(with: self) { owner, tamagotchiName in
-                let isExistTamagotchi = UserDefaults.standard.string(forKey: UserDefaultsKey.tamagotchi.value)
+            .bind(with: self) { owner, tamagotchi in
+                let isExistTamagotchi = UserDefaults.standard.string(forKey: UserDefaultsKey.tamagotchiName.value)
                 
-                UserDefaults.standard.set(tamagotchiName, forKey: UserDefaultsKey.tamagotchi.value)
+                UserDefaults.standard.set(tamagotchi.name, forKey: UserDefaultsKey.tamagotchiName.value)
+                UserDefaults.standard.set(tamagotchi.image, forKey: UserDefaultsKey.tamagotchiImage.value)
                 if isExistTamagotchi == nil {
                     pushMainVC.onNext(())
                 } else {

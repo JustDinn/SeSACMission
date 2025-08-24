@@ -17,8 +17,8 @@ final class TamagotchiDetailViewController: UIViewController {
     
     private let viewModel = TamagotchiDetailViewModel()
     private let disposeBag = DisposeBag()
-    private var selectedTamagotchiName = ""
-    private let selectTappedSubject = PublishSubject<String>()
+    private var selectedTamagotchi = TamagotchiModel(name: "", image: "", description: "")
+    private let selectTappedSubject = PublishSubject<TamagotchiModel>()
     
     // MARK: - Component
     
@@ -198,7 +198,7 @@ final class TamagotchiDetailViewController: UIViewController {
         
         selectButton.rx.tap
             .bind(with: self) { owner, _ in
-                owner.selectTappedSubject.onNext(owner.selectedTamagotchiName)
+                owner.selectTappedSubject.onNext(owner.selectedTamagotchi)
             }
             .disposed(by: disposeBag)
     }
@@ -206,10 +206,10 @@ final class TamagotchiDetailViewController: UIViewController {
     // MARK: - Configure VC
     
     func configureVC(with tamagotchi: TamagotchiModel) {
-        let buttonTitle = UserDefaults.standard.string(forKey: UserDefaultsKey.tamagotchi.value) != nil ? "변경하기" : "시작하기"
+        let buttonTitle = UserDefaults.standard.string(forKey: UserDefaultsKey.tamagotchiName.value) != nil ? "변경하기" : "시작하기"
         
         selectButton.setTitle(buttonTitle, for: .normal)
-        selectedTamagotchiName = tamagotchi.name
+        selectedTamagotchi = tamagotchi
         tamagotchiImageView.image = UIImage(named: tamagotchi.image)
         tamagotchiNameLabel.text = tamagotchi.name
         descriptionLabel.text = tamagotchi.description

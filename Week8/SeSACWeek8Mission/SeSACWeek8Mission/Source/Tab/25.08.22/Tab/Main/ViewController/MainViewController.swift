@@ -18,6 +18,8 @@ final class MainViewController: UIViewController {
     private let viewModel = MainViewModel()
     private let disposeBag = DisposeBag()
     private let viewWillAppearSubject = PublishSubject<Void>()
+    private let riceButtonSubject = PublishSubject<Int>()
+    private let waterButtonSubject = PublishSubject<Int>()
 
     // MARK: - Component
     
@@ -164,7 +166,7 @@ final class MainViewController: UIViewController {
         
         levelLabel.snp.makeConstraints {
             $0.top.equalTo(tamagotchiNameLabel.snp.bottom).offset(20)
-            $0.leading.equalTo(tamagotchiImageView)
+            $0.leading.equalTo(tamagotchiImageView).offset(-30)
         }
         
         riceCountLabel.snp.makeConstraints {
@@ -173,7 +175,7 @@ final class MainViewController: UIViewController {
         }
         
         waterCountLabel.snp.makeConstraints {
-            $0.trailing.equalTo(tamagotchiImageView)
+            $0.trailing.equalTo(tamagotchiImageView).offset(30)
             $0.centerY.equalTo(levelLabel)
         }
         
@@ -208,12 +210,50 @@ final class MainViewController: UIViewController {
     
     private func bind() {
         let input = MainViewModel.Input(
-            viewWillAppear: viewWillAppearSubject.asObservable()
+            viewWillAppear: viewWillAppearSubject.asObservable(),
+            riceButtonTapped: riceButtonSubject.asObservable(),
+            waterButtonTapped: waterButtonSubject.asObservable()
         )
         let output = viewModel.transform(input: input)
         
         output.randomGreeting
-            .bind(to: messageLabel.rx.text)
+            .bind(with: self) { owner, greeting in
+                owner.messageLabel.text = greeting
+            }
+            .disposed(by: disposeBag)
+        
+        output.level
+            .bind(with: self) { owner, level in
+                owner.levelLabel.text = "LV.\(level)"
+            }
+            .disposed(by: disposeBag)
+        
+        output.riceCount
+            .bind(with: self) { owner, count in
+                owner.riceCountLabel.text = "밥알 \(count)개"
+            }
+            .disposed(by: disposeBag)
+        
+        output.waterCount
+            .bind(with: self) { owner, count in
+                owner.waterCountLabel.text = "물방울 \(count)개"
+            }
+            .disposed(by: disposeBag)
+        
+        riceButton.rx.tap
+            .bind(with: self) { owner, _ in
+                let amount = Int(owner.riceTextField.text ?? "") ?? 0
+                owner.riceButtonSubject.onNext(amount)
+                owner.riceTextField.text = ""
+            }
+            .disposed(by: disposeBag)
+        
+        waterButton.rx.tap
+            .bind(with: self) { owner, _ in
+                let amount = Int(owner.waterTextField.text ?? "") ?? 0
+                owner.waterButtonSubject.onNext(amount)
+                owner.waterTextField.text = ""
+            }
             .disposed(by: disposeBag)
     }
     

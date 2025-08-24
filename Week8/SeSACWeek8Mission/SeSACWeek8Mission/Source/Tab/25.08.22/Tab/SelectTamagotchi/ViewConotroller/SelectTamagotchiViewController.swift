@@ -90,6 +90,7 @@ final class SelectTamagotchiViewController: UIViewController {
             .bind(with: self) { owner, tamagotchi in
                 let tamagotchiDetailVC = TamagotchiDetailViewController()
                 
+                tamagotchiDetailVC.configureVC(with: tamagotchi)
                 tamagotchiDetailVC.modalPresentationStyle = .overCurrentContext
                 owner.present(tamagotchiDetailVC, animated: true)
             }

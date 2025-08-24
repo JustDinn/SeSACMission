@@ -43,6 +43,13 @@ final class TamagotchiDetailViewController: UIViewController {
         $0.backgroundColor = .tint
     }
     
+    private let descriptionLabel = UILabel().then {
+        $0.font = .systemFont(ofSize: 13, weight: .medium)
+        $0.textColor = .tint
+        $0.textAlignment = .center
+        $0.numberOfLines = 0
+    }
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -69,7 +76,8 @@ final class TamagotchiDetailViewController: UIViewController {
         [
             containerView,
             tamagotchiNameLabel,
-            borderLine
+            borderLine,
+            descriptionLabel
         ].forEach(tamagotchiInfoView.addSubview)
         
         [
@@ -107,6 +115,11 @@ final class TamagotchiDetailViewController: UIViewController {
             $0.horizontalEdges.equalToSuperview().inset(45)
             $0.height.equalTo(1)
         }
+        
+        descriptionLabel.snp.makeConstraints {
+            $0.top.equalTo(borderLine.snp.bottom).offset(30)
+            $0.horizontalEdges.equalToSuperview().inset(45)
+        }
     }
     
     // MARK: - Configure VC
@@ -114,5 +127,6 @@ final class TamagotchiDetailViewController: UIViewController {
     func configureVC(with tamagotchi: TamagotchiModel) {
         tamagotchiImageView.image = UIImage(named: tamagotchi.image)
         tamagotchiNameLabel.text = tamagotchi.name
+        descriptionLabel.text = tamagotchi.description
     }
 }

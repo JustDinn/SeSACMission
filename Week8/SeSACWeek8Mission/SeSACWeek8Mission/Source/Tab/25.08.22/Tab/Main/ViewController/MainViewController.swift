@@ -111,6 +111,7 @@ final class MainViewController: UIViewController {
         super.viewWillAppear(animated)
         
         configureVC()
+        updateTamagotchiImage()
         viewWillAppearSubject.onNext(())
     }
     
@@ -284,6 +285,29 @@ final class MainViewController: UIViewController {
         }
         
         let level = max(1, min(level, 9))
+        var imageName = ""
+        
+        switch tamagotchiName {
+        case "따끔따끔 다마고치":
+            imageName = "1-\(level)"
+        case "방실방실 다마고치":
+            imageName = "2-\(level)"
+        case "반짝반짝 다마고치":
+            imageName = "3-\(level)"
+        default:
+            imageName = "1-1"
+        }
+        
+        tamagotchiImageView.image = UIImage(named: imageName)
+    }
+    
+    private func updateTamagotchiImage() {
+        guard let tamagotchiName = UserDefaults.standard.string(forKey: UserDefaultsKey.tamagotchiName.value) else {
+            return
+        }
+        
+        let currentLevel = UserDefaults.standard.integer(forKey: UserDefaultsKey.level.value)
+        let level = max(1, min(currentLevel, 9))
         var imageName = ""
         
         switch tamagotchiName {

@@ -8,9 +8,15 @@
 import UIKit
 import SnapKit
 import Then
+import RxSwift
+import RxCocoa
 
 final class BoxOfficeViewController: UIViewController {
 
+    // MARK: - Property
+    
+    private let disposeBag = DisposeBag()
+    
     // MARK: - Component
     
     private let searchBar = UISearchBar().then {
@@ -25,6 +31,7 @@ final class BoxOfficeViewController: UIViewController {
      
         setHierarchy()
         setConstraints()
+        bind()
     }
     
     // MARK: - Set Hierarchy
@@ -42,5 +49,24 @@ final class BoxOfficeViewController: UIViewController {
             $0.top.equalTo(view.safeAreaLayoutGuide).offset(20)
             $0.horizontalEdges.equalToSuperview().inset(20)
         }
+    }
+    
+    // MARK: - Bind
+    
+    private func bind() {
+        searchBar.rx.searchButtonClicked
+            .withLatestFrom(searchBar.rx.text.orEmpty)
+            .distinctUntilChanged()
+            .flatMap { BoxOfficeObservable.getBoxOfficeInfo(query: $0) }
+            .subscribe(with: self) { owner, boxOfficeInfo in
+                print("<< 정보: \(boxOfficeInfo)")
+            } onError: { owner, error in
+                print("<< 에러: \(error)")
+            } onCompleted: { owner in
+                print("<< onCompleted")
+            } onDisposed: { owner in
+                print("<< onDisposed")
+            }
+            .disposed(by: disposeBag)
     }
 }

@@ -15,6 +15,9 @@
 		3F1D3C862E5CC25100D9CAFA /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 3F1D3C852E5CC25100D9CAFA /* Alamofire */; };
 		3F1D3C892E5CC27700D9CAFA /* LottoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1D3C882E5CC27700D9CAFA /* LottoModel.swift */; };
 		3F1D3C8D2E5CC8D900D9CAFA /* BoxOfficeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1D3C8C2E5CC8D900D9CAFA /* BoxOfficeViewController.swift */; };
+		3F1D3C902E5CC9D600D9CAFA /* BoxOfficeObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1D3C8F2E5CC9D600D9CAFA /* BoxOfficeObservable.swift */; };
+		3F1D3C932E5CC9E500D9CAFA /* BoxOfficeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1D3C922E5CC9E500D9CAFA /* BoxOfficeModel.swift */; };
+		3F1D3CCA2E5CE1C700D9CAFA /* Secret.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3F1D3CC92E5CE1C700D9CAFA /* Secret.xcconfig */; };
 		3F3BBD702E55DD6300A0CB52 /* PersonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3BBD6D2E55DD6300A0CB52 /* PersonTableViewCell.swift */; };
 		3F3BBD712E55DD6300A0CB52 /* UserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3BBD6E2E55DD6300A0CB52 /* UserCollectionViewCell.swift */; };
 		3F3BBD722E55DD6300A0CB52 /* HomeworkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3BBD6B2E55DD6300A0CB52 /* HomeworkViewController.swift */; };
@@ -62,6 +65,9 @@
 		3F1D3C822E5CBFCB00D9CAFA /* LottoObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottoObservable.swift; sourceTree = "<group>"; };
 		3F1D3C882E5CC27700D9CAFA /* LottoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottoModel.swift; sourceTree = "<group>"; };
 		3F1D3C8C2E5CC8D900D9CAFA /* BoxOfficeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxOfficeViewController.swift; sourceTree = "<group>"; };
+		3F1D3C8F2E5CC9D600D9CAFA /* BoxOfficeObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxOfficeObservable.swift; sourceTree = "<group>"; };
+		3F1D3C922E5CC9E500D9CAFA /* BoxOfficeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxOfficeModel.swift; sourceTree = "<group>"; };
+		3F1D3CC92E5CE1C700D9CAFA /* Secret.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secret.xcconfig; sourceTree = "<group>"; };
 		3F3BBD6B2E55DD6300A0CB52 /* HomeworkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkViewController.swift; sourceTree = "<group>"; };
 		3F3BBD6D2E55DD6300A0CB52 /* PersonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonTableViewCell.swift; sourceTree = "<group>"; };
 		3F3BBD6E2E55DD6300A0CB52 /* UserCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -183,6 +189,8 @@
 		3F1D3C8A2E5CC8C400D9CAFA /* BoxOffice */ = {
 			isa = PBXGroup;
 			children = (
+				3F1D3C912E5CC9DD00D9CAFA /* Model */,
+				3F1D3C8E2E5CC9C900D9CAFA /* Observable */,
 				3F1D3C8B2E5CC8CB00D9CAFA /* ViewController */,
 			);
 			path = BoxOffice;
@@ -194,6 +202,22 @@
 				3F1D3C8C2E5CC8D900D9CAFA /* BoxOfficeViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		3F1D3C8E2E5CC9C900D9CAFA /* Observable */ = {
+			isa = PBXGroup;
+			children = (
+				3F1D3C8F2E5CC9D600D9CAFA /* BoxOfficeObservable.swift */,
+			);
+			path = Observable;
+			sourceTree = "<group>";
+		};
+		3F1D3C912E5CC9DD00D9CAFA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3F1D3C922E5CC9E500D9CAFA /* BoxOfficeModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		3F3BBD692E55DD0C00A0CB52 /* 25.08.19 */ = {
@@ -457,6 +481,7 @@
 				3FCE1EA32E545A7F00D317DA /* Assets.xcassets */,
 				3FCE1EA42E545A7F00D317DA /* Info.plist */,
 				3FCE1EA62E545A7F00D317DA /* LaunchScreen.storyboard */,
+				3F1D3CC92E5CE1C700D9CAFA /* Secret.xcconfig */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -624,6 +649,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F1D3CCA2E5CE1C700D9CAFA /* Secret.xcconfig in Resources */,
 				3FCE1EAD2E545A7F00D317DA /* Assets.xcassets in Resources */,
 				3FCE1EAF2E545A7F00D317DA /* LaunchScreen.storyboard in Resources */,
 			);
@@ -651,6 +677,7 @@
 				3F1D3C832E5CBFCB00D9CAFA /* LottoObservable.swift in Sources */,
 				3FA87E6B2E54DB6200494266 /* RootTableTableViewCell.swift in Sources */,
 				3F52B7412E585DA0008FD276 /* SettingViewController.swift in Sources */,
+				3F1D3C932E5CC9E500D9CAFA /* BoxOfficeModel.swift in Sources */,
 				3F52B7442E5860CB008FD276 /* SettingTableViewCell.swift in Sources */,
 				3F52B74A2E5863EE008FD276 /* SettingViewModel.swift in Sources */,
 				3FEBEAF32E59DC9F00AA7AC7 /* SettingModel.swift in Sources */,
@@ -668,6 +695,7 @@
 				3FF308042E5B69AB0079CA02 /* TamagotchiDetailViewController.swift in Sources */,
 				3FEBEAF92E59EA1D00AA7AC7 /* UIViewController++Extetnsion.swift in Sources */,
 				3F1D3C892E5CC27700D9CAFA /* LottoModel.swift in Sources */,
+				3F1D3C902E5CC9D600D9CAFA /* BoxOfficeObservable.swift in Sources */,
 				3FCE1EB62E545BBA00D317DA /* SimpleTableViewViewController.swift in Sources */,
 				3FA6F54E2E5783850002B593 /* HomeDetailViewController.swift in Sources */,
 				3FEBEC062E59F30600AA7AC7 /* EditNicknameViewModel.swift in Sources */,
@@ -692,6 +720,7 @@
 /* Begin XCBuildConfiguration section */
 		3FCE1E9E2E545A5E00D317DA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3F1D3CC92E5CE1C700D9CAFA /* Secret.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

@@ -242,16 +242,24 @@ final class MainViewController: UIViewController {
         
         riceButton.rx.tap
             .bind(with: self) { owner, _ in
-                let amount = Int(owner.riceTextField.text ?? "") ?? 0
-                owner.riceButtonSubject.onNext(amount)
+                let riceText = owner.riceTextField.text ?? ""
+                let riceAmount = riceText.isEmpty ? 1 : (Int(riceText) ?? 1)
+                
+                if riceAmount <= 99 {
+                    owner.riceButtonSubject.onNext(riceAmount)
+                }
                 owner.riceTextField.text = ""
             }
             .disposed(by: disposeBag)
         
         waterButton.rx.tap
             .bind(with: self) { owner, _ in
-                let amount = Int(owner.waterTextField.text ?? "") ?? 0
-                owner.waterButtonSubject.onNext(amount)
+                let waterText = owner.waterTextField.text ?? ""
+                let waterAmount = waterText.isEmpty ? 1 : (Int(waterText) ?? 1)
+                
+                if waterAmount <= 49 {
+                    owner.waterButtonSubject.onNext(waterAmount)
+                }
                 owner.waterTextField.text = ""
             }
             .disposed(by: disposeBag)

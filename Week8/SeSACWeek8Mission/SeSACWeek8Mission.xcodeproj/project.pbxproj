@@ -19,6 +19,7 @@
 		3F1D3C932E5CC9E500D9CAFA /* BoxOfficeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1D3C922E5CC9E500D9CAFA /* BoxOfficeModel.swift */; };
 		3F1D3CCA2E5CE1C700D9CAFA /* Secret.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3F1D3CC92E5CE1C700D9CAFA /* Secret.xcconfig */; };
 		3F1D3CCD2E5CE69500D9CAFA /* BoxOfficeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1D3CCC2E5CE69500D9CAFA /* BoxOfficeTableViewCell.swift */; };
+		3F1D3CCF2E5CEAA500D9CAFA /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1D3CCE2E5CEAA500D9CAFA /* TabBarController.swift */; };
 		3F3BBD702E55DD6300A0CB52 /* PersonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3BBD6D2E55DD6300A0CB52 /* PersonTableViewCell.swift */; };
 		3F3BBD712E55DD6300A0CB52 /* UserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3BBD6E2E55DD6300A0CB52 /* UserCollectionViewCell.swift */; };
 		3F3BBD722E55DD6300A0CB52 /* HomeworkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3BBD6B2E55DD6300A0CB52 /* HomeworkViewController.swift */; };
@@ -70,6 +71,7 @@
 		3F1D3C922E5CC9E500D9CAFA /* BoxOfficeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxOfficeModel.swift; sourceTree = "<group>"; };
 		3F1D3CC92E5CE1C700D9CAFA /* Secret.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secret.xcconfig; sourceTree = "<group>"; };
 		3F1D3CCC2E5CE69500D9CAFA /* BoxOfficeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxOfficeTableViewCell.swift; sourceTree = "<group>"; };
+		3F1D3CCE2E5CEAA500D9CAFA /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		3F3BBD6B2E55DD6300A0CB52 /* HomeworkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkViewController.swift; sourceTree = "<group>"; };
 		3F3BBD6D2E55DD6300A0CB52 /* PersonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonTableViewCell.swift; sourceTree = "<group>"; };
 		3F3BBD6E2E55DD6300A0CB52 /* UserCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -513,6 +515,7 @@
 				3F3BBD6A2E55DD3300A0CB52 /* 25.08.20 */,
 				3F52B73C2E585D3B008FD276 /* 25.08.22 */,
 				3F1D3C7C2E5CBDAE00D9CAFA /* 25.08.25 */,
+				3F1D3CCE2E5CEAA500D9CAFA /* TabBarController.swift */,
 			);
 			path = Tab;
 			sourceTree = "<group>";
@@ -698,6 +701,7 @@
 				3FA87E722E54EAAA00494266 /* SimpleValidationViewController.swift in Sources */,
 				3FEBEAF72E59E55C00AA7AC7 /* EditNicknameViewController.swift in Sources */,
 				3F52B7472E586102008FD276 /* ReuseIdentifier.swift in Sources */,
+				3F1D3CCF2E5CEAA500D9CAFA /* TabBarController.swift in Sources */,
 				3F5FCD6A2E5B100900896DC8 /* TamagotchiCollectionViewCell.swift in Sources */,
 				3FA87E662E54DA3C00494266 /* RootTableViewController.swift in Sources */,
 				3FF3081B2E5B84570079CA02 /* MainViewController.swift in Sources */,

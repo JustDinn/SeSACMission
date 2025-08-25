@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         
         if UserDefaults.standard.string(forKey: UserDefaultsKey.tamagotchiName.value) != nil {
-            window?.rootViewController = UINavigationController(rootViewController: MainViewController())
+            window?.rootViewController = TabBarController()
         } else {
             window?.rootViewController = UINavigationController(rootViewController: SelectTamagotchiViewController())
         }

@@ -191,7 +191,7 @@ final class TamagotchiDetailViewController: UIViewController {
                 if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
                    let sceneDelegate = windowScene.delegate as? SceneDelegate,
                    let window = sceneDelegate.window {
-                    window.rootViewController = MainViewController()
+                    window.rootViewController = TabBarController()
                 }
             }
             .disposed(by: disposeBag)

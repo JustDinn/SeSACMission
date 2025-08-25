@@ -18,6 +18,7 @@
 		3F1D3C902E5CC9D600D9CAFA /* BoxOfficeObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1D3C8F2E5CC9D600D9CAFA /* BoxOfficeObservable.swift */; };
 		3F1D3C932E5CC9E500D9CAFA /* BoxOfficeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1D3C922E5CC9E500D9CAFA /* BoxOfficeModel.swift */; };
 		3F1D3CCA2E5CE1C700D9CAFA /* Secret.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3F1D3CC92E5CE1C700D9CAFA /* Secret.xcconfig */; };
+		3F1D3CCD2E5CE69500D9CAFA /* BoxOfficeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1D3CCC2E5CE69500D9CAFA /* BoxOfficeTableViewCell.swift */; };
 		3F3BBD702E55DD6300A0CB52 /* PersonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3BBD6D2E55DD6300A0CB52 /* PersonTableViewCell.swift */; };
 		3F3BBD712E55DD6300A0CB52 /* UserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3BBD6E2E55DD6300A0CB52 /* UserCollectionViewCell.swift */; };
 		3F3BBD722E55DD6300A0CB52 /* HomeworkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3BBD6B2E55DD6300A0CB52 /* HomeworkViewController.swift */; };
@@ -68,6 +69,7 @@
 		3F1D3C8F2E5CC9D600D9CAFA /* BoxOfficeObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxOfficeObservable.swift; sourceTree = "<group>"; };
 		3F1D3C922E5CC9E500D9CAFA /* BoxOfficeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxOfficeModel.swift; sourceTree = "<group>"; };
 		3F1D3CC92E5CE1C700D9CAFA /* Secret.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secret.xcconfig; sourceTree = "<group>"; };
+		3F1D3CCC2E5CE69500D9CAFA /* BoxOfficeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxOfficeTableViewCell.swift; sourceTree = "<group>"; };
 		3F3BBD6B2E55DD6300A0CB52 /* HomeworkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkViewController.swift; sourceTree = "<group>"; };
 		3F3BBD6D2E55DD6300A0CB52 /* PersonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonTableViewCell.swift; sourceTree = "<group>"; };
 		3F3BBD6E2E55DD6300A0CB52 /* UserCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 		3F1D3C8A2E5CC8C400D9CAFA /* BoxOffice */ = {
 			isa = PBXGroup;
 			children = (
+				3F1D3CCB2E5CE68B00D9CAFA /* Cell */,
 				3F1D3C912E5CC9DD00D9CAFA /* Model */,
 				3F1D3C8E2E5CC9C900D9CAFA /* Observable */,
 				3F1D3C8B2E5CC8CB00D9CAFA /* ViewController */,
@@ -218,6 +221,14 @@
 				3F1D3C922E5CC9E500D9CAFA /* BoxOfficeModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		3F1D3CCB2E5CE68B00D9CAFA /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				3F1D3CCC2E5CE69500D9CAFA /* BoxOfficeTableViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		3F3BBD692E55DD0C00A0CB52 /* 25.08.19 */ = {
@@ -693,6 +704,7 @@
 				3FA6F54B2E5780B60002B593 /* SimpleValidationViewModel.swift in Sources */,
 				3FA87E6E2E54DE7D00494266 /* AddingNumbersViewController.swift in Sources */,
 				3FF308042E5B69AB0079CA02 /* TamagotchiDetailViewController.swift in Sources */,
+				3F1D3CCD2E5CE69500D9CAFA /* BoxOfficeTableViewCell.swift in Sources */,
 				3FEBEAF92E59EA1D00AA7AC7 /* UIViewController++Extetnsion.swift in Sources */,
 				3F1D3C892E5CC27700D9CAFA /* LottoModel.swift in Sources */,
 				3F1D3C902E5CC9D600D9CAFA /* BoxOfficeObservable.swift in Sources */,

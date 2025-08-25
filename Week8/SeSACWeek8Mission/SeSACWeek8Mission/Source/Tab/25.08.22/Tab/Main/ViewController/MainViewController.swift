@@ -102,6 +102,7 @@ final class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = .main
         setHierarchy()
         setConstraints()
         bind()
@@ -111,6 +112,7 @@ final class MainViewController: UIViewController {
         super.viewWillAppear(animated)
         
         configureVC()
+        updateLevel()
         updateTamagotchiImage()
         viewWillAppearSubject.onNext(())
     }
@@ -299,6 +301,13 @@ final class MainViewController: UIViewController {
         }
         
         tamagotchiImageView.image = UIImage(named: imageName)
+    }
+    
+    private func updateLevel() {
+        let currentLevel = UserDefaults.standard.integer(forKey: UserDefaultsKey.level.value)
+        let level = max(1, currentLevel)
+        
+        levelLabel.text = "LV.\(level)"
     }
     
     private func updateTamagotchiImage() {

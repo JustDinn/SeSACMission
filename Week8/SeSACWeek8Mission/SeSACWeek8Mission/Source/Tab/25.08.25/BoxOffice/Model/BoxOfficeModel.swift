@@ -5,23 +5,23 @@
 //  Created by HyoTaek on 8/26/25.
 //
 
-struct BoxOfficeModel: Decodable {
-    let boxOffice: BoxOfficeResult
+struct MovieModel: Decodable {
+    let movie: MovieResult
     
     enum CodingKeys: String, CodingKey {
-        case boxOffice = "boxOfficeResult"
+        case movie = "boxOfficeResult"
     }
 }
 
-struct BoxOfficeResult: Decodable {
-    let boxOfficeList: [BoxOfficeInfo]
+struct MovieResult: Decodable {
+    let movieList: [MovieInfo]
     
     enum CodingKeys: String, CodingKey {
-        case boxOfficeList = "dailyBoxOfficeList"
+        case movieList = "dailyBoxOfficeList"
     }
 }
 
-struct BoxOfficeInfo: Decodable {
+struct MovieInfo: Decodable {
     let title: String
     let ranking: String
     let realeasedDate: String

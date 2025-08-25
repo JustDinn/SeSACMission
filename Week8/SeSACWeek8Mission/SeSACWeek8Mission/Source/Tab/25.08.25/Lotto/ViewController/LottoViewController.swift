@@ -21,6 +21,7 @@ final class LottoViewController: UIViewController {
     
     private let searchBar = UISearchBar().then {
         $0.searchBarStyle = .minimal
+        $0.placeholder = "로또 번호 검색"
     }
     
     private let resultLabel = UILabel()

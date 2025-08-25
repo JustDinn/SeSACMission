@@ -225,6 +225,7 @@ final class MainViewController: UIViewController {
         output.level
             .bind(with: self) { owner, level in
                 owner.levelLabel.text = "LV.\(level)"
+                owner.updateTamagotchiImage(level: level)
             }
             .disposed(by: disposeBag)
         
@@ -272,12 +273,30 @@ final class MainViewController: UIViewController {
         guard let tamagotchiName = UserDefaults.standard.string(forKey: UserDefaultsKey.tamagotchiName.value) else {
             return
         }
-        guard let tamagotchiImage = UserDefaults.standard.string(forKey: UserDefaultsKey.tamagotchiImage.value) else {
+        
+        setProfileNaviBar("\(nickname)님의 다마고치")
+        tamagotchiNameLabel.text = tamagotchiName
+    }
+    
+    private func updateTamagotchiImage(level: Int) {
+        guard let tamagotchiName = UserDefaults.standard.string(forKey: UserDefaultsKey.tamagotchiName.value) else {
             return
         }
         
-        setProfileNaviBar("\(nickname)님의 다마고치")
-        tamagotchiImageView.image = UIImage(named: tamagotchiImage)
-        tamagotchiNameLabel.text = tamagotchiName
+        let level = max(1, min(level, 9))
+        var imageName = ""
+        
+        switch tamagotchiName {
+        case "따끔따끔 다마고치":
+            imageName = "1-\(level)"
+        case "방실방실 다마고치":
+            imageName = "2-\(level)"
+        case "반짝반짝 다마고치":
+            imageName = "3-\(level)"
+        default:
+            imageName = "1-1"
+        }
+        
+        tamagotchiImageView.image = UIImage(named: imageName)
     }
 }

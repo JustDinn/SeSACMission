@@ -47,6 +47,12 @@ final class SelectTamagotchiViewController: UIViewController {
         bind()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        updateTamagotchiImages()
+    }
+    
     // MARK: - Set UI
     
     private func setUI() {
@@ -101,5 +107,43 @@ final class SelectTamagotchiViewController: UIViewController {
                 owner.present(tamagotchiDetailVC, animated: true)
             }
             .disposed(by: disposeBag)
+    }
+    
+    // MARK: - Update Images
+    
+    private func updateTamagotchiImages() {
+        let currentLevel = UserDefaults.standard.integer(forKey: UserDefaultsKey.level.value)
+        let level = max(1, min(currentLevel, 9))
+        
+        var updatedTamagotchies = TamagotchiModel.tamagotchies
+        
+        if updatedTamagotchies.count > 0 {
+            updatedTamagotchies[0] = TamagotchiModel(
+                name: updatedTamagotchies[0].name,
+                image: "1-\(level)",
+                description: updatedTamagotchies[0].description,
+                greeting: updatedTamagotchies[0].greeting
+            )
+        }
+        
+        if updatedTamagotchies.count > 1 {
+            updatedTamagotchies[1] = TamagotchiModel(
+                name: updatedTamagotchies[1].name,
+                image: "2-\(level)",
+                description: updatedTamagotchies[1].description,
+                greeting: updatedTamagotchies[1].greeting
+            )
+        }
+        
+        if updatedTamagotchies.count > 2 {
+            updatedTamagotchies[2] = TamagotchiModel(
+                name: updatedTamagotchies[2].name,
+                image: "3-\(level)",
+                description: updatedTamagotchies[2].description,
+                greeting: updatedTamagotchies[2].greeting
+            )
+        }
+        
+        viewModel.updateTamagotchiList(updatedTamagotchies)
     }
 }

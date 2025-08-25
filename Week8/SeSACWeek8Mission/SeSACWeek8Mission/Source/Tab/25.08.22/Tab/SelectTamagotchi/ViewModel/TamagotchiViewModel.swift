@@ -11,6 +11,10 @@ import RxCocoa
 
 final class TamagotchiViewModel {
     
+    // MARK: - Property
+    
+    private let tamagotchiListSubject = BehaviorSubject<[TamagotchiModel]>(value: TamagotchiModel.tamagotchies)
+    
     // MARK: - Input
     
     struct Input {
@@ -26,8 +30,12 @@ final class TamagotchiViewModel {
     // MARK: - Transform
     
     func transform() -> Output {
-        let tamagotchiList = BehaviorSubject<[TamagotchiModel]>(value: TamagotchiModel.tamagotchies)
-        
-        return Output(tamagotchiList: tamagotchiList)
+        return Output(tamagotchiList: tamagotchiListSubject)
+    }
+    
+    // MARK: - 다마고치 이미지들 업데이트
+    
+    func updateTamagotchiList(_ tamagotchies: [TamagotchiModel]) {
+        tamagotchiListSubject.onNext(tamagotchies)
     }
 }

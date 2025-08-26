@@ -81,5 +81,11 @@ final class BoxOfficeViewController: UIViewController {
                     cell.configureCell(with: item.title)
                 }
             .disposed(by: disposeBag)
+        
+        output.errorMessage
+            .bind(with: self) { owner, errorMessage in
+                owner.view.showToast(errorMessage)
+            }
+            .disposed(by: disposeBag)
     }
 }

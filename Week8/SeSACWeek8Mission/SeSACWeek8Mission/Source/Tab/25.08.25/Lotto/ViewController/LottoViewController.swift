@@ -16,6 +16,7 @@ final class LottoViewController: UIViewController {
     // MARK: - Property
     
     private let disposeBag = DisposeBag()
+    private let viewModel = LottoViewModel()
     
     // MARK: - Component
     
@@ -61,18 +62,15 @@ final class LottoViewController: UIViewController {
     // MARK: - Bind
     
     private func bind() {
-        searchBar.rx.searchButtonClicked
-            .withLatestFrom(searchBar.rx.text.orEmpty)
-            .distinctUntilChanged()
-            .flatMap { LottoObservable.getLottoNumber(query: $0) }
-            .subscribe(with: self) { owner, lottoInfo in
-                owner.resultLabel.text = "\(lottoInfo.first) \(lottoInfo.second) \(lottoInfo.third) \(lottoInfo.fourth) \(lottoInfo.fifth) \(lottoInfo.sixth) \(lottoInfo.bonus)"
-            } onError: { owner, error in
-                print("<< error: \(error)")
-            } onCompleted: { owner in
-                print("<< onCompleted")
-            } onDisposed: { owner in
-                print("<< onDisposed")
+        let input = LottoViewModel.Input(
+            searchTap: searchBar.rx.searchButtonClicked,
+            searchText: searchBar.rx.text.orEmpty
+        )
+        let output = viewModel.transform(input: input)
+        
+        output.lottoResult
+            .bind(with: self) { owner, result in
+                print("<< result: \(result)")
             }
             .disposed(by: disposeBag)
     }

@@ -55,6 +55,8 @@ final class LottoViewModel: BaseViewModel {
                         errorMessage.accept("[404] 요청받은 리소스를 찾을 수 없습니다")
                     case .serverError:
                         errorMessage.accept("[500] 서버 에러입니다")
+                    case .networkDisconnected:
+                        errorMessage.accept("[네트워크] 인터넷 연결을 확인해주세요")
                     case .unknownError:
                         errorMessage.accept("[Unknown] 알 수 없는 에러가 발생했습니다")
                     }

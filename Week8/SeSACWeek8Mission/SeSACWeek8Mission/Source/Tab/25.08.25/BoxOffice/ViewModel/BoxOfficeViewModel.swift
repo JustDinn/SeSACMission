@@ -29,6 +29,7 @@ final class BoxOfficeViewModel: BaseViewModel {
     struct Output {
         let result: PublishRelay<[MovieInfo]>
         let errorMessage: PublishRelay<String>
+        let showAlert: PublishRelay<String>
     }
     
     // MARK: - Transform
@@ -36,6 +37,7 @@ final class BoxOfficeViewModel: BaseViewModel {
     func transform(input: In) -> Out {
         let result = PublishRelay<[MovieInfo]>()
         let errorMessage = PublishRelay<String>()
+        let showAlert = PublishRelay<String>()
         
         input.searchButtonTapped
             .withLatestFrom(input.searchKeyword)
@@ -63,7 +65,7 @@ final class BoxOfficeViewModel: BaseViewModel {
                     case .serverError:
                         errorMessage.accept("[500] 서버 에러입니다")
                     case .networkDisconnected:
-                        errorMessage.accept("[네트워크] 인터넷 연결을 확인해주세요")
+                        showAlert.accept("인터넷 연결을 확인해주세요")
                     case .unknownError:
                         errorMessage.accept("[Unknown] 알 수 없는 에러가 발생했습니다")
                     }
@@ -71,6 +73,6 @@ final class BoxOfficeViewModel: BaseViewModel {
             }
             .disposed(by: disposeBag)
         
-        return Out(result: result, errorMessage: errorMessage)
+        return Out(result: result, errorMessage: errorMessage, showAlert: showAlert)
     }
 }

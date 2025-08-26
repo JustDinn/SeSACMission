@@ -87,5 +87,11 @@ final class BoxOfficeViewController: UIViewController {
                 owner.view.showToast(errorMessage)
             }
             .disposed(by: disposeBag)
+        
+        output.showAlert
+            .bind(with: self) { owner, alertMessage in
+                owner.showAlert(title: "네트워크 에러", message: alertMessage)
+            }
+            .disposed(by: disposeBag)
     }
 }

@@ -27,6 +27,7 @@ final class LottoViewModel: BaseViewModel {
     struct Output {
         let lottoResult: PublishRelay<String>
         let errorMessage: PublishRelay<String>
+        let showAlert: PublishRelay<String>
     }
     
     // MARK: - Transform
@@ -35,6 +36,7 @@ final class LottoViewModel: BaseViewModel {
         let searchLotto = input.searchTap
         let lottoResult = PublishRelay<String>()
         let errorMessage = PublishRelay<String>()
+        let showAlert = PublishRelay<String>()
         
         searchLotto
             .withLatestFrom(input.searchText)
@@ -56,7 +58,7 @@ final class LottoViewModel: BaseViewModel {
                     case .serverError:
                         errorMessage.accept("[500] 서버 에러입니다")
                     case .networkDisconnected:
-                        errorMessage.accept("[네트워크] 인터넷 연결을 확인해주세요")
+                        showAlert.accept("인터넷 연결을 확인해주세요")
                     case .unknownError:
                         errorMessage.accept("[Unknown] 알 수 없는 에러가 발생했습니다")
                     }
@@ -64,6 +66,6 @@ final class LottoViewModel: BaseViewModel {
             }
             .disposed(by: disposeBag)
         
-        return Output(lottoResult: lottoResult, errorMessage: errorMessage)
+        return Output(lottoResult: lottoResult, errorMessage: errorMessage, showAlert: showAlert)
     }
 }

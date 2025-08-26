@@ -30,6 +30,17 @@ final class BoxOfficeObservable {
                         observer.onCompleted()
                         
                     case .failure(let error):
+                        if let afError = error.asAFError,
+                           let urlError = afError.underlyingError as? URLError {
+                            switch urlError.code {
+                            case .notConnectedToInternet:
+                                observer.onNext(.failure(.networkDisconnected))
+                                observer.onCompleted()
+                            default:
+                                break
+                            }
+                        }
+                        
                         let statusCode = error.responseCode
                         
                         switch statusCode {

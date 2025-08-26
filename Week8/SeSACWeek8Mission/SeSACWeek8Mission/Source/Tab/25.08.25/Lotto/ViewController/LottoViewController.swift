@@ -69,9 +69,7 @@ final class LottoViewController: UIViewController {
         let output = viewModel.transform(input: input)
         
         output.lottoResult
-            .bind(with: self) { owner, result in
-                print("<< result: \(result)")
-            }
+            .bind(to: resultLabel.rx.text)
             .disposed(by: disposeBag)
     }
 }

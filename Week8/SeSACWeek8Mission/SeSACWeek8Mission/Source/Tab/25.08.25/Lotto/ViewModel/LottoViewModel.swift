@@ -41,7 +41,8 @@ final class LottoViewModel: BaseViewModel {
             .bind(with: self) { owner, response in
                 switch response {
                 case .success(let lottoInfo):
-                    print("<< lottoInfo: \(lottoInfo)")
+                    lottoResult.accept("\(lottoInfo.first) \(lottoInfo.second) \(lottoInfo.third) \(lottoInfo.fourth) \(lottoInfo.fifth) \(lottoInfo.sixth) \(lottoInfo.bonus)")
+                    
                 case .failure(let error):
                     print("<< lotto error: \(error)")
                 }

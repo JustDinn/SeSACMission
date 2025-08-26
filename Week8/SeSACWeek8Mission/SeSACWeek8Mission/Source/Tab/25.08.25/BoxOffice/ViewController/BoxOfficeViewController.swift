@@ -17,6 +17,7 @@ final class BoxOfficeViewController: UIViewController {
     
     private let boxOfficeList = BehaviorRelay<[MovieInfo]>(value: [])
     private let disposeBag = DisposeBag()
+    private let viewModel = BoxOfficeViewModel()
     
     // MARK: - Component
     
@@ -67,25 +68,18 @@ final class BoxOfficeViewController: UIViewController {
     // MARK: - Bind
     
     private func bind() {
-        searchBar.rx.searchButtonClicked
-            .withLatestFrom(searchBar.rx.text.orEmpty)
-            .distinctUntilChanged()
-            .flatMap { BoxOfficeObservable.getBoxOfficeInfo(query: $0) }
-            .subscribe(with: self) { owner, boxOfficeInfo in
-                owner.boxOfficeList.accept(boxOfficeInfo.movie.movieList)
-            } onError: { owner, error in
-                print("<< 에러: \(error)")
-            } onCompleted: { owner in
-                print("<< onCompleted")
-            } onDisposed: { owner in
-                print("<< onDisposed")
-            }
-            .disposed(by: disposeBag)
+        let input = BoxOfficeViewModel.Input(
+            searchButtonTapped: searchBar.rx.searchButtonClicked,
+            searchKeyword: searchBar.rx.text.orEmpty
+        )
+        let output = viewModel.transform(input: input)
         
-        boxOfficeList
-            .bind(to: boxOfficeTableView.rx.items(cellIdentifier: BoxOfficeTableViewCell.reuseIdentifier, cellType: BoxOfficeTableViewCell.self)) { index, movie, cell in
-                cell.configureCell(with: movie.title)
-            }
+        output.result
+            .bind(to: boxOfficeTableView.rx.items(
+                cellIdentifier: BoxOfficeTableViewCell.reuseIdentifier,
+                cellType: BoxOfficeTableViewCell.self)) { row, item, cell in
+                    cell.configureCell(with: item.title)
+                }
             .disposed(by: disposeBag)
     }
 }

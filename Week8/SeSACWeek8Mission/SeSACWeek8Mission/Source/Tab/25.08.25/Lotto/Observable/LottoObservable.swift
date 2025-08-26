@@ -9,14 +9,10 @@ import RxSwift
 import RxCocoa
 import Alamofire
 
-enum LottoError: Error {
-    case invalid
-}
-
 final class LottoObservable {
     
-    static func getLottoNumber(query: String) -> Observable<Result<LottoModel, LottoError>> {
-        return Observable<Result<LottoModel, LottoError>>.create { observer in
+    static func getLottoNumber(query: String) -> Observable<Result<LottoModel, NetworkError>> {
+        return Observable<Result<LottoModel, NetworkError>>.create { observer in
             let endpoint = "https://www.dhlottery.co.kr/common.do?method=getLottoNumber&drwNo=\(query)"
             
             AF.request(endpoint, method: .get)
@@ -26,12 +22,24 @@ final class LottoObservable {
                         observer.onNext(.success(lottoNumbers))
                         observer.onCompleted()
                         
-                    case .failure:
-                        observer.onNext(.failure(.invalid))
+                    case .failure(let error):
+                        let statusCode = error.responseCode
+                        
+                        switch statusCode {
+                        case 400:
+                            observer.onNext(.failure(.badRequest))
+                        case 401:
+                            observer.onNext(.failure(.unAuthorized))
+                        case 404:
+                            observer.onNext(.failure(.notFound))
+                        case 500:
+                            observer.onNext(.failure(.serverError))
+                        default:
+                            observer.onNext(.failure(.unknownError))
+                        }
                         observer.onCompleted()
                     }
                 }
-            
             return Disposables.create()
         }
     }

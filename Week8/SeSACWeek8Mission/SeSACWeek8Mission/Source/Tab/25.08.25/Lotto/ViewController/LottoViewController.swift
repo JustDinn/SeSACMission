@@ -71,5 +71,11 @@ final class LottoViewController: UIViewController {
         output.lottoResult
             .bind(to: resultLabel.rx.text)
             .disposed(by: disposeBag)
+        
+        output.errorMessage
+            .bind(with: self) { owner, errorMessage in
+                owner.view.showToast(errorMessage)
+            }
+            .disposed(by: disposeBag)
     }
 }

@@ -26,6 +26,7 @@ final class LottoViewModel: BaseViewModel {
     
     struct Output {
         let lottoResult: PublishRelay<String>
+        let errorMessage: PublishRelay<String>
     }
     
     // MARK: - Transform
@@ -33,6 +34,7 @@ final class LottoViewModel: BaseViewModel {
     func transform(input: Input) -> Output {
         let searchLotto = input.searchTap
         let lottoResult = PublishRelay<String>()
+        let errorMessage = PublishRelay<String>()
         
         searchLotto
             .withLatestFrom(input.searchText)
@@ -44,11 +46,22 @@ final class LottoViewModel: BaseViewModel {
                     lottoResult.accept("\(lottoInfo.first) \(lottoInfo.second) \(lottoInfo.third) \(lottoInfo.fourth) \(lottoInfo.fifth) \(lottoInfo.sixth) \(lottoInfo.bonus)")
                     
                 case .failure(let error):
-                    print("<< lotto error: \(error)")
+                    switch error {
+                    case .badRequest:
+                        errorMessage.accept("[400] 잘못된 요청입니다")
+                    case .unAuthorized:
+                        errorMessage.accept("[401] 토큰 만료 혹은 잘못된 토큰입니다")
+                    case .notFound:
+                        errorMessage.accept("[404] 요청받은 리소스를 찾을 수 없습니다")
+                    case .serverError:
+                        errorMessage.accept("[500] 서버 에러입니다")
+                    case .unknownError:
+                        errorMessage.accept("[Unknown] 알 수 없는 에러가 발생했습니다")
+                    }
                 }
             }
             .disposed(by: disposeBag)
         
-        return Output(lottoResult: lottoResult)
+        return Output(lottoResult: lottoResult, errorMessage: errorMessage)
     }
 }

@@ -24,6 +24,8 @@
 		3F3BBD712E55DD6300A0CB52 /* UserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3BBD6E2E55DD6300A0CB52 /* UserCollectionViewCell.swift */; };
 		3F3BBD722E55DD6300A0CB52 /* HomeworkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3BBD6B2E55DD6300A0CB52 /* HomeworkViewController.swift */; };
 		3F3BBD752E55DFB700A0CB52 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 3F3BBD742E55DFB700A0CB52 /* Kingfisher */; };
+		3F4A65762E5DBB3000FFAF65 /* LottoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4A65752E5DBB3000FFAF65 /* LottoViewModel.swift */; };
+		3F4A65792E5DBB4C00FFAF65 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4A65782E5DBB4C00FFAF65 /* BaseViewModel.swift */; };
 		3F52B7412E585DA0008FD276 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F52B7402E585DA0008FD276 /* SettingViewController.swift */; };
 		3F52B7442E5860CB008FD276 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F52B7432E5860CB008FD276 /* SettingTableViewCell.swift */; };
 		3F52B7472E586102008FD276 /* ReuseIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F52B7462E586102008FD276 /* ReuseIdentifier.swift */; };
@@ -75,6 +77,8 @@
 		3F3BBD6B2E55DD6300A0CB52 /* HomeworkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkViewController.swift; sourceTree = "<group>"; };
 		3F3BBD6D2E55DD6300A0CB52 /* PersonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonTableViewCell.swift; sourceTree = "<group>"; };
 		3F3BBD6E2E55DD6300A0CB52 /* UserCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionViewCell.swift; sourceTree = "<group>"; };
+		3F4A65752E5DBB3000FFAF65 /* LottoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottoViewModel.swift; sourceTree = "<group>"; };
+		3F4A65782E5DBB4C00FFAF65 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		3F52B7402E585DA0008FD276 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		3F52B7432E5860CB008FD276 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		3F52B7462E586102008FD276 /* ReuseIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseIdentifier.swift; sourceTree = "<group>"; };
@@ -160,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				3F1D3C872E5CC27000D9CAFA /* Model */,
+				3F4A65742E5DBB1B00FFAF65 /* ViewModel */,
 				3F1D3C812E5CBFC000D9CAFA /* Observable */,
 				3F1D3C802E5CBFB500D9CAFA /* ViewController */,
 			);
@@ -269,6 +274,22 @@
 				3F3BBD6E2E55DD6300A0CB52 /* UserCollectionViewCell.swift */,
 			);
 			path = Recap;
+			sourceTree = "<group>";
+		};
+		3F4A65742E5DBB1B00FFAF65 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				3F4A65752E5DBB3000FFAF65 /* LottoViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		3F4A65772E5DBB4100FFAF65 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				3F4A65782E5DBB4C00FFAF65 /* BaseViewModel.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		3F52B73C2E585D3B008FD276 /* 25.08.22 */ = {
@@ -482,6 +503,7 @@
 			isa = PBXGroup;
 			children = (
 				3FCE1EB22E545A9700D317DA /* Application */,
+				3F4A65772E5DBB4100FFAF65 /* Common */,
 				3FCE1EB32E545B3200D317DA /* Tab */,
 				3F52B7452E5860EE008FD276 /* Extension */,
 			);
@@ -681,6 +703,7 @@
 				3F1D34BD2E5A16A200C862A0 /* UIView++Extension.swift in Sources */,
 				3F1D3C7F2E5CBDCC00D9CAFA /* LottoViewController.swift in Sources */,
 				3FA6F5412E5776920002B593 /* AddingNumbersViewModel.swift in Sources */,
+				3F4A65792E5DBB4C00FFAF65 /* BaseViewModel.swift in Sources */,
 				3FF308022E5B4F2C0079CA02 /* TamagotchiModel.swift in Sources */,
 				3F3BBD722E55DD6300A0CB52 /* HomeworkViewController.swift in Sources */,
 				3F1D3C8D2E5CC8D900D9CAFA /* BoxOfficeViewController.swift in Sources */,
@@ -705,6 +728,7 @@
 				3F5FCD6A2E5B100900896DC8 /* TamagotchiCollectionViewCell.swift in Sources */,
 				3FA87E662E54DA3C00494266 /* RootTableViewController.swift in Sources */,
 				3FF3081B2E5B84570079CA02 /* MainViewController.swift in Sources */,
+				3F4A65762E5DBB3000FFAF65 /* LottoViewModel.swift in Sources */,
 				3FA6F54B2E5780B60002B593 /* SimpleValidationViewModel.swift in Sources */,
 				3FA87E6E2E54DE7D00494266 /* AddingNumbersViewController.swift in Sources */,
 				3FF308042E5B69AB0079CA02 /* TamagotchiDetailViewController.swift in Sources */,

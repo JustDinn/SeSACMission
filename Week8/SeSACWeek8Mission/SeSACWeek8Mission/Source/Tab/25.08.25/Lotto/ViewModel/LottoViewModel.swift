@@ -6,25 +6,48 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
 
 final class LottoViewModel: BaseViewModel {
 
+    // MARK: - DisposeBag
+    
+    private let disposeBag = DisposeBag()
+    
     // MARK: - Input
     
     struct Input {
-        
+        let searchTap: ControlEvent<Void>
+        let searchText: ControlProperty<String>
     }
     
     // MARK: - Output
     
     struct Output {
-        
+        let lottoResult: PublishRelay<String>
     }
     
     // MARK: - Transform
     
     func transform(input: Input) -> Output {
+        let searchLotto = input.searchTap
+        let lottoResult = PublishRelay<String>()
         
-        return Output()
+        searchLotto
+            .withLatestFrom(input.searchText)
+            .distinctUntilChanged()
+            .flatMap { LottoObservable.getLottoNumber(query: $0) }
+            .bind(with: self) { owner, response in
+                switch response {
+                case .success(let lottoInfo):
+                    print("<< lottoInfo: \(lottoInfo)")
+                case .failure(let error):
+                    print("<< lotto error: \(error)")
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        return Output(lottoResult: lottoResult)
     }
 }

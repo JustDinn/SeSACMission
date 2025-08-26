@@ -12,5 +12,6 @@ enum NetworkError: Error {
     case unAuthorized
     case notFound
     case serverError
+    case networkDisconnected
     case unknownError
 }

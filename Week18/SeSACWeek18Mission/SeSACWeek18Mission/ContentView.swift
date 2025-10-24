@@ -11,8 +11,8 @@ struct ContentView: View {
     
     // MARK: - Property
     
-    @State var number: String = ""
-    private var tryCounting: Int = 0
+    @State var inputNumber: String = ""
+    private var resultList: [Result] = []
     
     // MARK: - Body
     
@@ -26,13 +26,13 @@ struct ContentView: View {
             
             Spacer()
             
-            Text("시도 횟수: \(tryCounting)회")
+            Text("시도 횟수: \(resultList.count)회")
                 .frame(maxWidth: .infinity)
                 .padding(6)
                 .background(Color(uiColor: .systemGray4))
             
             HStack(spacing: 10) {
-                TextField("3자리 숫자 입력", text: $number)
+                TextField("3자리 숫자 입력", text: $inputNumber)
                     .padding(5)
                     .border(.gray, width: 1)
                 Button("확인") {
@@ -40,8 +40,8 @@ struct ContentView: View {
                 }
                 .tint(.white)
                 .padding(6)
-                .background(number.isEmpty ? Color(uiColor: .systemGray4) : .gray)
-                .disabled(number.isEmpty)
+                .background(inputNumber.isEmpty ? Color(uiColor: .systemGray4) : .gray)
+                .disabled(inputNumber.isEmpty)
             }
             .padding()
             .background(.white)

@@ -11,4 +11,5 @@ struct Result: Identifiable {
     let id = UUID()
     let input: String
     let result: String
+    let isCorrect: Bool
 }

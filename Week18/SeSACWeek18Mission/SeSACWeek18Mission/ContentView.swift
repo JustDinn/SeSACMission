@@ -36,13 +36,15 @@ struct ContentView: View {
                 .background(.white)
             
             ScrollView {
-                LazyVStack {
+                LazyVStack(spacing: 0) {
                     ForEach(resultList) { result in
                         HStack {
                             Text("입력: \(result.input)")
                             Spacer()
                             Text(result.result)
                         }
+                        .padding()
+                        .background(.white)
                     }
                 }
             }

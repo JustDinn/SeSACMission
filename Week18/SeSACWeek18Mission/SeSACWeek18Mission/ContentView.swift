@@ -11,7 +11,8 @@ struct ContentView: View {
     
     // MARK: - Property
     
-    @State var inputNumber: String = ""
+    @State var inputNumber = ""
+    @State private var errorMessage = ""
     private var resultList: [Result] = []
     
     // MARK: - Body
@@ -37,7 +38,11 @@ struct ContentView: View {
                     .padding(5)
                     .border(.gray, width: 1)
                 Button("확인") {
-                    print("확인 탭")
+                    if isValid(number: inputNumber) {
+                        print("유효성 검사 통과")
+                    } else {
+                        print("입력 오류: \(errorMessage)")
+                    }
                 }
                 .tint(.white)
                 .padding(6)
@@ -55,15 +60,20 @@ struct ContentView: View {
     // MARK: - 유효성 검증
 
     private func isValid(number: String) -> Bool {
-        
-        // 빈 문자열 체크
-        guard !number.isEmpty else { return false }
 
         // 모든 문자가 숫자인지 체크
-        guard Int(number) != nil else { return false }
+        guard Int(number) != nil else {
+            errorMessage = "숫자만 입력할 수 있습니다."
+            return false
+        }
 
         // 3자리 숫자인지 체크
-        guard number.count == 3 else { return false }
+        guard number.count == 3 else {
+            errorMessage = "3자리 숫자를 입력해야합니다."
+            return false
+        }
+        
+        // 중복 체크
 
         return true
     }

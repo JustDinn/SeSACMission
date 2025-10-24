@@ -38,8 +38,9 @@ struct ContentView: View {
                 Button("확인") {
                     print("확인 탭")
                 }
+                .tint(.white)
                 .padding(6)
-                .background(Color(uiColor: .systemGray4))
+                .background(number.isEmpty ? Color(uiColor: .systemGray4) : .gray)
                 .disabled(number.isEmpty)
             }
             .padding()

@@ -37,11 +37,13 @@ struct ContentView: View {
             
             ScrollView {
                 LazyVStack(spacing: 0) {
-                    ForEach(resultList) { result in
+                    ForEach(resultList) { item in
                         HStack {
-                            Text("입력: \(result.input)")
+                            Text("입력: \(item.input)")
                             Spacer()
-                            Text(result.result)
+                            Text("결과: \(item.result)")
+                                .fontWeight(.semibold)
+                                .foregroundColor(.blue)
                         }
                         .padding()
                         .background(.white)

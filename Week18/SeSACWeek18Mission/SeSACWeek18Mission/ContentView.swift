@@ -70,7 +70,14 @@ struct ContentView: View {
                     if isValid(number: inputNumber) {
                         // 정답인 경우
                         if isCorrect {
-                            resultList.append(Result(input: inputNumber, result: "3S 0B", isCorrect: true))
+                            resultList.insert(
+                                Result(
+                                    input: inputNumber,
+                                    result: "\(strike)S \(ball)B",
+                                    isCorrect: true
+                                ),
+                                at: 0
+                            )
                             showAlert = true
                             alertTitle = "게임 승리"
                             alertMessage = "3 스트라이크! 정답입니다! 🎉"
@@ -78,8 +85,14 @@ struct ContentView: View {
                         // 오답인 경우
                         else {
                             // 숫자 야구 결과를 result에 넣기
-                            resultList.append(Result(input: inputNumber, result: "\(strike)S \(ball)B", isCorrect: false))
-                            print(resultList)
+                            resultList.insert(
+                                Result(
+                                    input: inputNumber,
+                                    result: "\(strike)S \(ball)B",
+                                    isCorrect: false
+                                ),
+                                at: 0
+                            )
                         }
                     } else {
                         showAlert = true

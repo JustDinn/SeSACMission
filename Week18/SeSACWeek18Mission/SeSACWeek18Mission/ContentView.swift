@@ -47,13 +47,14 @@ struct ContentView: View {
                 Button("확인") {
                     if isValid(number: inputNumber) {
                         // 정답인 경우
-                        if correct == inputNumber {
+                        if isCorrect {
                             showAlert = true
                             alertTitle = "게임 승리"
                             alertMessage = "3 스트라이크! 정답입니다! 🎉"
                         }
                         // 오답인 경우
                         else {
+                            // 숫자 야구 결과를 result에 넣기
                             resultList.append(Result(input: inputNumber, result: ""))
                         }
                     } else {
@@ -99,6 +100,19 @@ struct ContentView: View {
         // 중복 체크
 
         return true
+    }
+    
+    // MARK: - 숫자 야구 결과
+    
+    private var isCorrect: Bool {
+        
+        // 3S
+        if inputNumber == correct {
+            return true
+        }
+        else {
+            return false
+        }
     }
 }
 

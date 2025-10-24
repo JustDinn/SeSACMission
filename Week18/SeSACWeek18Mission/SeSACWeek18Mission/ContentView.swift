@@ -51,6 +51,22 @@ struct ContentView: View {
         .frame(maxWidth: .infinity)
         .background(Color(uiColor: .systemGroupedBackground))
     }
+
+    // MARK: - 유효성 검증
+
+    private func isValid(number: String) -> Bool {
+        
+        // 빈 문자열 체크
+        guard !number.isEmpty else { return false }
+
+        // 모든 문자가 숫자인지 체크
+        guard Int(number) != nil else { return false }
+
+        // 3자리 숫자인지 체크
+        guard number.count == 3 else { return false }
+
+        return true
+    }
 }
 
 #Preview {

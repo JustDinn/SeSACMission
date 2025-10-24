@@ -21,6 +21,8 @@ struct ContentView: View {
         let randomNumbers = numbers.shuffled().prefix(3).map { String($0) }.joined()
         return randomNumbers
     }()
+    @State private var strike = 0
+    @State private var ball = 0
     
     // MARK: - Body
     
@@ -45,6 +47,11 @@ struct ContentView: View {
                     .padding(5)
                     .border(.gray, width: 1)
                 Button("확인") {
+                    print(correct)
+                    // strike와 ball 초기화
+                    strike = 0
+                    ball = 0
+
                     if isValid(number: inputNumber) {
                         // 정답인 경우
                         if isCorrect {
@@ -55,7 +62,8 @@ struct ContentView: View {
                         // 오답인 경우
                         else {
                             // 숫자 야구 결과를 result에 넣기
-                            resultList.append(Result(input: inputNumber, result: ""))
+                            resultList.append(Result(input: inputNumber, result: "\(strike)S \(ball)B"))
+                            print(resultList)
                         }
                     } else {
                         showAlert = true
@@ -106,11 +114,19 @@ struct ContentView: View {
     
     private var isCorrect: Bool {
         
-        // 3S
+        // 정답인 경우
         if inputNumber == correct {
             return true
         }
+        // 오답인 경우
         else {
+            for (index, number) in inputNumber.enumerated() {
+                if number == Array(correct)[index] {
+                    strike += 1
+                } else if correct.contains(number) {
+                    ball += 1
+                }
+            }
             return false
         }
     }

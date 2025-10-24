@@ -21,6 +21,7 @@ struct ContentView: View {
             Text("숫자 야구 게임")
                 .font(.title)
                 .fontWeight(.black)
+                .padding(5)
                 .frame(maxWidth: .infinity)
                 .background(.white)
             

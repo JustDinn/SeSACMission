@@ -32,6 +32,7 @@ struct ContentView: View {
                 }
                 .padding(6)
                 .background(Color(uiColor: .systemGray4))
+                .disabled(number.isEmpty)
             }
             .padding()
             .background(.white)

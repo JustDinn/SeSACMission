@@ -63,7 +63,6 @@ struct ContentView: View {
                     .padding(5)
                     .border(.gray, width: 1)
                 Button("확인") {
-                    print(correct)
                     // strike와 ball 초기화
                     strike = 0
                     ball = 0
@@ -84,6 +83,9 @@ struct ContentView: View {
                     } else {
                         showAlert = true
                     }
+                    
+                    // TextField 초기화
+                    inputNumber = ""
                 }
                 .tint(.white)
                 .padding(6)

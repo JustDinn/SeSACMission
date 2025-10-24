@@ -11,10 +11,16 @@ struct ContentView: View {
     
     // MARK: - Property
     
-    @State var inputNumber = ""
-    @State private var errorMessage = ""
+    @State private var inputNumber = ""
+    @State private var alertTitle = ""
+    @State private var alertMessage = ""
     @State private var showAlert = false
-    private var resultList: [Result] = []
+    @State private var resultList: [Result] = []
+    private let correct: String = {
+        let numbers = Array(0...9)
+        let randomNumbers = numbers.shuffled().prefix(3).map { String($0) }.joined()
+        return randomNumbers
+    }()
     
     // MARK: - Body
     
@@ -40,7 +46,16 @@ struct ContentView: View {
                     .border(.gray, width: 1)
                 Button("확인") {
                     if isValid(number: inputNumber) {
-                        print("유효성 검사 통과")
+                        // 정답인 경우
+                        if correct == inputNumber {
+                            showAlert = true
+                            alertTitle = "게임 승리"
+                            alertMessage = "3 스트라이크! 정답입니다! 🎉"
+                        }
+                        // 오답인 경우
+                        else {
+                            resultList.append(Result(input: inputNumber, result: ""))
+                        }
                     } else {
                         showAlert = true
                     }
@@ -56,10 +71,10 @@ struct ContentView: View {
         }
         .frame(maxWidth: .infinity)
         .background(Color(uiColor: .systemGroupedBackground))
-        .alert("입력 오류", isPresented: $showAlert) {
+        .alert(alertTitle, isPresented: $showAlert) {
             Button("확인") { }
         } message: {
-            Text(errorMessage)
+            Text(alertMessage)
         }
     }
 
@@ -69,13 +84,15 @@ struct ContentView: View {
 
         // 모든 문자가 숫자인지 체크
         guard Int(number) != nil else {
-            errorMessage = "숫자만 입력할 수 있습니다."
+            alertTitle = "입력 오류"
+            alertMessage = "숫자만 입력할 수 있습니다."
             return false
         }
 
         // 3자리 숫자인지 체크
         guard number.count == 3 else {
-            errorMessage = "3자리 숫자를 입력해야합니다."
+            alertTitle = "입력 오류"
+            alertMessage = "3자리 숫자를 입력해야합니다."
             return false
         }
         

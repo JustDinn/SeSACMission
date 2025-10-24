@@ -6,6 +6,6 @@
 //
 
 struct Result {
-    let input: Int
+    let input: String
     let result: String
 }

@@ -43,6 +43,7 @@ struct ContentView: View {
                 .padding(6)
                 .background(inputNumber.isEmpty ? Color(uiColor: .systemGray4) : .gray)
                 .disabled(inputNumber.isEmpty)
+                .cornerRadius(20)
             }
             .padding()
             .background(.white)

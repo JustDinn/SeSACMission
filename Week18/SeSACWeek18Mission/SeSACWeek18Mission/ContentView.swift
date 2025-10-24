@@ -35,6 +35,18 @@ struct ContentView: View {
                 .frame(maxWidth: .infinity)
                 .background(.white)
             
+            ScrollView {
+                LazyVStack {
+                    ForEach(resultList) { result in
+                        HStack {
+                            Text("입력: \(result.input)")
+                            Spacer()
+                            Text(result.result)
+                        }
+                    }
+                }
+            }
+            
             Spacer()
             
             Text("시도 횟수: \(resultList.count)회")

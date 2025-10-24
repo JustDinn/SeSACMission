@@ -13,6 +13,7 @@ struct ContentView: View {
     
     @State var inputNumber = ""
     @State private var errorMessage = ""
+    @State private var showAlert = false
     private var resultList: [Result] = []
     
     // MARK: - Body
@@ -41,7 +42,7 @@ struct ContentView: View {
                     if isValid(number: inputNumber) {
                         print("유효성 검사 통과")
                     } else {
-                        print("입력 오류: \(errorMessage)")
+                        showAlert = true
                     }
                 }
                 .tint(.white)
@@ -55,6 +56,11 @@ struct ContentView: View {
         }
         .frame(maxWidth: .infinity)
         .background(Color(uiColor: .systemGroupedBackground))
+        .alert("입력 오류", isPresented: $showAlert) {
+            Button("확인") { }
+        } message: {
+            Text(errorMessage)
+        }
     }
 
     // MARK: - 유효성 검증

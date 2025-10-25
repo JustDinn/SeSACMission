@@ -159,10 +159,17 @@ struct ContentView: View {
             return false
         }
         
-        // 중복 체크
+        // 이전 입력 숫자와의 중복 체크
         if resultList.contains(where: { $0.input == number }) {
             alertTitle = "입력 오류"
             alertMessage = "이전에 입력한 숫자는 입력할 수 없습니다."
+            return false
+        }
+        
+        // 각 자리의 중복 체크
+        guard Set(number).count == 3 else {
+            alertTitle = "입력 오류"
+            alertMessage = "중복되지 않는 3자리 숫자를 입력해야 합니다."
             return false
         }
 

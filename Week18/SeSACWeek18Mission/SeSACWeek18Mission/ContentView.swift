@@ -16,13 +16,14 @@ struct ContentView: View {
     @State private var alertMessage = ""
     @State private var showAlert = false
     @State private var resultList: [Result] = []
-    private let correct: String = {
+    @State private var correct: String = {
         let numbers = Array(0...9)
         let randomNumbers = numbers.shuffled().prefix(3).map { String($0) }.joined()
         return randomNumbers
     }()
     @State private var strike = 0
     @State private var ball = 0
+    @State private var isGameWon = false
     
     // MARK: - Body
     
@@ -78,6 +79,7 @@ struct ContentView: View {
                                 ),
                                 at: 0
                             )
+                            isGameWon = true
                             showAlert = true
                             alertTitle = "게임 승리"
                             alertMessage = "3 스트라이크! 정답입니다! 🎉"
@@ -113,10 +115,30 @@ struct ContentView: View {
         .frame(maxWidth: .infinity)
         .background(Color(uiColor: .systemGroupedBackground))
         .alert(alertTitle, isPresented: $showAlert) {
-            Button("확인") { }
+            if isGameWon {
+                Button("새 게임 시작") {
+                    startNewGame()
+                }
+            } else {
+                Button("확인") { }
+            }
         } message: {
             Text(alertMessage)
         }
+    }
+
+    // MARK: - 새 게임 시작
+
+    private func startNewGame() {
+        let numbers = Array(0...9)
+        let randomNumbers = numbers.shuffled().prefix(3).map { String($0) }.joined()
+        correct = randomNumbers
+        
+        resultList = []
+        isGameWon = false
+        inputNumber = ""
+        strike = 0
+        ball = 0
     }
 
     // MARK: - 유효성 검증

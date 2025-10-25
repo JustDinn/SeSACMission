@@ -155,11 +155,16 @@ struct ContentView: View {
         // 3자리 숫자인지 체크
         guard number.count == 3 else {
             alertTitle = "입력 오류"
-            alertMessage = "3자리 숫자를 입력해야합니다."
+            alertMessage = "3자리 숫자를 입력해야 합니다."
             return false
         }
         
         // 중복 체크
+        if resultList.contains(where: { $0.input == number }) {
+            alertTitle = "입력 오류"
+            alertMessage = "중복되지 않은 3자리 숫자를 입력해야 합니다."
+            return false
+        }
 
         return true
     }

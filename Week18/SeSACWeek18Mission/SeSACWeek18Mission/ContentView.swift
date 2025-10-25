@@ -175,6 +175,8 @@ struct ContentView: View {
         
         // 정답인 경우
         if inputNumber == correct {
+            strike = 3
+            ball = 0
             return true
         }
         // 오답인 경우
